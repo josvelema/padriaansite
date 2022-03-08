@@ -1,0 +1,333 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: -webkit-linear-gradient(to bottom, #434343, #000000);
+    background: linear-gradient(to bottom, #434343, #000000);
+    /* font-size: 16px; */
+}
+
+a {
+    text-decoration: none;
+    color: #2e2e2e;
+}
+
+main {
+    position: relative;
+    top: 4rem;
+    padding: 2rem;
+
+    width: 80vw;
+    margin: 0.5em auto;
+    /* border: 1px solid #fafafa; */
+    border-radius: 0.5rem;
+    background: #000000;
+    /* background: -webkit-linear-gradient(to bottom, #434343, #000000);  
+background: linear-gradient(to bottom, #434343, #000000);  */
+    background: linear-gradient(315deg, #484848, #3c3c3c);
+    box-shadow: -5px -5px 10px #2e2e2e, 5px 5px 10px #585858;
+}
+
+.rj-blog {
+    margin: 0 auto;
+}
+
+.blog-css-grid {
+    border-radius: 0.5rem;
+    padding: 0.5em;
+    --min: 30ch;
+    --gap: 0.75em;
+    display: grid;
+    grid-gap: var(--gap);
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, var(--min)), 330px)
+    );
+    place-content: center;
+}
+
+.rj-blog-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 7px;
+    /* background: #d9d9d8; */
+    /* box-shadow: inset -5px -5px 10px #b8b8b8, inset 5px 5px 10px #fafaf8; */
+    border-radius: 0.5rem;
+    margin-bottom: 1em;
+    color: #000;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+
+}
+
+.rj-blog-card > :not(img) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.rj-blog-card > :last-of-type:not(img, h2, h3, h4) {
+    margin-bottom: 1rem;
+}
+
+.rj-blog-card > * + * {
+    margin-top: 1rem;
+}
+
+.rj-blog-card-header {
+    min-height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 0.3em;
+    margin-bottom: 0.15em;
+    padding: 0.25em;
+    border-bottom: 1px solid gray;
+    font-size: 0.9rem;
+    word-break: break-word;
+    /* Optional, not supported for all languages */
+    hyphens: auto;
+}
+
+.rj-card-title {
+    font-size: 1.5rem;
+}
+
+.rj-card-title::first-letter {
+    text-transform: uppercase;
+}
+
+.rj-blog-card-content {
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    border-bottom: 1px solid gray;
+}
+
+.rj-blog-card-content > p {
+    margin-top: 0.25em;
+    border-top: 1px solid gray;
+    padding: 0.25em;
+}
+.rj-blog-card-content > p::first-letter {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+}
+
+.rj-blog-card-content > img {
+    background: #fafafa;
+}
+
+.blog-image {
+    width: 300px;
+    background: black;
+
+    padding: 1px;
+    margin: 1px;
+
+    border: 1px solid #fafafa;
+}
+.rj-blog-card > img {
+    /* Fallback for `aspect-ratio` of defining
+  a height */
+    /* height: 18vh; */
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+}
+
+/* When supported, use `aspect-ratio` */
+@supports (aspect-ratio: 1) {
+    .rj-blog-card > img {
+        aspect-ratio: var(--img-ratio);
+        height: 200px;
+    }
+}
+
+.rj-btn-light:link,
+.rj-btn-light:visited,
+.rj-button,
+.rj-comment-button a {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgb(27, 27, 27);
+    padding: 10px 30px;
+    border: 1px solid;
+    border-radius: 1000px;
+    display: inline-block;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.rj-btn-light:hover,
+.rj-comment-button a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(27, 27, 27, 0.5);
+}
+
+.rj-comment-button a:hover {
+    box-shadow: 0 10px 20px rgba(222, 222, 222, 0.5);
+}
+
+.rj-btn-light:active,
+.rj-comment-button a:active {
+    transform: translateY(-3px);
+}
+
+.rj-btn-light::after,
+.rj-comment-button a::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s;
+}
+
+.rj-btn-light:hover::after,
+.rj-comment-button a:hover::after {
+    background-color: rgb(157, 255, 0);
+    transform: scaleX(1.4) scaleY(1.5);
+    opacity: 0;
+}
+
+.rj-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 7px;
+    /* background: #d9d9d8; */
+    /* box-shadow: inset -5px -5px 10px #b8b8b8, inset 5px 5px 10px #fafaf8; */
+    border-radius: 0.5rem;
+    color: #000;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.rj-post-comment-header {
+    margin-top: 0.5em;
+    padding: 0.25em;
+    border-bottom: 1px solid black;
+}
+
+.rj-post-content {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.rj-post-content > p {
+    width: 80ch;
+}
+/* 
+.rj-post-image > img {
+width: 200px;
+} */
+
+.rj-post-image > img {
+    /* Fallback for `aspect-ratio` of defining
+a height */
+    /* height: 18vh; */
+    object-fit: cover;
+    width: 200px;
+    height: 100%;
+}
+
+/* When supported, use `aspect-ratio` */
+@supports (aspect-ratio: 1) {
+    .rj-blog-card > img {
+        aspect-ratio: var(--img-ratio);
+        height: 200px;
+    }
+}
+
+.rj-post-comment {
+    width: fit-content;
+    padding: 1rem clamp(1rem, 5%, 3rem);
+    background: #f2f2f3;
+    border: 1px solid #a9a9a9;
+    border-radius: 4px;
+    box-shadow: inset 4px 4px 3px #a9a9aa, inset -4px -4px 3px #fafafa;
+    margin-bottom: 0.5em;
+}
+
+.rj-comment-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5em 0 1.5em 0;
+    padding: 0.5em;
+}
+.rj-comment-button a {
+    background: #f2f2f3;
+}
+
+.rj-comment-form-wrapper {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 7px;
+    /* background: #d9d9d8; */
+    /* box-shadow: inset -5px -5px 10px #b8b8b8, inset 5px 5px 10px #fafaf8; */
+    border-radius: 0.5rem;
+    color: #000;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.rj-comment-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 7px;
+    /* background: #d9d9d8; */
+    /* box-shadow: inset -5px -5px 10px #b8b8b8, inset 5px 5px 10px #fafaf8; */
+    border-radius: 0.5rem;
+    color: #000;
+    width: 80%;
+    padding: 1em;
+    background: white;
+    border-radius: 10px;
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    margin-bottom: 1em;
+}
+
+.rj-form-header {
+    margin-bottom: 0.5em;
+    border-bottom: none;
+}
+
+.rj-comment-form rj-button {
+    margin-top: 0.5em;
+}
+/* .rj-post-content p {
+  font-size: clamp(1.35rem, 5vw, 1.75rem);
+  line-height: 1.3;
+} */
