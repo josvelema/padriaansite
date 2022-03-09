@@ -1,7 +1,7 @@
 <?php
 include 'functions.php';
 ?>
-<?= template_header_other('Science') ?>
+<?= template_header('Science') ?>
 <main>
   <header>
     <h1>Science</h1>
@@ -312,31 +312,8 @@ include 'functions.php';
   </footer>
 </main>
 
-<script>
-  let articles = ["main", "biblio", "biblioInfo", "talksEtc", "projects", "patents", "fundamentals"];
-  let visibleId = null;
+<script src="showandhide.js" defer></script>
 
-  function show(id) {
-    if (visibleId !== id) {
-      visibleId = id;
-
-    }
-    hide();
-  }
-
-  function hide() {
-    let div, i, id;
-    for (i = 0; i < articles.length; i++) {
-      id = articles[i];
-      div = document.getElementById(id);
-      if (visibleId === id) {
-        div.style.display = "block";
-      } else {
-        div.style.display = "none";
-      }
-    }
-  }
-</script>
 
 
 <?= template_footer() ?>

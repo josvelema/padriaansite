@@ -23,7 +23,7 @@ main {
 main > * {
   --layout-spacing: max(8vh, 3rem);
   --max-width: 90%;
-  width: min(100%, var(--max-width));
+  width: min(90ch, var(--max-width));
   margin-left: auto;
   margin-right: auto;
 }

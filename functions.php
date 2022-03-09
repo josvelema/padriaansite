@@ -106,6 +106,9 @@ echo <<<EOT
 		<link href="style.css" rel="stylesheet" type="text/css">
 		<link href="jostyle.css" rel="stylesheet" type="text/css">
 		<link href="assets/css/home.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/science.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/painting.css" rel="stylesheet" type="text/css">
+        
         
 
 	</head>
@@ -116,6 +119,8 @@ echo <<<EOT
             <a href="blog.php"><i class="fa-regular fa-comment-dots"></i>Blog</a>
             <a href="gallery.php"><i class="fas fa-photo-video"></i>Gallery</a>
             <a href="science.php"><i class="fa-solid fa-brain"></i>Science</a>
+            <a href="painting.php"><i class="fa-solid fa-paintbrush"></i>Painting</a>
+            
             <a href="admin/index.php" target="_blank"><i class="fas fa-lock"></i>Admin</a>
     	</div>
     </nav>
@@ -135,8 +140,8 @@ function template_header_other($title) {
             <link href="style.css" rel="stylesheet" type="text/css">
             <link href="jostyle.css" rel="stylesheet" type="text/css">
             <link href="assets/css/science.css" rel="stylesheet" type="text/css">
-
-            
+            <link href="assets/css/painting.css" rel="stylesheet" type="text/css">
+                        
     
         </head>
         <body>
@@ -146,7 +151,11 @@ function template_header_other($title) {
                 <a href="blog.php"><i class="fa-regular fa-comment-dots"></i>Blog</a>
                 <a href="gallery.php"><i class="fas fa-photo-video"></i>Gallery</a>
                 <a href="science.php"><i class="fa-solid fa-brain"></i>Science</a>
+                <a href="painting.php"><i class="fa-solid fa-paintbrush"></i>Painting</a>
+                
                 <a href="admin/index.php" target="_blank"><i class="fas fa-lock"></i>Admin</a>
+
+                
             </div>
         </nav>
     EOT;
@@ -154,7 +163,8 @@ function template_header_other($title) {
 
 // Template footer
 function template_footer() {
-echo <<<EOT
+    echo <<<EOT
+ 
         <script src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>

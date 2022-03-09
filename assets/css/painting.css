@@ -1,0 +1,31 @@
+
+
+.rj-painting img{
+  width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 7px;
+  border:1px solid #39618a;
+  /* box-shadow: 0 1px 6px 6px rgba(44, 55, 99,0.7); */
+  box-shadow: -8px 8px 33px rgba(0 0 2 / 61%);
+}
+
+/* .rj-painting-kaas{
+width: 86ch;
+height: auto;
+margin: 0 auto;
+} */
+
+
+.rj-painting-kaas-klas {
+  width: 50%;
+  height: auto;
+  border-radius: 7px;
+  border:1px solid #39618a;
+  /* box-shadow: 0 1px 6px 6px rgba(44, 55, 99,0.7); */
+  object-fit: cover;
+  box-shadow: -8px 8px 33px rgba(0 0 2 / 61%);
+}
+
+.rj-painting-kaas-klas img{
+}
