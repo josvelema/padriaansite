@@ -45,7 +45,7 @@ if (isset($_GET['p_id'])) {
 
 
 
-  <main style="min-height: 100vh;">
+  <main class="rj-home">
     <section>
       <article class="rj-blog-card">
         <header class="rj-blog-header">
