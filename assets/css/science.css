@@ -22,7 +22,7 @@ main {
 
 main > * {
   --layout-spacing: max(8vh, 3rem);
-  --max-width: 90ch;
+  --max-width: 90%;
   width: min(100%, var(--max-width));
   margin-left: auto;
   margin-right: auto;
@@ -37,7 +37,7 @@ header {
 section {
   margin-top: var(--layout-spacing);
   display: grid;
-  grid-template-columns: fit-content(20ch) minmax(min(50vw, 30ch), 1fr);
+  grid-template-columns: fit-content(30ch) minmax(min(50vw, 30ch), 1fr);
 }
 
 header img{
@@ -53,7 +53,7 @@ header img{
 
 aside {
   
-  width: 40ch;
+  width: 28ch;
 }
 
 footer {
