@@ -7,7 +7,9 @@ $stmt = $pdo->prepare('SELECT * FROM categories ORDER BY title');
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<?= template_header('Pieter Adriaans - Home') ?>
+<?= template_header('Home') ?>
+<?= template_nav() ?>
+
 
 <main class="rj-home">
   <header class="rj-home-header">

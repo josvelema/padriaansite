@@ -47,7 +47,9 @@ $media_width = 320;
 $media_height = 210;
 ?>
 <?= template_header('Gallery') ?>
-<main>
+<?= template_nav() ?>
+
+<main class="rj-blog-main">
   <section class="rj-blog">
 
     <header class="rj-blog-header">

@@ -41,6 +41,7 @@ if (isset($_GET['p_id'])) {
 
 ?>
   <?= template_header($post_title) ?>
+  <?= template_nav() ?>
 
 
 

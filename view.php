@@ -16,6 +16,8 @@ if (isset($_GET['id'])) {
 ?>
 
 <?=template_header($media['title'])?>
+<?= template_nav() ?>
+
 
 <div class="content view">
 

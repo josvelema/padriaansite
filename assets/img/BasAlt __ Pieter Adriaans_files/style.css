@@ -1,0 +1,116 @@
+/*======================================
+      WELCOME TO THE STYLESHEET
+--------------------------------------      
+     Copyright Johan Adriaans
+      Author: Johan Adriaans
+======================================*/
+ 
+/**************************************\
+|------------COLOR SCHEME--------------|
+|--------------------------------------|
+- Red                 #CA3434
+- Bleu                #204A87
+- Orange              #F6840D
+- Green               #88AE3D
+- Grey                #414141
+
+\**************************************/
+
+
+/**************************************/
+/*              GLOBALS               */
+/**************************************/
+body     { background-color: #414141; padding-top: 2em; color: #333333; }
+div#site { background-color: white; padding-top: 1.5em; padding-bottom: 2em; position: relative; }
+
+/* Toolbox */
+body .nopadding, body table td.nopadding, body table th.nopadding { padding: 0; }
+body .nomargin, body table td.nomargin, body table th.nomargin { margin: 0; }
+body .left { float: left; }
+body .right { float: right; }
+body .nofloat { float: none; }
+
+/* Disable bluetrip external link icons */
+a[href^="http:"], a[href^="http:"]:visited { background-image: none; padding-right: 0px; }
+
+/* Markup text at top in tables (when using images next to text) */
+body table td, body table th { vertical-align: top;}
+body table { border-collapse: separate; }
+
+/* Markup headers */
+body h1, body h2, body h3, body h4, body h5, body h6 {
+  color: #494F57;
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  font-weight: lighter;
+  line-height: 1.2em;
+}
+
+/*************************************************/
+/*   Template specifieke kleuren (optioneel)     */
+/*************************************************/
+body div.rood h1, body div.rood h2, body div.rood h3, body div.rood h4, body div.rood h5, body div.rood h6,
+body div.rood a, body div.rood a:link, body div.rood a:visited,
+div#menu ul li.rood a {
+  border-color: #CA3434;
+  color: #CA3434;
+}
+
+body div.blauw h1, body div.blauw h2, body div.blauw h3, body div.blauw h4, body div.blauw h5, body div.blauw h6,
+body div.blauw a, body div.blauw a:link, body div.blauw a:visited,
+div#menu ul li.blauw a {
+  border-color: #204A87;
+  color: #204A87;
+}
+
+body div.groen h1, body div.groen h2, body div.groen h3, body div.groen h4, body div.groen h5, body div.groen h6,
+body div.groen a, body div.groen a:link, body div.groen a:visited,
+div#menu ul li.groen a {
+  border-color: #88AE3D;
+  color: #88AE3D;
+}
+
+body div.oranje h1, body div.oranje h2, body div.oranje h3, body div.oranje h4, body div.oranje h5, body div.oranje h6,
+body div.oranje a, body div.oranje a:link, body div.oranje a:visited,
+div#menu ul li.oranje a {
+  border-color: #F6840D;
+  color: #F6840D;
+}
+
+body div.zwart h1, body div.zwart h2, body div.zwart h3, body div.zwart h4, body div.zwart h5, body div.zwart h6,
+body div.zwart a, body div.zwart a:link, body div.zwart a:visited,
+div#menu ul li.zwart a {
+  border-color: #000000;
+  color: #000000;
+}
+
+/**************************************/
+/*              HEADER                */
+/**************************************/
+div#logo { font-size: 2.8em; line-height: 1.2em; margin: 0; }
+div#section_header p { margin: 0; }
+
+/**************************************/
+/*             NAVIGATION             */
+/**************************************/
+div#menu ul { margin: 0px; list-style: none; font-size: 1.4em; font-weight: lighter; }
+div#menu ul li { margin: 0px; display: inline;  }
+div#menu ul li a { display: block;  float: left; text-decoration: none; margin-right: 20px; }
+div#menu ul li.current a { border-bottom: 3px solid; }
+
+/**************************************/
+/*            MAIN CONTENT            */
+/**************************************/
+
+
+/**************************************/
+/*               FOOTER               */
+/**************************************/
+div#footer a,
+div#footer { text-align: center; color: #888888; }
+
+
+/**************************************/
+/*            EDITOR CONTENT          */
+/**************************************/
+body#tinymce, body#tinymce td, body#tinymce pre { font-family: "Liberation Sans",Helvetica,Arial,sans-serif; }
+body#tinymce { background: white; }

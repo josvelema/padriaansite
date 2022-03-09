@@ -13,7 +13,7 @@ a {
     color: #2e2e2e;
 }
 
-main {
+.rj-blog-main {
     position: relative;
     top: 4rem;
     padding: 2rem;
@@ -331,3 +331,17 @@ a height */
   font-size: clamp(1.35rem, 5vw, 1.75rem);
   line-height: 1.3;
 } */
+.rj-footer {
+    
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1em;
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fafafa;
+    text-shadow: -1px -1px 1px rgba(255,255,255,.5), 1px 1px 1px rgba(12,34,66,0.5);
+    background: linear-gradient(180deg, rgb(0, 0, 0) , #3F3F3F);
+}

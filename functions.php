@@ -94,25 +94,33 @@ function resize_image($source, $max_width, $max_height) {
 }
 // Template header, feel free to customize this
 function template_header($title) {
-echo <<<EOT
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,minimum-scale=1">
-		<title>$title</title>
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-		<link href="style.css" rel="stylesheet" type="text/css">
-		<link href="jostyle.css" rel="stylesheet" type="text/css">
-		<link href="assets/css/home.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/science.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/painting.css" rel="stylesheet" type="text/css">
-        
-        
+    echo <<<EOT
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <title>$title - Pieter Adriaans</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="jostyle.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/home.css" rel="stylesheet" type="text/css">
+    EOT;
+}
+function template_header_other() {
+    echo <<<EOT
+    <link href="assets/css/painting.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/science.css" rel="stylesheet" type="text/css">
+EOT;
+}
 
-	</head>
-	<body>
+
+    function template_nav() {
+echo <<<EOT
+        </head>
+        <body>
+
     <nav class="navtop">
     	<div>
     		<h1><a href="index.php">Home</a></h1>
@@ -127,48 +135,16 @@ echo <<<EOT
 EOT;
 }
 
-function template_header_other($title) {
-    echo <<<EOT
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width,minimum-scale=1">
-            <title>$title</title>
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-            <link href="style.css" rel="stylesheet" type="text/css">
-            <link href="jostyle.css" rel="stylesheet" type="text/css">
-            <link href="assets/css/science.css" rel="stylesheet" type="text/css">
-            <link href="assets/css/painting.css" rel="stylesheet" type="text/css">
-                        
-    
-        </head>
-        <body>
-        <nav class="navtop">
-            <div>
-                <h1><a href="index.php">Home</a></h1>
-                <a href="blog.php"><i class="fa-regular fa-comment-dots"></i>Blog</a>
-                <a href="gallery.php"><i class="fas fa-photo-video"></i>Gallery</a>
-                <a href="science.php"><i class="fa-solid fa-brain"></i>Science</a>
-                <a href="painting.php"><i class="fa-solid fa-paintbrush"></i>Painting</a>
-                
-                <a href="admin/index.php" target="_blank"><i class="fas fa-lock"></i>Admin</a>
-
-                
-            </div>
-        </nav>
-    EOT;
-    }
 
 // Template footer
 function template_footer() {
     echo <<<EOT
- 
+<footer class="rj-footer">
+<p>2022 Pieter Adriaans - Design and Developed by Jos Velema</p>
+</footer> 
         <script src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
 </html>
 EOT;
 }
-?>

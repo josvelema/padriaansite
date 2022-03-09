@@ -2,6 +2,9 @@
 include 'functions.php';
 ?>
 <?= template_header('Painting') ?>
+<?= template_header_other() ?>
+<?= template_nav() ?>
+
 <main>
   <header class="rj-painting">
     <h1>Painting</h1>

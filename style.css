@@ -29,8 +29,7 @@ body {
     background: -webkit-linear-gradient(to left, #ffffff, #ece9e6);
     background: linear-gradient(to left, hsl(200, 22%, 94%), hsl(30, 14%, 78%));
     transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: inset 0 -2em 0.5em rgb(221 222 222 / 58%),
-        0 0 0 3px rgb(162 167 172), 0px 3px 5px 5px rgb(141 170 148 / 52%);
+    inset 0 -2em 0.5em rgb(221 222 222 / 58%), 0 -7px 9px 10px  rgb(162 167 172), 0px -1px 3px 5px rgb(141 170 148 / 29%);
 }
 
 .navtop div {

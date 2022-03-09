@@ -67,7 +67,8 @@ $last_page = ceil($total_media / $media_per_page);
 $media_width = 300;
 $media_height = 200;
 ?>
-<?= template_header('Gallery - Pieter Adriaans') ?>
+<?= template_header('Gallery') ?>
+<?= template_nav() ?>
 
 <div class="content home">
 

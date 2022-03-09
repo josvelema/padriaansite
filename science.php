@@ -2,6 +2,9 @@
 include 'functions.php';
 ?>
 <?= template_header('Science') ?>
+<?= template_header_other() ?>
+<?= template_nav() ?>
+
 <main>
   <header>
     <h1>Science</h1>
