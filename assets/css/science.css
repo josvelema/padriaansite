@@ -1,0 +1,119 @@
+/***
+ 🟣 SmolCSS Snippet Styles
+ */
+
+
+ * {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 5vh clamp(1rem, 5vw, 3rem) 1rem;
+  /* font-family: system-ui, sans-serif; */
+  line-height: 1.5;
+  color: #f0f0f0;
+  font-family: "IBM Plex Sans", sans-serif;
+
+}
+
+main > * {
+  --layout-spacing: max(8vh, 3rem);
+  --max-width: 90ch;
+  width: min(100%, var(--max-width));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  
+  display: grid;
+  place-items: center ;
+}
+
+section {
+  margin-top: var(--layout-spacing);
+  display: grid;
+  grid-template-columns: fit-content(20ch) minmax(min(50vw, 30ch), 1fr);
+}
+
+header img{
+  width: 150px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+  border:1px solid #39618a;
+  /* box-shadow: 0 1px 6px 6px rgba(44, 55, 99,0.7); */
+  box-shadow: -8px 8px 33px rgba(0 0 2 / 61%);
+}
+
+
+aside {
+  
+  width: 40ch;
+}
+
+footer {
+  margin-top: auto;
+  padding-top: var(--layout-spacing);
+}
+
+footer p {
+  border-top: 1px solid #ccc;
+  padding-top: 0.25em;
+  font-size: 0.9rem;
+  color: #767676;
+}
+
+h1 {
+  font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+:is(h1, h2, h3) {
+  line-height: 1.2;
+}
+
+:is(h2, h3):not(:first-child) {
+  margin-top: 2em;
+}
+
+article * + * {
+  margin-top: 1em;
+}
+
+a {
+  color:  rgb(255, 255, 204);
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: rgb(255, 255, 204);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+a:hover {
+  color:  rgb(222, 222, 211);
+}
+
+.rj-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em;
+}
+
+.rj-flex img {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+  padding: 0.5em;
+  margin: 0.25em;
+
+}
+
+.bibliography {
+  display: none;
+}
