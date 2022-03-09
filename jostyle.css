@@ -25,7 +25,7 @@ main {
     background: #000000;
     /* background: -webkit-linear-gradient(to bottom, #434343, #000000);  
 background: linear-gradient(to bottom, #434343, #000000);  */
-    background: linear-gradient(315deg, #484848, #3c3c3c);
+    background: linear-gradient(45deg, #484848, #3c3c3c);
     box-shadow: -5px -5px 10px #2e2e2e, 5px 5px 10px #585858;
 }
 
