@@ -8,6 +8,21 @@
     outline: 1px solid green; */
 }
 
+#scrolltop {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAe1BMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////NgkbwAAAAKHRSTlMAAQIDDRITFBcdHh8gIyQlJjdDREx1d4CCg4WXmpu5urzZ6e3v+fv9pStiuwAAAI9JREFUOE/dylkWgkAMRNFqUXEW53kC1Ox/hWKOtG3SZgHkq3LuAxp4q7xv+oboPrDdLNiNYktkFt7/FIFHix+viqHwHYkThffr7Bkrvp4gixT7wIHsURcj6ZeE/6kopMtirTwsUuCmHZjUxRxIS17n0H1xctXultqB8bs4Ot6dQjsXB/fZ7WVLOdBbODTmXgKJJx7c/fm3AAAAAElFTkSuQmCC);
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 5px;
+    display: block;
+    z-index: 9999;
+}
+
+
 body {
     /* background: #0F2027
   background: -webkit-linear-gradient(to bottom, hsl(198, 44%, 11%),hsl(195, 35%, 19%), hsl(198, 39%, 28%));  
@@ -15,21 +30,26 @@ body {
     background: #000;
     color: #fafafa;
     margin: 0;
+    /* padding: 0; */
 }
 
 .navtop {
+    position: relative;
     color: hsl(216, 21%, 28%);
     height: 3.2rem;
     width: 100%;
     border: 0;
     text-transform: capitalize;
-
+    z-index: 666;
+    margin: 0;
     letter-spacing: 2px;
     background: #ece9e6;
     background: -webkit-linear-gradient(to left, #ffffff, #ece9e6);
     background: linear-gradient(to left, hsl(200, 22%, 94%), hsl(30, 14%, 78%));
     transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    inset 0 -2em 0.5em rgb(221 222 222 / 58%), 0 -7px 9px 10px  rgb(162 167 172), 0px -1px 3px 5px rgb(141 170 148 / 29%);
+    box-shadow: inset 0 -2em 0.5em rgb(221 222 222 / 58%),
+        0 0 0 3px rgb(162 167 172), 0px 3px 5px 5px rgb(141 170 148 / 52%);
+    
 }
 
 .navtop div {
@@ -37,10 +57,11 @@ body {
     margin: 0 auto;
     width: 100%;
     height: 100%;
+    
 }
 
 .navtop div h1,
-.navtop div a {
+.navtop div a:not([class="rj-nav-home"]) {
     display: inline-flex;
     align-items: center;
 }
@@ -48,7 +69,6 @@ body {
 .navtop div h1 {
     flex: 1;
     padding: 0;
-    margin: 0;
     margin-left: 2rem;
     color: hsl(216, 21%, 28%);
     font-size: 2rem;
@@ -77,6 +97,121 @@ body {
     /* color: #ebecee; */
     color: hsl(216, 21%, 48%);
 }
+
+a.rj-nav-home {
+    display: none;
+}
+
+.navtop label,
+.navtop input {
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .dropdown {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .hamburger {
+        align-self: flex-end;
+    }
+
+    label {
+        cursor: pointer;
+    }
+
+    input[type="checkbox"] + label .icon-bar {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background-color: hsl(184, 36%, 16%);
+        margin: 4px;
+        transition: all 0.3s cubic-bezier(.07,.99,.94,.28);
+    }
+    input[type="checkbox"] + label .top-bar {
+        transform: rotate(0);
+    }
+    input[type="checkbox"] + label .middle-bar {
+        opacity: 1;
+    }
+
+    input[type="checkbox"]:checked + label .top-bar {
+        transform: rotate(45deg);
+        transform-origin: 10% 10%;
+    }
+    input[type="checkbox"]:checked + label .middle-bar {
+        opacity: 0;
+    }
+    input[type="checkbox"]:checked + label .bottom-bar {
+        transform: rotate(-45deg);
+        transform-origin: 10% 90%;
+    }
+
+    .navtop div {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 270ms cubic-bezier(0.73, 0.45, 0.28, 1.15),
+            opacity 220ms cubic-bezier(0.73, 0.45, 0.28, 1.15);
+    }
+    .navtop div h1 {
+        display: none;
+    }
+    .navtop label {
+        display: block;
+        text-align: center;
+        width: 40px;
+        border-left: 1px solid #2b3543;
+        padding: 15px 25px 15px 25px;
+        opacity: 0.8;
+        color: blue;
+    }
+    .navtop input:checked ~ div {
+        position: static;
+        display: inline-flex;
+        visibility: visible;
+        opacity: 1;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: auto;
+        /* overflow-y: scroll;
+        overflow-x: hidden; */
+        backdrop-filter: blur(9px) saturate(167%);
+        -webkit-backdrop-filter: blur(9px) saturate(167%);
+        background-color: rgba(17, 25, 40, 0.66);
+    }
+
+    .navtop input:checked ~ div a,
+    .navtop input:checked ~ div a.rj-nav-home {
+        position: static;
+        display: inline-flex;
+        color: #fafafa;
+        padding: 0.5em;
+        margin: 0.5em;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+
+/* .navtop {
+        flex-direction: row;
+        height: auto;
+        padding: 10px;
+    }
+    .navtop div {
+        flex-flow: nowrap;
+        width: 100%;
+    }
+    .navtop div h1 {
+        display: none;
+        flex-basis: 100%;
+    }
+    .navtop div a {
+        padding: 10px 0;
+        flex-basis: 50%;
+    } */
 
 .content {
     position: relative;
@@ -142,7 +277,7 @@ body {
     backdrop-filter: blur(7px) saturate(180%);
     -webkit-backdrop-filter: blur(7px) saturate(180%);
     background-color: rgba(17, 25, 40, 0.77);
-    z-index: 999999;
+    z-index: 998;
 }
 
 .media-popup .con {
@@ -162,8 +297,6 @@ body {
 }
 
 .media-popup .con .rj-close-popup {
-
-   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,12 +316,11 @@ body {
 .media-popup .con .fa-solid .fa-xmark {
     font-size: 3.5rem;
     color: rgba(88, 5, 11, 0.56);
- }
+}
 
-.media-popup .con .fa-xmark:hover
- {
+.media-popup .con .fa-xmark:hover {
     cursor: pointer;
-    color: rgba(88, 5, 11, 0.44);  
+    color: rgba(88, 5, 11, 0.44);
 }
 
 .media-popup .con .rj-close-popup:hover {
@@ -196,7 +328,6 @@ body {
 
     box-shadow: 0 0 9px -1px rgba(99, 5, 11, 0.88);
 }
-
 
 .media-popup .con h3 {
     margin: 0;
@@ -498,7 +629,7 @@ body {
 
 /* Responsive design code below */
 @media screen and (max-width: 1000px) {
-    .navtop {
+    /* .navtop {
         flex-direction: row;
         height: auto;
         padding: 10px;
@@ -514,7 +645,7 @@ body {
     .navtop div a {
         padding: 10px 0;
         flex-basis: 50%;
-    }
+    } */
     .content {
         padding: 10px;
         width: 100%;
