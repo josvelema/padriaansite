@@ -128,6 +128,7 @@ echo <<<EOT
             <a href="gallery.php"><i class="fas fa-photo-video"></i>Gallery</a>
             <a href="science.php"><i class="fa-solid fa-brain"></i>Science</a>
             <a href="painting.php"><i class="fa-solid fa-paintbrush"></i>Painting</a>
+            <a href="contact.php"><i class="fa-solid fa-envelope"></i>Contact</a>
             
             <a href="admin/index.php" target="_blank"><i class="fas fa-lock"></i>Admin</a>
     	</div>

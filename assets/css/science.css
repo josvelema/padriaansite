@@ -10,11 +10,12 @@ main {
   min-height: 100vh;
   padding: 5vh clamp(1rem, 5vw, 3rem) 1rem;
   /* font-family: system-ui, sans-serif; */
-  line-height: 1.5;
+  line-height: 1.5rem;
   color: #f0f0f0;
   font-family: "IBM Plex Sans", sans-serif;
 
 }
+
 
 main > * {
   --layout-spacing: max(8vh, 3rem);
@@ -24,6 +25,9 @@ main > * {
   margin-right: auto;
 }
 
+ul {
+  list-style: circle;
+}
 header {
   
   display: grid;

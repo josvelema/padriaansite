@@ -57,9 +57,6 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     flex-direction: column;
     justify-content: space-between;
     border-radius: 7px;
-    /* background: #d9d9d8; */
-    /* box-shadow: inset -5px -5px 10px #b8b8b8, inset 5px 5px 10px #fafaf8; */
-    border-radius: 0.5rem;
     margin-bottom: 1em;
     color: #000;
     width: 100%;
@@ -174,7 +171,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 }
 
 .rj-btn-light:hover,
-.rj-comment-button a:hover {
+.rj-comment-button a:hover,
+.rj-button:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(27, 27, 27, 0.5);
 }
@@ -184,12 +182,14 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 }
 
 .rj-btn-light:active,
-.rj-comment-button a:active {
+.rj-comment-button a:active,
+.rj-button:active {
     transform: translateY(-3px);
 }
 
 .rj-btn-light::after,
-.rj-comment-button a::after {
+.rj-comment-button a::after ,
+.rj-button::after {
     content: "";
     display: inline-block;
     height: 100%;
@@ -203,7 +203,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 }
 
 .rj-btn-light:hover::after,
-.rj-comment-button a:hover::after {
+.rj-comment-button a:hover::after ,
+.rj-button:hover::after{
     background-color: rgb(157, 255, 0);
     transform: scaleX(1.4) scaleY(1.5);
     opacity: 0;

@@ -1,0 +1,181 @@
+/* {
+    outline: 1px solid green;
+} */
+
+input,
+textarea,
+p {
+    outline: 0;
+}
+
+header {
+    display: grid;
+    place-content: center;
+    margin: 1.5rem 0 1.5rem;
+}
+
+h1 {
+    letter-spacing: 2px;
+    font-weight: 400;
+    border: none;
+}
+
+.rj-contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-wrap: nowrap; */
+    margin: 1rem;
+}
+
+.rj-contact-address {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    width: 86ch;
+    padding: 1em;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3),
+        1px 2px 16px 4px rgb(112 122 166 / 55%);
+    margin: 1rem;
+}
+.rj-contact-address-card img {
+    float: right;
+    width: 210px;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid rgb(0 0 0 / 0.6);
+    border-radius: 4px;
+    box-shadow: 0 0 6px 2px rgb(0 0 0 / 0.5);
+}
+
+.rj-contact-address em {
+    line-height: 1.9rem;
+    font-size: 1.2rem;
+}
+
+.rj-contact-address a.rj-social-item {
+  color: hsl(214, 6%, 5%);
+  text-decoration: none;
+  /* margin-top: 1em; */
+  padding: 0.50em 0.25em;
+}
+
+ a {
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: hsl(214, 26%, 30%);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+}
+
+h2 {
+    margin: 0;
+    padding: 20px;
+    margin-bottom: 0.5em;
+    font-size: 22px;
+    text-align: center;
+    border-bottom: 1px solid #eceff2;
+    color: hsl(214, 6%, 30%);
+    font-weight: 600;
+}
+.contact {
+   
+    background-color: hsl(0, 0%, 88%);
+    width: 30%;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3),
+        1px 2px 16px 4px rgb(112 122 166 / 45%);
+    border-radius: 7px;
+}
+.contact .fields {
+    position: relative;
+    padding: 15px;
+    width: 100%;
+}
+
+.contact input:not([type="submit"]) {
+  width: 300px;
+}
+
+.contact input[type="text"],
+.contact input[type="email"] {
+    display: block;
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #dfe0e0;
+    border-radius: 4px;
+    width: 100%;
+}
+.contact input[type="text"]:focus,
+.contact input[type="email"]:focus {
+    border: 1px solid #c6c7c7;
+}
+.contact input[type="text"]::placeholder,
+.contact input[type="email"]::placeholder,
+.contact textarea::placeholder {
+    color: #858688;
+}
+.contact textarea {
+    resize: none;
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #dfe0e0;
+    border-radius: 4px;
+
+    width: 100%;
+    height: 200px;
+}
+.contact textarea:focus {
+    border: 1px solid #c6c7c7;
+}
+.rj-contact-submit {
+    margin: 1em;
+}
+
+.contact input[name="email"] {
+    position: relative;
+    display: block;
+}
+.contact label {
+    position: relative;
+}
+.contact label i {
+    position: absolute;
+    color: #dfe2e5;
+    top: 31px;
+    left: 15px;
+    z-index: 10;
+}
+.contact label i ~ input {
+    padding-left: 45px !important;
+}
+.contact .responses {
+    color: hsl(214, 6%, 30%);
+    padding: 15px;
+    margin: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  header {
+    margin: 1rem 0 0.5rem;
+
+  }
+
+    .rj-contact-section {
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+    .contact {
+    width: 100%;
+      
+    }
+    .rj-contact-address {
+        width: 100%;
+    }
+
+    .rj-contact-address-card img {
+      float:none;
+    }
+}
