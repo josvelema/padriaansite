@@ -52,7 +52,7 @@ if (isset($_GET['p_id'])) {
           <h1><?php echo $post_title; ?></h1>
           <p>by : <?php echo $post_author ?> - <em><?php echo $post_date . "</em> - <small>" . $post_views; ?> views</small></p>
         </header>
-        <div class="rj-post-content">
+        <div class="rj-blog-card-content rj-post-column-reverse">
           <div class="rj-post-image">
             <img class="blog-image" src="images/<?php echo $post_image; ?>" alt="<?php echo $post_title ?>">
 

@@ -5,6 +5,7 @@
     /* border: 1px solid red;
     outline: 1px solid green; */
 }
+
 ul {
     list-style: none;
 }
@@ -20,9 +21,8 @@ ul {
     font-family: "IBM Plex Sans", sans-serif;
     font-weight: 300;
     letter-spacing: 2px;
-    text-shadow: -1px -1px 1px rgba(255,255,255,.5), 1px 1px 1px rgba(12,34,66,0.5);
-
-    
+    text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.5),
+        1px 1px 1px rgba(12, 34, 66, 0.5);
 }
 .rj-home-header {
     display: flex;
@@ -30,7 +30,6 @@ ul {
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    
 }
 
 .rj-home-header-img {
@@ -87,7 +86,6 @@ ul {
 
 .rj-social-item a:hover {
     color: #fff;
-    
 }
 .rj-social-item:hover {
     color: #fff;
@@ -168,26 +166,25 @@ ul {
 }
 
 .rj-about-p-img {
-  display: flex;
-  
-  margin-bottom: 1em;
-  align-items: center;
+    display: flex;
+
+    margin-bottom: 1em;
+    align-items: center;
 }
 
 .rj-about-p-img img {
-  /* float: left; */
-  width: 200px;
-  height: auto;
-  margin: 0.75em;
-  border-radius: 4px;
-  box-shadow: 1px 1px 5px -1px #0003;
+    /* float: left; */
+    width: 200px;
+    height: auto;
+    margin: 0.75em;
+    border-radius: 4px;
+    box-shadow: 1px 1px 5px -1px #0003;
 }
 .rj-about-p-img p a {
-  text-decoration-style: dotted;
-  text-decoration-color: #2c3644;
-  text-underline-offset: 0.20em;
+    text-decoration-style: dotted;
+    text-decoration-color: #2c3644;
+    text-underline-offset: 0.2em;
 }
-
 
 .rj-unbreakable-text {
     font-size: 1.15rem;
@@ -199,4 +196,49 @@ ul {
     word-break: break-word;
 
     hyphens: auto;
+}
+
+@media screen and (max-width: 1000px) {
+    .rj-social-list {
+        flex-direction: column;
+        top: 0;
+    }
+    .rj-social-item {
+        margin: 0 0.35em 0.6em 0.35em;
+        padding: 0.25em 0.4em;
+        font-size: 0.6rem;
+    }
+    .rj-news-card {
+        width: 100%;
+    }
+
+    .rj-news-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1em;
+        justify-content: space-around;
+    }
+
+    .rj-news-card-content p {
+        width: 100%;
+        padding: 0.8rem clamp(0.8rem, 5%, 3rem);
+    }
+
+    .rj-news-card-content img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .rj-home-header .rj-home-btn-about {
+        display: none;
+    }
+
+    .rj-about-p-img {
+        flex-direction:column-reverse;
+    }
+    .rj-about-p-img:last-of-type {
+        flex-direction:column;
+    }
 }

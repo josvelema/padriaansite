@@ -158,7 +158,7 @@ EOT;
 function template_footer()
 {
     echo <<<EOT
-<footer =>
+<footer class="rj-footer">
 <p>2022 Pieter Adriaans - Design and Developed by Jos Velema</p>
 </footer> 
         <script src="script.js"></script>

@@ -10,11 +10,7 @@
   box-shadow: -8px 8px 33px rgba(0 0 2 / 61%);
 }
 
-/* .rj-painting-kaas{
-width: 86ch;
-height: auto;
-margin: 0 auto;
-} */
+
 
 
 .rj-painting-kaas-klas {
@@ -27,5 +23,14 @@ margin: 0 auto;
   box-shadow: -8px 8px 33px rgba(0 0 2 / 61%);
 }
 
-.rj-painting-kaas-klas img{
+@media screen and (max-width: 1000px) {
+
+  img[src*="assets"] {
+    width: 100%;
+    object-fit: contain;
+  }
+  
 }
+
+
+

@@ -332,10 +332,10 @@ a height */
 .rj-comment-form rj-button {
     margin-top: 0.5em;
 }
-/* .rj-post-content p {
-  font-size: clamp(1.35rem, 5vw, 1.75rem);
-  line-height: 1.3;
-} */
+.rj-post-content p {
+  font-size: 1rem clamp(0.8rem, 5vw, 1.75rem);
+  
+}
 
 .rj-pager {
     display: flex;
@@ -375,7 +375,7 @@ a height */
 
 .rj-footer {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 5rem;
     padding: 1em;
     height: 3rem;
     display: flex;
@@ -386,4 +386,38 @@ a height */
     text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.5),
         1px 1px 1px rgba(12, 34, 66, 0.5);
     background: linear-gradient(180deg, rgb(0, 0, 0), #3f3f3f);
+}
+
+
+@media screen and (max-width: 1000px) {
+    .rj-btn-light {
+        margin-bottom: 0.55em;
+    }
+
+    .rj-blog-main {
+        width: 100%;
+        margin: 0 0.5em;
+        padding: 1rem;
+    }
+
+    .rj-blog-main {
+        top: 2rem;
+    }
+
+    .blog-image {
+        width: 100%;
+    }
+
+
+    .rj-pager span {
+        display: none;
+    }
+
+    .rj-post-content {
+        flex-direction: column;
+    }
+
+    .rj-post-column-reverse {
+        flex-direction: column-reverse;
+    }
 }

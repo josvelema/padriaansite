@@ -85,6 +85,10 @@ article * + * {
   margin-top: 1em;
 }
 
+table {
+  margin:0;
+}
+
 a {
   color:  rgb(255, 255, 204);
   text-decoration-line: underline;
@@ -116,4 +120,26 @@ a:hover {
 
 .bibliography {
   display: none;
+}
+
+@media screen and (max-width: 1000px) {
+
+  section {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .rj-science-main {
+    width: 100vw;
+  }
+  article[style*="display"] {
+    width: 100%;
+    /* padding: 5vh clamp(1rem, 5vw, 3rem) 1rem; */
+  }
+
+  .rj-flex {
+    flex-direction: column;
+  }
+  
 }
