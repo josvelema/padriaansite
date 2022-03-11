@@ -36,16 +36,18 @@ $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="content-block">
     <div class="table">
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <td>Title</td>
-                    <td class="responsive-hidden">Description</td>
-                    <td>Media</td>
-                    <td class="responsive-hidden">Type</td>
-                    <td>Approved</td>
-                    <td class="responsive-hidden">Date</td>
-                    <td>Actions</td>
+                    <th>Title</th>
+                    <th class="responsive-hidden">Year</th>
+                    <th class="responsive-hidden">fnr</th>
+                    <th class="responsive-hidden">Description</th>
+                    <th>Media</th>
+                    <th class="responsive-hidden">Type</th>
+                    <th>Approved</th>
+                    <th class="responsive-hidden">Date</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,6 +59,9 @@ $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($media as $m): ?>
                 <tr>
                     <td><?=htmlspecialchars($m['title'], ENT_QUOTES)?></td>
+                    <td><?= $m['year'] ?></td>
+                    <td><?= $m['fnr'] ?></td>
+
                     <td class="responsive-hidden"><?=nl2br(htmlspecialchars($m['description'], ENT_QUOTES))?></td>
                     <td><a href="../<?=$m['filepath']?>" target="_blank">View</a></td>
                     <td class="responsive-hidden"><?=$m['type']?></td>

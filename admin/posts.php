@@ -124,7 +124,7 @@ if (isset($_POST['checkBoxArray'])) {
 
     </div>
 
-    <table class="table table-bordered jostable">
+    <table class="table table-bordered ">
       <thead>
         <tr>
           <th><input id="selectAllBoxes" type="checkbox"></th>
