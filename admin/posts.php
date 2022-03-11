@@ -6,7 +6,7 @@ $stmt = $pdo->prepare('SELECT * FROM posts ORDER BY post_id DESC');
 $stmt->execute();
 $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<?= template_admin_header('All Media', 'allmedia') ?>
+<?= template_admin_header('All posts', 'posts') ?>
 
 <h2>All Posts</h2>
 

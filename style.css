@@ -32,7 +32,8 @@ body {
     color: #fafafa;
     margin: 0;
     /* padding: 0; */
-   
+   overflow-x: hidden;
+   scroll-behavior: smooth;
 }
 
 .navtop {
@@ -327,7 +328,7 @@ a.rj-nav-home {
 
 
 .prevnext-small-media {
-    display: flex;
+    display: none;
     justify-content: space-between;
 }
 
@@ -676,7 +677,7 @@ a.rj-nav-home {
     }
     .navtop input:checked ~ div a:hover,
     .navtop input:checked ~ div a.rj-nav-home:hover {
-    border: 1px solid #67c;
+    color: hsl(230, 22%, 67%);
     }
     .content {
         padding: 10px;
@@ -736,6 +737,9 @@ a.rj-nav-home {
     }
     .media-popup .next, .media-popup .prev {
      display: none;
+    }
+    .prevnext-small-media {
+        display: flex;
     }
 }
 
