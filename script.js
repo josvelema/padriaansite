@@ -34,6 +34,8 @@ const media_next_prev = (media_meta) => {
     // Retrieve the next and prev elements
     let prev_btn = media_popup.querySelector(".prev");
     let next_btn = media_popup.querySelector(".next");
+    let prev_btn_sm = media_popup.querySelector(".prev-small-media");
+    let next_btn_sm = media_popup.querySelector(".next-small-media");
     // Add the onclick event
     prev_btn.onclick = (event) => {
         event.preventDefault();
@@ -44,6 +46,17 @@ const media_next_prev = (media_meta) => {
         // If the prev element exists, click it
         if (prev_ele) prev_ele.click();
     };
+
+    prev_btn_sm.onclick = (event) => {
+        event.preventDefault();
+        // Determine the previous element (media)
+        let prev_ele = document.querySelector(
+            '[data-id="' + media_meta.dataset.id + '"]'
+        ).parentElement.previousElementSibling;
+        // If the prev element exists, click it
+        if (prev_ele) prev_ele.click();
+    };
+
     // Add the onclick event
     next_btn.onclick = (event) => {
         event.preventDefault();
@@ -54,6 +67,19 @@ const media_next_prev = (media_meta) => {
         // If the next element exists, click it
         if (next_ele) next_ele.click();
     };
+
+    next_btn_sm.onclick = (event) => {
+        event.preventDefault();
+        // Determine the next element (media)
+        let next_ele = document.querySelector(
+            '[data-id="' + media_meta.dataset.id + '"]'
+        ).parentElement.nextElementSibling;
+        // If the next element exists, click it
+        if (next_ele) next_ele.click();
+    };
+
+
+
 };
 // Handle the likes and dislikes
 const media_like_dislike = (media_meta) => {
@@ -157,6 +183,10 @@ if (media_popup) {
                         media_meta.dataset.year
                     } - nr. ${media_meta.dataset.fnr} </small>
 							<p>${media_meta.alt}</p>
+                            <div class="prevnext-small-media">
+                            <a href="#" class="prev-small-media"><i class="fas fa-angle-left fa-4x"></i></a>
+                        <a href="#" class="next-small-media"><i class="fas fa-angle-right fa-4x"></i></a>
+                            </div>
 							<img src="${img.src}" width="${img.width}" height="${img.height}" alt="">
 							<div class="thumbs-up-down">
 								<a href="#" class="thumbs-up${
@@ -169,6 +199,7 @@ if (media_popup) {
 							</div>
 						</div>
 						<a href="#" class="next"><i class="fas fa-angle-right fa-4x"></i></a>
+
 					`;
                     media_popup.style.display = "flex";
                     // Prevent portrait images from exceeding the window

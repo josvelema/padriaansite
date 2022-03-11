@@ -5,7 +5,8 @@
         sans-serif;
     font-size: 16px;
     /* border: 1px solid red;
-    outline: 1px solid green; */
+    outline: 1px solid green;
+   */
 }
 
 #scrolltop {
@@ -31,6 +32,7 @@ body {
     color: #fafafa;
     margin: 0;
     /* padding: 0; */
+   
 }
 
 .navtop {
@@ -300,6 +302,10 @@ a.rj-nav-home {
     text-shadow: -1px 1px 1px #fafafa, -2px 0px 4px #0005;
 }
 
+
+
+
+
 .media-popup .prev {
     padding: 0 25px;
 }
@@ -317,6 +323,46 @@ a.rj-nav-home {
 .media-popup .next:hover,
 .media-popup .prev:hover {
     color: rgba(255, 255, 255, 0.7);
+}
+
+
+.prevnext-small-media {
+    display: flex;
+    justify-content: space-between;
+}
+
+.media-popup .prev-small-media {
+    padding: 4px 25px;
+}
+
+.media-popup .next-small-media {
+    padding: 4px 25px;
+    }
+
+
+.media-popup .next-small-media,
+.media-popup .prev-small-media {
+    /* display: none; */
+    text-decoration: none;
+    color: rgba(33,71,99,0.6);
+}
+
+.media-popup .next-small-media i {
+    font-size: 1.5rem;
+    text-shadow: -2px 0px 3px #0008;
+
+}
+.media-popup .prev-small-media i {
+    font-size: 1.5rem;
+    text-shadow: 2px 0px 3px #0008;
+
+}
+
+.media-popup .next-small-media:hover,
+.media-popup .prev-small-media:hover {
+    
+    color: rgba(191, 211, 80, 0.6);
+
 }
 
 .home .con {
@@ -583,6 +629,7 @@ a.rj-nav-home {
     }
 
     .navtop div {
+        flex-direction: column;
         visibility: hidden;
         opacity: 0;
         transition: visibility 270ms cubic-bezier(0.73, 0.45, 0.28, 1.15),
@@ -627,6 +674,10 @@ a.rj-nav-home {
         top: 0;
         left: 0;
     }
+    .navtop input:checked ~ div a:hover,
+    .navtop input:checked ~ div a.rj-nav-home:hover {
+    border: 1px solid #67c;
+    }
     .content {
         padding: 10px;
         width: 100%;
@@ -668,7 +719,8 @@ a.rj-nav-home {
     }
     .media-popup .con {
         width: 95%;
-        max-height: 90%;
+        max-height: 90vh;
+        
         padding: 10px;
         border-radius: 0;
     }
@@ -676,10 +728,14 @@ a.rj-nav-home {
         width: 100%;
         height: auto;
         max-height: auto;
+        object-fit: contain;
     }
     .media-popup .con video {
         width: 100%;
         height: auto;
+    }
+    .media-popup .next, .media-popup .prev {
+     display: none;
     }
 }
 

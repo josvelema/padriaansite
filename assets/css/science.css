@@ -5,6 +5,7 @@
 }
 
 main {
+  
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -133,7 +134,8 @@ a:hover {
   .rj-science-main {
     width: 100vw;
   }
-  article[style*="display"] {
+  article[style*="display"],
+  article[class*=".rj-science-main"] {
     width: 100%;
     /* padding: 5vh clamp(1rem, 5vw, 3rem) 1rem; */
   }
