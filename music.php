@@ -1,0 +1,272 @@
+<?php
+include 'functions.php';
+?>
+<?= template_header('Music') ?>
+<?= template_header_other() ?>
+<?= template_nav() ?>
+
+<main>
+  <header class="rj-music">
+    <h1>Music</h1>
+    <img src="assets/img/musicbanner.jpg" alt="Music banner">
+    <!-- <div class="rj-science-img">
+      </div> -->
+  </header>
+  <section>
+
+    <aside class="rj-main-menu">
+      <h3>Menu</h3>
+      <ul>
+        <li><a href="#" title="BasAlt" onclick="show('basalt')">BasAlt</a></li>
+        <li><a href="#" title="Azorean Suite" onclick="show('suite')">Azorean Suite</a></li>
+        <li><a href="#" title="Blues op Klompen - CD" onclick="show('klompen')">Blues op Klompen - CD</a></li>
+        <li><a href="#" title="The Pacer CD" onclick="show('pacer')">The Pacer CD</a></li>
+        <li><a href="#" title="Rare songs" onclick="show('rare')">Rare songs</a></li>
+        <li><a href="#" title="Computer music" onclick="show('computer')">Computer music</a></li>
+        <li><a href="#" title="The Viola da Terra" onclick="show('viola')">The Viola da Terra</a></li>
+      </ul>
+    </aside>
+
+
+    <article id="musichome">
+      <div class="rj-flex">
+        <p>
+          <img src="assets/img/songs-from-an-island-sleeve-front.jpg" alt="Front Cover CD Songs from an Island" width="158" height="159" data-id="music">
+          <img src="assets/img/blues-op-klompen-sleeve-front.jpg" alt="Blues op Klompen Cover CD" width="160" height="160" data-id="music"> &nbsp; &nbsp;&nbsp;&nbsp;
+          <img src="assets/img/pacer-cover.jpg" alt="Pacer Cover CD" width="167" height="161" data-id="music">&nbsp;&nbsp;&nbsp;&nbsp;
+        </p>
+      </div>
+    </article>
+
+    <article id="basalt" style="display: none">
+
+      <h1>BasAlt&nbsp;</h1>
+      <p>BasAlt brings you sunny music from the island of <a title="Sao Jorge" href="https://en.wikipedia.org/wiki/S&atilde;o_Jorge_Island">S&atilde;o Jorge</a>, one of the <a title="Azoren" href="https://en.wikipedia.org/wiki/Azores">Azores</a>,&nbsp;in the middle of the Atlantic Ocean. Pieter Adriaans (Bass) and Joana van Olphen (Alt) write almost all of their own material: nice melodic songs in English, Dutch and Portuguese about the simple things of everyday life....&nbsp;
+        <span>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br /></span><span>In 2012 they released their first CD, Songs from an Island, and they are currenty writing material for a new project....&nbsp;</span>
+      </p>
+      <p><iframe src="http://www.youtube.com/embed/HjiyOzXKhXw" frameborder="0" width="292" height="241"></iframe>
+        &nbsp; &nbsp; &nbsp;&nbsp;<iframe src="http://www.youtube.com/embed/7j6WBsh4Uzw" frameborder="0" width="291" height="241"></iframe>
+      </p>
+      <p><img style="font-size: 1.2em;" src="assets/img/songs-from-an-island-sleeve-front.jpg" alt="Front Cover CD Songs from an Island" width="292" height="293" />&nbsp; &nbsp; &nbsp; &nbsp;<img style="font-size: 1.2em;" src="assets/img/songs-from-an-island-sleeve-back.jpg" alt="Back Cover CD Songs from an Island" width="290" height="292" /><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+      </p>
+    </article>
+
+    <article id="suite" style="display: none">
+
+      <h3>World Premiere of the Azorean Suite</h3>
+      <p><img style="float: right;" title="Renato Bettencourt" src="assets/img/105005388420061858396365973692696289217217n.jpg" alt="Renato Bettencourt" width="150" height="150" />A suite of five pieces for classical orchestra Inspired by the Azores and composed by Pieter Adriaans.
+        The world premiere will be by the <a href="http://www.vsso.nl">Vechtstreek Symphonie Orkest</a>&nbsp;on september the 27th 2014 in theatre 4en 1 in Breukelen (20.15 h.). Guest of honour is Renato Bettencourt, a player of the
+        <a href="/music/the-viola-da-terra.html">Viola da Terra </a>from the island of S&atilde;o&nbsp;Jorge. With Greetje Falkenhagen reciting portuguese poems (by Carlos Faria and Vittorino Nem&eacute;sio)&nbsp;and the dance group
+        <a href="http://www.home.zonnet.nl/aslavradeiras/">'As lavradeiras</a>'. Tickets can be ordered at:&nbsp;<a href="mailto:penningmeester@vsso.nl">penningmeester@vsso.nl</a>.&nbsp;
+      </p>
+      <p>Read more about this composition in&nbsp;
+        <a style="line-height: 1.6em;" href="/music/azorean-suite/more-about-the-azorean-suite.html">the &nbsp;story behind the Azorean Suite</a>
+      </p>
+      <p>The Azorean Suite consists of five parts:
+      </p>
+      <h3><a href="/music/azorean-suite/madrugada.html">Madrugada</a>&nbsp;</h3>
+      <p><img title="Poster Suite" src="assets/img/poster-suite-english.jpg" alt="Poster Suite" width="500" height="647" /><a href="/music/azorean-suite/madrugada.html">Info</a>
+        <span> about Madrudaga. Listen to the&nbsp;</span>
+        <a href="/data/upload/files/madrugada-def.mp3">Mp3 Midi version</a>
+        <span of Madrugada</span>
+      </p>
+
+
+      <h3><a href="/music/azorean-suite/tempestade.html">Tempestade</a></h3>
+      <p><a href="/music/azorean-suite/tempestade.html">Info</a> About Tempestade. Listen to the&nbsp;
+        <a href="/data/upload/files/tempestade-def.mp3">Mp3 Midi Version</a>&nbsp;of Tempestade
+      </p>
+      <h3><a href="/music/azorean-suite/burlesque.html">Burlesque</a>&nbsp;</h3>
+      <p><a href="/music/azorean-suite/burlesque.html">Info</a> about Burlesque. Listen to the&nbsp;
+        <a href="/data/upload/files/burlesque-def.mp3">Mp3 Midi Version</a>&nbsp;of Burlesque
+      </p>
+      <h3><a href="/music/azorean-suite/chamarrita.html">Chamarrita</a></h3>
+      <p><a href="/music/azorean-suite/chamarrita.html">Info</a> about Chamarrita. Listen to the&nbsp;
+        <a href="/data/upload/files/chamarrita-de-sao-jorge-def.mp3">Mp3 Midi Version</a>&nbsp;of Chamarrita
+      </p>
+      <h3><a href="/music/azorean-suite/tourada.html">Tourada</a>&nbsp;</h3>
+      <p><a href="/music/azorean-suite/tourada.html">Info</a> about Tourada. Listen to the&nbsp;
+        <a href="/data/upload/files/tourada-def.mp3">Mp3 Midi Version</a>&nbsp;of Tourada
+      </p>
+      </div>
+      </div>
+      </div> &nbsp;
+
+    </article>
+
+    <article id="klompen" style="display: none">
+
+      <h3>Blues op Klompen</h3>
+      <p><img title="Front Sleeve Blues op Klompen" src="assets/img/blues-op-klompen-sleeve-front.jpg" alt="Front Sleeve Blues op Klompen" width="248" height="250" />&nbsp;&nbsp;&nbsp;
+        <img title="Back Sleeve Blues op Klompen" src="assets/img/blues-op-klompen-sleeve-back.jpg" alt="Back Sleeve Blues op Klompen" width="248" height="250" />
+      </p>
+      <p><iframe src="https://www.youtube.com/embed/r054prh82lQ" frameborder="0" width="250" height="206"></iframe>&nbsp;&nbsp;&nbsp; <iframe src="https://www.youtube.com/embed/Vd-LLGD-0fg" frameborder="0" width="252" height="207"></iframe>
+      </p>
+
+    </article>
+
+    <article id="pacer" style="display: none">
+      <h1>Songs form the CD Pacer together with Frans Wessels</h1>
+      <p><img title="Pacer CD Cover " src="assets/img/pacer-cover.jpg" alt="Pacer CD Cover " width="257" height="250" />&nbsp;&nbsp;&nbsp;
+        <img title="Pacer CD Back Cover" src="assets/img/pacer-back.jpg" alt="Pacer CD Back Cover" width="250" height="252" />
+
+      </p>
+      <p>
+        <iframe src="https://www.youtube.com/embed/DVx00_Zfv1Y" frameborder="0" width="250" height="206">
+        </iframe>&nbsp;&nbsp;&nbsp; <iframe src="https://www.youtube.com/embed/6qIoPXxNB1s" frameborder="0" width="250" height="206"></iframe>
+      </p>
+      <p>
+        <a href="silly-song.mp3">Silly song</a><br />
+        <a href="sad-johanna.mp3">Sad Johanna</a><br />
+        <a href="land-of-milk-and-honey.mp3">Land of Milk and Honey</a><br />
+        <a href="lady-of-the-moring.mp3">Lady of the Morning</a><br />
+        <a href="soldier-of-the-next-milennium.mp3">Soldier of the next Millennium</a><br />
+        <a href="le-ephebe.mp3">L'ephebe</a><br /> <a href="/pacer/pacer.mp3">Pacer</a><br />
+        <a href="dockyards-of-amsterdam-port.mp3">Dockyards of Amsterdam port</a><br />
+        <a href="im-your-programmer.mp3">I'm your programmer</a><br />
+        <a href="wandering-man.mp3">Wandering man</a><br />
+        <a href="friday-night.mp3">Friday night</a><br />
+        <a href="lets-dress-up-as-business-men.mp3">Let's dress up as business men</a>
+
+      </p>
+
+
+    </article>
+
+    <article id="rare" style="display: none">
+
+      <h1>Rare songs</h1>
+      <p>Some songs that were never properly released and some rare recordings
+      </p>
+      <p><a href="life-is-a-bitch.mp3_">Life is bitch</a>
+      </p>
+      <p>For a long time a had a blues band with my brother Ewout. It was called Bottle Steel $ Company.
+        I was Bottle, he was Steel, or the other way around. I don't remember. Anyway, this is one of the few surviving recordings and it makes clear why it was such a great pleasure to play in this band.&nbsp;
+      </p>
+      <p>A live show somewhere in 1995
+      </p>
+      <p>
+        <iframe src="https://www.youtube.com/embed/fBcTDFXj3jo" frameborder="0" width="250" height="206"></iframe>
+      </p>
+      <p>
+        <a href="nothing-to-loose.mp3_">Nothing to loose</a>
+      </p>
+      <p>
+        This songs deals with my fascination for the sea. It was part of a larger project called Power Rag. Frans and I wanted to revive an electric version of the old ragtime guitar style of Reverend Gary Davis and his peers. We recorded master tapes, but then the studio went bankrupt and the tapes were lost. Some songs we still have in a premix. (The song has been re-recorded for our new&nbsp; BasAlt project: Songs From An Island).
+      </p>
+      <p>
+        <a href="rhythm-is-poison.mp3.filepart">Rhythm is a poison</a>
+        <br />This is one of the most curious songs I ever recorded. I had written a song that was basically only a two-chord riff. I did not know what to do with it. We recorded a base track, but we thought we would never use it. Then we had some extra studio time and my brother Ewout proposed to make the song in to story of two sailors that visit a night club. Listen to our unbridled imagiation, complete with Wendy Double D, a drum solo that goes nowhere, ditto guitar solo and a grande finale.
+
+      </p>
+
+    </article>
+
+
+    <article id="computer" style="display: none;">
+
+      <h1>Computer music</h1>
+      <p>7 Algorithmic improvisations for guitar and/or computer
+      </p>
+      <p><a href="/computer-music/ict-improvisation1.mp3">ICT Improvisation 1 (6 min. 51. Sec.)</a>
+        <br /> The computer starts with an empty memory. As the guitar plays several successive rule bases of the computer are filled with rules derived from the guitar improvisation. In the first part of the piece a flute, an Aah-voice and a xylophone melody develop randomly. In the second half the xylophone has to follow the guitar. Later the restrictions for the xylophone are relieved and the piece develops in to a rich sound-world of random interactions between the instruments.
+      </p>
+      <p>
+        <iframe src="https://www.youtube.com/embed/5oFpxZIpgig" frameborder="0" width="250" height="206">
+        </iframe>
+
+      </p>
+      <p>
+        <a href="/computer-music/ict-improvisation2.mp3">ICT Improvisation 2 (2 min. 22 sec.)</a>
+        <br /> The piece starts with a background of melodic material learned from improvisations on the theme of a sailor's dance. Against this background the guitar programs a rule base for a slow synthesizer melody.
+
+      </p>
+      <p>
+        <a href="/computer-music/ict-improvisation3.mp3">ICT Improvisation 3 (3 min . 12 sec.)</a>
+        <br /> The working title of piece could be 'Teasing the violin'. A violin is allowed to improvise freely on a Bach grammar, but only as long as the guitar does not play. As soon as the guitar sounds the violin has to conform to the melodic material of the guitar. The result is quite funny. This is an interesting form of algorithmic anti-improvisation made possible by grammar induction techniques.
+      </p>
+      <p>
+        <a href="/computer-music/ict-improvisation4.mp3">ICT Improvisation 4 (2 min. 34 sec.)</a>
+        <br /> Rule bases for several percussive instruments are filled with material from very fast dance melodies. These instruments are forced to follow the melodic material of the guitar. The setting of the ICT is such that the original melodies are not reproduced but instead a fast random repetition of notes is generated. In this way the guitar is transformed into a percussive instrument. Under each note a random rhythmic pattern is hidden. I imagine that Conlon Nancarrow (1912-1997) would have loved these new possibilities for improvisation.
+      </p>
+      <p>
+        <a href="/computer-music/ict-composition1.mp3">ICT Composition 1 (1 min. 20 sec.)</a>
+        <br /> An example of pure algorithmic composition constructed with ICT. The instrument grammars are derived from the first movement of the second Brandenburg Concerto by Bach (1685-1750). The chorus structure of the piece is based on a composition by Orlando di Lasso (1532-1594): Mon coeur se recommande &agrave; vous. The combination of the two leads to a completely new piece.
+      </p>
+      <p>
+        <a href="/computer-music/delay-improvition1.mp3">Delay Improvisation 1 (5 min. 43 sec.)</a>
+        <br /> Delay is one of the simplest algorithms that can be applied to the sound of an instrument. Yet the possibilities are almost limitless. In this piece the rithmic possibilities of delay are explored. The guitar is a 1975 Howard Robberts Ibanez stereo guitar with a piezo element and a humbucker. The signal is first transformed by a delay box and then fed in to a male-female voice distortion program.
+      </p>
+      <p>
+        <a href="/computer-music/sequencer-improvisation.mp3">Sequencer Improvisation 1 (3 min. 39 sec.)</a>
+        <br /> I always like to improvise on a simple drum pattern. A sequencer program generates the drums. The improvisation is done on a Godin Multiac midi guitar fed in to a Roland GR-09 synthesizer with a mix of base guitar sound and the normal acoustic sound of the guitar itself. The mixed signals give a rich percussive sound that blends well with the drum patterns.
+      </p>
+
+    </article>
+
+
+    <article id="viola" style="display: none;">
+
+      <h2>Viola da Terra&nbsp;</h2>
+      <p>
+        <img title="Viola da Terra" src="assets/img/screen-shot-2014-09-11-at-082132.png" alt="Viola da Terra" style="width: 100%; height: auto; object-fit: contain;">
+        It is believed that the Viola da Terra (or Guitar of the Land) emerged in the Azores in the second half of the fifteenth century, brought by the first settlers in their luggage.<span>&nbsp;At that time the Viola would have been different from the current model, which was honed by the imagination of generations of builders.</span>
+      </p>
+      <p>
+        The Wire Viola, or Viola of Two Hearts, names by which it is also known, was the natural companion of all festive songs, folk dances, love songs and other emotional, lyrical and amorous reveries. It was also used in the so-called &ldquo;derri&ccedil;os&rdquo; (&ldquo;desgarradas&rdquo;, &ldquo;desafios&rdquo; ,&ldquo;despiques&rdquo;) typical Azorean singing battles (not unlike modern rap battles) in which two singers fight for the favor of the audience with lyrics that improvised on the spot.&nbsp;
+      </p>
+      <p>
+        The Viola da Terra was part of the dowry of the groom. During the day it was always placed on top of a checkered quilt as adornment of the bedroom. This union, in which the Viola was placed with the strings facing down, in contact with the fabric of the quilt, prevented, according to old stories, the Viola da Terra to suffer from the humidity, since this instrument is extremely sensitive to climatic variations.
+      </p>
+      <h3>Revival&nbsp;</h3>
+
+      <p>
+        In he past years there has been a revival of the Viola da Terra. Young players like
+        <a href="http://www.freewebs.com/violadaterra/apps/blog/">Rafael Carvalho</a> research the old traditional music and create new repertoire. Builders like
+        <a href="/news/details/2012/10/-viola-de-arame-built-by-raimundo-leonardes.html">Raimundo Leonardes </a>and&nbsp;
+        <a href="http://www.cafeportugal.pt/pages/dossier_artigo.aspx?id=5681">Jos&eacute;&nbsp;Serpa</a>
+        <span>&nbsp;creae a new generation of instruments of high quality often with unusual designs. Here is a fragment of Renato Bettencourt playing solo on modern composition
+          <em>"<a href="http://youtu.be/HjiyOzXKhXw">Samba do Porto".</a></em>
+        </span>
+      </p>
+
+      <p>
+        <img title="Nossa Senhora do Mar" src="assets/img/nossa-senhora-do-mar.jpg" alt="Nossa Senhora do Mar" width="300" height="455" />
+      </p>
+
+    </article>
+
+
+  </section>
+</main>
+
+<!-- <script src="showandhide.js" defer></script> -->
+
+<script>
+  let articles = ["musichome", "basalt", "suite", "klompen", "pacer", "rare", "computer", "viola"];
+  let visibleId = null;
+
+  function show(id) {
+    if (visibleId !== id) {
+      visibleId = id;
+
+    }
+    hide();
+  }
+
+  function hide() {
+    let div, i, id;
+    for (i = 0; i < articles.length; i++) {
+      id = articles[i];
+      div = document.getElementById(id);
+      if (visibleId === id) {
+        div.style.display = "block";
+      } else {
+        div.style.display = "none";
+      }
+    }
+  }
+</script>
+
+
+<?= template_footer() ?>
