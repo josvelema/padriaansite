@@ -23,6 +23,8 @@ if (isset($_POST['create_post'])) {
 
   $post_tags         = ($_POST['post_tags']);
   $post_content      = ($_POST['post_content']);
+  $post_url      = ($_POST['post_url']);
+
   $post_date         = (date('d-m-y'));
 
 
@@ -35,8 +37,8 @@ if (isset($_POST['create_post'])) {
   // $create_post_query = mysqli_query($connection, $query);  
   //todo 1 user ???
   $pieter = "Pieter";
-  $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date,post_image,post_content,post_tags,post_status) ";
-  $query .= "VALUES(? , ? , ? , now() , ? , ? , ? , ?) ";
+  $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date,post_image,post_content,post_url,post_tags,post_status) ";
+  $query .= "VALUES(? , ? , ? , now() , ? , ? , ? , ? , ?) ";
 
   $stmt = $pdo->prepare($query);
   $stmt->bindParam(1, $post_category_id, PDO::PARAM_INT);
@@ -44,8 +46,9 @@ if (isset($_POST['create_post'])) {
   $stmt->bindParam(3, $pieter, PDO::PARAM_STR);
   $stmt->bindParam(4, $post_image, PDO::PARAM_STR);
   $stmt->bindParam(5, $post_content, PDO::PARAM_STR);
-  $stmt->bindParam(6, $post_tags, PDO::PARAM_STR);
-  $stmt->bindParam(7, $post_status, PDO::PARAM_STR);
+  $stmt->bindParam(6, $post_url, PDO::PARAM_STR);
+  $stmt->bindParam(7, $post_tags, PDO::PARAM_STR);
+  $stmt->bindParam(8, $post_status, PDO::PARAM_STR);
   $stmt->execute();
 
   $the_post_id = $pdo->lastInsertId();
@@ -110,6 +113,11 @@ if (isset($_POST['create_post'])) {
     <label for="post_content">Post Content</label>
     <textarea class="form-control " name="post_content" id="body" cols="30" rows="10">
         </textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="post_url">URL for reference </label>
+    <input type="text" class="form-control" name="post_url">
   </div>
 
 

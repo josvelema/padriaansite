@@ -52,6 +52,12 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     place-content: center;
 }
 
+.rj-post-section {
+    display: grid;
+    place-items: center;
+    
+}
+
 .rj-blog-card {
     display: flex;
     flex-direction: column;
@@ -59,7 +65,7 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     border-radius: 7px;
     margin-bottom: 1em;
     color: #000;
-    width: 100%;
+    width: 80%;
     background: white;
     border-radius: 10px;
     transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -106,23 +112,43 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
 .rj-blog-card-content {
     height: 100%;
-    width: fit-content;
+    
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: start;
-    border-bottom: 1px solid gray;
+    /* border-bottom: 1px solid gray; */
 }
 
-.rj-blog-card-content > p {
+.rj-blog-card-content > p:first-of-type {
     margin-top: 0.25em;
     border-top: 1px solid gray;
     padding: 0.25em;
+    width: fit-content;
 }
-.rj-blog-card-content > p::first-letter {
+.rj-blog-card-content > p::first-letter:not(.rj-blog-card-content > p:last-of-type) {
     font-weight: 500;
     text-transform: uppercase;
     font-size: 1.25rem;
     letter-spacing: 1px;
+    
+}
+
+.rj-blog-card-content > p a {
+    
+        color: rgb(93, 114, 206);
+        text-decoration-line: underline;
+        text-decoration-style: dotted;
+        text-decoration-color: rgb(93, 114, 206);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.25em;
+    
+}
+
+.rj-blog-card-content > p a:hover {
+    color: hsl(229, 74%, 55%);
+    text-decoration-color: hsl(229, 74%, 55%);
+
 }
 
 .rj-blog-card-content > img {
@@ -130,7 +156,7 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 }
 
 .blog-image {
-    width: 300px;
+    width: 100%;
     background: black;
 
     padding: 1px;
@@ -418,6 +444,12 @@ a height */
     }
 
     .rj-post-column-reverse {
-        flex-direction: column-reverse;
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .rj-blog-card.rj-blog-card-post {
+        width: 50vw;
     }
 }

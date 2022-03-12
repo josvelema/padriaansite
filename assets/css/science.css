@@ -94,7 +94,7 @@ a {
   color:  rgb(255, 255, 204);
   text-decoration-line: underline;
   text-decoration-style: dotted;
-  text-decoration-color: rgb(255, 255, 204);
+  text-decoration-color:  rgb(255, 255, 204);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.25em;
 }
@@ -138,6 +138,10 @@ a:hover {
   article[class*=".rj-science-main"] {
     width: 100%;
     /* padding: 5vh clamp(1rem, 5vw, 3rem) 1rem; */
+  }
+
+  img[src="assets/img/pieter-adriaans.jpg"] {
+    width: 200px;
   }
 
   .rj-flex {

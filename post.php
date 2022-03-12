@@ -36,6 +36,8 @@ if (isset($_GET['p_id'])) {
     $post_date = $row['post_date'];
     $post_image = $row['post_image'];
     $post_content = $row['post_content'];
+    $post_url = $row['post_url'];
+
     $post_views = $row['post_views_count'];
   }
 
@@ -46,8 +48,8 @@ if (isset($_GET['p_id'])) {
 
 
   <main class="rj-home">
-    <section>
-      <article class="rj-blog-card">
+    <section class="rj-post-section">
+      <article class="rj-blog-card rj-blog-card-post">
         <header class="rj-blog-header">
           <h1><?php echo $post_title; ?></h1>
           <p>by : <?php echo $post_author ?> - <em><?php echo $post_date . "</em> - <small>" . $post_views; ?> views</small></p>
@@ -59,6 +61,11 @@ if (isset($_GET['p_id'])) {
           </div>
 
           <p><?php echo $post_content; ?></p>
+          <?php if($post_url !== null) {
+            echo "<p><a href='" . $post_url . "' target='" . "_blank'>"
+          . $post_url . "</a></p>";
+          }
+          ?>
       </article>
 
 
@@ -79,7 +86,7 @@ if (isset($_GET['p_id'])) {
           $comment_content = $row['comment_content'];
           $comment_author = $row['comment_author'];
       ?>
-          <article class="rj-blog-card">
+          <article class="rj-blog-card rj-blog-card-post">
             <header class="rj-post-comment-header">
               <i class="fa-regular fa-message push-left"></i> <?php echo ucfirst($comment_author); ?>
               <small> <?php echo $comment_date; ?></small></p>

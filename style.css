@@ -98,7 +98,9 @@ body {
 
 .navtop div a:hover {
     /* color: #ebecee; */
-    color: hsl(216, 21%, 48%);
+    /* color: hsl(216, 21%, 48%); */
+    color: hsl(229, 74%, 55%);
+
 }
 
 a.rj-nav-home {
@@ -677,7 +679,10 @@ a.rj-nav-home {
     }
     .navtop input:checked ~ div a:hover,
     .navtop input:checked ~ div a.rj-nav-home:hover {
-    color: hsl(230, 22%, 67%);
+    /* color: hsl(230, 22%, 67%); */
+    color: hsl(229, 40%, 68%);
+
+
     }
     .content {
         padding: 10px;

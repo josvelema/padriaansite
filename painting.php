@@ -191,14 +191,7 @@ include 'functions.php';
       </p>
 
     </article>
-
-
   </section>
-
-
-  <footer>
-    <p>2022 Pieter Adriaans</p>
-  </footer>
 </main>
 
 <!-- <script src="showandhide.js" defer></script> -->
