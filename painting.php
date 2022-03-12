@@ -108,11 +108,22 @@ include 'functions.php';
       <h2>Lectures and presentations</h2>
       <h3><strong>Video's </strong></strong></h3>
       <p><strong>Lectures, interviews, presentations (some in Dutch) <br /></strong></p>
-      <p><strong>&nbsp; &nbsp;&nbsp;<iframe src="https://www.youtube.com/embed/HxLkMhSFxmU" frameborder="0" width="181" height="149"></iframe>
-          &nbsp; <iframe src="https://www.youtube.com/embed/21X91QFwCCU" frameborder="0" width="178" height="150"></iframe></strong></strong></p>
-      <p><strong> <a href="https://www.sg.uu.nl/video/2013/09/schoonheid-berekenen"><img src="assets/img/capture2.jpeg" alt="Pieter speelt gitaar tijdens presentatie" width="196" height="144" />
-            nbsp;&nbsp;&nbsp; <iframe src="https://www.youtube.com/embed/sMqYTBeWEHw" frameborder="0" width="175" height="144"></iframe>&nbsp;
-            <br />Lecture on Computation and Beauty:<br />Studium Generale Utrecht (October 2013)</a></p>
+
+      <div class="rj-flex" style="flex-direction: column;">
+        <p>
+
+          <iframe src="https://www.youtube.com/embed/HxLkMhSFxmU" frameborder="0" width="181" height="149"></iframe>
+          <iframe src="https://www.youtube.com/embed/21X91QFwCCU" frameborder="0" width="178" height="150"></iframe>
+        </p>
+        <p>
+          <iframe src="https://www.youtube.com/embed/sMqYTBeWEHw" frameborder="0" width="175" height="144"></iframe>
+        </p>
+        <p>
+          <img src="assets/img/capture2.jpeg" alt="Pieter speelt gitaar tijdens presentatie" width="150" height="120" style="float:right;">
+          <br>
+          <a href="https://www.sg.uu.nl/video/2013/09/schoonheid-berekenen">Lecture on Computation and Beauty:<br />Studium Generale Utrecht (October 2013)</a>
+        </p>
+      </div>
       <h3>English papers</h3>
       <ul>
         <li><a href="assets/pdfdoc/documents/special_issue_cie_2007-1.0.pdf">Informational esthetics: Between order and chaos, the quest for meaningful information, invited paper CIE 2007 </a></li>
