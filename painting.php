@@ -8,7 +8,7 @@ include 'functions.php';
 <main>
   <header class="rj-painting">
     <h1>Painting</h1>
-    <img src="assets/img/kaasfabriekgebouw.jpeg" alt="Pieter">
+    <img src="assets/img/overlay-banner-brein.jpg" alt="Pieter">
     <!-- <div class="rj-science-img">
       </div> -->
   </header>

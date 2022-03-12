@@ -65,7 +65,7 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     border-radius: 7px;
     margin-bottom: 1em;
     color: #000;
-    width: 80%;
+    /* width: 80%; */
     background: white;
     border-radius: 10px;
     transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);

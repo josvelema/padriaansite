@@ -6,7 +6,7 @@ include 'main.php';
 // $stmt->execute();
 // $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<?= template_admin_header('All Media', 'allmedia') ?>
+<?= template_admin_header('Edit Post', 'allmedia') ?>
 
 <h2>Edit post</h2>
 
@@ -28,6 +28,8 @@ if (isset($_GET['p_id'])) {
     $post_status        = $row['post_status'];
     $post_image         = $row['post_image'];
     $post_content       = $row['post_content'];
+    $post_url           = $row['post_url'];
+
     $post_tags          = $row['post_tags'];
     $post_comment_count = $row['post_comment_count'];
     $post_date          = $row['post_date'];
@@ -44,6 +46,8 @@ if (isset($_POST['update_post'])) {
   $post_image          =  $_FILES['image']['name'];
   $post_image_temp     =  $_FILES['image']['tmp_name'];
   $post_content        =  $_POST['post_content'];
+  $post_url            =  $_POST['post_url'];
+
   $post_tags           =  $_POST['post_tags'];
 
   move_uploaded_file($post_image_temp, "../images/$post_image");
@@ -70,6 +74,7 @@ if (isset($_POST['update_post'])) {
   $query .= "post_status = ? , ";
   $query .= "post_tags   = ? , ";
   $query .= "post_content= ? , ";
+  $query .= "post_url    = ? , ";
   $query .= "post_image  = ? ";
   $query .= "WHERE post_id = ? ";
 
@@ -81,8 +86,10 @@ if (isset($_POST['update_post'])) {
   $stmt->bindParam(4, $post_status, PDO::PARAM_STR);
   $stmt->bindParam(5, $post_tags, PDO::PARAM_STR);
   $stmt->bindParam(6, $post_content, PDO::PARAM_STR);
-  $stmt->bindParam(7, $post_image, PDO::PARAM_STR);
-  $stmt->bindParam(8, $post_id, PDO::PARAM_INT);
+  $stmt->bindParam(7, $post_url, PDO::PARAM_STR);
+
+  $stmt->bindParam(8, $post_image, PDO::PARAM_STR);
+  $stmt->bindParam(9, $post_id, PDO::PARAM_INT);
   $stmt->execute();
 
   echo "<p class='bg-success'>Post Updated. <a href='../post.php?p_id={$post_id}'>View Post </a> or <a href='posts.php'>Go back to posts</a></p>";
@@ -135,7 +142,7 @@ if (isset($_POST['update_post'])) {
     <select name="post_user" id="">
 
 
-      <?php echo "<option value=" . $post_author .">" . $post_author . "</option>"; ?>
+      <?php echo "<option value=" . $post_author . ">" . $post_author . "</option>"; ?>
 
     </select>
 
@@ -168,6 +175,13 @@ if (isset($_POST['update_post'])) {
       <?php echo trim($post_content); ?>
     </textarea>
   </div>
+
+
+  <div class="form-group">
+    <label for="post_url">reference URL</label>
+    <input value="<?php echo $post_url; ?>" type="text" class="form-control" name="post_url">
+  </div>
+
   <div class="form-group">
     <input class="btn btn-primary" type="submit" name="update_post" value="Update Post">
   </div>

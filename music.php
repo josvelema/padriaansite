@@ -53,26 +53,77 @@ include 'functions.php';
 
     <article id="suite" style="display: none">
 
-      <h3>World Premiere of the Azorean Suite</h3>
-      <p><img style="float: right;" title="Renato Bettencourt" src="assets/img/105005388420061858396365973692696289217217n.jpg" alt="Renato Bettencourt" width="150" height="150" />A suite of five pieces for classical orchestra Inspired by the Azores and composed by Pieter Adriaans.
-        The world premiere will be by the <a href="http://www.vsso.nl">Vechtstreek Symphonie Orkest</a>&nbsp;on september the 27th 2014 in theatre 4en 1 in Breukelen (20.15 h.). Guest of honour is Renato Bettencourt, a player of the
-        <a href="/music/the-viola-da-terra.html">Viola da Terra </a>from the island of S&atilde;o&nbsp;Jorge. With Greetje Falkenhagen reciting portuguese poems (by Carlos Faria and Vittorino Nem&eacute;sio)&nbsp;and the dance group
-        <a href="http://www.home.zonnet.nl/aslavradeiras/">'As lavradeiras</a>'. Tickets can be ordered at:&nbsp;<a href="mailto:penningmeester@vsso.nl">penningmeester@vsso.nl</a>.&nbsp;
-      </p>
+      <h3>Azorean Suite</h3>
       <p>Read more about this composition in&nbsp;
-        <a style="line-height: 1.6em;" href="/music/azorean-suite/more-about-the-azorean-suite.html">the &nbsp;story behind the Azorean Suite</a>
+        <a href="#" onclick="suiteShow('moreinfo')">the &nbsp;story behind the Azorean Suite</a>
       </p>
-      <p>The Azorean Suite consists of five parts:
-      </p>
+      <p>The Azorean Suite consists of five parts: </p>
+
+      <ul>
+        <li><a href="#" title="" onclick="suiteShow('madrugada')">Madrugada</a></li>
+        <li><a href="#" title="" onclick="suiteShow('tempestade')">Tempestade</a></li>
+        <li><a href="#" title="" onclick="suiteShow('burlesque')">Burlesque</a></li>
+        <li><a href="#" title="" onclick="suiteShow('chamarrita')">Chamarrita</a></li>
+        <li><a href="#" title="" onclick="suiteShow('tourada')">Tourada</a></li>
+      </ul>
+    <article id="suiteMain">
+    <p><img style="float: right;" title="Renato Bettencourt" src="assets/img/105005388420061858396365973692696289217217n.jpg" alt="Renato Bettencourt" width="150" height="150" />A suite of five pieces for classical orchestra Inspired by the Azores and composed by Pieter Adriaans.
+      The world premiere will be by the <a href="http://www.vsso.nl">Vechtstreek Symphonie Orkest</a>&nbsp;on september the 27th 2014 in theatre 4en 1 in Breukelen (20.15 h.). Guest of honour is Renato Bettencourt, a player of the
+      <a href="/music/the-viola-da-terra.html">Viola da Terra </a>from the island of S&atilde;o&nbsp;Jorge. With Greetje Falkenhagen reciting portuguese poems (by Carlos Faria and Vittorino Nem&eacute;sio)&nbsp;and the dance group
+      <a href="http://www.home.zonnet.nl/aslavradeiras/">'As lavradeiras</a>'. Tickets can be ordered at:&nbsp;<a href="mailto:penningmeester@vsso.nl">penningmeester@vsso.nl</a>.&nbsp;
+    </p>
+    </article>
+
+    <article id="madrugada" style="display: none">
+      <h3>Madrugada&nbsp;</h3>
+      <p>(A major, 2/4, tempo 90, 162 measures, 3 min 40 sec.)</p>
+      <p>A sort of ouverture. The inspiration for the piece is the magnificent sunrises we experience here every morning at the Port of Manadas. The piece started as a guitar improvisation. The main theme is based on a harmonization of a chromatically descending ladder: A major 7, A minor 7, B minor 7, D minor, A major 7. From measure 57 there is a hint of a slow Bossa Nova movement.&nbsp;</p>
+
+    </article>
+
+    <article id="tempestade" style="display: none">
+      <h3>Tempestade</h3>
+      <p>(A major, 4/4, tempo 100, 154 measures, 6 min 10 sec.)</p>
+      <p>The storm piece. It opens with a melodic improvisation on A minor, D minor E7 chords that was originally written for guitar. The next parts were developed on the piano. We continue with stacked arpeggios of the A minor chord that change into a strongly syncopated melody played in march tempo on a descending sequence A minor, G, F, E7. The piece dies out with A minor arpeggios again.&nbsp;</p>
+
+
+    </article>
+
+    <article id="burlesque" style="display: none">
+      <h3>Burlesque</h3>
+      <p>(Atonal, 4/4, tempo 120, 48 measures, 1 min. 40 sec.)</p>
+      <p>Also originally a guitar improvisation. A leading thought in the composition was the way life reclaims its normal pace after a storm. Little creatures come out in the open on the rocks, birds sing in the trees. Cagarros sheer over the waves. The piece also tries to invoke the atmosphere of quiet magic that is so typical for our bay when the sea calms down. Technically the piece explores the possibilities of diminished and whole tone scales. The opening sequence of stacked tritones and descending thirds is used as finger practice by base players, I recently discovered.&nbsp;</p>
+    </article>
+
+    <article id="chamarrita" style="display: none">
+      <h3>Chamarrita</h3>
+      <p>(G major, 3/4, tempo 140, 146 measures, 2 min 20.)</p>
+      <p>A chamarrita is a fast local Azorean dance. It probably originated from the polkas and folk dances of Flemish immigrants but the fast polyrhythm also hints at African roots. Every village used to have its own chamarritas and older musicians still remember them. According to some musicologists (Renato Almeida) the chamarrita was transported to Argentine by Azorean immigrants, where it was one of the defining influences in the development of the Milonga and later the Tango. I learned the melody of this &ldquo;Chamarrita de Sao Jorge&rdquo; from my gardener Francisco Silveira, who is a keen mandolin player. He thinks the melody came originally from the island of Pico. It is a so-called chamarrita de baixo, because it is played high (in Portuguese terms low) on the neck of the Viola da Terra, a local guitar-like instrument. He also gave me copies of transcriptions for voice and piano of traditional songs by the well known Portuguese composer and musicologist Francisco de Lacerda (1869-1934) who was born on Sao Jorge. These helped me to arrange the melody.&nbsp;</p>
+    </article>
+    <article id="tourada" style="display: none">
+      <h3>Tourada</h3>
+      <p>(E minor, 12/8, tempo 130, 40 measures, 1 min 20 sec. )</p>
+      <p>As suites go this one is ending with a light jig in 12/8 beat. It is based on a fast guitar improvisation&nbsp; that I have developed and refined over the years. A tourada a corda is a traditional event where a bull is let loose in the village, held under control by a long rope. In general it is big fun and fairly harmless, but there is an interesting underlying tension. It reminds me very much of old customs and fertility rites around the Mediterranean, where life and death are tightly connected and that go back to antiquity and beyond.&nbsp;&nbsp;</p>
+    </article>
+
+    <article id="moreinfo" style="display: none">
+      <h3>More about the Azorean Suite</h3>
+      <p>The Azorean Suite grew out of a piano improvisation that I have often played for friends in the last fifteen years. The piece has an unusual dramatic impact and it has been a favorite request piece at parties for a long time. When playing I always thought of a storm. The wind slowly building up. In the centre an inferno of wind, lightning and rain and then the wind slowly dying out. In my mind I could also hear a full orchestration of the piece played by a classical orchestra.</p>
+      <p>About ten years ago we partly moved to the Azores and living there in winter we had our fair share of storms. Azorean nature is of a breathtaking beauty and the landscape is a constant source of inspiration. In the course of time we did a lot of music projects on the Azores. Recently we released the CD &ldquo;Songs of an Island&rdquo; with BasAlt.&nbsp; Gradually the idea of composing a group of works around the storm theme as an homage to the Azores emerged. The well known Fingal's Cave Ouverture by Mendelssohn was also on my mind when I sailed around the Hebrides in 2007. Originally I had a much more ambitious plan for an animation movie about a fisherman going to sea on a beautiful day and getting caught in a unexpected storm, being swept from his boat by watergods, like the Nix, the Klaboterman, diabretes, sirens and finally rescued by nymphs, nereides or what have you. The music, then would be the score of the movie. &nbsp;I put this idea on my large stack of unrealizable projects and forgot about it.</p>
+      <p>A couple of years ago I was interviewed on local radio about another music project &ldquo;Blues op Klompen&rdquo; (Blues on wooden shoes) when I made a casual remark about the fact that I had ideas for a work for classical orchestra called &ldquo;the Azorean Suite&rdquo;. To my surprise, after broadcast, I was contacted by Hans Hering. He was chairman of amateur orchestra the &ldquo;VechtStreek Symphonie Orkest&rdquo; (VSSO). The year 2012 was a lustrum year and they would very much like to have the world premiere of an original work. Would I be interested? I was reasonably flabbergasted by the instant success of my &lsquo;bluff your way in to composing&rsquo; hubris. What to do? After some deliberation I decided to accept the challenge. In the autumn of 2011 I sent the board of the VSSO a rough plan for the work. The reaction I got was benign and encouraging. I selected software and spent a lot of time learning to work with Sibelius. In January 2012 I composed the first part &ldquo;Madrugada&rdquo; in my house in Manadas on Sao Jorge. In the spring of 2012 I fell ill and was incapable to do any work for a long time. I put the plans on the shelf and wrote Hans a note that I could not stick to any deadlines in 2012. I thought the project was dead. I will always be grateful for his supportive reaction: I could take my time and yes they were still interested.</p>
+      <p>By the time I was feeling quite miserable and my wife Rini and I decided to spend the whole summer in Manadas. Here a small miracle happened. My health gradually improved on a program of long walks and much rest. After a while I started to work again. In short, it has been one of my most productive summers ever. I wrote some songs, finished several papers, some paintings and a book on painting. &ldquo;The summer would be perfect if I also would have finished the Azorean Suite&rdquo; I said to Rini when our stay was coming to an end.&nbsp; Inspiration is a weird thing. You must grab it when it&rsquo;s there. When it&rsquo;s gone it may never come back. We decided to extend our stay with several weeks to give me time to finish the Suite. The last weeks I have been working constantly on the composition, up to sixteen hours a day, getting sometimes only a couple of hours sleep per night.&nbsp; The work is ready in concept. The rest is downhill skiing. At the time of writing I do not know whether the work will ever be executed but I&rsquo;m immensely happy with the result. I hope to work with the people of VSSO to realize a live performance in the near future but for me, as a composer, the work is already there. The scores are there. I can make wav-files in Sibelius and share them with other people. That is all a composer can wish for. &nbsp;</p>
+      <p>Manadas September 2012.&nbsp;</p>
+    </article>
+
+
+    <!-- 
       <h3><a href="/music/azorean-suite/madrugada.html">Madrugada</a>&nbsp;</h3>
       <p><img title="Poster Suite" src="assets/img/poster-suite-english.jpg" alt="Poster Suite" width="500" height="647" /><a href="/music/azorean-suite/madrugada.html">Info</a>
         <span> about Madrudaga. Listen to the&nbsp;</span>
         <a href="/data/upload/files/madrugada-def.mp3">Mp3 Midi version</a>
         <span of Madrugada</span>
       </p>
-
-
-      <h3><a href="/music/azorean-suite/tempestade.html">Tempestade</a></h3>
+     <h3><a href="/music/azorean-suite/tempestade.html">Tempestade</a></h3>
       <p><a href="/music/azorean-suite/tempestade.html">Info</a> About Tempestade. Listen to the&nbsp;
         <a href="/data/upload/files/tempestade-def.mp3">Mp3 Midi Version</a>&nbsp;of Tempestade
       </p>
@@ -87,10 +138,8 @@ include 'functions.php';
       <h3><a href="/music/azorean-suite/tourada.html">Tourada</a>&nbsp;</h3>
       <p><a href="/music/azorean-suite/tourada.html">Info</a> about Tourada. Listen to the&nbsp;
         <a href="/data/upload/files/tourada-def.mp3">Mp3 Midi Version</a>&nbsp;of Tourada
-      </p>
-      </div>
-      </div>
-      </div> &nbsp;
+      </p> -->
+
 
     </article>
 
@@ -243,7 +292,7 @@ include 'functions.php';
 <!-- <script src="showandhide.js" defer></script> -->
 
 <script>
-  let articles = ["musichome", "basalt", "suite", "klompen", "pacer", "rare", "computer", "viola"];
+  let articles = ["musichome", "basalt", "suite", "klompen", "pacer", "rare", "computer", "viola", ];
   let visibleId = null;
 
   function show(id) {
@@ -260,6 +309,31 @@ include 'functions.php';
       id = articles[i];
       div = document.getElementById(id);
       if (visibleId === id) {
+        div.style.display = "block";
+      } else {
+        div.style.display = "none";
+      }
+    }
+  }
+
+
+  let articleSuite = ["suiteMain", "madrugada", "tempestade", "burlesque", "chamarrita", "tourada", "moreinfo"];
+  let visibleId2 = null;
+
+  function suiteShow(id) {
+    if (visibleId2 !== id) {
+      visibleId2 = id;
+
+    }
+    suiteHide();
+  }
+
+  function suiteHide() {
+    let div, i, id;
+    for (i = 0; i < articleSuite.length; i++) {
+      id = articleSuite[i];
+      div = document.getElementById(id);
+      if (visibleId2 === id) {
         div.style.display = "block";
       } else {
         div.style.display = "none";
