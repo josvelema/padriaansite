@@ -1,5 +1,7 @@
 <?php
 include 'functions.php';
+
+$currentPage = "blog";
 // Connect to MySQL
 $pdo = pdo_connect_mysql();
 // Retrieve the categories

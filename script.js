@@ -14,6 +14,28 @@ window.onscroll = function () {
     };
 };
 
+if (window.location.pathname == "/pieter/index.php") {
+    document.querySelector("#home").classList.add("rj-current-nav");
+}
+if (window.location.pathname == "/pieter/blog.php") {
+    document.querySelector("#blog").classList.add("rj-current-nav");
+}
+if (window.location.pathname == "/pieter/science.php") {
+    document.querySelector("#science").classList.add("rj-current-nav");
+}
+if (window.location.pathname == "/pieter/painting.php") {
+    document.querySelector("#painting").classList.add("rj-current-nav");
+}
+if (window.location.pathname == "/pieter/music.php") {
+    document.querySelector("#music").classList.add("rj-current-nav");
+}
+if (window.location.pathname == "/pieter/gallery.php") {
+    document.querySelector("#gallery").classList.add("rj-current-nav");
+}
+if (window.location.pathname == "/pieter/contact.php") {
+    document.querySelector("#contact").classList.add("rj-current-nav");
+}
+
 // Container we'll use to show an image
 let media_popup = document.querySelector(".media-popup");
 // The file that is going to be uploaded
@@ -77,9 +99,6 @@ const media_next_prev = (media_meta) => {
         // If the next element exists, click it
         if (next_ele) next_ele.click();
     };
-
-
-
 };
 // Handle the likes and dislikes
 const media_like_dislike = (media_meta) => {

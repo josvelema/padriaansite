@@ -56,9 +56,19 @@ body {
 .navtop div {
     display: flex;
     margin: 0 auto;
+    padding: 0.25em;
     width: 100%;
     height: 100%;
 }
+
+.navtop .rj-nav-ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+
+
 
 .navtop div h1,
 .navtop div a:not([class="rj-nav-home"]) {
@@ -68,7 +78,7 @@ body {
 
 .navtop div h1 {
     flex: 1;
-    padding: 0;
+    padding: 0.5em;
     margin-left: 1rem;
     color: hsl(216, 21%, 28%);
     font-size: 2rem;
@@ -649,9 +659,8 @@ a.rj-nav-home {
         backdrop-filter: blur(9px) saturate(167%);
         -webkit-backdrop-filter: blur(9px) saturate(167%);
         background-color: rgba(17, 25, 40, 0.66);
-        border:1px solid hsl(229, 40%, 68%);
-        padding: 0 0.25em 0.30 0;
-
+        border: 1px solid hsl(229, 40%, 68%);
+        padding: 0 0.25em 0.3 0;
     }
 
     .navtop input:checked ~ div a,
@@ -829,14 +838,26 @@ a.rj-nav-home {
 
 @media screen and (min-width: 1023px) {
     .media-popup .con {
-        align-items: center
+        align-items: center;
     }
 
-    
     .media-popup .con img {
         max-width: 80%;
         object-fit: contain;
     }
-
-    
 }
+
+
+.rj-current-nav {
+    text-decoration: underline;
+    border: 1px solid hsl(216, 21%, 28%);
+    border-radius: 4px;
+    }
+
+    .rj-nav-menu-span {
+        color: hsl(216, 51%, 28%);
+        font-weight: 500;
+        position: absolute;
+        top: 1rem;
+        left: 66px;
+    }

@@ -128,25 +128,26 @@ function template_nav()
     echo <<<EOT
         </head>
         <body>
-
-    <nav class="navtop">
-    <input type="checkbox" id="dropdown" style="display:none">
-    <label for="dropdown" class="dropdown">
-  <span class="hamburger">
- <span class="icon-bar top-bar"></span>
-<span class="icon-bar middle-bar"></span>
-<span class="icon-bar bottom-bar"></span>
-  </span>
-  </label>
+        
+        <nav class="navtop">
+        <input type="checkbox" id="dropdown" style="display:none">
+        <label for="dropdown" class="dropdown">
+        <span class="hamburger">
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+        </span>
+            <span class="rj-nav-menu-span">Menu</span>
+        </label>
         	<div>
-    		<h1><a href="index.php">Home</a></h1>
+    		<h1><a href="index.php" id="home">Home</a></h1>
             <a href="index.php" class="rj-nav-home">Home</a>
-            <a href="blog.php"><i class="fa-regular fa-comment-dots"></i>Blog</a>
-            <a href="science.php"><i class="fa-solid fa-brain"></i>Science</a>
-            <a href="painting.php"><i class="fa-solid fa-paintbrush"></i>Painting</a>
-            <a href="music.php"><i class="fa-solid fa-music"></i>Music</a>
-            <a href="gallery.php"><i class="fas fa-photo-video"></i>Gallery</a>
-            <a href="contact.php"><i class="fa-solid fa-envelope"></i>Contact</a>
+            <a href="blog.php" id="blog"><i class="fa-regular fa-comment-dots"></i>Blog</a>
+            <a href="science.php" id="science"><i class="fa-solid fa-brain"></i>Science</a>
+            <a href="painting.php" id="painting"><i class="fa-solid fa-paintbrush"></i>Painting</a>
+            <a href="music.php" id="music"><i class="fa-solid fa-music"></i>Music</a>
+            <a href="gallery.php" id="gallery"><i class="fas fa-photo-video"></i>Gallery</a>
+            <a href="contact.php" id="contact"><i class="fa-solid fa-envelope"></i>Contact</a>
             </div>
     </nav>
     
