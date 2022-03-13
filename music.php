@@ -55,16 +55,16 @@ include 'functions.php';
 
       <h3>Azorean Suite</h3>
       <p>Read more about this composition in&nbsp;
-        <a href="#" onclick="suiteShow('moreinfo')">the &nbsp;story behind the Azorean Suite</a>
+        <a href="#moreinfo" onclick="suiteShow('moreinfo')">the &nbsp;story behind the Azorean Suite</a>
       </p>
       <p>The Azorean Suite consists of five parts: </p>
 
       <ul>
-        <li><a href="#" title="" onclick="suiteShow('madrugada')">Madrugada</a></li>
-        <li><a href="#" title="" onclick="suiteShow('tempestade')">Tempestade</a></li>
-        <li><a href="#" title="" onclick="suiteShow('burlesque')">Burlesque</a></li>
-        <li><a href="#" title="" onclick="suiteShow('chamarrita')">Chamarrita</a></li>
-        <li><a href="#" title="" onclick="suiteShow('tourada')">Tourada</a></li>
+        <li><a href="#madrugada" title="" onclick="suiteShow('madrugada')">Madrugada</a></li>
+        <li><a href="#tempestade" title="" onclick="suiteShow('tempestade')">Tempestade</a></li>
+        <li><a href="#burlesque" title="" onclick="suiteShow('burlesque')">Burlesque</a></li>
+        <li><a href="#chamarrita" title="" onclick="suiteShow('chamarrita')">Chamarrita</a></li>
+        <li><a href="#tourada" title="" onclick="suiteShow('tourada')">Tourada</a></li>
       </ul>
     <article id="suiteMain">
     <p><img style="float: right;" title="Renato Bettencourt" src="assets/img/105005388420061858396365973692696289217217n.jpg" alt="Renato Bettencourt" width="150" height="150" />A suite of five pieces for classical orchestra Inspired by the Azores and composed by Pieter Adriaans.

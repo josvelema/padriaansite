@@ -17,14 +17,15 @@ include 'functions.php';
     <aside class="rj-main-menu">
       <h3>Menu</h3>
       <ul>
-        <li><a href="#" title="My different styles" onclick="show('styles')">My different styles</a></li>
-        <li><a href="#" title="Painting For the Brain" onclick="show('brain')">Painting For the Brain</a></li>
-        <li><a href="#" title="Lessons (English) " onclick="show('lessons')">Lessons (English) </a></li>
-        <li><a href="#" title="Aulas (Português) " onclick="show('aulas')">Aulas (Português) </a></li>
-        <li><a href="#" title="Lessen (Nederlands) " onclick="show('lessen')">Lessen (Nederlands) </a></li>
-        <li><a href="#" title="Lectures and presentations" onclick="show('lectures')">Lectures and presentations</a></li>
-        <li><a href="#" title="Art exhibitions and projects" onclick="show('artExpoProjects')">Art exhibitions and projects</a></li>
-        <li><a href="#" title="Pieter in Action: Painting and Drawing" onclick="show('pieterAction')">Pieter in Action: Painting and Drawing</a></li>
+        <li><a href="#main" title="Atelier de 'De Kaasfabriek" onclick="show('main')">Atelier de 'De Kaasfabriek</a></li>
+        <li><a href="#styles" title="My different styles" onclick="show('styles')">My different styles</a></li>
+        <li><a href="#brain" title="Painting For the Brain" onclick="show('brain')">Painting For the Brain</a></li>
+        <li><a href="#lessons" title="Lessons (English) " onclick="show('lessons')">Lessons (English) </a></li>
+        <li><a href="#aulas title="Aulas (Português) " onclick="show('aulas')">Aulas (Português) </a></li>
+        <li><a href="#lessen" title="Lessen (Nederlands) " onclick="show('lessen')">Lessen (Nederlands) </a></li>
+        <li><a href="#lectures" title="Lectures and presentations" onclick="show('lectures')">Lectures and presentations</a></li>
+        <li><a href="#artExpoProjects" title="Art exhibitions and projects" onclick="show('artExpoProjects')">Art exhibitions and projects</a></li>
+        <li><a href="#pieterAction" title="Pieter in Action: Painting and Drawing" onclick="show('pieterAction')">Pieter in Action: Painting and Drawing</a></li>
       </ul>
     </aside>
 
