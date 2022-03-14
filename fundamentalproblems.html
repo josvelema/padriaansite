@@ -1,0 +1,95 @@
+<article id="fundamentals" style="display: none">
+
+  <h2>Fundamental problems in the study of Information and Computation</h2>
+
+  <ul>
+    <li>
+      <strong> Open problems with classification </strong>
+      <ul style="list-style: none; margin-bottom: 0.75em">
+        <li>
+          * = hard work.
+        </li>
+        <li>
+          ** = vital theory seems to be missing.
+        </li>
+        <li>
+          *** = not even properly understood.
+        </li>
+        <li>
+          **** = nobody has a clue.
+        </li>
+    </li>
+
+  </ul>
+
+  In computer science there is a lack of consensus about what the real successes and what the real open problems are. In this small document I have (for my own entertainment) tried to give an overview from my personal perspective. Names mentioned are just indications. The classification in terms of hardness is of course open for debate. Some computer scientists think the list is a bit too philosophical, some philosophers think it is a bit too technical, so I have probably struck the right balance between the two disciplines. I actually work on problems 1, 3 and 4, on a rainy day I might be thinking about 8 and 9, in periods of extreme hybris I think about 10. Comments and new suggestions are welcome. I will update the list on a regular basis and hope to live to see some of the problems solved.
+  </li>
+
+  <li>
+    <strong>*The problem of defining meaningful information:</strong> The biggest problem here is that all well-known information measures (specifically Shannon Information and Kolmogorov complexity) assign the highest information content to data sets with the highest entropy. In this sense a television broadcast with only white noise would contain the most meaningful information. This is counter intuitive. I give the problem only one star because there are a lot of proposals for a form of meaningful information that seem to converge. Some proposals: - Sophistication (Koppel 1988, Antunes, Fortnow 2007) - Logical Depth (Bennet 1988) - effective complexity (Gell-Mann, Lloyd 2003) - Meaningful Information (Vitanyi 2003) - Self-dissimilarity (Wolpert, Mcready 2007) - Computational Depth (Antunes et al. 2006) - Facticty (Adriaans 2009, + unpublished recent work with Duncan Foley and David Oliver). In this last proposal I define facticity as the length of the model code in a two-part code variant of Kolmogorov complexity. I have proved that the facticity is 'symmetrical' in the sense that random data sets as well as very compressible data sets have low facticity. This proposal seems to be richer than (and not in conflict with) the other proposals mentioned. It will be a lot of work to compare these concepts and find out if and how they can be mapped on to each other, but for the moment this seems not impossible.
+  </li>
+  <li>
+    <strong>*What is an adequate logic of information? </strong> What is a good logical system (or set of systems) that formalizes our intuitions of the relation between concepts like 'knowing', 'believing' and 'being informed of'. Proposals by: Dretske, Van Benthem, Floridi and others. In principle I do not see why these concepts could not be mapped onto our current landscape of known logics (structural, modal), it just seems to be a lot of work. Also the discrepancies between proposed systems can be analyzed within the 'normal science' framework of existing logics. That's why I consider the problem to be relatively easy.
+  </li>
+  <li>
+    <strong>** Finite versus continuous models of nature </strong>This problem seems to have bothered the development of a unified theory of information and entropy for the last 150 years or so. The central issue is this: the most elegant models of physical systems are based on functions in continuous spaces. In such models almost all points in space carry an infinite amount of information. Yet, the cornerstone of thermodynamics is that a finite amount of space has finite entropy. What is the right way to reconcile these two views? I believe that the answer is hard because it involves deep questions in (philosophy of) mathematics (an intuitionistic versus a more platonic view). The issue is central in some of the more philosophical discussions on the nature of computation and information (Putnam 1988, Searle 1990). The problem is also related to the notion of phase transitions in the description of nature (e.g. thermodynamics versus statistical mechanics) and to the idea of levels of abstraction (Floridi).
+  </li>
+  <li>
+    <strong>** Computation versus thermodynamics</strong>: There is a reasonable understanding of the relationship between Kolmogorov Complexity and Shannon information (Li, Vitanyi, Grunwald, Cover &amp; Thomas), but the unification between the notion of entropy in thermodynamics and Shannon-Kolmogorov information is very incomplete apart from some very ad hoc insights (Landauer bound, Topsoe and Harremoes, Bais and Farmer 2008). What is a computational process from a thermodynamical point of view? What is a thermodynamical process from a computational point of view. Can a thermodynamic theory of computing serve as a theory of non-equilibrium dynamics? I classify this problem as hard because 150 years of research in thermodynamics still leave us a lot of conceptual unclarities in the heart of the theory of thermodynamics itself. It is also not clear how a theory of computation will help us here, although bringing in concepts of theory of computation seems to be promising. Also possible theoretical models could with high probability be corroborated with feasible experiments (e.g. Joule's adiabatic expansion, See Adriaans 2009)
+  </li>
+  <li>
+    <strong>** Classical information versus quantum information </strong> Classical information is measured in bits (an abbreviation of an oxymoron: binary digit). Implementation of bits in nature involves macroscopic physical systems with at least two different stable states and a low energy reversible transition process (i.e. switches, relays, transistors). The most fundamental way to store information in nature on an atomic level involves qubits. The qubit is described by a state vector in a two-level quantum-mechanical system, which is formally equivalent to a two-dimensional vector space over the complex numbers. Quantum algorithms have, in some cases, a fundamentally lower complexity (e.g. Shor's algorithm for factorization of integers.) The exact relation between classical and quantum information is unclear. Part of it has to do with our lack of understanding of quantum mechanics and with the question wether nature is essentially deterministic or not. Originally I wanted to call this problem "Wheelers question" because of the following little story about him: Well, one day I was at the Institute for Advanced Study, and I went to G&ouml;del's office, and there was G&ouml;del. It was winter and G&ouml;del had an electric heater and his legs were wrapped in a blanket. I said, "Professor G&ouml;del, what connection do you see between your incompleteness theorem and Heisenberg's uncertainty principe?" And G&ouml;del got angry and threw me out of his office! (John Archibald Wheeler as told to Gregory Chaitin)" This story also shows that the question is quite deep. Most philosophers would not agree with G&ouml;dels reactions nowadays.
+  </li>
+  <li>
+    <strong>*** Information and the theory of everything:</strong> In the past decennia information seems to have become a vital concept in physics. Seth Lloyd and others (Zuse, Wolfram) have analyzed computational models of various physical systems. The notion of information seems to play a major role in the analysis of black holes (Information paradox, Hawking, Bekenstein). I myself have played with the suggestion that a black hole is not only an extreme compression of matter but also of data in the sense of Kolmogorov complexity (unpublished). Albert Verlinde has proposed a theory in which gravity is analyzed in terms of information. For the moment these models seem to be purely descriptive without any possibility of empirical verification. The problem seems to be fundamentally harder than the previous one. Hence the three stars.
+  </li>
+  <li>
+    <strong>***The Church-Turing Hypothesis. </strong> We know that a lot of formal systems are Turing equivalent (turing machines, recursive functions, lambda calculus, combinatory logic, cellular automata, to name a few). The question is: does this equivalence define the notion of computation. Some authors believe that new notions of computing (interactive computing (Goldin and Wegner 2007), networked computing) falsify (a strong variant of) the thesis. Others contest this result (Fortnow, personal communication). On the other hand Dershowitz and Gurevich (2008) claim to have vindicated the hypothesis. A lot of conceptual clarification seems necessary, but for now it is unclear how one ever could verify the thesis definitively. The discovery of a system in nature that could actually compute more than a turing machine would imply an immediate falsification, but such a device has not been found up till now, and most researchers deem it unlikely that we ever will. Personally I think that the thesis is still open.
+  </li>
+  <li>
+    <strong>***The tradeoff between information, axiomatization and computation.</strong> This problem is relatively unknown and until recently I thought it was reasonably doable, but then I discovered deep connections with problem 10 (unfortunately). This is the reason why I classify the problem as very hard. The central question in recursion theory could be formulated as: How much information does a number contain relative to a certain set of axioms and how long does it take us to prove this. In computer science the same question reads: how complex is a number in relation to some universal Turing machine with a certain functionality and how long does the program run (if it terminates) relative to the functionality of our universal turing machine. The reason for the three stars is that it seems possible to start to develop some theory to solve the problems. Analysis of the nature of the integer complexity function in the theory of Kolmogorov complexity might be a good start. There is also a relation with problem 1 (specifically computational depth).
+  </li>
+  <li>
+    <strong>***Classification of information generating/discarding processes</strong>: The central question is: which kind of processes do create which kind of information. Deterministic processes do not create information since their future is known. Information is by definition only created by processes that have a stochastic component. But such processes do not necessarily create any meaningful information. If we have a theory of meaningful information then we can develop a theory of processes that create meaningful information (game playing, creation, evolution, the stock market). The problem is related to Abramsky's Problem: Does computation create information? The situation here is equal to that of problem 8: The problem is relatively unknown and until recently I thought it was reasonably doable, but then I discovered deep connections with problem 10 (again unfortunately). Also here it seems not impossible to make a beginning with the formation of a theory (See: Adriaans and van Emde Boas 2010, Information, computation and the arrow of time). Hence the three stars. Again there is a relation with problem 1.
+  </li>
+  <li>
+    <strong>****P versus NP?</strong> Can every problem that can be checked efficiently also be solved efficiently by a computer? See <a href="http://www.claymath.org/millennium/P_vs_NP/Official_Problem_Description.pdf">Cooks paper</a> for a good introduction. This problem appears to be very hard, because after about 40 years of research nobody has any idea of where to start. We seem to have only negative results that tell where 'not' to look. There is no research program that I could think of that would add with certainty anything useful to our understanding of this problem. I suspect that a solution to this problem would imply or at least influence the solution for some other problems in this list (problems 1, 3, 7, 8 and 9 specifically).
+  </li>
+  </ul>
+
+  <ul>
+    <li>
+      <strong> Reasonable successes (there are many others):</strong>
+    </li>
+    <ul>
+      <li>
+        Theory of computability and decidability (Peano, Godel, Turing, Church etc.)
+      </li>
+      <li>
+        Relation between information and probability (Shannon, Fisher, Kullback-Leibler, Solomonov, Chaitin, Kolmogorov, Hutter etc.)
+      </li>
+      <li>
+        Theory of optimal coding (Shannon, Solomonov)
+      </li>
+      <li>
+        A whole load of useful algorithms with a good understanding of their complexity (See e.g. Knuth).
+      </li>
+      <li>
+        Elegant architectures for various database paradigms: Relational, OO, RDF etc.
+      </li>
+      <li>
+        Scalable architectures for large applications (Web, Operating systems etc ).
+      </li>
+      <li>
+        No free lunch theorems (e.g. Wolpert and McReady)
+      </li>
+      <li>
+        Various solutions to variants of the induction problem (Ockam, Bayes, Rissanen, Vapnik-Chervonenkis, Valiant, Gold, Li, Vitanyi, Vereshcha
+        gin, Grunwald) - Minimum Description Length (MDL), - randomness deficiency</li>
+      <li>
+        Unification between Shannon information and Kolmogorov complexity (Li, Vitanyi, Grunwald, Cover &amp; Thomas)
+      </li>
+    </ul>
+  </ul>
+
+</article>

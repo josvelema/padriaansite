@@ -6,13 +6,13 @@ include 'main.php';
 // $stmt->execute();
 // $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<?= template_admin_header('Edit Post', 'allmedia') ?>
+<?= template_admin_header('Edit Post', 'posts') ?>
 
 <h2>Edit post</h2>
 
 
 <?php
-
+$post_id = null;
 if (isset($_GET['p_id'])) {
   $post_id = $_GET['p_id'];
 
@@ -92,7 +92,32 @@ if (isset($_POST['update_post'])) {
   $stmt->bindParam(9, $post_id, PDO::PARAM_INT);
   $stmt->execute();
 
-  echo "<p class='bg-success'>Post Updated. <a href='../post.php?p_id={$post_id}'>View Post </a> or <a href='posts.php'>Go back to posts</a></p>";
+
+  echo '
+  
+  <label for="rj-modal" class="rj-modal-background"></label>
+<div class="rj-modal">
+	<div class="modal-header">
+		<h3>Post updated!</h3>
+        <label for="rj-modal">
+        	<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="" onclick="closeModal()">
+        </label>
+    </div>
+    <p>
+    <a href="../post.php?p_id=' . $post_id . '">View Post on site</a>
+    </p>
+    <p>
+    <a href="posts.php">Go back to all posts table</a>
+    </p>
+    <p>
+    <a href="#" onclick="closeModal()">Close and stay on this page</a>
+    </p>
+</div>
+  
+  ';
+
+
+
 }
 
 
@@ -188,5 +213,20 @@ if (isset($_POST['update_post'])) {
 
 
 </form>
+
+<script>
+  modalBg = document.querySelector('.rj-modal-background');
+  modal = document.querySelector('.rj-modal');
+
+  function closeModal() {
+    modalBg.style.display = "none";
+    modal.style.display = "none";
+
+  }
+
+
+</script>
+
+
 
 <?= template_admin_footer() ?>

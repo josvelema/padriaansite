@@ -15,7 +15,9 @@ if (isset($_POST['create_post'])) {
 
   $post_title        = ($_POST['title']);
   $post_category_id  = ($_POST['post_category']);
-  $post_status       = ($_POST['post_status']);
+  // $post_status       = ($_POST['post_status']);
+  $post_status       = "published";
+
 
   $post_image        = ($_FILES['image']['name']);
   $post_image_temp   = ($_FILES['image']['tmp_name']);
@@ -53,7 +55,40 @@ if (isset($_POST['create_post'])) {
 
   $the_post_id = $pdo->lastInsertId();
 
-  echo "<p class='bg-success'>Post Created. <a href='../post.php?p_id={$the_post_id}'>View Post </a></p>";
+  echo "SUCCESS";
+
+
+  echo '
+  
+  <label for="rj-modal" class="rj-modal-background"></label>
+<div class="rj-modal">
+	<div class="modal-header">
+		<h3>Post Added to blog!</h3>
+        <label for="rj-modal">
+        	<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="" onclick="closeModal()">
+        </label>
+    </div>
+    ' ;
+
+  if ($post_status == 'published') {
+
+    echo '
+    <p>
+    <a href="../post.php?p_id=' . $the_post_id . '">View Post on site</a>
+    </p>
+    '; 
+  };
+  echo '
+    <p>
+    <a href="posts.php">Go back to all posts table</a>
+    </p>
+    <p>
+    <a href="#" onclick="closeModal()">Close and stay on this page</a>
+    </p>
+</div>
+  
+  ';
+
 }
 
 
@@ -93,13 +128,6 @@ if (isset($_POST['create_post'])) {
       </div> -->
 
   <div class="form-group">
-    <select name="post_status" id="">
-      <option value="draft">Post Status</option>
-      <option value="published">Published</option>
-      <option value="draft">Draft</option>
-    </select>
-  </div>
-  <div class="form-group">
     <label for="post_image">Post Image</label>
     <input type="file" name="image">
   </div>
@@ -128,5 +156,18 @@ if (isset($_POST['create_post'])) {
 
 
 </form>
+
+<script>
+  modalBg = document.querySelector('.rj-modal-background');
+  modal = document.querySelector('.rj-modal');
+
+  function closeModal() {
+    modalBg.style.display = "none";
+    modal.style.display = "none";
+
+  }
+
+
+</script>
 
 <?= template_admin_footer() ?>
