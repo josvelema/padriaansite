@@ -55,9 +55,7 @@ if (isset($_POST['create_post'])) {
 
   $the_post_id = $pdo->lastInsertId();
 
-  echo "SUCCESS";
-
-
+  
   echo '
   
   <label for="rj-modal" class="rj-modal-background"></label>

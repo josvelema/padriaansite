@@ -119,7 +119,7 @@ if (isset($_POST['checkBoxArray'])) {
     <div class="col-xs-4">
 
       <input type="submit" name="submit" class="btn btn-success" value="Apply bulk operation">
-      
+
       <a class="btn btn-primary push-right" href="addpost.php">Add New Post</a>
 
     </div>
@@ -127,7 +127,8 @@ if (isset($_POST['checkBoxArray'])) {
     <table class="table table-bordered ">
       <thead>
         <tr>
-          <th><input id="selectAllBoxes" type="checkbox"></th>
+          <!-- <th><input id="selectAllBoxes" type="checkbox"></th>         -->
+          <th><input type="checkbox" onClick="toggle(this)" /></th>
           <th>id</th>
           <th>author</th>
           <th>title</th>
@@ -161,10 +162,15 @@ if (isset($_POST['checkBoxArray'])) {
           $post_views_count   = $row['post_views_count'];
           $post_comment_count = $row['post_comment_count'];
 
-          echo "<tr>
-       <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='" . $post_id . "'></td>
+          echo "<tr>"
+        ?>
+          <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
 
-      <td>" . $post_id . '</td> 
+          </td>
+
+        <?php
+
+          echo '<td>' . $post_id . '</td> 
       <td>' . $post_author . '</td> 
       <td>' . $post_title . '</td>';
 
@@ -183,7 +189,7 @@ if (isset($_POST['checkBoxArray'])) {
           echo "<td>$post_date</td>";
           echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
           //todo truncate
-          echo "<td><div class='rj-td-wrap'>" .  substr($post_content,0,128) . "</div></td>";
+          echo "<td><div class='rj-td-wrap'>" .  substr($post_content, 0, 128) . "</div></td>";
 
 
           //! comment count
@@ -203,7 +209,7 @@ if (isset($_POST['checkBoxArray'])) {
           echo "<td>{$post_views_count}<br>
           <a href='posts.php?reset={$post_id}' onClick=\" return confirm('Are you sure you want to reset views?'); \">reset</a></td>";
           // echo "<td><a href='../post.php?p_id={$post_id}';>View Post</a></td>";
-          echo "<td>$count_comments<br><a href='post_comments.php?id=$post_id'>view</a></td>";
+          echo "<td>$count_comments</td>";
           echo "<td style='display: flex;justify-content: center;align-items: center;background: orange;'>";
           echo "<a href='editpost.php?&p_id={$post_id}' class='';>Edit</a></td>";
           echo "<td style='display: flex;justify-content: center;align-items: center;background: red;'>";
@@ -216,7 +222,7 @@ if (isset($_POST['checkBoxArray'])) {
         </table>
         </form>';
 
-  
+
 
         if (isset($_POST['delete'])) {
           $stmt = $pdo->prepare('DELETE FROM posts WHERE post_id = ?');
@@ -238,64 +244,24 @@ if (isset($_POST['checkBoxArray'])) {
 
 
         ?>
-        <script>
-          // let selAllBox = document.getElementById('selectAllBoxes');
-          // let checkBoxes = document.getElementsByClassName('checkBoxes');
-          // selAllBox.addEventListener('click', (e) => {
-          //   if (selAllBox.checked) {
-          //     checkBoxes.forEach(chkbox => {
-          //       chkbox.defaultC = true;
-          //     });
-          //   } else {
-          //     checkBoxes.forEach(chkbox => {
-          //       chkbox.checked = false;
-          //     });
-          //   }
-          // })
+        <script defer>
+          function toggle(source) {
+            checkboxes = document.getElementsByName('checkBoxArray[]');
+            for (var i = 0, n = checkboxes.length;; i++) {
+              checkboxes[i].checked = source.checked;
+            }
+          }
         </script>
 
-        <!-- <script>
-    
+        <?php if (isset($_SESSION['message'])) {
+
+          unset($_SESSION['message']);
+        }
+
+        ?>
 
 
-    $(document).ready(function(){
-
-
-        $(".delete_link").on('click', function(){
-
-
-            var id = $(this).attr("rel");
-
-            var delete_url = "posts.php?delete="+ id +" ";
-
-
-            $(".modal_delete_link").attr("href", delete_url);
-
-
-            $("#myModal").modal('show');
-
-
-
-
-        });
-
-
-
-    });
-
-
-
-
-  <?php if (isset($_SESSION['message'])) {
-
-    unset($_SESSION['message']);
-  }
-
-  ?> -->
-
-
-
-        </script>
+        </scrip;>
 
 
         <?= template_admin_footer() ?>
