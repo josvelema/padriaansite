@@ -46,6 +46,7 @@ echo <<<EOT
                 <a class="responsive-toggle" href="#">
                     <i class="fas fa-bars"></i>
                 </a>
+                <a href="../index.php">Go to homepage</a>
                 <div class="space-between"></div>
                 <a href="about.php" class="right"><i class="fas fa-question-circle"></i></a>
                 <a href="logout.php" class="right"><i class="fas fa-sign-out-alt"></i></a>

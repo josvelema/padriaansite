@@ -42,7 +42,9 @@ if (isset($_POST['update_post'])) {
   $post_author         =  $_POST['post_user'];
   $post_title          =  $_POST['post_title'];
   $post_category_id    =  $_POST['post_category'];
-  $post_status         =  $_POST['post_status'];
+  // $post_status         =  $_POST['post_status'];
+  $post_status         =  "published";
+
   $post_image          =  $_FILES['image']['name'];
   $post_image_temp     =  $_FILES['image']['tmp_name'];
   $post_content        =  $_POST['post_content'];
@@ -115,9 +117,6 @@ if (isset($_POST['update_post'])) {
 </div>
   
   ';
-
-
-
 }
 
 
@@ -129,7 +128,7 @@ if (isset($_POST['update_post'])) {
 
 
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="" method="post" enctype="multipart/form-data" class="form responsive-width-100">
 
 
   <div class="form-group">
@@ -172,16 +171,24 @@ if (isset($_POST['update_post'])) {
     </select>
 
   </div>
-  <div class="form-group">
+  <!-- <div class="form-group">
     <select name="post_status" id="">
 
-      <option value='<?php echo $post_status ?>'><?php echo $post_status; ?></option>
-      <?php
-      echo ($post_status == 'published') ? "<option value='draft'>Draft</option>"
-        : "<option value='published'>Publish</option>";
-      ?>
-    </select>
-  </div>
+      <option value=' -->
+  <?php
+  // echo $post_status 
+  ?>
+  <!-- '> -->
+  <?php
+  //  echo $post_status; 
+  ?>
+  <!-- </option> -->
+  <?php
+  // echo ($post_status == 'published') ? "<option value='draft'>Draft</option>"
+  //   : "<option value='published'>Publish</option>";
+  ?>
+  <!-- </select>
+  </div> -->
 
   <div class="form-group">
 
@@ -223,8 +230,6 @@ if (isset($_POST['update_post'])) {
     modal.style.display = "none";
 
   }
-
-
 </script>
 
 

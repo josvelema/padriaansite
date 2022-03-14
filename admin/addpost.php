@@ -6,9 +6,9 @@ $stmt = $pdo->prepare('SELECT * FROM posts ORDER BY post_id DESC');
 $stmt->execute();
 $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<?= template_admin_header('All Media', 'allmedia') ?>
+<?= template_admin_header('Add Blog Post', 'posts') ?>
 
-<h2>All Media</h2>
+<h2>Add Blog Post</h2>
 
 <?php
 if (isset($_POST['create_post'])) {
@@ -96,7 +96,7 @@ if (isset($_POST['create_post'])) {
 
 ?>
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="" method="post" enctype="multipart/form-data" class="form responsive-width-100">
 
 
   <div class="form-group">

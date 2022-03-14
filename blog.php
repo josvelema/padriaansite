@@ -27,7 +27,7 @@ $per_page = 6;
 
 ($page == "" || $page == 1) ? $page_1 = 0 : $page_1 = ($page * $per_page) - $per_page;
 
-$stmt = $pdo->query("SELECT * FROM posts WHERE post_status = 'published'");
+$stmt = $pdo->query("SELECT * FROM posts WHERE post_status = 'published' ORDER BY post_id DESC");
 
 $count = $stmt->rowCount();
 $total_posts = $count;
@@ -75,7 +75,7 @@ if ($count < 1) {
         // $query = "SELECT * FROM posts LIMIT $page_1, $per_page";
         // $select_all_posts_query = mysqli_query($pdo, $query);
 
-        $stmt = $pdo->prepare('SELECT * FROM posts WHERE post_status = ? LIMIT ? , ?');
+        $stmt = $pdo->prepare('SELECT * FROM posts WHERE post_status = ? ORDER BY post_id DESC LIMIT ? , ?');
         $stmt->bindParam(1, $published, PDO::PARAM_STR);
         $stmt->bindParam(2, $page_1, PDO::PARAM_INT);
         $stmt->bindParam(3, $per_page, PDO::PARAM_INT);
