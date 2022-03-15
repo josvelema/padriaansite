@@ -49,7 +49,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
 
       <div class="rj-news-card-content">
-      <p><?php echo $post_content; ?></p>
+      <?php echo "<pre>" . trim($post_content) . "</pre>"; ?>
       <img src="images/<?php echo $post_image?>" alt="<?php echo $post_title;?>">
       </div>
 
@@ -65,8 +65,8 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
   ?>
 
 
-  <div class="rj-flex-container">
-    <article class="rj-about rj-unbreakable-text" id="about">
+  <div class="rj-about-wrapper">
+    <article class="rj-about id="about">
       <h3>About Pieter Adriaans</h3>
       <p>Works as a painter and musician at the Azores.
         Is professor of Learning and Adaptive Systems at the Universiteit van Amsterdam.

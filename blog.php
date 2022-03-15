@@ -106,7 +106,8 @@ if ($count < 1) {
               <a href="post.php?p_id=<?php echo $post_id; ?>">
                 <img class="blog-image" src="images/<?php echo $post_image; ?>" alt="<?php echo $post_title ?>">
               </a>
-              <p><?php echo $post_content ?></p>
+              <?php echo "<pre>" . trim($post_content) . "</pre>"; ?>
+
             </div>
             <div class="rj-blog-card-footer">
               <a class="rj-btn-light" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>

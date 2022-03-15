@@ -60,7 +60,7 @@ if (isset($_GET['p_id'])) {
 
           </div>
 
-          <p><?php echo $post_content; ?></p>
+          <?php echo "<pre>" . trim($post_content) . "</pre>"; ?>
           <?php if ($post_url !== null) {
             echo "<p><a href='" . $post_url . "' target='" . "_blank'>"
               . $post_url . "</a></p>";

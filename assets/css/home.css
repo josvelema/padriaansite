@@ -137,6 +137,12 @@ ul {
 .rj-news-card-content p {
     width: 60ch;
 }
+.rj-news-card-content pre {
+    font-family: "IBM Plex Sans", sans-serif;
+    overflow: none !important;
+    font-size: inherit;
+}
+
 
 .rj-news-card-content img {
     width: 20em;
@@ -151,18 +157,39 @@ ul {
     justify-content: center;
 }
 
+.rj-about-wrapper {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0.75em 0 1.5em 0;
+    padding: 1em;
+}
+
 .rj-about {
     /* flex: 1 0 auto; */
-    flex-basis: 80ch;
+    /* flex-basis: 80ch; */
+    width: 66%;
     height: fit-content;
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 12px;
     font-weight: 300;
-    border: 1px solid hsl(216, 21%, 12%);
+    /* border: 1px solid hsl(216, 21%, 12%);
     border-radius: 7px;
     background-color: hsl(0, 0%, 88%);
     color: hsl(216, 21%, 22%);
     box-shadow: 0 0 23px rgb(0 0 0 / 14%), -16px 8px 33px rgba(0 0 2 / 61%);
+     */
+    padding: 0.75em;
+    background-color: hsl(0, 0%, 88%);
+    color: hsl(216, 21%, 22%);
+    border-radius: 10px;
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* box-shadow: inset 0 -33em 25px rgb(0 0 0 / 14%), 0 0px 0 4px hsl(0deg 0% 59%), -23px 7em 15px rgb(0 0 0 / 53%); */
+    box-shadow: 0 -32em 23px rgb(0 0 0 / 14%), 0px 0 2px 5px hsl(0deg 0% 59%),
+        -16px 8px 33px rgba(0 0 2 / 61%);
+    border-radius: 4px;
 }
 
 .rj-about-p-img {
@@ -209,6 +236,10 @@ ul {
         font-size: 0.6rem;
     }
     .rj-news-card {
+        width: 100%;
+    }
+
+    .rj-about {
         width: 100%;
     }
 

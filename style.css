@@ -8,6 +8,11 @@
     outline: 1px solid green;
    */
 }
+pre {
+    font-family: "IBM Plex Sans", sans-serif;
+    overflow: none !important;
+    font-size: inherit;
+}
 
 #scrolltop {
     position: fixed;
