@@ -35,7 +35,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?=$category['id']?></td>
                     <td><?=$category['title']?></td>
                     <td><?=$category['description']?></td>
-                    <td><a href="category.php?id=<?=$category['id']?>">Edit</a></td>
+                    <td><a href="category.php?id=<?=$category['id']?>" class="rj-action-edit">Edit</a></td>
                 </tr>
                 <?php endforeach; ?>
                 <?php endif; ?>

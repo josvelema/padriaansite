@@ -98,8 +98,8 @@ if (isset($_GET['delete'])) {
 
 
 
-      echo "<td style='display: flex;justify-content: center;align-items: center;background: red;'>";
-      echo "<a href='comments.php?delete={$comment_id}' class='';>Delete</a></td>";
+      echo "<td>";
+      echo "<a href='comments.php?delete={$comment_id}' class='rj-action-del';>Delete</a></td>";
 
       echo "</tr>";
     }

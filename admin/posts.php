@@ -28,7 +28,7 @@ if (isset($_GET['delete'])) {
 
 if (isset($_GET['reset'])) {
   $stmt = $pdo->prepare('UPDATE posts SET post_views_count = 0 WHERE post_id = ? ');
-  $stmt->bindParam(1, $post_id, PDO::PARAM_INT);
+  $stmt->bindParam(1, $_GET['reset'], PDO::PARAM_INT);
   $stmt->execute();
 
   header("Location: posts.php");
@@ -236,14 +236,14 @@ if (isset($_POST['checkBoxArray'])) {
 
           echo "<td>$post_tags</td>";
 
-          echo "<td>{$post_views_count}<br>
-          <a href='posts.php?reset={$post_id}' onClick=\" return confirm('Are you sure you want to reset views?'); \">reset</a></td>";
+          echo "<td>{$post_views_count}<br>";
+          echo "<a href='#' onClick='resetViewsModal($post_id)'>reset</a></td>";
           // echo "<td><a href='../post.php?p_id={$post_id}';>View Post</a></td>";
           echo "<td>$count_comments</td>";
-          echo "<td style='display: flex;justify-content: center;align-items: center;background: orange;'>";
-          echo "<a href='editpost.php?&p_id={$post_id}' class='';>Edit</a></td>";
-          echo "<td style='display: flex;justify-content: center;align-items: center;background: red;'>";
-          echo "<a href='#' onClick='deleteModal($post_id)'>Delete</a></td>";
+          echo "<td class='rj-action-td'>";
+          echo "<a href='editpost.php?&p_id={$post_id}' class='rj-action-edit';>Edit</a>";
+          
+          echo "<a href='#' onClick='deleteModal($post_id)' class='rj-action-del'>Delete</a></td>";
 
           echo "</tr>";
         };
@@ -254,9 +254,8 @@ if (isset($_POST['checkBoxArray'])) {
 
         ?>
 
-        <div class="delModalWrap">
-
-        </div>
+        <div class="delModalWrap"></div>
+        <div class="resetViewsModalWrap"></div>
 
 
 
@@ -272,31 +271,57 @@ if (isset($_POST['checkBoxArray'])) {
           modalBg = document.querySelector('.rj-modal-background');
           modal = document.querySelector('.rj-modal');
           delModal = document.querySelector('.delModalWrap');
+          resetModal = document.querySelector('.resetViewsModalWrap');
 
-          
+
           let delModalContent = `<label for="rj-modal" class="rj-modal-background"></label>
           <div class="rj-modal">
           <div class="modal-header">
           <h3>Confirm deletion</h3>
             <label for="rj-modal">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="" onclick="closeModal()">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="" onclick="closeDelModal()">
             </label>
             </div>
             <p>
             Delete post?<br>
             `;
-            
-            
-            function deleteModal(id) {
-              let post_id = id;
-              let link = `<a href="posts.php?delete=` + post_id + `">Confirm</a><br><a href="#" onClick="closeDelModal()">Cancel</a> </p></div>`
-              document.querySelector(".delModalWrap").innerHTML = delModalContent + link;
-            }
-            function closeDelModal() {
-              delModal.style.display = "none";
-              
-            }
+
+          let resetViewsContent = `<label for="rj-modal" class="rj-modal-background"></label>
+          <div class="rj-modal">
+          <div class="modal-header">
+          <h3>Confirm reset</h3>
+            <label for="rj-modal">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="" onclick="closeResetModal()" style="cursor: pointer">
+            </label>
+            </div>
+            <p>
+            reset Views?<br>
+            `;
+
+
+          function deleteModal(id) {
+            let post_id = id;
+            let link = `<a href="posts.php?delete=` + post_id + `" class="rj-modal-btn">Confirm</a><br><a href="posts.php" onClick="closeDelModal()" class="rj-modal-btn">Cancel</a> </p></div>`
+            document.querySelector(".delModalWrap").innerHTML = delModalContent + link;
+          }
+
+          function resetViewsModal(id) {
+            let post_id = id;
+            let link = `<a href="posts.php?reset=` + post_id + `" class="rj-modal-btn">Confirm</a><br><a href="posts.php" onClick="closeResetModal()" class="rj-modal-btn">Cancel</a> </p></div>`
+            document.querySelector(".resetViewsModalWrap").innerHTML = resetViewsContent + link;
+          }
+
+          function closeDelModal() {
+            delModal.style.display = "none";
+
+          }
+
+          function closeResetModal() {
+            resetModal.style.display = "none";
+
+          }
         </script>
+
 
 
 

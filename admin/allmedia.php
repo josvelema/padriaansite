@@ -68,8 +68,8 @@ $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?=$m['approved']?'Yes':'No'?></td>
                     <td class="responsive-hidden"><?=date('F j, Y H:ia', strtotime($m['uploaded_date']))?></td>
                     <td>
-                        <a href="media.php?id=<?=$m['id']?>">Edit</a>
-                        <a href="allmedia.php?delete=<?=$m['id']?>">Delete</a>
+                        <a href="media.php?id=<?=$m['id']?>" class="rj-action-edit">Edit</a>
+                        <a href="allmedia.php?delete=<?=$m['id']?>" class="rj-action-del">Delete</a>
                         <?php if (!$m['approved']): ?>
                         <a href="allmedia.php?approve=<?=$m['id']?>">Approve</a>
                         <?php endif; ?>
