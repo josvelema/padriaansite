@@ -68,8 +68,6 @@ body {
     margin: 0;
 }
 
-
-
 .navtop div h1,
 .navtop div a:not([class="rj-nav-home"]) {
     display: inline-flex;
@@ -847,17 +845,79 @@ a.rj-nav-home {
     }
 }
 
-
 .rj-current-nav {
     text-decoration: underline;
     border: 1px solid hsl(216, 21%, 28%);
     border-radius: 4px;
-    }
+}
 
-    .rj-nav-menu-span {
-        color: hsl(216, 51%, 28%);
-        font-weight: 500;
-        position: absolute;
-        top: 1rem;
-        left: 66px;
-    }
+.rj-nav-menu-span {
+    color: hsl(216, 51%, 28%);
+    font-weight: 500;
+    position: absolute;
+    top: 1rem;
+    left: 66px;
+}
+
+.rj-modal-background {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 9998;
+}
+.rj-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: block;
+    width: 300px;
+    height: 300px;
+    background-color: #fff;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+.rj-modal > p {
+    padding: 15px;
+    margin: 0;
+    color: rgba(11, 22, 44, 0.77);
+}
+
+.rj-modal > p a {
+    
+    color: rgba(11, 33, 122, 0.97);
+    text-decoration: underline;
+    line-height: 1.5rem;
+}
+.rj-modal-header {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #dddddd;
+    box-sizing: border-box;
+    height: 50px;
+}
+.rj-modal-header h3 {
+    margin: 0;
+    box-sizing: border-box;
+    padding-left: 15px;
+    line-height: 50px;
+    color: #4d4d4d;
+    font-size: 16px;
+    display: inline-block;
+}
+.rj-modal-header label {
+    box-sizing: border-box;
+    border-left: 1px solid #dddddd;
+    float: right;
+    line-height: 50px;
+    padding: 0 15px 0 15px;
+    cursor: pointer;
+}
+.rj-modal-header label:hover img {
+    opacity: 0.6;
+}

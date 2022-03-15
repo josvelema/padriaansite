@@ -8,10 +8,19 @@ $stmt->execute();
 $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
+// if (isset($_GET['delete'])) {
+//   $stmt = $pdo->prepare('DELETE * FROM posts WHERE post_id = ?');
+//   $stmt->bindParam(1, $_GET['delete'], PDO::PARAM_INT);
+//   $stmt->execute();
+
+//   header("Location: posts.php");
+// }
+
 if (isset($_GET['delete'])) {
-  $stmt = $pdo->prepare('DELETE FROM posts WHERE post_id = ?');
+  $stmt = $pdo->prepare('DELETE p, pc FROM posts p LEFT JOIN comments pc ON pc.comment_post_id = p.post_id WHERE p.post_id = ?');
   $stmt->bindParam(1, $_GET['delete'], PDO::PARAM_INT);
   $stmt->execute();
+  // $stmt = $pdo->prepare('DELETE m, mc FROM media m LEFT JOIN media_categories mc ON mc.media_id = m.id WHERE m.id = ?');
 
   header("Location: posts.php");
 }
