@@ -187,7 +187,7 @@ if (isset($_GET['p_id'])) {
           Your comment will be posted after approval.
           </p>
           <p>
-          <a href="#" onclick="closeModal()">Go back to post</a>
+          <a href="#" onclick="closeModal()" class="rj-modal-btn">Go back to post</a>
           </p>
       </div>
         

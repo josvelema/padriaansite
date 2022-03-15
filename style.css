@@ -921,3 +921,29 @@ a.rj-nav-home {
 .rj-modal-header label:hover img {
     opacity: 0.6;
 }
+
+a.rj-modal-btn {
+    text-transform: uppercase;
+    text-decoration: none !important;
+    color: rgb(27, 27, 27);
+    padding: 10px 30px;
+    border: 1px solid;
+    border-radius: 1000px;
+    display: inline-block;
+    transition: all 0.2s;
+    position: relative;
+}
+
+a.rj-modal-btn:hover
+{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(27, 27, 27, 0.5);
+}
+
+a.rj-modal-btn:hover {
+    box-shadow: 0 10px 20px rgba(222, 222, 222, 0.5);
+}
+
+a.rj-modal-btn  {
+    transform: translateY(-3px);
+}
