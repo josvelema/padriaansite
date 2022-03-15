@@ -533,14 +533,6 @@ th:hover::after {
 
 
 
-input[type="checkbox"].rj-modal-checkbox {
-	display:none;
-}
-
-input[type="checkbox"].rj-modal-checkbox:checked ~ .rj-modal,
-input[type="checkbox"].rj-modal-checkbox:checked ~ .rj-modal,.rj-modal-background {
-	display: block;
-}
 .rj-modal-background {
 	width: 100%;
     height: 100%;
