@@ -65,7 +65,7 @@ include 'functions.php';
 
 <ul>
   <li><em style="font-size: 0.9rem;"><strong>P. W. Adriaans</strong>,&nbsp; Differential information theory</em>
-    <em style="font-size: 0.9rem;">, </em><em style="font-size: 0.9rem;">&nbsp;&lsquo;https://arxiv.org/abs/2111.04335.&rsquo;&nbsp;</em>
+    <em style="font-size: 0.9rem;">, </em><em style="font-size: 0.9rem;"><a href="https://arxiv.org/abs/2111.04335">&nbsp;&lsquo;https://arxiv.org/abs/2111.04335.&rsquo;&nbsp;</a></em>
     <em style="font-size: 0.9rem;"> ArXiv, 2021. &nbsp;</em>
   </li>
   <li><em style="font-size: 0.9rem;"><strong>P. W. Adriaans</strong>,&nbsp; A computational theory of meaning</em>

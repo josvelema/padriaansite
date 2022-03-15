@@ -1,11 +1,32 @@
 <?php
 include 'main.php';
 
+
 // SQL query that will retrieve all the posts from the database ordered by the ID column
 $stmt = $pdo->prepare('SELECT * FROM posts ORDER BY post_id DESC');
 $stmt->execute();
 $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+if (isset($_GET['delete'])) {
+  $stmt = $pdo->prepare('DELETE FROM posts WHERE post_id = ?');
+  $stmt->bindParam(1, $_GET['delete'], PDO::PARAM_INT);
+  $stmt->execute();
+
+  header("Location: posts.php");
+}
+
+
+if (isset($_GET['reset'])) {
+  $stmt = $pdo->prepare('UPDATE posts SET post_views_count = 0 WHERE post_id = ? ');
+  $stmt->bindParam(1, $post_id, PDO::PARAM_INT);
+  $stmt->execute();
+
+  header("Location: posts.php");
+}
+
 ?>
+
 <?= template_admin_header('All posts', 'posts') ?>
 
 <h2>All Posts</h2>
@@ -213,7 +234,7 @@ if (isset($_POST['checkBoxArray'])) {
           echo "<td style='display: flex;justify-content: center;align-items: center;background: orange;'>";
           echo "<a href='editpost.php?&p_id={$post_id}' class='';>Edit</a></td>";
           echo "<td style='display: flex;justify-content: center;align-items: center;background: red;'>";
-          echo "<a href='posts.php?delete={$post_id}' class=''; onClick=\" return confirm('Are you sure you want to delete?'); \">Delete</a></td>";
+          echo "<a href='#' onClick='deleteModal($post_id)'>Delete</a></td>";
 
           echo "</tr>";
         };
@@ -222,36 +243,55 @@ if (isset($_POST['checkBoxArray'])) {
         </table>
         </form>';
 
-
-
-        if (isset($_POST['delete'])) {
-          $stmt = $pdo->prepare('DELETE FROM posts WHERE post_id = ?');
-          $stmt->bindParam(1, $post_id, PDO::PARAM_INT);
-          $stmt->execute();
-
-          header("Location: admin/posts.php");
-        }
-
-
-        if (isset($_GET['reset'])) {
-          $stmt = $pdo->prepare('UPDATE posts SET post_views_count = 0 WHERE post_id = ? ');
-          $stmt->bindParam(1, $post_id, PDO::PARAM_INT);
-          $stmt->execute();
-
-          header("Location: posts.php");
-        }
-
-
-
         ?>
-        <script defer>
+
+        <div class="delModalWrap">
+
+        </div>
+
+
+
+
+        <script>
           function toggle(source) {
             checkboxes = document.getElementsByName('checkBoxArray[]');
             for (var i = 0, n = checkboxes.length;; i++) {
               checkboxes[i].checked = source.checked;
             }
           }
+
+          modalBg = document.querySelector('.rj-modal-background');
+          modal = document.querySelector('.rj-modal');
+          delModal = document.querySelector('.delModalWrap');
+
+          
+          let delModalContent = `<label for="rj-modal" class="rj-modal-background"></label>
+          <div class="rj-modal">
+          <div class="modal-header">
+          <h3>Confirm deletion</h3>
+            <label for="rj-modal">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="" onclick="closeModal()">
+            </label>
+            </div>
+            <p>
+            Delete post?<br>
+            `;
+            
+            
+            function deleteModal(id) {
+              let post_id = id;
+              let link = `<a href="posts.php?delete=` + post_id + `">Confirm</a><br><a href="#" onClick="closeDelModal()">Cancel</a> </p></div>`
+              document.querySelector(".delModalWrap").innerHTML = delModalContent + link;
+            }
+            function closeDelModal() {
+              delModal.style.display = "none";
+              
+            }
         </script>
+
+
+
+
 
         <?php if (isset($_SESSION['message'])) {
 
@@ -259,9 +299,6 @@ if (isset($_POST['checkBoxArray'])) {
         }
 
         ?>
-
-
-        </scrip;>
 
 
         <?= template_admin_footer() ?>
