@@ -410,9 +410,17 @@ a height */
     align-items: center;
     color: #fafafa;
     text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.5),
-        1px 1px 1px rgba(12, 34, 66, 0.5);
+    1px 1px 1px rgba(12, 34, 66, 0.5);
     background: linear-gradient(180deg, rgb(0, 0, 0), #3f3f3f);
 }
+.rj-footer p {
+    text-align: center;
+}
+.rj-footer a {
+    color:rgb(255, 255, 204);
+    font-size: inherit;
+}
+
 
 
 @media screen and (max-width: 1000px) {

@@ -78,7 +78,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <li>Computational esthetics</li>
       </ul>
 
-      <div class="rj-about-p-img">
+      <div class="rj-about-p-img" id="about">
         <img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo">
         <p>
           Manages the non-profit organisation <a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank">Atelier de Kaasfabriek</a> together with Rini Adriaans.
