@@ -126,3 +126,15 @@ border-color: orangered;
 
     background-color: hsl(5, 100%, 50%);
 }
+
+.rj-form-admin {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em;
+    padding: 0.5em;
+    width: fit-content;
+} 
+.rj-form-admin select,
+.rj-form-admin input {
+    margin: 0.25em;
+}
