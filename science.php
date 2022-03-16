@@ -64,8 +64,8 @@ include 'functions.php';
       <h3 style="margin-top: 1rem">20's</h3>
 
       <ul>
-        <li><em style="font-size: 0.9rem;"><strong>P. W. Adriaans</strong>,&nbsp; Differential information theory</em>
-          <em style="font-size: 0.9rem;">, </em><em style="font-size: 0.9rem;"><a href="https://arxiv.org/abs/2111.04335">&nbsp;&lsquo;https://arxiv.org/abs/2111.04335.&rsquo;&nbsp;</a></em>
+        <li><em style="font-size: 0.9rem;"><strong>P. W. Adriaans</strong>,&nbsp; Differential information theory,<br> </em>
+          <em style="font-size: 0.9rem;"><a href="https://arxiv.org/abs/2111.04335">&nbsp;&lsquo;https://arxiv.org/abs/2111.04335.&rsquo;&nbsp;</a></em>
           <em style="font-size: 0.9rem;"> ArXiv, 2021. &nbsp;</em>
         </li>
         <li><em style="font-size: 0.9rem;"><strong>P. W. Adriaans</strong>,&nbsp; A computational theory of meaning</em>
@@ -91,35 +91,35 @@ include 'functions.php';
           <strong>Peter&nbsp;Bloem, Steven&nbsp;de &nbsp;Rooij, Pieter&nbsp;Adriaans</strong>, Two Problems for Sophistication, <a href="http://link.springer.com/book/10.1007/978-3-319-24486-0">Algorithmic Learning Theory</a>, Volume 9355 of the series <a href="http://link.springer.com/bookseries/558">Lecture Notes in Computer Science</a> pp 379-394, 2015. (Find related material <a href="http://peterbloem.nl/publications/two-problems">here</a>).
         </li>
         <li>
-          <strong style="font-size: 0.9rem; line-height: 1.6em;">Peter&nbsp;Bloem, Francisco&nbsp;Mota, Steven&nbsp;de&nbsp;Rooij, Lu&iacute;s&nbsp;Antunes, Pieter&nbsp;Adriaans,&nbsp;</strong><a style="font-size: 0.9rem; line-height: 1.6em;" href="http://link.springer.com/book/10.1007/978-3-319-11662-4">Algorithmic Learning Theory</a><span style="font-size: 0.9rem; line-height: 1.6em;">,&nbsp;A Safe Approximation for Kolmogorov Complexity,&nbsp;Volume 8776 of the series&nbsp;</span><a style="font-size: 0.9rem; line-height: 1.6em;" href="http://link.springer.com/bookseries/558">Lecture Notes in Computer Science</a><span style="font-size: 0.9rem; line-height: 1.6em;">&nbsp;pp 336-350, 2014.&nbsp;</span>
+          <strong>Peter&nbsp;Bloem, Francisco&nbsp;Mota, Steven&nbsp;de&nbsp;Rooij, Lu&iacute;s&nbsp;Antunes, Pieter&nbsp;Adriaans,&nbsp;</strong><a href="http://link.springer.com/book/10.1007/978-3-319-11662-4">Algorithmic Learning Theory</a><span>,&nbsp;A Safe Approximation for Kolmogorov Complexity,&nbsp;Volume 8776 of the series&nbsp;</span><a href="http://link.springer.com/bookseries/558">Lecture Notes in Computer Science</a><span>&nbsp;pp 336-350, 2014.&nbsp;</span>
         </li>
         <li>
-          <strong style="font-size: 0.9rem; line-height: 1.6em;">P.W. Adriaans, </strong><a style="font-size: 0.9rem; line-height: 1.6em;" title="www.schilderenvoorhetbrein.nl/" href="http://www.schilderenvoorhetbrein.nl/">Schilderen voor het Brein</a><span style="font-size: 0.9rem; line-height: 1.6em;">, Uiteverij Mooi Media, 2013.&nbsp;</span>
+          <strong>P.W. Adriaans, </strong><a title="www.schilderenvoorhetbrein.nl/" href="http://www.schilderenvoorhetbrein.nl/">Schilderen voor het Brein</a><span>, Uiteverij Mooi Media, 2013.&nbsp;</span>
         </li>
         <li>
-          <strong style="font-size: 0.9rem; line-height: 1.6em;">P.W.Adriaans</strong><span style="font-size: 0.9rem; line-height: 1.6em;">, </span><a style="font-size: 0.9rem; line-height: 1.6em;" title="Pleidooi voor het trage kijken" href="/data/upload/files/documents/fd20131123.pdf">Pleidooi voor het trage kijken</a><span style="font-size: 0.9rem; line-height: 1.6em;">, FrieschDagblad, 23 november, 2013.&nbsp;</span>
+          <strong>P.W.Adriaans</strong><span>, </span><a title="Pleidooi voor het trage kijken" href="/data/upload/files/documents/fd20131123.pdf">Pleidooi voor het trage kijken</a><span>, FrieschDagblad, 23 november, 2013.&nbsp;</span>
         </li>
         <li>
-          <strong style="font-size: 0.9rem; line-height: 1.6em;">P.W. Adriaans,</strong><span style="font-size: 0.9rem; line-height: 1.6em;">&nbsp;"</span><a style="font-size: 0.9rem; line-height: 1.6em;" href="https://plato.stanford.edu/entries/information/">Information</a><span style="font-size: 0.9rem; line-height: 1.6em;">",&nbsp;</span><em style="font-size: 0.9rem; line-height: 1.6em;">The Stanford Encyclopedia of Philosophy</em><span style="font-size: 0.9rem; line-height: 1.6em;">&nbsp;(Winter 2012 Edition), Edward N. Zalta&nbsp;(ed.),</span><span style="font-size: 0.9rem; line-height: 1.6em;">&nbsp;2016.&nbsp;</span>
+          <strong>P.W. Adriaans,</strong><span>&nbsp;"</span><a href="https://plato.stanford.edu/entries/information/">Information</a><span>",&nbsp;</span><em>The Stanford Encyclopedia of Philosophy</em><span>&nbsp;(Winter 2012 Edition), Edward N. Zalta&nbsp;(ed.),</span><span>&nbsp;2016.&nbsp;</span>
         </li>
         <li>
-          <strong style="font-size: 0.9rem; line-height: 1.6em;">P.W. Adriaans,&nbsp;</strong><span style="font-size: 0.9rem; line-height: 1.6em;">Facticity as the amount of self-descriptive information in a data set</span><strong style="font-size: 0.9rem; line-height: 1.6em;">,&nbsp;<a href="http://arxiv.org/abs/1203.2245">arXiv:1203.2245</a>&nbsp;[cs.IT],</strong><span style="font-size: 0.9rem; line-height: 1.6em;">&nbsp;2012.</span>
+          <strong>P.W. Adriaans,&nbsp;</strong><span>Facticity as the amount of self-descriptive information in a data set</span><strong>,&nbsp;<a href="http://arxiv.org/abs/1203.2245">arXiv:1203.2245</a>&nbsp;[cs.IT],</strong><span>&nbsp;2012.</span>
         </li>
         <li>
-          <strong style="font-size: 0.9rem; line-height: 1.6em;">P.W. Adriaans, P.E. Van Emde Boas</strong><span style="font-size: 0.9rem; line-height: 1.6em;">, Information, <a href="/data/upload/files/metacompuatation.pdf">Computation and the Arrow of time</a>, in COMPUTABILITY IN CONTEXT, Computation and Logic in the Real World, edited by S. Barry Cooper (University of Leeds, UK) &amp; Andrea Sorbi (Universita degli Studi di Siena, Italy), 2011.</span>
+          <strong>P.W. Adriaans, P.E. Van Emde Boas</strong><span>, Information, <a href="/data/upload/files/metacompuatation.pdf">Computation and the Arrow of time</a>, in COMPUTABILITY IN CONTEXT, Computation and Logic in the Real World, edited by S. Barry Cooper (University of Leeds, UK) &amp; Andrea Sorbi (Universita degli Studi di Siena, Italy), 2011.</span>
         </li>
         <li>
-          <strong style="font-size: 0.9rem; line-height: 1.6em;">P.W. Adriaans, Wico Mulder</strong><span style="font-size: 0.9rem; line-height: 1.6em;">, MDL in the limit, in ICGI 2010,&nbsp;</span><a style="font-size: 0.9rem; line-height: 1.6em;" href="http://link.springer.com/book/10.1007/978-3-642-15488-1">Grammatical Inference: Theoretical Results and Applications</a><span style="font-size: 0.9rem; line-height: 1.6em;">,&nbsp;</span><span style="font-size: 0.9rem; line-height: 1.6em;">Volume 6339 of the series&nbsp;</span><a style="font-size: 0.9rem; line-height: 1.6em;" href="http://link.springer.com/bookseries/558">Lecture Notes in Computer Science</a><span style="font-size: 0.9rem; line-height: 1.6em;">&nbsp;pp 258-261, 2010.</span>
+          <strong>P.W. Adriaans, Wico Mulder</strong><span>, MDL in the limit, in ICGI 2010,&nbsp;</span><a href="http://link.springer.com/book/10.1007/978-3-642-15488-1">Grammatical Inference: Theoretical Results and Applications</a><span>,&nbsp;</span><span>Volume 6339 of the series&nbsp;</span><a href="http://link.springer.com/bookseries/558">Lecture Notes in Computer Science</a><span>&nbsp;pp 258-261, 2010.</span>
         </li>
         <li>
-          <strong style="font-size: 0.9rem; line-height: 1.6em;">W. Mulder, P.W. Adriaans&nbsp;</strong><span style="font-size: 0.9rem; line-height: 1.6em;">, Using grammar induction to model adaptive behaviour of networks of collaborative agents, ICGI 2010,&nbsp;<a href="http://link.springer.com/book/10.1007/978-3-642-15488-1">Grammatical Inference: Theoretical Results and Applications</a>,&nbsp;Volume 6339 of the series&nbsp;<a href="http://link.springer.com/bookseries/558">Lecture Notes in Computer Science</a>&nbsp;pp 163-177, 2010.</span>
+          <strong>W. Mulder, P.W. Adriaans&nbsp;</strong><span>, Using grammar induction to model adaptive behaviour of networks of collaborative agents, ICGI 2010,&nbsp;<a href="http://link.springer.com/book/10.1007/978-3-642-15488-1">Grammatical Inference: Theoretical Results and Applications</a>,&nbsp;Volume 6339 of the series&nbsp;<a href="http://link.springer.com/bookseries/558">Lecture Notes in Computer Science</a>&nbsp;pp 163-177, 2010.</span>
         </li>
         <li>
-          <strong style="font-size: 0.9rem; line-height: 1.6em;">P.W. Adriaans&nbsp;</strong><span style="font-size: 0.9rem; line-height: 1.6em;">, <a title="A critical analysis of Floridi" href="https://link.springer.com/content/pdf/10.1007%2Fs12130-010-9097-5.pdf">A critical analysis of Floridi's theory of semantic information, In Knowlegde, Technology and Policy</a>, Hilmi Demir ed. : Luciano Floridi's Philosophy of Technology: Critical Reflections, 2010, Volume 23, Issue 1-2, pp. 41-56..</span>
+          <strong>P.W. Adriaans&nbsp;</strong><span>, <a title="A critical analysis of Floridi" href="https://link.springer.com/content/pdf/10.1007%2Fs12130-010-9097-5.pdf">A critical analysis of Floridi's theory of semantic information, In Knowlegde, Technology and Policy</a>, Hilmi Demir ed. : Luciano Floridi's Philosophy of Technology: Critical Reflections, 2010, Volume 23, Issue 1-2, pp. 41-56..</span>
         </li>
       </ul>
       <ul>
-        <li><strong style="font-size: 0.9rem; line-height: 1.6em;"><strong style="font-size: 0.9rem; line-height: 1.6em;"></strong></strong><strong></strong></li>
+        <li><strong><strong></strong></strong><strong></strong></li>
       </ul>
 
 
@@ -127,7 +127,7 @@ include 'functions.php';
       <h3>00's</h3>
       <ul>
         <li>
-          <strong style="font-size: 0.9rem; line-height: 1.6em;">P.W. Adriaans </strong><span style="font-size: 0.9rem; line-height: 1.6em;">, <a title="Between order and Chaos" href="/data/upload/files/documents/special-issuecie2007-20.pdf">Between Order and Chaos: The Quest for Meaningful Information, Theory of Computing Systems,</a> Volume 45 , Issue 4 (July 2009), Special Issue: Computation and Logic in the Real World; Guest Editors: S. Barry Cooper, Elvira Mayordomo and Andrea Sorbi Pages 650-674, 2009</span>
+          <strong>P.W. Adriaans </strong>, <a title="Between order and Chaos" href="/data/upload/files/documents/special-issuecie2007-20.pdf">Between Order and Chaos: The Quest for Meaningful Information, Theory of Computing Systems,</a> Volume 45 , Issue 4 (July 2009), Special Issue: Computation and Logic in the Real World; Guest Editors: S. Barry Cooper, Elvira Mayordomo and Andrea Sorbi Pages 650-674, 2009
         </li>
         <li>
           <strong>Adriaans, P. Vitanyi, P.</strong>, Approximation of the Two-Part MDL Code, Comput. Sci. Dept., Univ. of Amsterdam, Amsterdam; Information Theory, IEEE Transactions on, Volume: 55, Issue: 1, On page(s): 444-457. 2009
@@ -453,7 +453,7 @@ include 'functions.php';
       <p>
         <strong>&nbsp;Some projects</strong>
       </p>
-      <p>
+      <p align="JUSTIFY">
 
         From 1987 till 1992 a team under Adriaans' supervision created OBIS (Opleidingen Beroepen Informatie Systeem) for the SLO (Stichting Leerplan Ontwikkeling) in the Netherlands.&nbsp; This was a database and expert system facilitating the development of vocational training and education profiles.
         <br />
@@ -472,36 +472,31 @@ include 'functions.php';
       </p>
       <p>
 
-        Pivotal is the lemma on information that I wrote for the Stanford Encyclopedia of Philosophy (
-        <a href="http://plato.stanford.edu/entries/information/">http://plato.stanford.edu/entries/information/</a>
-        ). This article, that took me several years of research, gives, for the first time, 1) a comprehensive overview of the development of the notion of information from antiquity to modern times, both from the perspective of history of ideas and the development of the terminology, as well as 2) an extensive analysis of the emergence of the formal notion of information in the 20
-        <sup>th</sup>
-        century in the context of algorithmic complexity theory.
+        Pivotal is the lemma on information that I wrote for the Stanford Encyclopedia of Philosophy<br>
+        <a href="http://plato.stanford.edu/entries/information/">(http://plato.stanford.edu/entries/information/)</a>.<br> This article, that took me several years of research, gives, for the first time,
+      <ol type="1">
+        <li> Acomprehensive overview of the development of the notion of information from antiquity to modern times, both from the perspective of history of ideas and the development of the terminology.</li>
+        <li> An extensive analysis of the emergence of the formal notion of information in the 20<sup>th</sup> century in the context of algorithmic complexity theory.</li>
+      </ol>
       </p>
       <p>
 
-        In the past decade I have been working on several open problems in philosophy of information, specifically the issue of meaningful information, and the issue of the interaction between information and computation. Some preliminary results have been published (
-        <a href="http://www.pieter-adriaans.com/information/bibliography.html">http://www.pieter-adriaans.com/information/bibliography.html</a>
-        ) but the bulk of the work is still under construction (
-        <a href="http://www.pieter-adriaans.com/information/projects/">http://www.pieter-adriaans.com/information/projects/</a>
-        . The research into the definition of meaningful information by means of two-part code optimization (
-        <a href="http://arxiv.org/abs/1203.2245">http://arxiv.org/abs/1203.2245</a>
-        ) was seriously impaired by the growing concern that an a priori separation of a data set in a structural part and an ad hoc part was not mathematically feasible. In 2017 I succeeded in proving this conjecture: using generalizations of the Cantor pairing function any data set can be split into any set of parts at constant cost. The results have been published as as a book chapter:
+        In the past decade I have been working on several open problems in philosophy of information, specifically the issue of meaningful information, and the issue of the interaction between information and computation. Some preliminary results have been published
+        <a href="#biblio" onclick="show('biblio')">(bibliography)</a> but the bulk of the work is still under construction<a href="#projects">(projects)</a>.
+        The research into the definition of meaningful information by means of two-part code optimization<a href="http://arxiv.org/abs/1203.2245">(http://arxiv.org/abs/1203.2245)</a>
+        was seriously impaired by the growing concern that an a priori separation of a data set in a structural part and an ad hoc part was not mathematically feasible. In 2017 I succeeded in proving this conjecture: using generalizations of the Cantor pairing function any data set can be split into any set of parts at constant cost. The results have been published as as a book chapter:
 
 
       <p>
-        <li><em style="font-size: 0.9rem;"><strong>P. W. Adriaans</strong>,&nbsp; A computational theory of meaning</em>
-          <em style="font-size: 0.9rem;">, in</em><em style="font-size: 0.9rem;">&nbsp;&lsquo;Advances in Info-Metrics: Information and Information Processing across Disciplines.&rsquo;&nbsp;</em>
-          <em style="font-size: 0.9rem;">Editors: Min Chen, Michael Dunn, Amos Golan and Aman Ullah, OUP, 2020. &nbsp;</em>
+        <li><em><strong>P. W. Adriaans</strong>,&nbsp; A computational theory of meaning, Advances in Info-Metrics: Information and Information Processing across Disciplines.&rsquo;&nbsp;, Ullah, OUP, 2020. &nbsp;</em>
         </li>
 
       <p>
         An extensive paper on the interaction of information and computation is in proparation. A preliminsary version can be found at:
 
       <p>
-        <li><em style="font-size: 0.9rem;"><strong>P. W. Adriaans</strong>,&nbsp; Differential information theory</em>
-          <em style="font-size: 0.9rem;">, </em><em style="font-size: 0.9rem;">&nbsp;&lsquo;https://arxiv.org/abs/2111.04335.&rsquo;&nbsp;</em>
-          <em style="font-size: 0.9rem;"> ArXiv, 2021. &nbsp;</em>
+        <li><em><strong>P. W. Adriaans</strong>, Differential information theory,<br> <a href="https://arxiv.org/abs/2111.04335">https://arxiv.org/abs/2111.04335</a>.</em>
+          ArXiv, 2021.</em>
         </li>
 
 
@@ -515,13 +510,10 @@ include 'functions.php';
 
           A book &lsquo;Schilderen voor het brein&rsquo; was published in 2013. An English translatation is in preparation. This book generated some publicity which lead to a number of public lectures, and courses on creativity, e.g.:&nbsp;
           <br />
-          Studium Generale Utrecht:&nbsp;
-          <a href="https://www.sg.uu.nl/sprekers/pieter-adriaans">https://www.sg.uu.nl/sprekers/pieter-adriaans</a>
-          ,&nbsp;
-          <a href="http://www.uu.nl/wetfilos/wetfil14/sprekers/index.html">http://www.uu.nl/wetfilos/wetfil14/sprekers/index.html</a>
-          ,&nbsp;
-          <br />
-          Instituut voor beeldtaal,&nbsp;&nbsp;
+          Studium Generale Utrecht: <br><a href="https://www.sg.uu.nl/sprekers/pieter-adriaans">https://www.sg.uu.nl/sprekers/pieter-adriaans</a>
+          , <a href="http://www.uu.nl/wetfilos/wetfil14/sprekers/index.html">http://www.uu.nl/wetfilos/wetfil14/sprekers/index.html</a>, <br>
+
+          Instituut voor beeldtaal,<br>
           <a href="http://www.instituutvoorbeeldtaal.nl/artikelen/prof-pieter-adriaans-zien-we-beeldig-of-zien-we-talig/">http://www.instituutvoorbeeldtaal.nl/artikelen/prof-pieter-adriaans-zien-we-beeldig-of-zien-we-talig/</a>
         </li>
         <li>
@@ -558,22 +550,23 @@ include 'functions.php';
           2019 The<a title="THe business of Nature Forum " href="https://geoversity.org/en/executive-programs/nature-of-business"> Businiess of Nature Forum</a>, Keynote, AI and Learning from nature
         </li>
         <li>
-          2019 January ILLC Course, I<a href="https://msclogic.illc.uva.nl/current-students/courses/projects/project/154/1st-Semester-2018-19-Introduction-to-Philosophy-of-Information-">ntroduction to&nbsp;Philosophyof Information.&nbsp;</a>&nbsp;<a title="SEP Information" href="/data/upload/files/documents/information.pdf">Handout Stanford Encyclopedia</a>
+          2019 January ILLC Course,<a href="https://msclogic.illc.uva.nl/current-students/courses/projects/project/154/1st-Semester-2018-19-Introduction-to-Philosophy-of-Information-">Introduction to Philosophy of Information.&nbsp;</a>
+          <br><a title="SEP Information" href="/data/upload/files/documents/information.pdf">Handout Stanford Encyclopedia</a>
         </li>
         <li>
           2017 January ILLC Course, <a title="measuring Information in Large Data sets" href="/science/talks-keynotes-workshops-lectures/measuring-information-in-very-large-data-sets.html">Measuring information in large data sets</a>.&nbsp;
         </li>
         <li>
-          2014 December 13,&nbsp;<a title="Facticity and Big Data" href="/data/upload/files/facticity-and-big-data.pptx">Facticity and Meaningful information</a>,&nbsp;<a title="Keynote Jurix " href="http://conference.jurix.nl/2014/?p=72">Keynote</a>, Jurix conference Krakow
+          2014 December 13, <a title="Facticity and Big Data" href="/data/upload/files/facticity-and-big-data.pptx">Facticity and Meaningful information</a>,&nbsp;<a title="Keynote Jurix " href="http://conference.jurix.nl/2014/?p=72">Keynote</a>, Jurix conference Krakow
         </li>
         <li>
-          2014 november 26,&nbsp;Zien we beeldig of zien we talig?&nbsp;<a title="Lezing Instituut voor Beeldtaal" href="http://www.instituutvoorbeeldtaal.nl/evenement/zien-we-beeldig-of-zien-we-talig/">Instituut voor beeldtaal</a>
+          2014 November 26, Zien we beeldig of zien we talig?<br><a title="Lezing Instituut voor Beeldtaal" href="http://www.instituutvoorbeeldtaal.nl/evenement/zien-we-beeldig-of-zien-we-talig/">Instituut voor beeldtaal</a>
         </li>
         <li>
           2014 November 17-21&nbsp;<a title="Atlas of Complexity" href="http://www.lorentzcenter.nl/lc/web/2014/662/description.php3?wsid=662&amp;venue=Snellius">What is complexity and how do you measure it</a>. Workshop Lorentz Centre Leiden
         </li>
         <li>
-          2014,May 20 ASML Eindhoven, Public lecture: Computers and Creativity.
+          2014, May 20 ASML Eindhoven, Public lecture: Computers and Creativity.
         </li>
         <li>
           2014 March 23-24, Art, Information and Meaning, McLuhan Invited Lecture and seminar, University of Toronto
@@ -585,32 +578,43 @@ include 'functions.php';
           2013 Keynote, September 21, De estetica van Johan Andreas D&egrave;r Mouw&nbsp; in modern perpectief (werktitel), D&egrave;r Mouw Symposium Doetinchem
         </li>
         <li>
-          2013 Workshop, April 26,&nbsp;&nbsp;<a href="http://www.american.edu/cas/economics/info-metrics/workshop/workshop-2013-spring.cfm">Philosophy of Information Info-Metrics Institute</a>&nbsp;American University Washington
+          2013 Workshop, April 26, <a href="http://www.american.edu/cas/economics/info-metrics/workshop/workshop-2013-spring.cfm">Philosophy of Information Info-Metrics Institute</a>,
+          <br>American University Washington
         </li>
         <li>
           2012 Keynote, December 10,<a id="sites-chrome-userheader-title" dir="ltr" href="https://sites.google.com/site/ptdm2012/">Practical Theories for Exploratory Data Mining (PTDM 2012)</a>
         </li>
         <li>
-          2012 Keynote, November 1,&nbsp;&nbsp;<a href="http://www.atiaconference.nl/">ATIA Conference</a>, Almere,&nbsp;<a href="http://www.atiaconference.nl/sites/atiaconference.nl/files/121108%20%20Adriaans%20Medical%20Inompletness%20theories-final%20PDF.pdf">Medical incompleteness theories.&nbsp;</a>
+          2012 Keynote, November 1, <a href="http://www.atiaconference.nl/">ATIA Conference</a>, Almere,
+          <br><a href="http://www.atiaconference.nl/sites/atiaconference.nl/files/121108%20%20Adriaans%20Medical%20Inompletness%20theories-final%20PDF.pdf">Medical incompleteness theories.&nbsp;</a>
         </li>
         <li>
-          2012 Workshop&nbsp;<a href="http://www.mathcomp.leeds.ac.uk/turing2012/WScie12/give-page.php?8">Open Problems in the Philosophy of Information</a>&nbsp;Camdridge Turing Centennial Conference.
+          2012 Workshop <a href="http://www.mathcomp.leeds.ac.uk/turing2012/WScie12/give-page.php?8">Open Problems in the Philosophy of Information</a>
+          <br>Camdridge Turing Centennial Conference.
         </li>
         <li>
-          2011 Workshop&nbsp;<a href="http://www.american.edu/cas/economics/info-metrics/workshop/workshop-2011-fall.cfm">Philosophy of Information Info-Metrics Institute</a>&nbsp;American University Washington
+          2011 Workshop, <a href="http://www.american.edu/cas/economics/info-metrics/workshop/workshop-2011-fall.cfm">Philosophy of Information Info-Metrics Institute</a>
+          <br>American University Washington
         </li>
         <li>
-          2011&nbsp;<a title="Door schilderijen heen kijken " href="http://www.uitzendinggemist.net/aflevering/73227/Labyrint.html">Door schilderijen heen kijken</a>, VPRO Television, Labyrint, Interview,&nbsp;<a title="Experiment Labyrint" href="http://www.npo.nl/labyrint-site-interview-pieter-adriaans-experiment/19-09-2011/WO_VPRO_035721">Experiment</a>.&nbsp;<a href="http://www.uitzendinggemist.net/aflevering/73227/Labyrint.html">Pieter Adriaans on information and painting</a>,&nbsp;<a href="http://www.uitzendinggemist.net/aflevering/73227/Labyrint.html">Labyrint(VPRO 14 september 2011, in Dutch)</a>
+          2011 <a title="Door schilderijen heen kijken " href="http://www.uitzendinggemist.net/aflevering/73227/Labyrint.html">Door schilderijen heen kijken</a>, VPRO Television, Labyrint, Interview,&nbsp;<a title="Experiment Labyrint" href="http://www.npo.nl/labyrint-site-interview-pieter-adriaans-experiment/19-09-2011/WO_VPRO_035721">Experiment</a>.&nbsp;<a href="http://www.uitzendinggemist.net/aflevering/73227/Labyrint.html">Pieter Adriaans on information and painting</a>,&nbsp;<a href="http://www.uitzendinggemist.net/aflevering/73227/Labyrint.html">Labyrint(VPRO 14 september 2011, in Dutch)</a>
         </li>
         <li>
-          2007,&nbsp;<a href="https://youtu.be/HxLkMhSFxmU">Paradiso Lecture 2007 (In Dutch):&nbsp;The work of art as a number</a>
+          2007, <a href="https://youtu.be/HxLkMhSFxmU">Paradiso Lecture 2007 (In Dutch):&nbsp;The work of art as a number</a>
         </li>
         <li>
-          2005,&nbsp;The first workshop on philosophy of information (2005)<br /><a title="The world as a computer by Pieter Adriaans " href="http://www.youtube.com/watch?v=3MkAtoGADB4">Opening by Jaap van Den Herik<br /></a><a title="The world as a computer by Pieter Adriaans " href="http://www.youtube.com/watch?v=YqfoP7q-tuw">The world as a computer by Pieter Adriaans<br /></a><a title="Remodeling Reality by Tine Wilde" href="http://www.youtube.com/watch?v=w1zWwf0RObs">Does information really exist by Keith Devlin<br /></a><a title="Remodeling Reality by Tine Wilde" href="http://www.youtube.com/watch?v=FwGTF8KtrVg">Remodeling reality by Tine Wilde<br /></a><a title="The past and the present of Internet by John McCarthy" href="http://www.youtube.com/watch?v=K13_sWm_gZw">The past and the present of Internet by John McCarthy</a>
+          2005, The first workshop on philosophy of information
+          <ul>
+            <li><a title="The world as a computer by Pieter Adriaans " href="http://www.youtube.com/watch?v=3MkAtoGADB4">Opening by Jaap van Den Herik<br /></a></li>
+            <li><a title="The world as a computer by Pieter Adriaans " href="http://www.youtube.com/watch?v=YqfoP7q-tuw">The world as a computer by Pieter Adriaans<br /></a></li>
+            <li><a title="Remodeling Reality by Tine Wilde" href="http://www.youtube.com/watch?v=w1zWwf0RObs">Does information really exist by Keith Devlin<br /></a></li>
+            <li><a title="Remodeling Reality by Tine Wilde" href="http://www.youtube.com/watch?v=FwGTF8KtrVg">Remodeling reality by Tine Wilde<br /></a></li>
+            <li><a title="The past and the present of Internet by John McCarthy" href="http://www.youtube.com/watch?v=K13_sWm_gZw">The past and the present of Internet by John McCarthy</a></li>
         </li>
-        <li>
-          <span>2002&nbsp;</span><a title="From Knowledge-based Systems to Skill-based Systems: Sailing as a Machine Learning Challenge" href="http://videolectures.net/ecml03_adriaans_fkbs/">From Knowledge-based Systems to Skill-based Systems: Sailing as a Machine Learning Challenge&nbsp;(Dubrovnik 2002)</a>
-        </li>
+      </ul>
+      <li>
+        <span>2002, </span><a title="From Knowledge-based Systems to Skill-based Systems: Sailing as a Machine Learning Challenge" href="http://videolectures.net/ecml03_adriaans_fkbs/">From Knowledge-based Systems to Skill-based Systems: Sailing as a Machine Learning Challenge&nbsp;(Dubrovnik 2002)</a>
+      </li>
       </ul>
 
     </article>
@@ -628,9 +632,11 @@ include 'functions.php';
         Some results:
         <ul>
           <li>
-            <p>It offers unifying perspective on information theory developing the subject as a purely mathematical theory (so no narratives about systems of messages or strings of symbols etc.). &nbsp;<br /><span>- It offers a detailed analysis of the &lsquo;flow of information&rsquo; through computational operations: starting with primitive recursion, via elementary arithmetic to polynomial functions and Diophantine equations. So via the MRDP-theorem it is really a general theory about information and computation.
+            It offers unifying perspective on information theory developing the subject as a purely mathematical theory (so no narratives about systems of messages or strings of symbols etc.). &nbsp
           </li>
-          </p>
+          <li>
+          It offers a detailed analysis of the &lsquo;flow of information&rsquo; through computational operations: starting with primitive recursion, via elementary arithmetic to polynomial functions and Diophantine equations. So via the MRDP-theorem it is really a general theory about information and computation.
+          </li>
 
           <p>
             The theory leads to many new insights and has interesting applications.</p>
@@ -689,13 +695,13 @@ include 'functions.php';
 
         </ul>
 
-        <h3><span style="font-size: 1.9em;">Current Collaborative Projects</span></h3>
+        <h4>Current Collaborative Projects</span></h4>
 
         <p>
           <a title="Amsterdam Data Science" href="http://amsterdamdatascience.nl">AAA Data Science,</a>&nbsp; Using information theory and complex network theory to understand the structure of very large knowledge graphs, with Frank van Harmelen.&nbsp;
         </p>
 
-        <h3>Recent Collaborative Projects</h3>
+        <h4>Recent Collaborative Projects</h4>
 
         <ul>
 

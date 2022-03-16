@@ -103,6 +103,11 @@ a:hover {
   color:  rgb(222, 222, 211);
 }
 
+article p,
+article li {
+text-align: justify;
+}
+
 .rj-flex {
   display: flex;
   align-items: center;
