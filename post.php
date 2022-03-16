@@ -102,7 +102,7 @@ if (isset($_GET['p_id'])) {
         <article class="rj-blog-card">
 
           <header class="rj-post-comment-header">
-            <h2>No comments , yet!</h2>
+            <h3>No comments , yet!</h3>
           </header>
 
         </article>

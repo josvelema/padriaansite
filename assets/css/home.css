@@ -149,6 +149,8 @@ ul {
     width: 20em;
     height: auto;
     object-fit: contain;
+    box-shadow: 2px 3px 6px -1px rgb(22 44 66 / 80%);
+    border: 1px solid rgb(22 44 66 / 66%);
 }
 
 .rj-flex-container {
@@ -205,8 +207,9 @@ ul {
     width: 200px;
     height: auto;
     margin: 0.75em;
-    border-radius: 4px;
-    box-shadow: 1px 1px 5px -1px #0003;
+    border-radius: 2px;
+    box-shadow: 2px 3px 6px -1px rgb(22 44 66 / 80%);
+    border: 1px solid rgb(22 44 66 / 66%);
 }
 .rj-about-p-img p a {
     text-decoration-style: dotted;
