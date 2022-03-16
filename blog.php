@@ -15,6 +15,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 ?>
 <?= template_header('Gallery') ?>
+<link rel="stylesheet" href="assets/css/blog.css">
 <?= template_nav() ?>
 
 
