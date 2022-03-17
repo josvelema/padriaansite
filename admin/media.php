@@ -9,6 +9,8 @@ ini_set('upload_max_filesize', '0');
 $media = [
     'title' => '',
     'description' => '',
+    'year' => 0,
+    'fnr' => 0,
     'filepath' => '',
     'uploaded_date' => date('Y-m-d\TH:i:s'),
     'type' => '',
@@ -161,10 +163,10 @@ if (isset($_GET['id'])) {
         <input id="uploaded_date" type="datetime-local" name="uploaded_date" value="<?= date('Y-m-d\TH:i:s', strtotime($media['uploaded_date'])) ?>" required>
 
         <label for="year">Year of production</label>
-        <input id="year" type="number" name="year" value="2022" min=1900 max=2058 required>
+        <input id="year" type="number" name="year" value="<?= $media['year'] ?>" min=1900 max=2058>
 
         <label for="fnr">Follow-up number (if none default is 0)</label>
-        <input id="fnr" type="number" name="fnr" value="0" min=0 max=99 required>
+        <input id="fnr" type="number" name="fnr" value="<?= $media['fnr'] ?>" min=0 max=99>
 
 
         <label for="type">Type</label>

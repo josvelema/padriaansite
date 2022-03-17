@@ -348,7 +348,7 @@ include 'functions.php';
         Cais das Manadas
         <br />
         9800-036 Manadas
-        <br />git 
+        <br />
         S&atilde;o Jorge
         <br />
         Azores, Portugal

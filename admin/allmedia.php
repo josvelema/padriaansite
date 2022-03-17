@@ -117,7 +117,7 @@ if (isset($_POST['viewCat'])) {
                             <td class="responsive-hidden"><?= $m['type'] ?></td>
                             <td><?= $m['approved'] ? 'Yes' : 'No' ?></td>
                             <td class="responsive-hidden"><?= date('F j, Y H:ia', strtotime($m['uploaded_date'])) ?></td>
-                            <td>
+                            <td class="rj-action-td">
                                 <a href="media.php?id=<?= $m['id'] ?>" class="rj-action-edit">Edit</a>
                                 <a href="#" class="rj-action-del" onclick="deleteMediaModal(<?= $m['id'] ?>)">Delete</a>
                                 <?php if (!$m['approved']) : ?>
