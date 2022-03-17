@@ -106,13 +106,13 @@ if (isset($_POST['update_post'])) {
         </label>
     </div>
     <p>
-    <a href="../post.php?p_id=' . $post_id . '">View Post on site</a>
+    <a href="../post.php?p_id=' . $post_id . '" class="rj-modal-btn">View Post on site</a>
     </p>
     <p>
-    <a href="posts.php">Go back to all posts table</a>
+    <a href="posts.php" class="rj-modal-btn">Go back to all posts table</a>
     </p>
     <p>
-    <a href="#" onclick="closeModal()">Close and stay on this page</a>
+    <a href="#" onclick="closeModal()" class="rj-modal-btn">Close and stay on this page</a>
     </p>
 </div>
   

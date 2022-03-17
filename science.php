@@ -97,7 +97,7 @@ include 'functions.php';
           <strong>P.W. Adriaans, </strong><a title="www.schilderenvoorhetbrein.nl/" href="http://www.schilderenvoorhetbrein.nl/">Schilderen voor het Brein</a><span>, Uiteverij Mooi Media, 2013.&nbsp;</span>
         </li>
         <li>
-          <strong>P.W.Adriaans</strong><span>, </span><a title="Pleidooi voor het trage kijken" href="/data/upload/files/documents/fd20131123.pdf">Pleidooi voor het trage kijken</a><span>, FrieschDagblad, 23 november, 2013.&nbsp;</span>
+          <strong>P.W.Adriaans</strong><span>, </span><a title="Pleidooi voor het trage kijken" href="assets/pdfdoc/documents/fd20131123.pdf">Pleidooi voor het trage kijken</a><span>, FrieschDagblad, 23 november, 2013.&nbsp;</span>
         </li>
         <li>
           <strong>P.W. Adriaans,</strong><span>&nbsp;"</span><a href="https://plato.stanford.edu/entries/information/">Information</a><span>",&nbsp;</span><em>The Stanford Encyclopedia of Philosophy</em><span>&nbsp;(Winter 2012 Edition), Edward N. Zalta&nbsp;(ed.),</span><span>&nbsp;2016.&nbsp;</span>
@@ -106,7 +106,7 @@ include 'functions.php';
           <strong>P.W. Adriaans,&nbsp;</strong><span>Facticity as the amount of self-descriptive information in a data set</span><strong>,&nbsp;<a href="http://arxiv.org/abs/1203.2245">arXiv:1203.2245</a>&nbsp;[cs.IT],</strong><span>&nbsp;2012.</span>
         </li>
         <li>
-          <strong>P.W. Adriaans, P.E. Van Emde Boas</strong><span>, Information, <a href="/data/upload/files/metacompuatation.pdf">Computation and the Arrow of time</a>, in COMPUTABILITY IN CONTEXT, Computation and Logic in the Real World, edited by S. Barry Cooper (University of Leeds, UK) &amp; Andrea Sorbi (Universita degli Studi di Siena, Italy), 2011.</span>
+          <strong>P.W. Adriaans, P.E. Van Emde Boas</strong><span>, Information, <a href="assets/pdfdoc/metacompuatation.pdf">Computation and the Arrow of time</a>, in COMPUTABILITY IN CONTEXT, Computation and Logic in the Real World, edited by S. Barry Cooper (University of Leeds, UK) &amp; Andrea Sorbi (Universita degli Studi di Siena, Italy), 2011.</span>
         </li>
         <li>
           <strong>P.W. Adriaans, Wico Mulder</strong><span>, MDL in the limit, in ICGI 2010,&nbsp;</span><a href="http://link.springer.com/book/10.1007/978-3-642-15488-1">Grammatical Inference: Theoretical Results and Applications</a><span>,&nbsp;</span><span>Volume 6339 of the series&nbsp;</span><a href="http://link.springer.com/bookseries/558">Lecture Notes in Computer Science</a><span>&nbsp;pp 258-261, 2010.</span>
@@ -127,7 +127,7 @@ include 'functions.php';
       <h3>00's</h3>
       <ul>
         <li>
-          <strong>P.W. Adriaans </strong>, <a title="Between order and Chaos" href="/data/upload/files/documents/special-issuecie2007-20.pdf">Between Order and Chaos: The Quest for Meaningful Information, Theory of Computing Systems,</a> Volume 45 , Issue 4 (July 2009), Special Issue: Computation and Logic in the Real World; Guest Editors: S. Barry Cooper, Elvira Mayordomo and Andrea Sorbi Pages 650-674, 2009
+          <strong>P.W. Adriaans </strong>, <a title="Between order and Chaos" href="assets/pdfdoc/documents/special-issuecie2007-20.pdf">Between Order and Chaos: The Quest for Meaningful Information, Theory of Computing Systems,</a> Volume 45 , Issue 4 (July 2009), Special Issue: Computation and Logic in the Real World; Guest Editors: S. Barry Cooper, Elvira Mayordomo and Andrea Sorbi Pages 650-674, 2009
         </li>
         <li>
           <strong>Adriaans, P. Vitanyi, P.</strong>, Approximation of the Two-Part MDL Code, Comput. Sci. Dept., Univ. of Amsterdam, Amsterdam; Information Theory, IEEE Transactions on, Volume: 55, Issue: 1, On page(s): 444-457. 2009
@@ -343,12 +343,12 @@ include 'functions.php';
       <p>
 
         Pieter Willem Adriaans
-        <br />Professore emeritus University of Amsterdam
+        <br />Professor emeritus University of Amsterdam
         <br />
         Cais das Manadas
         <br />
         9800-036 Manadas
-        <br />
+        <br />git 
         S&atilde;o Jorge
         <br />
         Azores, Portugal
@@ -519,7 +519,7 @@ include 'functions.php';
         <li>
 
           A philosophical interpretation of the poetry of J.A. D&egrave;r Mouw (
-          <a href="http://www.pieter-adriaans.com/data/upload/files/papers-under-construction-/der-mouw-final.pdf">http://www.pieter-adriaans.com/data/upload/files/papers-under-construction-/der-mouw-final.pdf</a>
+          <a href="assets/pdfdoc/papers-under-construction-/der-mouw-final.pdf">der-mouw-final.pdf</a>
           ) written for the 2014 D&egrave;r Mouw symposium. As an assistant in Leiden I have made an extensive analysis of the unpublished philosophical manuscripts of D&egrave;r Mouw and at this moment I seem to be one of the few persons alive with some deeper understanding of the philosophical background of this oeuvre. To be published.&nbsp;
 
         </li>
@@ -551,13 +551,13 @@ include 'functions.php';
         </li>
         <li>
           2019 January ILLC Course,<a href="https://msclogic.illc.uva.nl/current-students/courses/projects/project/154/1st-Semester-2018-19-Introduction-to-Philosophy-of-Information-">Introduction to Philosophy of Information.&nbsp;</a>
-          <br><a title="SEP Information" href="/data/upload/files/documents/information.pdf">Handout Stanford Encyclopedia</a>
+          <br><a title="SEP Information" href="assets/pdfdoc/documents/information.pdf">Handout Stanford Encyclopedia</a>
         </li>
         <li>
           2017 January ILLC Course, <a title="measuring Information in Large Data sets" href="/science/talks-keynotes-workshops-lectures/measuring-information-in-very-large-data-sets.html">Measuring information in large data sets</a>.&nbsp;
         </li>
         <li>
-          2014 December 13, <a title="Facticity and Big Data" href="/data/upload/files/facticity-and-big-data.pptx">Facticity and Meaningful information</a>,&nbsp;<a title="Keynote Jurix " href="http://conference.jurix.nl/2014/?p=72">Keynote</a>, Jurix conference Krakow
+          2014 December 13, <a title="Facticity and Big Data" href="assets/pdfdoc/facticity-and-big-data.pptx">Facticity and Meaningful information</a>,&nbsp;<a title="Keynote Jurix " href="http://conference.jurix.nl/2014/?p=72">Keynote</a>, Jurix conference Krakow
         </li>
         <li>
           2014 November 26, Zien we beeldig of zien we talig?<br><a title="Lezing Instituut voor Beeldtaal" href="http://www.instituutvoorbeeldtaal.nl/evenement/zien-we-beeldig-of-zien-we-talig/">Instituut voor beeldtaal</a>
@@ -670,19 +670,19 @@ include 'functions.php';
           </li>
 
           <li>
-            <span><strong>Time Symmetry in Turing Machines. </strong>Just like in physics in Information theory it makes sense to study systems that live in negative time. I wrote a nice paper about this with Peter van Emde Boas. The work needs to be extended to a full overview of determnistic and non-deterministic computational architectures in positive and negative time. There appears to bee a whole <a href="/data/upload/files/papers-under-construction-/kolmogorovs-automata-english.docx">Zoo of systems with different time symmetries</a>. Here is a <a href="/data/upload/files/papers-under-construction-/taxonomy-of-turing-machines.pptx">sketch of a taxonomy</a>.&nbsp;</span>
+            <span><strong>Time Symmetry in Turing Machines. </strong>Just like in physics in Information theory it makes sense to study systems that live in negative time. I wrote a nice paper about this with Peter van Emde Boas. The work needs to be extended to a full overview of determnistic and non-deterministic computational architectures in positive and negative time. There appears to bee a whole <a href="assets/pdfdoc/papers-under-construction-/kolmogorovs-automata-english.docx">Zoo of systems with different time symmetries</a>. Here is a <a href="assets/pdfdoc/papers-under-construction-/taxonomy-of-turing-machines.pptx">sketch of a taxonomy</a>.&nbsp;</span>
           </li>
           <li>
-            <span><strong>Meaningful Information and Creative Systems</strong>. I'm currently working on a&nbsp;</span><a title="Useful information " href="http://plato.stanford.edu/entries/information/supplement.html">computational theory of meaning</a><span>. I discovered that two-part code optimization is not a good technique for separating data in systems that contain elementary arithmatical functions (See the paper on Informartion and Computation:&nbsp;<a title="A General Theory of Information and Computation" href="https://arxiv.org/abs/1611.07829">arXiv</a>). So that part of the paper has to be rewritten. The idea is to develop a formal theory of creativity on the basis of this work and apply this to human cognition. See also my work on&nbsp;</span><a title="Schilderen voor het brein" href="http://www.schilderenvoorhetbrein.nl">painting</a><span>&nbsp;and visual information. Here is the <a href="/data/upload/files/papers-under-construction-/a-computational-theory-of-meaning.pdf">Draft paper.&nbsp;</a></span>
+            <span><strong>Meaningful Information and Creative Systems</strong>. I'm currently working on a&nbsp;</span><a title="Useful information " href="http://plato.stanford.edu/entries/information/supplement.html">computational theory of meaning</a><span>. I discovered that two-part code optimization is not a good technique for separating data in systems that contain elementary arithmatical functions (See the paper on Informartion and Computation:&nbsp;<a title="A General Theory of Information and Computation" href="https://arxiv.org/abs/1611.07829">arXiv</a>). So that part of the paper has to be rewritten. The idea is to develop a formal theory of creativity on the basis of this work and apply this to human cognition. See also my work on&nbsp;</span><a title="Schilderen voor het brein" href="http://www.schilderenvoorhetbrein.nl">painting</a><span>&nbsp;and visual information. Here is the <a href="assets/pdfdoc/papers-under-construction-/a-computational-theory-of-meaning.pdf">Draft paper.&nbsp;</a></span>
           </li>
           <li>
-            <span><strong>Information Conservation Principle.&nbsp;</strong>Together with Amos Golan I investigated standard prefix-free Kolmogorov complexity in the context of Zellner&rsquo;s information conservation principle (ICP). We showed that prefix-free Kolmogorov complexity K is not efficient in this sense and proposed a generalized version of Kolmogorov complexity. The paper was accepted at Cie 2014 but I'm not completely happy with the result so I decided to retract it. </span><a href="/data/upload/files/papers-under-construction-/generalized-kolmogorov-complexity.pdf">Here is the draft.</a>&nbsp;In the mean time I have discovered the General Law of Conservation of Information (See the paper on Information and Computation&nbsp;<a title="A General Theory of Information and Computation" href="https://arxiv.org/abs/1611.07829">arXiv</a>). So the paper has to be rewritten.&nbsp;
+            <span><strong>Information Conservation Principle.&nbsp;</strong>Together with Amos Golan I investigated standard prefix-free Kolmogorov complexity in the context of Zellner&rsquo;s information conservation principle (ICP). We showed that prefix-free Kolmogorov complexity K is not efficient in this sense and proposed a generalized version of Kolmogorov complexity. The paper was accepted at Cie 2014 but I'm not completely happy with the result so I decided to retract it. </span><a href="assets/pdfdoc/papers-under-construction-/generalized-kolmogorov-complexity.pdf">Here is the draft.</a>&nbsp;In the mean time I have discovered the General Law of Conservation of Information (See the paper on Information and Computation&nbsp;<a title="A General Theory of Information and Computation" href="https://arxiv.org/abs/1611.07829">arXiv</a>). So the paper has to be rewritten.&nbsp;
           </li>
           <li>
-            <span><strong>Learning by Eaxample.&nbsp;</strong>In order to solve the problems with the previous paper I developed a theory about learning by example: the meaning of an object is the complexity of the simplest &nbsp;example that identifies the object in a certain context. I was able to prove that this theory satisfies Zellners criterion under some strong conditions. I'll probably merge the two papers at some point in time. </span><a href="/data/upload/files/papers-under-construction-/informing-by-example.pdf">Here is the draft. &nbsp;</a>
+            <span><strong>Learning by Eaxample.&nbsp;</strong>In order to solve the problems with the previous paper I developed a theory about learning by example: the meaning of an object is the complexity of the simplest &nbsp;example that identifies the object in a certain context. I was able to prove that this theory satisfies Zellners criterion under some strong conditions. I'll probably merge the two papers at some point in time. </span><a href="assets/pdfdoc/papers-under-construction-/informing-by-example.pdf">Here is the draft. &nbsp;</a>
           </li>
           <li>
-            <strong>Storing information in a Computational Mechanism. &nbsp;</strong>An investigation into the cost of storing data in a one tape Turing machine. It turns out to be superlinear under mild assumptions. The paper was accepted at Cie 2015 but I'm still not happy with it so I decided to retract it. <a href="/data/upload/files/papers-under-construction-/chasm.pdf">Here is the paper.</a>&nbsp;It does allow me to estimate the computing power of various computational models, so in that respect it will be a building block of the theory of meaning project described above.&nbsp;
+            <strong>Storing information in a Computational Mechanism. &nbsp;</strong>An investigation into the cost of storing data in a one tape Turing machine. It turns out to be superlinear under mild assumptions. The paper was accepted at Cie 2015 but I'm still not happy with it so I decided to retract it. <a href="assets/pdfdoc/papers-under-construction-/chasm.pdf">Here is the paper.</a>&nbsp;It does allow me to estimate the computing power of various computational models, so in that respect it will be a building block of the theory of meaning project described above.&nbsp;
           </li>
         </ul>
 
@@ -690,7 +690,8 @@ include 'functions.php';
         <ul>
 
           <li>
-            <span><strong>Johan Andreas dėr Mouw.</strong>&nbsp;The Dutch Poet\Philosopher Johan Andreas dėr Mouw (1863-1919) has been a life long inspiration for me. For the 2014 dėr Mouw symposium I wrote a philosphical analysis of his esthetics.&nbsp;</span><a href="/data/upload/files/papers-under-construction-/der-mouw-final.pdf">Here is the paper</a><span>(in Dutch). Inspired by dėr Mouws notion of absolute idealism I have had plans to write a monographs on the history of Solipisism for years. <a href="/data/upload/files/papers-under-construction-/notes-on-solipsis-english.pdf">Here are some notes.&nbsp;</a></span>
+            <span><strong>Johan Andreas dėr Mouw.</strong>&nbsp;The Dutch Poet\Philosopher Johan Andreas dėr Mouw (1863-1919) has been a life long inspiration for me. For the 2014 dėr Mouw symposium I wrote a philosphical analysis of his esthetics.&nbsp;</span><a href="assets/pdfdoc/papers-under-construction-/der-mouw-final.pdf">Here is the paper</a><span>(in Dutch). Inspired by dėr Mouws notion of absolute idealism I have had plans to write a monographs on the history of Solipisism for years. 
+            <a href="assets/pdfdoc/papers-under-construction-/notes-on-solipsis-english.pdf">Here are some notes.&nbsp;</a></span>
           </li>
 
         </ul>

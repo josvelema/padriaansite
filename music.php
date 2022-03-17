@@ -165,17 +165,17 @@ include 'functions.php';
         </iframe>&nbsp;&nbsp;&nbsp; <iframe src="https://www.youtube.com/embed/6qIoPXxNB1s" frameborder="0" width="250" height="206"></iframe>
       </p>
       <p>
-        <a href="silly-song.mp3">Silly song</a><br />
-        <a href="sad-johanna.mp3">Sad Johanna</a><br />
-        <a href="land-of-milk-and-honey.mp3">Land of Milk and Honey</a><br />
-        <a href="lady-of-the-moring.mp3">Lady of the Morning</a><br />
-        <a href="soldier-of-the-next-milennium.mp3">Soldier of the next Millennium</a><br />
-        <a href="le-ephebe.mp3">L'ephebe</a><br /> <a href="/pacer/pacer.mp3">Pacer</a><br />
-        <a href="dockyards-of-amsterdam-port.mp3">Dockyards of Amsterdam port</a><br />
-        <a href="im-your-programmer.mp3">I'm your programmer</a><br />
-        <a href="wandering-man.mp3">Wandering man</a><br />
-        <a href="friday-night.mp3">Friday night</a><br />
-        <a href="lets-dress-up-as-business-men.mp3">Let's dress up as business men</a>
+        <a href="media/audios/pacer/silly-song.mp3">Silly song</a><br />
+        <a href="media/audios/pacer/sad-johanna.mp3">Sad Johanna</a><br />
+        <a href="media/audios/pacer/land-of-milk-and-honey.mp3">Land of Milk and Honey</a><br />
+        <a href="media/audios/pacer/lady-of-the-moring.mp3">Lady of the Morning</a><br />
+        <a href="media/audios/pacer/soldier-of-the-next-milennium.mp3">Soldier of the next Millennium</a><br />
+        <a href="media/audios/pacer/le-ephebe.mp3">L'ephebe</a><br /> <a href="/pacer/pacer.mp3">Pacer</a><br />
+        <a href="media/audios/pacer/dockyards-of-amsterdam-port.mp3">Dockyards of Amsterdam port</a><br />
+        <a href="media/audios/pacer/im-your-programmer.mp3">I'm your programmer</a><br />
+        <a href="media/audios/pacer/wandering-man.mp3">Wandering man</a><br />
+        <a href="media/audios/pacer/friday-night.mp3">Friday night</a><br />
+        <a href="media/audios/pacer/lets-dress-up-as-business-men.mp3">Let's dress up as business men</a>
 
       </p>
 
@@ -187,7 +187,7 @@ include 'functions.php';
       <h1>Rare songs</h1>
       <p>Some songs that were never properly released and some rare recordings
       </p>
-      <p><a href="life-is-a-bitch.mp3_">Life is bitch</a>
+      <p><a href="media/audios/rare-songs/life-is-a-bitch.mp3">Life is bitch</a>
       </p>
       <p>For a long time a had a blues band with my brother Ewout. It was called Bottle Steel $ Company.
         I was Bottle, he was Steel, or the other way around. I don't remember. Anyway, this is one of the few surviving recordings and it makes clear why it was such a great pleasure to play in this band.&nbsp;
@@ -198,13 +198,13 @@ include 'functions.php';
         <iframe src="https://www.youtube.com/embed/fBcTDFXj3jo" frameborder="0" width="250" height="206"></iframe>
       </p>
       <p>
-        <a href="nothing-to-loose.mp3_">Nothing to loose</a>
+        <a href="media/audios/rare-songs/nothing-to-loose.mp3">Nothing to loose</a>
       </p>
       <p>
         This songs deals with my fascination for the sea. It was part of a larger project called Power Rag. Frans and I wanted to revive an electric version of the old ragtime guitar style of Reverend Gary Davis and his peers. We recorded master tapes, but then the studio went bankrupt and the tapes were lost. Some songs we still have in a premix. (The song has been re-recorded for our new&nbsp; BasAlt project: Songs From An Island).
       </p>
       <p>
-        <a href="rhythm-is-poison.mp3.filepart">Rhythm is a poison</a>
+        <a href="media/audios/rare-songs/rhythm-is-poison.mp3">Rhythm is a poison</a>
         <br />This is one of the most curious songs I ever recorded. I had written a song that was basically only a two-chord riff. I did not know what to do with it. We recorded a base track, but we thought we would never use it. Then we had some extra studio time and my brother Ewout proposed to make the song in to story of two sailors that visit a night club. Listen to our unbridled imagiation, complete with Wendy Double D, a drum solo that goes nowhere, ditto guitar solo and a grande finale.
 
       </p>
@@ -217,7 +217,7 @@ include 'functions.php';
       <h1>Computer music</h1>
       <p>7 Algorithmic improvisations for guitar and/or computer
       </p>
-      <p><a href="/computer-music/ict-improvisation1.mp3">ICT Improvisation 1 (6 min. 51. Sec.)</a>
+      <p><a href="media/audios/computer-music/ict-improvisation1.mp3">ICT Improvisation 1 (6 min. 51. Sec.)</a>
         <br /> The computer starts with an empty memory. As the guitar plays several successive rule bases of the computer are filled with rules derived from the guitar improvisation. In the first part of the piece a flute, an Aah-voice and a xylophone melody develop randomly. In the second half the xylophone has to follow the guitar. Later the restrictions for the xylophone are relieved and the piece develops in to a rich sound-world of random interactions between the instruments.
       </p>
       <p>
@@ -226,28 +226,28 @@ include 'functions.php';
 
       </p>
       <p>
-        <a href="/computer-music/ict-improvisation2.mp3">ICT Improvisation 2 (2 min. 22 sec.)</a>
+        <a href="media/audios/computer-music/ict-improvisation2.mp3">ICT Improvisation 2 (2 min. 22 sec.)</a>
         <br /> The piece starts with a background of melodic material learned from improvisations on the theme of a sailor's dance. Against this background the guitar programs a rule base for a slow synthesizer melody.
 
       </p>
       <p>
-        <a href="/computer-music/ict-improvisation3.mp3">ICT Improvisation 3 (3 min . 12 sec.)</a>
+        <a href="media/audios/computer-music/ict-improvisation3.mp3">ICT Improvisation 3 (3 min . 12 sec.)</a>
         <br /> The working title of piece could be 'Teasing the violin'. A violin is allowed to improvise freely on a Bach grammar, but only as long as the guitar does not play. As soon as the guitar sounds the violin has to conform to the melodic material of the guitar. The result is quite funny. This is an interesting form of algorithmic anti-improvisation made possible by grammar induction techniques.
       </p>
       <p>
-        <a href="/computer-music/ict-improvisation4.mp3">ICT Improvisation 4 (2 min. 34 sec.)</a>
+        <a href="media/audios/computer-music/-music/ict-improvisation4.mp3">ICT Improvisation 4 (2 min. 34 sec.)</a>
         <br /> Rule bases for several percussive instruments are filled with material from very fast dance melodies. These instruments are forced to follow the melodic material of the guitar. The setting of the ICT is such that the original melodies are not reproduced but instead a fast random repetition of notes is generated. In this way the guitar is transformed into a percussive instrument. Under each note a random rhythmic pattern is hidden. I imagine that Conlon Nancarrow (1912-1997) would have loved these new possibilities for improvisation.
       </p>
       <p>
-        <a href="/computer-music/ict-composition1.mp3">ICT Composition 1 (1 min. 20 sec.)</a>
+        <a href="media/audios/computer-music/ict-composition1.mp3">ICT Composition 1 (1 min. 20 sec.)</a>
         <br /> An example of pure algorithmic composition constructed with ICT. The instrument grammars are derived from the first movement of the second Brandenburg Concerto by Bach (1685-1750). The chorus structure of the piece is based on a composition by Orlando di Lasso (1532-1594): Mon coeur se recommande &agrave; vous. The combination of the two leads to a completely new piece.
       </p>
       <p>
-        <a href="/computer-music/delay-improvition1.mp3">Delay Improvisation 1 (5 min. 43 sec.)</a>
+        <a href="media/audios/computer-music/delay-improvition1.mp3">Delay Improvisation 1 (5 min. 43 sec.)</a>
         <br /> Delay is one of the simplest algorithms that can be applied to the sound of an instrument. Yet the possibilities are almost limitless. In this piece the rithmic possibilities of delay are explored. The guitar is a 1975 Howard Robberts Ibanez stereo guitar with a piezo element and a humbucker. The signal is first transformed by a delay box and then fed in to a male-female voice distortion program.
       </p>
       <p>
-        <a href="/computer-music/sequencer-improvisation.mp3">Sequencer Improvisation 1 (3 min. 39 sec.)</a>
+        <a href="media/audios/computer-music/sequencer-improvisation.mp3">Sequencer Improvisation 1 (3 min. 39 sec.)</a>
         <br /> I always like to improvise on a simple drum pattern. A sequencer program generates the drums. The improvisation is done on a Godin Multiac midi guitar fed in to a Roland GR-09 synthesizer with a mix of base guitar sound and the normal acoustic sound of the guitar itself. The mixed signals give a rich percussive sound that blends well with the drum patterns.
       </p>
 
