@@ -123,7 +123,7 @@ function scanIt($path_to_scan, $cat_description)
     $dir = "media/audios/" . $path;
     $title = '';
     $year = 1888;
-    $description = '...';
+    $description = '';
     $file = 'errorscan';
     $ext = '.err';
 
