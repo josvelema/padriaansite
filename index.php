@@ -42,23 +42,23 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
   ?>
 
     <article class="rj-home-news">
-    <div class="rj-news-card">
-      <div class="rj-news-card-header">
-      <h2><?php echo $post_title; ?></h2>
-      <p>Posted on : <?php echo $post_date ?></p>
-      </div>
+      <div class="rj-news-card">
+        <div class="rj-news-card-header">
+          <h2><?php echo $post_title; ?></h2>
+          <p>Posted on : <?php echo $post_date ?></p>
+        </div>
 
-      <div class="rj-news-card-content">
-      <?php echo "<pre>" . trim($post_content) . "</pre>"; ?>
-      <img src="images/<?php echo $post_image?>" alt="<?php echo $post_title;?>">
-      </div>
+        <div class="rj-news-card-content">
+          <?php echo "<pre>" . trim($post_content) . "</pre>"; ?>
+          <img src="images/<?php echo $post_image ?>" alt="<?php echo $post_title; ?>">
+        </div>
 
-      <div class="rj-news-card-actions">
-      <a class="rj-btn-light" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-      <a class="rj-btn-light" href="blog.php">All Posts <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <div class="rj-news-card-actions">
+          <a class="rj-btn-light" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+          <a class="rj-btn-light" href="blog.php">All Posts <span class="glyphicon glyphicon-chevron-right"></span></a>
 
+        </div>
       </div>
-    </div> 
     </article>
   <?php
   }
@@ -66,33 +66,28 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
   <div class="rj-about-wrapper">
-    <article class="rj-about id="about">
-      <h3>About Pieter Adriaans</h3>
-      <p>Works as a painter and musician at the Azores.
-        Is professor of Learning and Adaptive Systems at the Universiteit van Amsterdam.
+
+    <article class="rj-about rj-unbreakable-text" id="about">
+      <div class="rj-about-img">
+        <img src="assets/img/manezhinos.jpeg" alt="Manezhinos">
+        <blockquote>
+          In the morning I’m a philosopher, in the afternoon a painter and in the evening a musician.
+        </blockquote>
+
+      </div>
+      <p style="text-align: justify;">After a life dedicated to art, science and business, the adventurer, businessman, philosopher
+        and artist, Pieter Adriaans retired to the isolated island of São Jorge on the Azores where he
+        runs the non-profit organization Atelier de Kaasfabriek dedicated to the promotion of the
+        arts.<br> Works of Pieter can be seen in Grand Café Manezinho, in Urzelina at the south coast of
+        the island. Here he exhibits his paintings, plays his music with friends.
+
       </p>
-      <ul class="rj-about-list">
-        Special interest in:
-        <li>Philosophy of Information</li>
-        <li>Complexity theory</li>
-        <li>Computational esthetics</li>
-      </ul>
-
-      <div class="rj-about-p-img" id="about">
-        <img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo">
-        <p>
-          Manages the non-profit organisation <a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank">Atelier de Kaasfabriek</a> together with Rini Adriaans.
-        </p>
-      </div>
-      <div class="rj-about-p-img">
-        <p>Runs restaurant / music bar 'Manezinho' on Sao Jorge</p>
-        
-        <img src="assets/img/Manezinho Logo.jpg" alt="Manezinho logo">
-      </div>
-
-      
-      </article>
+    </article>
   </div>
+      <div class="rj-about-logo-container">
+      <img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo" class="rj-about-logo">
+      <img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
+      </div>
 
 
 </main>
