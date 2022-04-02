@@ -2,11 +2,11 @@
     box-sizing: border-box;
 }
 
-body {
+/* body {
     background: -webkit-linear-gradient(to bottom, #434343, #000000);
     background: linear-gradient(to bottom, #434343, #000000);
-    /* font-size: 16px; */
-}
+    
+} */
 
 a {
     text-decoration: none;

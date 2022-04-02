@@ -13,11 +13,12 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <main class="rj-home">
   <header class="rj-home-header">
-    <h1>Pieter Adriaans</h1>
-    <div class="rj-home-header-img">
+    <img src="assets/img/pieterheaderlogo.png" alt="pieter adriaans logo">
+    <!-- <h1>Pieter Adriaans</h1> -->
+    <!-- <div class="rj-home-header-img">
       <img src="assets/img/pieterheader.jpg" alt="banner of pieter">
       <a href="#about" class="rj-btn-light rj-home-btn-about">About</a>
-    </div>
+    </div> -->
     <ul class="rj-social-list">
       <li class="rj-social-item"><a href="https://www.facebook.com/pieter.adriaans" target="_blank"><i class="fa-brands fa-facebook"></i>Pieter Adriaans</a></li>
       <li class="rj-social-item"><a href="http://www.youtube.com/user/pwadriaans/featured" target="_blank"><i class="fa-brands fa-youtube"></i>Youtube channel</a></li>
@@ -59,13 +60,20 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         </div>
       </div>
+      <div class="rj-about-hero">
+        <!-- <img src="assets/img/heroimg201519.jpg" alt=""> -->
+        <p>
+        This page is dedicated to the works of the philosopher, scientist, painter, musician Pieter Adriaans (1955). It is intended as a digital archive that over time will give an extensive overview of his production.
+
+        </p>
+      </div>
     </article>
   <?php
   }
   ?>
 
 
-  <div class="rj-about-wrapper">
+  <!-- <div class="rj-about-wrapper">
 
     <article class="rj-about rj-unbreakable-text" id="about">
       <div class="rj-about-img">
@@ -83,11 +91,11 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       </p>
     </article>
+  </div> -->
+  <div class="rj-about-logo-container">
+    <img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo" class="rj-about-logo">
+    <img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
   </div>
-      <div class="rj-about-logo-container">
-      <img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo" class="rj-about-logo">
-      <img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
-      </div>
 
 
 </main>
