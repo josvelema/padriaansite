@@ -28,7 +28,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 if (isset($_POST['viewAll'])) {
 	// MySQL query that selects all the media
 	$viewingAll = true;
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' ORDER BY ' . $sort_by_sql . ' ');
+	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' ORDER BY ' . $sort_by_sql . ', fnr  ');
 
 	// Check if the category is not set to all
 	if ($category != 'all') $stmt->bindValue(':category', $category);
@@ -38,7 +38,7 @@ if (isset($_POST['viewAll'])) {
 	$viewingAll = false;
 
 	// MySQL query that selects all the media
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' ORDER BY ' . $sort_by_sql . ' LIMIT :page,:media_per_page');
+	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' ORDER BY ' . $sort_by_sql . ', fnr LIMIT :page,:media_per_page');
 	// Determine which page the user is on and bind the value into our SQL statement
 	$stmt->bindValue(':page', ((int)$current_page - 1) * $media_per_page, PDO::PARAM_INT);
 	// How many media will show on each page

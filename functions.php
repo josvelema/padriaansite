@@ -142,7 +142,7 @@ function template_nav()
             <span class="rj-nav-menu-span">Menu</span>
         </label>
         	<div>
-    		<h1><a href="index.php" id="home">Home</a></h1>
+    		<a href="index.php" id="home"><img src="assets/svg/navHome.svg"></a>
             <a href="index.php" class="rj-nav-home">Home</a>
             <a href="blog.php" id="blog"><i class="fa-regular fa-comment-dots"></i>Blog</a>
             <a href="science.php" id="science"><i class="fa-solid fa-brain"></i>Science</a>
