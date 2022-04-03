@@ -41,7 +41,7 @@ if (isset($_POST['viewCat'])) {
     // }
 } else {
 
-    $stmt = $pdo->prepare('SELECT * FROM media ORDER BY id DESC');
+    $stmt = $pdo->prepare('SELECT * FROM media ORDER BY year,fnr ');
     $stmt->execute();
     $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $countMedia = $stmt->rowCount();
