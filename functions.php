@@ -144,12 +144,12 @@ function template_nav()
         	<div>
     		<a href="index.php" id="home"><img src="assets/svg/navHome.svg"></a>
             <a href="index.php" class="rj-nav-home">Home</a>
-            <a href="blog.php" id="blog"><i class="fa-regular fa-comment-dots"></i>Blog</a>
-            <a href="science.php" id="science"><i class="fa-solid fa-brain"></i>Science</a>
-            <a href="painting.php" id="painting"><i class="fa-solid fa-paintbrush"></i>Painting</a>
+            <a href="blog.php" id="blog"><i class="fa-regular fa-comment-dots"></i><img src="assets/svg/navBlog.svg"></a>
+            <a href="science.php" id="science"><i class="fa-solid fa-brain"></i><img src="assets/svg/navScience.svg"></a>
+            <a href="painting.php" id="painting"><i class="fa-solid fa-paintbrush"></i><img src="assets/svg/navArt.svg"></a>
             <a href="music.php" id="music"><i class="fa-solid fa-music"></i>Music</a>
             <a href="gallery.php" id="gallery"><i class="fas fa-photo-video"></i>Gallery</a>
-            <a href="contact.php" id="contact"><i class="fa-solid fa-envelope"></i>Contact</a>
+            <a href="contact.php" id="contact"><i class="fa-solid fa-envelope"></i><img src="assets/svg/navContact.svg"></a>
             </div>
     </nav>
 EOT;

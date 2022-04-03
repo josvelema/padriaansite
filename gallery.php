@@ -16,7 +16,7 @@ $sort_by_sql = $sort_by == 'newest' ? 'm.uploaded_date DESC' : $sort_by_sql;
 $sort_by_sql = $sort_by == 'oldest' ? 'm.uploaded_date ASC' : $sort_by_sql;
 $sort_by_sql = $sort_by == 'a_to_z' ? 'm.title DESC' : $sort_by_sql;
 $sort_by_sql = $sort_by == 'z_to_a' ? 'm.title ASC' : $sort_by_sql;
-$sort_by_sql = $sort_by == 'year' ? 'm.year ASC' : $sort_by_sql;
+$sort_by_sql = $sort_by == 'year' ? 'm.year DESC' : $sort_by_sql;
 // Get media by the type (ignore if set to all)
 $type = isset($_GET['type']) ? $_GET['type'] : 'all';
 $type_sql = $type != 'all' ? 'AND m.type = :type' : '';
