@@ -5,7 +5,7 @@ include 'functions.php';
 <?= template_header_other() ?>
 <?= template_nav() ?>
 
-<main>
+<main class="rj-black-bg-main">
   <header class="rj-painting">
     <h1>Painting</h1>
     <img src="assets/img/overlay-banner-brein.jpg" alt="Pieter">

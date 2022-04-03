@@ -14,6 +14,10 @@ pre {
     font-size: inherit;
 }
 
+.rj-black-bg-main {
+    background: linear-gradient(180deg,rgba(0, 0, 0, 0.85),95%, transparent);
+}
+
 #scrolltop {
     position: fixed;
     bottom: 15px;
@@ -183,12 +187,14 @@ a.rj-nav-home {
     padding: 25px 0;
     font-size: 22px;
     border-bottom: 1px solid #ebebeb;
-    color: #666666;
+    color: #fafafa;
 }
 
 .content p {
     padding: 25px 0;
     margin: 0;
+    color: #fafafa;
+
 }
 
 .content .pagination {
@@ -421,6 +427,8 @@ a.rj-nav-home {
 
 .home .con form label {
     padding: 0 5px 0 15px;
+    color: #fafafa;
+
 }
 
 .home .con form select {
@@ -868,6 +876,8 @@ a.rj-nav-home {
     padding: 0.25em;
     font-size: 1.05rem;
     border-bottom: 1px solid hsl(0, 0%, 90%);
+    color: #fafafa;
+
 }
 
 @media screen and (min-width: 1023px) {

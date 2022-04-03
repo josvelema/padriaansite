@@ -5,7 +5,7 @@ include 'functions.php';
 <?= template_header_other() ?>
 <?= template_nav() ?>
 
-<main>
+<main class="rj-black-bg-main">
   <header>
     <h1>Science</h1>
     <img src="assets/img/pieter-adriaans.jpg" alt="Pieter">

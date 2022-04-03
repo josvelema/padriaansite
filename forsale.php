@@ -67,7 +67,7 @@ $last_page = ceil($total_media / $media_per_page);
 $media_width = 300;
 $media_height = 200;
 ?>
-<?= template_header('Gallery') ?>
+<?= template_header('For Sale') ?>
 <?= template_nav() ?>
 
 <main class="rj-black-bg-main">

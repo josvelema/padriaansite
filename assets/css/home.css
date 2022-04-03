@@ -12,6 +12,9 @@ ul {
     list-style: none;
 }
 
+.rj-black-bg-main {
+    background: linear-gradient(180deg,rgba(0, 0, 0, 0.85),95%, transparent);
+}
 .rj-home {
     min-height: 100vh;
     /* margin-top: -2rem; */
@@ -155,7 +158,9 @@ filter: drop-shadow(9px 11px 7px rgba(12 12 12 / 0.6) );
 
 @media (min-width: 60em) {
 .rj-home-news {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-column: 1 / span 2; */
+
     
 }
 .rj-about-hero {
@@ -467,9 +472,9 @@ blockquote::after {
 }
 
 @media screen and (min-width: 1280px) {
-    .rj-news-card {
+    /* .rj-news-card {
         width: 50vw;
-    }
+    } */
 
     .rj-about {
         width: 50vw;

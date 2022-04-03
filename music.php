@@ -5,7 +5,7 @@ include 'functions.php';
 <?= template_header_other() ?>
 <?= template_nav() ?>
 
-<main>
+<main class="rj-black-bg-main">
   <header class="rj-music">
     <h1>Music</h1>
     <img src="assets/img/musicbanner.jpg" alt="Music banner">
