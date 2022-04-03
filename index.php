@@ -42,32 +42,32 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $post_views = $row['post_views_count'];
   ?>
 
-    <article class="rj-home-news">
+    <div class="rj-home-news">
+
       <div class="rj-news-card">
-        <div class="rj-news-card-header">
-          <h2><?php echo $post_title; ?></h2>
-          <p>Posted on : <?php echo $post_date ?></p>
-        </div>
 
-        <div class="rj-news-card-content">
-          <?php echo "<pre>" . trim($post_content) . "</pre>"; ?>
-          <img src="images/<?php echo $post_image ?>" alt="<?php echo $post_title; ?>">
-        </div>
+        <h2><?php echo $post_title; ?></h2>
+        <div class="rj-card-bgimg" style="background-image: url(images/<?php echo $post_image ?>);"></div>
+        <article>
 
-        <div class="rj-news-card-actions">
-          <a class="rj-btn-light" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-          <a class="rj-btn-light" href="blog.php">All Posts <span class="glyphicon glyphicon-chevron-right"></span></a>
+          <pre><?php echo trim($post_content); ?> </pre>
+          <span>Posted on : <?php echo $post_date ?></span>
 
-        </div>
+          <div class="rj-flex-container-row">
+            <a class="rj-btn-light" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="rj-btn-light" href="blog.php">All Posts <span class="glyphicon glyphicon-chevron-right"></span></a>
+          </div>
+
+        </article>
       </div>
       <div class="rj-about-hero">
         <!-- <img src="assets/img/heroimg201519.jpg" alt=""> -->
         <p>
-        This page is dedicated to the works of the philosopher, scientist, painter, musician Pieter Adriaans (1955). It is intended as a digital archive that over time will give an extensive overview of his production.
+          This page is dedicated to the works of the philosopher, scientist, painter, musician Pieter Adriaans (1955). It is intended as a digital archive that over time will give an extensive overview of his production.
 
         </p>
       </div>
-    </article>
+    </div>
   <?php
   }
   ?>

@@ -32,7 +32,6 @@ pre {
 body {
     overflow-x: hidden;
     scroll-behavior: smooth;
-    
 }
 .rj-background {
     background-image: url(assets/img/backgroundimage.jpg);
@@ -41,19 +40,19 @@ body {
     background-blend-mode: multiply;
 
     background-repeat: no-repeat;
-    background-size: cover  ;
+    background-size: cover;
     position: fixed;
     /* height: 100vh;
     width: 100vw; */
     z-index: -1;
-}   
+}
 
 .rj-foreground {
     position: relative;
 }
 
 .rj-foreground::before {
-    content: '';
+    content: "";
     position: fixed;
     z-index: -1;
     display: block;
@@ -62,25 +61,22 @@ body {
     bottom: 0px;
     right: 0px;
     background-image: url(assets/img/bginverted.jpg);
-backdrop-filter: invert(83%);
--webkit-backdrop-filter: invert(83%);
+    backdrop-filter: invert(83%);
+    -webkit-backdrop-filter: invert(83%);
     background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
- 
- }
-
-
+}
 
 .navtop {
-    /* position: relative; */
+    position: relative;
     color: hsl(216, 21%, 28%);
     height: 3.2rem;
     width: 100%;
     border: 0;
     text-transform: capitalize;
-    z-index: 666;
+    z-index: 999;
     margin: 0;
     letter-spacing: 2px;
     background: #ece9e6;
@@ -90,7 +86,9 @@ backdrop-filter: invert(83%);
     box-shadow: inset 0 -2em 0.5em rgb(221 222 222 / 58%),
         0 0 0 3px rgb(162 167 172), 0px 3px 5px 5px rgb(141 170 148 / 52%);
 }
-
+.navtop::after {
+    background: linear-gradient(180deg, transparent, #000);
+}
 .navtop div {
     display: flex;
     margin: 0 auto;
@@ -236,7 +234,7 @@ a.rj-nav-home {
     backdrop-filter: blur(7px) saturate(180%);
     -webkit-backdrop-filter: blur(7px) saturate(180%);
     background-color: rgba(17, 25, 40, 0.77);
-    z-index: 998;
+    z-index: 960;
 }
 
 .media-popup .con {
@@ -905,7 +903,7 @@ a.rj-nav-home {
     top: 0;
     left: 0;
     display: block;
-    z-index: 9998;
+    z-index: 960;
 }
 .rj-modal {
     position: fixed;
@@ -919,7 +917,7 @@ a.rj-nav-home {
     height: 300px;
     background-color: #fff;
     box-sizing: border-box;
-    z-index: 9999;
+    z-index: 960;
 }
 .rj-modal > p {
     padding: 15px;
@@ -928,7 +926,6 @@ a.rj-nav-home {
 }
 
 .rj-modal > p a {
-    
     color: rgba(11, 33, 122, 0.97);
     text-decoration: underline;
     line-height: 1.5rem;
@@ -972,8 +969,7 @@ a.rj-modal-btn {
     position: relative;
 }
 
-a.rj-modal-btn:hover
-{
+a.rj-modal-btn:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(27, 27, 27, 0.5);
 }
@@ -982,6 +978,6 @@ a.rj-modal-btn:hover {
     box-shadow: 0 10px 20px rgba(222, 222, 222, 0.5);
 }
 
-a.rj-modal-btn  {
+a.rj-modal-btn {
     transform: translateY(-3px);
 }
