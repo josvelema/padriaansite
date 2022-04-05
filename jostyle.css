@@ -414,6 +414,16 @@ a height */
     font-size: inherit;
 }
 
+.rj-about-article {
+    width: 80vw;
+}
+
+.rj-about-article img{
+    width: 100%;
+    object-fit: contain;
+}
+
+
 @media screen and (max-width: 1000px) {
     .rj-btn-light {
         margin-bottom: 0.55em;

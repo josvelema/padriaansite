@@ -7,71 +7,20 @@ $pdo = pdo_connect_mysql();
 $stmt = $pdo->prepare('SELECT * FROM categories ORDER BY title');
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Retrieve the requested category
-
-//! $category = isset($_GET['category']) ? $_GET['category'] : 'all';
-
 $category_sql = 'JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category';
 
-// Sort by default is newest, feel free to change it..
-
-//! $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'year';
-//! $sort_by_sql = 'm.uploaded_date DESC';
-//! $sort_by_sql = $sort_by == 'newest' ? 'm.uploaded_date DESC' : $sort_by_sql;
-//! $sort_by_sql = $sort_by == 'oldest' ? 'm.uploaded_date ASC' : $sort_by_sql;
-//! $sort_by_sql = $sort_by == 'a_to_z' ? 'm.title DESC' : $sort_by_sql;
-//! $sort_by_sql = $sort_by == 'z_to_a' ? 'm.title ASC' : $sort_by_sql;
-//! $sort_by_sql = $sort_by == 'year' ? 'm.year ASC' : $sort_by_sql;
-
-// Get media by the type (ignore if set to all)
-
-//! $type = isset($_GET['type']) ? $_GET['type'] : 'all';
-//! $type_sql = $type != 'all' ? 'AND m.type = :type' : '';
-
-//! Limit the amount of media on each page
-
-//! $media_per_page = 6;
-
-// The current pagination page
-
-//! $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-// if (isset($_POST['viewAll'])) {
-
-// MySQL query that selects all the media
-
-// $viewingAll = true;
-
-// Check if the category is not set to all
-
-// if ($category != 'all') $stmt->bindValue(':category', $category);
-
-// Execute the SQL
 
 $stmt = $pdo->prepare('SELECT * FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = 4 WHERE m.approved = 1 AND m.type = "image" ORDER BY m.year DESC ');
 $stmt->execute();
 
-
-
-
 $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Get the total number of media
-
-// $stmt = $pdo->prepare('SELECT COUNT(*) FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql);
-// if ($type != 'all') $stmt->bindValue(':type', $type);
-// if ($category != 'all') $stmt->bindValue(':category', $category);
-// $stmt->execute();
-// $total_media = $stmt->fetchColumn();
-// $last_page = ceil($total_media / $media_per_page);
-
-// // Set media properties below
 
 $media_width = 300;
 $media_height = 200;
 ?>
 <?= template_header('For Sale') ?>
+<?= template_header_other() ?>
+
 <?= template_nav() ?>
 
 <main class="rj-black-bg-main">
@@ -81,10 +30,16 @@ $media_height = 200;
 		<article class="rj-forsale">
 
 			<p>
-				On this page you find a small selection of works that are for sale. My output is not high, so I do not have much work to sell. The demand is much higher than my production and I have to make choices what to sell to whom. Most works I currently make are on commission and prices are negotiated separately with the buyer. Here my main concern is that everybody on the island of São Jorge should be able to buy my work. For the international market I do not publish prices but as a guideline a small portrait might be € 700,-. Larger works (100 x 150 cm) start at € 3000,-. Prices may vary based on materials and detail of the work. Drawings, watercolors and etchings have a lower price.
-
-				If you are interested send an email with the code of the work via the contact page, or to pieter@pieter-adriaans.com.
+				On this page you find a small selection of works that are for sale.
+				My output is not high, so I do not have much work to sell.
+				The demand is much higher than my production and I have to make choices what to sell to whom.
+				Most works I currently make are on commission and prices are negotiated separately with the buyer.
+				Here my main concern is that everybody on the island of São Jorge should be able to buy my work.
+		
+				For the international market I do not publish prices but as a guideline a small portrait might be € 700,-. Larger works (100 x 150 cm) start at € 3000,-.
+				Prices may vary based on materials and detail of the work. Drawings, watercolors and etchings have a lower price.
 			</p>
+			<p>If you are interested send an email with the code of the work via the <a href="contact.php">contact</a> page, or to pieter@pieter-adriaans.com.</p>
 		</article>
 
 		<article class="rj-gallery">
