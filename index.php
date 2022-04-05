@@ -25,29 +25,31 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <li class="rj-social-item"><a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank"><i class="fa-brands fa-facebook"></i>Atelier de Kaasfabriek</a></li>
     </ul>
   </header>
-  <?php
-  $stmt = $pdo->prepare('SELECT * FROM posts ORDER BY post_id DESC LIMIT 1 ');
+  <section class="rj-news-section">
+  <div class="rj-home-news">
+    <?php
+    $stmt = $pdo->prepare('SELECT * FROM posts ORDER BY post_id DESC LIMIT 1 ');
 
-  $stmt->execute();
+    $stmt->execute();
 
-  // while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-  while ($row = $stmt->fetch()) {
-    $post_id = $row['post_id'];
-    $post_title = $row['post_title'];
-    $post_author = $row['post_author'];
-    $post_date = $row['post_date'];
-    $post_image = $row['post_image'];
-    $post_content = substr($row['post_content'], 0, 250); //! truncated !!
-    $post_status = $row['post_status'];
-    $post_views = $row['post_views_count'];
-  ?>
+    // while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
+    while ($row = $stmt->fetch()) {
+      $post_id = $row['post_id'];
+      $post_title = $row['post_title'];
+      $post_author = $row['post_author'];
+      $post_date = $row['post_date'];
+      $post_image = $row['post_image'];
+      $post_content = substr($row['post_content'], 0, 250); //! truncated !!
+      $post_status = $row['post_status'];
+      $post_views = $row['post_views_count'];
+    ?>
 
-    <div class="rj-home-news">
+
 
       <div class="rj-news-card">
 
         <h2><?php echo $post_title; ?></h2>
-        <div class="rj-card-bgimg" style="background-image: url(images/<?php echo $post_image ?>);"></div>
+        <img src="images/<?php echo $post_image ?>" class="rj-card-img">
         <article>
 
           <pre><?php echo trim($post_content); ?> </pre>
@@ -67,13 +69,13 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         </p>
       </div>
-    </div>
-  <?php
-  }
-  ?>
+  </div>
+<?php
+    }
+?>
 
 
-  <!-- <div class="rj-about-wrapper">
+<!-- <div class="rj-about-wrapper">
 
     <article class="rj-about rj-unbreakable-text" id="about">
       <div class="rj-about-img">
@@ -92,10 +94,11 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </p>
     </article>
   </div> -->
-  <div class="rj-about-logo-container">
-    <img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo" class="rj-about-logo">
-    <img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
-  </div>
+  </section>
+<div class="rj-about-logo-container">
+  <img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo" class="rj-about-logo">
+  <img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
+</div>
 
 
 </main>

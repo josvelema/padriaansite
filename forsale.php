@@ -37,47 +37,20 @@ $category_sql = 'JOIN media_categories mc ON mc.media_id = m.id AND mc.category_
 
 //! $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
-if (isset($_POST['viewAll'])) {
+// if (isset($_POST['viewAll'])) {
 
-	// MySQL query that selects all the media
+// MySQL query that selects all the media
 
-	$viewingAll = true;
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' ORDER BY ' . $sort_by_sql . ' ');
+// $viewingAll = true;
 
-	// Check if the category is not set to all
+// Check if the category is not set to all
 
-	if ($category != 'all') $stmt->bindValue(':category', $category);
+// if ($category != 'all') $stmt->bindValue(':category', $category);
 
-	// Execute the SQL
+// Execute the SQL
 
-	$stmt->execute();
-} else {
-	$viewingAll = false;
-
-	// MySQL query that selects all the media
-
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' ORDER BY ' . $sort_by_sql . ' LIMIT :page,:media_per_page');
-
-	// Determine which page the user is on and bind the value into our SQL statement
-
-	$stmt->bindValue(':page', ((int)$current_page - 1) * $media_per_page, PDO::PARAM_INT);
-
-	// How many media will show on each page
-
-	$stmt->bindValue(':media_per_page', $media_per_page, PDO::PARAM_INT);
-
-	// Check if the type is not set to all
-
-	if ($type != 'all') $stmt->bindValue(':type', $type);
-
-	// Check if the category is not set to all
-
-	if ($category != 'all') $stmt->bindValue(':category', $category);
-
-	// Execute the SQL
-
-	$stmt->execute();
-}
+$stmt = $pdo->prepare('SELECT * FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = 4 WHERE m.approved = 1 AND m.type = "image" ORDER BY m.year DESC ');
+$stmt->execute();
 
 
 
@@ -86,14 +59,14 @@ $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Get the total number of media
 
-$stmt = $pdo->prepare('SELECT COUNT(*) FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql);
-if ($type != 'all') $stmt->bindValue(':type', $type);
-if ($category != 'all') $stmt->bindValue(':category', $category);
-$stmt->execute();
-$total_media = $stmt->fetchColumn();
-$last_page = ceil($total_media / $media_per_page);
+// $stmt = $pdo->prepare('SELECT COUNT(*) FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql);
+// if ($type != 'all') $stmt->bindValue(':type', $type);
+// if ($category != 'all') $stmt->bindValue(':category', $category);
+// $stmt->execute();
+// $total_media = $stmt->fetchColumn();
+// $last_page = ceil($total_media / $media_per_page);
 
-// Set media properties below
+// // Set media properties below
 
 $media_width = 300;
 $media_height = 200;
@@ -105,6 +78,14 @@ $media_height = 200;
 	<div class="content home">
 
 		<h2>For sale</h2>
+		<article class="rj-forsale">
+
+			<p>
+				On this page you find a small selection of works that are for sale. My output is not high, so I do not have much work to sell. The demand is much higher than my production and I have to make choices what to sell to whom. Most works I currently make are on commission and prices are negotiated separately with the buyer. Here my main concern is that everybody on the island of São Jorge should be able to buy my work. For the international market I do not publish prices but as a guideline a small portrait might be € 700,-. Larger works (100 x 150 cm) start at € 3000,-. Prices may vary based on materials and detail of the work. Drawings, watercolors and etchings have a lower price.
+
+				If you are interested send an email with the code of the work via the contact page, or to pieter@pieter-adriaans.com.
+			</p>
+		</article>
 
 		<article class="rj-gallery">
 			<div class="rj-container-gallery">
