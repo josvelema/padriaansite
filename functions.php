@@ -125,36 +125,35 @@ EOT;
 
 function template_nav()
 {
-    echo <<<EOT
-        </head>
-        <body>
+echo <<<EOT
+                </head>
+                <body>
+                <div class="rj-foreground">
         
-        <div class="rj-foreground">
-        
-        <nav class="navtop">
-        <input type="checkbox" id="dropdown" style="display:none">
-        <label for="dropdown" class="dropdown">
-        <span class="hamburger">
-        <span class="icon-bar top-bar"></span>
-        <span class="icon-bar middle-bar"></span>
-        <span class="icon-bar bottom-bar"></span>
-        </span>
-            <span class="rj-nav-menu-span">Menu</span>
-        </label>
-        	<div>
-    		<a href="index.php" id="home"><img src="assets/svg/navHome.svg"></a>
-            <a href="index.php" class="rj-nav-home">Home</a>
-            <a href="blog.php" id="blog"><i class="fa-regular fa-comment-dots"></i><img src="assets/svg/navBlog.svg"></a>
-            <a href="science.php" id="science"><i class="fa-solid fa-brain"></i><img src="assets/svg/navScience.svg"></a>
-            <a href="painting.php" id="painting"><i class="fa-solid fa-paintbrush"></i><img src="assets/svg/navArt.svg"></a>
-            <a href="music.php" id="music"><i class="fa-solid fa-music"></i>Music</a>
-            <a href="gallery.php" id="gallery"><i class="fas fa-photo-video"></i>Gallery</a>
-            <a href="contact.php" id="contact"><i class="fa-solid fa-envelope"></i><img src="assets/svg/navContact.svg"></a>
-            </div>
-    </nav>
-EOT;
-}
+                <nav class="navtop">
+                <input type="checkbox" id="dropdown" style="display:none">
+                <label for="dropdown" class="dropdown">
+                <span class="hamburger">
+                <span class="icon-bar top-bar"></span>
+                <span class="icon-bar middle-bar"></span>
+                <span class="icon-bar bottom-bar"></span>
+                </span>
+                <span class="rj-nav-menu-span">Menu</span>
+                </label>
+                <div>
+                <a href="index.php" id="home"><img src="assets/svg/navHome.svg" class="rj-nav-svg"></a>
+                <a href="index.php" class="rj-nav-home">Home</a>
+                <a href="blog.php" id="blog"><img src="assets/svg/navBlog.svg" class="rj-nav-svg"></a>
+                <a href="science.php" id="science"><img src="assets/svg/navScience.svg" class="rj-nav-svg"></a>
+                <a href="painting.php" id="painting"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
 
+                <a href="contact.php" id="contact"><img src="assets/svg/navContact.svg" class="rj-nav-svg"></a>
+                </div>
+                </nav>
+            EOT;
+}
+// <a href="music.php" id="music"><i class="fa-solid fa-music"></i>Music</a>
+// <a href="gallery.php" id="gallery"><i class="fas fa-photo-video"></i>Gallery</a>
 
 // Template footer
 function template_footer()
