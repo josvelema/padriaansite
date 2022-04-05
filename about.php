@@ -24,7 +24,8 @@ include 'functions.php';
       <img src="assets/img/aboutpieterprofiel.JPG" alt="Photo Pieter">
 
     </article>
-
+  
+</main>
 
 
     <?= template_footer() ?>

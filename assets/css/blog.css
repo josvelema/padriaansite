@@ -3,3 +3,19 @@
     width: 100%;
 }
 }
+
+.rj-blog-card pre {
+    line-height: 1.4;
+    border-bottom: 1px solid #33333333;
+    font-size: 1.15rem;
+    white-space: pre-wrap;
+    text-align: justify;
+    /* Smol Responsive Padding FTW! */
+    padding: clamp(.55rem, 3%, 2rem);
+    /* Provide a max-width and prevent overflow */
+    width: min(50ch, 90%);
+    /* Help prevent overflow of long words/names/URLs */
+    word-break: break-word;
+    /* Optional, not supported for all languages */
+    hyphens: auto;
+}

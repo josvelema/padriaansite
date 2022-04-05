@@ -72,6 +72,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
         0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
+
+
 .rj-blog-card > :not(img) {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -149,6 +151,23 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
 .rj-blog-card-content > img {
     background: #fafafa;
+}
+
+
+.rj-blog-card pre {
+    line-height: 1.4;
+    
+    font-size: 1.15rem;
+    white-space: pre-wrap;
+    text-align: justify;
+    /* Smol Responsive Padding FTW! */
+    padding: clamp(.55rem, 3%, 2rem);
+    /* Provide a max-width and prevent overflow */
+    width: min(80ch, 90%);
+    /* Help prevent overflow of long words/names/URLs */
+    word-break: break-word;
+    /* Optional, not supported for all languages */
+    hyphens: auto;
 }
 
 .blog-image {
@@ -416,6 +435,8 @@ a height */
 
 .rj-about-article {
     width: 80vw;
+    background: transparent;
+
 }
 
 .rj-about-article img{

@@ -146,6 +146,7 @@ echo <<<EOT
                 <a href="blog.php" id="blog"><img src="assets/svg/navBlog.svg" class="rj-nav-svg"></a>
                 <a href="science.php" id="science"><img src="assets/svg/navScience.svg" class="rj-nav-svg"></a>
                 <a href="painting.php" id="painting"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
+                <a href="gallery.php" id="painting">gallery</a>
 
                 <a href="contact.php" id="contact"><img src="assets/svg/navContact.svg" class="rj-nav-svg"></a>
                 </div>
