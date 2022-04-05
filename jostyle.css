@@ -154,7 +154,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 }
 
 
-.rj-blog-card pre {
+.rj-blog-card pre,
+.rj-blog-card-post pre {
     line-height: 1.4;
     
     font-size: 1.15rem;
