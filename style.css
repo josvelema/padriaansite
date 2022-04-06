@@ -215,6 +215,16 @@ a.rj-nav-home {
     margin: 0.25em;
 }
 
+img[src="assets/svg/navHome.svg"] {
+}
+
+.rj-nav-svg {
+    filter: invert(20%) drop-shadow(1px 2px 1px rgb(33,88,100 ,0.5));
+}
+
+.rj-nav-svg:hover {
+    filter: invert(5%) drop-shadow(1px 3px 1px rgb(33,88,100 ,0.6)) ;
+}
 
 
 /* .navtop {
@@ -785,6 +795,15 @@ a.rj-nav-home {
     .navtop input:checked ~ div a.rj-nav-home:hover {
         /* color: hsl(230, 22%, 67%); */
         color: hsl(229, 40%, 68%);
+    }
+
+
+    .rj-nav-svg {
+        filter: invert(90%) drop-shadow(1px 2px 1px rgb(33,88,100 ,0.5));
+    }
+    
+    .rj-nav-svg:hover {
+        filter: invert(98%) drop-shadow(1px 3px 1px rgb(33,88,100 ,0.6)) ;
     }
     .content {
         padding: 10px;
