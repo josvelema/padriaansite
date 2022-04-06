@@ -41,8 +41,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 .blog-css-grid {
     border-radius: 0.5rem;
     padding: 0.5em;
-    --min: 30ch;
-    --gap: 0.75em;
+    --min: 50ch;
+    --gap: 1.5em;
     display: grid;
     grid-gap: var(--gap);
     grid-template-columns: repeat(
@@ -70,9 +70,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
         0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    height: 100%;;
 }
-
-
 
 .rj-blog-card > :not(img) {
     margin-left: 1rem;
@@ -105,6 +104,13 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
 .rj-card-title {
     font-size: 1.5rem;
+    margin-top: 0.3em;
+    margin-bottom: 0.15em;
+    padding: 0.25em;
+    border-bottom: 1px solid gray;
+    word-break: break-word;
+    /* Optional, not supported for all languages */
+    hyphens: auto;
 }
 
 .rj-card-title::first-letter {
@@ -117,7 +123,7 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    justify-content: start;
+    justify-content: space-around;
     border-bottom: 1px solid gray;
 }
 
@@ -153,16 +159,15 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     background: #fafafa;
 }
 
-
 .rj-blog-card pre,
 .rj-blog-card-post pre {
     line-height: 1.4;
-    
+
     font-size: 1.15rem;
     white-space: pre-wrap;
-    text-align: justify;
+    /* text-align: justify; */
     /* Smol Responsive Padding FTW! */
-    padding: clamp(.55rem, 3%, 2rem);
+    padding: clamp(0.55rem, 3%, 2rem);
     /* Provide a max-width and prevent overflow */
     width: min(80ch, 90%);
     /* Help prevent overflow of long words/names/URLs */
@@ -301,7 +306,7 @@ a height */
 @supports (aspect-ratio: 1) {
     .rj-blog-card > img {
         aspect-ratio: var(--img-ratio);
-        height: 200px;
+        height: auto;
     }
 }
 
@@ -437,14 +442,12 @@ a height */
 .rj-about-article {
     width: 80vw;
     background: transparent;
-
 }
 
-.rj-about-article img{
+.rj-about-article img {
     width: 100%;
     object-fit: contain;
 }
-
 
 @media screen and (max-width: 1000px) {
     .rj-btn-light {
@@ -482,6 +485,6 @@ a height */
     .rj-blog-card.rj-blog-card-post,
     .rj-blog-card,
     .rj-comment-form-wrapper {
-        width: 50vw;
+        /* width: 50vw; */
     }
 }

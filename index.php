@@ -29,8 +29,8 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <li class="rj-social-item"><a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank"><i class="fa-brands fa-facebook"></i>Atelier de Kaasfabriek</a></li>
     </ul>
   </header>
-  <section class="rj-news-section">
-  <div class="rj-home-news">
+  <!-- <section class="rj-news-section"> -->
+  <div class="blog-css-grid">
     <?php
     $stmt = $pdo->prepare('SELECT * FROM posts ORDER BY post_id DESC LIMIT 1 ');
 
@@ -50,11 +50,11 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-      <div class="rj-news-card">
+      <div class="rj-blog-card">
 
-        <h2><?php echo $post_title; ?></h2>
+        <h2 class="rj-card-title"><?php echo $post_title; ?></h2>
         <img src="images/<?php echo $post_image ?>" class="rj-card-img">
-        <article>
+        <article class="rj-blog-card-content">
 
           <pre><?php echo trim($post_content); ?> </pre>
           <span>Posted on : <?php echo $post_date ?></span>
@@ -80,8 +80,8 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   </section>
 <div class="rj-about-logo-container">
-  <img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo" class="rj-about-logo">
-  <img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
+<a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank"><img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo" class="rj-kaas-logo"></a>
+<a href="https://www.facebook.com/ManezinhoGrandCafe" target="_blank"><img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
 </div>
 
 

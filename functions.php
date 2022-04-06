@@ -140,14 +140,30 @@ echo <<<EOT
                 </span>
                 <span class="rj-nav-menu-span">Menu</span>
                 </label>
-                <div>
+                <div class="rj-nav-wrap">
                 <a href="index.php" id="home"><img src="assets/svg/navHome.svg" class="rj-nav-svg"></a>
-                <a href="index.php" class="rj-nav-home">Home</a>
-                <a href="blog.php" id="blog"><img src="assets/svg/navBlog.svg" class="rj-nav-svg"></a>
-                <a href="science.php" id="science"><img src="assets/svg/navScience.svg" class="rj-nav-svg"></a>
-                <a href="painting.php" id="painting"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
-                <a href="gallery.php" id="painting">gallery</a>
+                
+                <a href="#" class="rj-dropdown-art" onclick="toggleArtNav()"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
+                <div class="rj-dropdown-nav">
+                <ul class="rj-dropdown-nav-ul">
+                <li><a href="expo.php">Expositions</a></li>
+                <li><a href="gallery.php">Works</a></li>
+                <li><a href="music.php">Music</a></li>
+                </ul>
+                </div>
 
+                <a href="science.php" id="science"><img src="assets/svg/navScience.svg" class="rj-nav-svg"></a>
+
+                <a href="#" id="blog" class="rj-dropdown-biz" onclick="toggleBizNav()"><img src="assets/svg/navBusiness.svg" class="rj-nav-svg"></a>
+                <div class="rj-nav-biz">
+                <ul class="rj-dropdown-nav-ul">
+                <li><a href="forsale.php">Art for sale</a></li>
+                <li><a href="https://www.facebook.com/ManezinhoGrandCafe" target="_blank"><i class="fa-brands fa-facebook"></i>Grand cafe Manezinho</a> </li>
+                <li><a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank"><i class="fa-brands fa-facebook"></i>Atelier de Kaasfabriek</a></li>
+                </ul>
+                </div>
+
+                <a href="blog.php" id="blog"><img src="assets/svg/navBlog.svg" class="rj-nav-svg"></a>
                 <a href="contact.php" id="contact"><img src="assets/svg/navContact.svg" class="rj-nav-svg"></a>
                 </div>
                 </nav>
