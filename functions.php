@@ -151,6 +151,8 @@ echo <<<EOT
                 <li><a href="expo.php">Expositions</a></li>
                 <li><a href="gallery.php">Works</a></li>
                 <li><a href="music.php">Music</a></li>
+                <li><a href="painting.php">Painting</a></li>
+
                 </ul>
                 </div>
 
