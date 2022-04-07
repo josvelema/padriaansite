@@ -26,8 +26,11 @@ a {
     background: #000000;
     /* background: -webkit-linear-gradient(to bottom, #434343, #000000);  
 background: linear-gradient(to bottom, #434343, #000000);  */
-    background: linear-gradient(45deg, #484848, #3c3c3c);
+background: linear-gradient(
+    180deg
+    , rgb(0,0,0,0.6),95%, transparent);
     box-shadow: -5px -5px 10px #2e2e2e, 5px 5px 10px #585858;
+    color: #fafafa;
 }
 
 .rj-blog {
@@ -478,6 +481,10 @@ a height */
 
     .rj-post-column-reverse {
         flex-direction: column;
+    }
+
+    .rj-comment-form-wrapper {
+        width: 100%;
     }
 }
 

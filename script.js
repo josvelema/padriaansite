@@ -411,24 +411,3 @@ if (upload_form) {
         document.querySelector(".upload #media").click();
     };
 }
-
-let artDropDown = document.querySelector('.rj-dropdown-nav');
-let bizDropDown = document.querySelector('.rj-nav-biz')
-
-
-
-function toggleArtNav() {
-    if (artDropDown.style.display == "none") {
-        artDropDown.style.display = "block";
-    } else {
-        artDropDown.style.display = "none";
-    }
-}
-
-function toggleBizNav() {
-    if (bizDropDown.style.display == "none") {
-        bizDropDown.style.display = "block";
-    } else {
-        bizDropDown.style.display = "none";
-    }
-}

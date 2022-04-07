@@ -130,7 +130,7 @@ body {
 }
 
 .navtop .rj-nav-wrap a {
-    padding: 0 20px;
+    padding: 0 8px;
     text-decoration: none;
     color: hsl(216, 21%, 28%);
     font-weight: bold;
@@ -208,7 +208,7 @@ a.rj-nav-home {
     background-color:rgb(222,223,222);
     border: 1px solid rgba(85, 85, 85, 0.333);
     border-radius: 4px;
-
+    list-style: circle;
 }
 
 .rj-dropdown-nav-ul li {

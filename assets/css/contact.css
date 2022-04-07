@@ -11,13 +11,14 @@ p {
 header {
     display: grid;
     place-content: center;
-    margin: 1.5rem 0 1.5rem;
+    margin: 1.5rem 0 0.2rem;
 }
 
 h1 {
     letter-spacing: 2px;
     font-weight: 400;
     border: none;
+    color: #fafafa;
 }
 
 .rj-contact-section {
@@ -55,7 +56,7 @@ h1 {
 }
 
 .rj-contact-address a.rj-social-item {
-  color: hsl(214, 6%, 5%);
+  /* color: hsl(214, 6%, 5%); */
   text-decoration: none;
   /* margin-top: 1em; */
   padding: 0.50em 0.25em;
@@ -166,6 +167,7 @@ h2 {
         flex-direction: column;
         justify-content: center;
         margin-bottom: 2rem;
+        width: 100%;
     }
     .contact {
     width: 100%;

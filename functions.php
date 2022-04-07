@@ -145,7 +145,7 @@ echo <<<EOT
                 <a href="about.php" id="home"><img src="assets/svg/navAbout.svg" class="rj-nav-svg"></a>
 
                 
-                <a href="#" class="rj-dropdown-art" onclick="toggleArtNav()"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
+                <a class="rj-dropdown-art" onclick="toggleArtNav()"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
                 <div class="rj-dropdown-nav">
                 <ul class="rj-dropdown-nav-ul">
                 <li><a href="expo.php">Expositions</a></li>
@@ -158,7 +158,7 @@ echo <<<EOT
 
                 <a href="science.php" id="science"><img src="assets/svg/navScience.svg" class="rj-nav-svg"></a>
 
-                <a href="#" id="blog" class="rj-dropdown-biz" onclick="toggleBizNav()"><img src="assets/svg/navBusiness.svg" class="rj-nav-svg"></a>
+                <a id="blog" class="rj-dropdown-biz" onclick="toggleBizNav()"><img src="assets/svg/navBusiness.svg" class="rj-nav-svg"></a>
                 <div class="rj-nav-biz">
                 <ul class="rj-dropdown-nav-ul">
                 <li><a href="forsale.php">Art for sale</a></li>
@@ -187,6 +187,29 @@ function template_footer()
 </p>
 </footer> 
 </div>
+<script>
+
+let artDropDown = document.querySelector('.rj-dropdown-nav');
+let bizDropDown = document.querySelector('.rj-nav-biz')
+
+
+
+function toggleArtNav() {
+    if (artDropDown.style.display == "none") {
+        artDropDown.style.display = "block";
+    } else {
+        artDropDown.style.display = "none";
+    }
+}
+
+function toggleBizNav() {
+    if (bizDropDown.style.display == "none") {
+        bizDropDown.style.display = "block";
+    } else {
+        bizDropDown.style.display = "none";
+    }
+} 
+</script>
         <script src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
