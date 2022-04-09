@@ -167,6 +167,7 @@ background: linear-gradient(
     line-height: 1.4;
 
     font-size: 1.15rem;
+    font-family: inherit;
     white-space: pre-wrap;
     /* text-align: justify; */
     /* Smol Responsive Padding FTW! */
@@ -177,6 +178,7 @@ background: linear-gradient(
     word-break: break-word;
     /* Optional, not supported for all languages */
     hyphens: auto;
+
 }
 
 .blog-image {

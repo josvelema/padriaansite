@@ -107,6 +107,9 @@ function template_header($title)
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <title>$title - Pieter Adriaans</title>
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet" type="text/css">
@@ -122,7 +125,7 @@ function template_header_other()
 EOT;
 }
 
-
+link:
 function template_nav()
 {
 echo <<<EOT
@@ -162,8 +165,7 @@ echo <<<EOT
                 <div class="rj-nav-biz">
                 <ul class="rj-dropdown-nav-ul">
                 <li><a href="forsale.php">Art for sale</a></li>
-                <li><a href="https://www.facebook.com/ManezinhoGrandCafe" target="_blank"><i class="fa-brands fa-facebook"></i>Grand cafe Manezinho</a> </li>
-                <li><a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank"><i class="fa-brands fa-facebook"></i>Atelier de Kaasfabriek</a></li>
+                <li><a href="manezinho.php" target="_blank">Grand cafe Manezinho</a></li>
                 </ul>
                 </div>
 
@@ -197,6 +199,7 @@ let bizDropDown = document.querySelector('.rj-nav-biz')
 function toggleArtNav() {
     if (artDropDown.style.display == "none") {
         artDropDown.style.display = "block";
+        bizDropDown.style.display = "none";
     } else {
         artDropDown.style.display = "none";
     }
@@ -205,6 +208,7 @@ function toggleArtNav() {
 function toggleBizNav() {
     if (bizDropDown.style.display == "none") {
         bizDropDown.style.display = "block";
+        artDropDown.style.display = "none"
     } else {
         bizDropDown.style.display = "none";
     }
