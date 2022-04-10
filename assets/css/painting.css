@@ -42,7 +42,7 @@
 
 @media screen and (max-width: 1000px) {
 
-  img[src*="assets"] {
+  img[src*="assets"]:not(img[src$=".svg"]) {
     width: 100%;
     object-fit: contain;
   }

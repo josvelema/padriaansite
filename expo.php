@@ -10,7 +10,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $category_sql = 'JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category';
 
 
-$stmt = $pdo->prepare('SELECT * FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = 4 WHERE m.approved = 1 AND m.type = "image" ORDER BY m.year DESC ');
+$stmt = $pdo->prepare('SELECT * FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = 13 WHERE m.approved = 1 AND m.type = "image" ORDER BY m.year DESC ');
 $stmt->execute();
 
 $media = $stmt->fetchAll(PDO::FETCH_ASSOC);

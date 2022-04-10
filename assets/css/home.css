@@ -493,6 +493,13 @@ blockquote::after {
     .rj-flex-container-row {
         flex-direction: column;
     }
+
+.rj-nav-svg {
+    width: 122px;
+    height: auto;
+    
+
+}
 }
 
 @media screen and (min-width: 1280px) {
