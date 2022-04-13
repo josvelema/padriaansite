@@ -30,14 +30,10 @@ $media_height = 200;
 		<article class="rj-forsale">
 
 			<p>
-				On this page you find a small selection of works that are for sale.
-				My output is not high, so I do not have much work to sell.
-				The demand is much higher than my production and I have to make choices what to sell to whom.
-				Most works I currently make are on commission and prices are negotiated separately with the buyer.
-				Here my main concern is that everybody on the island of São Jorge should be able to buy my work.
-		
-				For the international market I do not publish prices but as a guideline a small portrait might be € 700,-. Larger works (100 x 150 cm) start at € 3000,-.
-				Prices may vary based on materials and detail of the work. Drawings, watercolors and etchings have a lower price.
+				On this page you find a small selection of works that are for sale. My output is not high, so I do not have much work to sell.
+				The demand is much higher than my production and I have to make choices what to sell to whom. 
+				Most works I currently make are on commission and prices are negotiated separately with the buyer. In principle we can ship works all over the world.
+				If you are interested send an email with the code of the work via the contact page, or to pieter@pieter-adriaans.com.
 			</p>
 			<p>If you are interested send an email with the code of the work via the <a href="contact.php">contact</a> page, or to pieter@pieter-adriaans.com.</p>
 		</article>
