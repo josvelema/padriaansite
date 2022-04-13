@@ -235,7 +235,7 @@ include 'functions.php';
         <br /> The working title of piece could be 'Teasing the violin'. A violin is allowed to improvise freely on a Bach grammar, but only as long as the guitar does not play. As soon as the guitar sounds the violin has to conform to the melodic material of the guitar. The result is quite funny. This is an interesting form of algorithmic anti-improvisation made possible by grammar induction techniques.
       </p>
       <p>
-        <a href="media/audios/computer-music/-music/ict-improvisation4.mp3">ICT Improvisation 4 (2 min. 34 sec.)</a>
+        <a href="media/audios/computer-music/ict-improvisation4.mp3">ICT Improvisation 4 (2 min. 34 sec.)</a>
         <br /> Rule bases for several percussive instruments are filled with material from very fast dance melodies. These instruments are forced to follow the melodic material of the guitar. The setting of the ICT is such that the original melodies are not reproduced but instead a fast random repetition of notes is generated. In this way the guitar is transformed into a percussive instrument. Under each note a random rhythmic pattern is hidden. I imagine that Conlon Nancarrow (1912-1997) would have loved these new possibilities for improvisation.
       </p>
       <p>
@@ -272,8 +272,8 @@ include 'functions.php';
       <p>
         In he past years there has been a revival of the Viola da Terra. Young players like
         <a href="http://www.freewebs.com/violadaterra/apps/blog/">Rafael Carvalho</a> research the old traditional music and create new repertoire. Builders like
-        <a href="/news/details/2012/10/-viola-de-arame-built-by-raimundo-leonardes.html">Raimundo Leonardes </a>and&nbsp;
-        <a href="http://www.cafeportugal.pt/pages/dossier_artigo.aspx?id=5681">Jos&eacute;&nbsp;Serpa</a>
+        <a href="http://acoresapenoveilhas.blogspot.com/2012/08/na-oficina-de-raimundo-leonardes-no-topo.html">Raimundo Leonardes </a>and&nbsp;
+        <a href="http://acoresapenoveilhas.blogspot.com/2013/02/em-casa-de-jose-serpa.html">Jos&eacute;&nbsp;Serpa</a>
         <span>&nbsp;creae a new generation of instruments of high quality often with unusual designs. Here is a fragment of Renato Bettencourt playing solo on modern composition
           <em>"<a href="http://youtu.be/HjiyOzXKhXw">Samba do Porto".</a></em>
         </span>

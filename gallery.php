@@ -120,7 +120,7 @@ $media_height = 200;
 						<?php if (file_exists($m['filepath'])) : ?>
 							<a href="#" style="width:<?= $media_width ?>px;height:<?= $media_height ?>px;">
 								<?php if ($m['type'] == 'image') : ?>
-									<img src="<?= $m['filepath'] ?>" alt="<?= $m['description'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-year="<?= $m['year'] ?>" data-fnr="<?= $m['fnr'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" style="object-fit: contain;">
+									<img src="<?= $m['filepath'] ?>" alt="<?= $m['description'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-year="<?= $m['year'] ?>" data-fnr="<?= $m['fnr'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
 								<?php elseif ($m['type'] == 'video') : ?>
 
 									<?php if (empty($m['thumbnail'])) : ?>
@@ -129,7 +129,7 @@ $media_height = 200;
 											<?= $m['title'] ?>
 										</span>
 									<?php else : ?>
-										<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>">
+										<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
 									<?php endif; ?>
 
 								<?php elseif ($m['type'] == 'audio') : ?>
@@ -140,7 +140,7 @@ $media_height = 200;
 											<?= $m['title'] ?>
 										</span>
 									<?php else : ?>
-										<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>">
+										<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
 									<?php endif; ?>
 
 								<?php endif; ?>

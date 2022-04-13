@@ -1,8 +1,4 @@
 <?php
-header('Expires: Sun, 01 Jan 2014 00:00:00 GMT');
-header('Cache-Control: no-store, no-cache, must-revalidate');
-header('Cache-Control: post-check=0, pre-check=0', FALSE);
-header('Pragma: no-cache');
 include 'functions.php';
 // Connect to MySQL
 $pdo = pdo_connect_mysql();
@@ -43,7 +39,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
       $post_author = $row['post_author'];
       $post_date = $row['post_date'];
       $post_image = $row['post_image'];
-      $post_content = substr($row['post_content'], 0, 250); //! truncated !!
+      $post_content = substr($row['post_content'], 0, 250) . "..."; //! truncated !!
       $post_status = $row['post_status'];
       $post_views = $row['post_views_count'];
     ?>

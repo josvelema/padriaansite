@@ -21,7 +21,7 @@ include 'functions.php';
         <li><a href="#styles" title="My different styles" onclick="show('styles')">My different styles</a></li>
         <li><a href="#brain" title="Painting For the Brain" onclick="show('brain')">Painting For the Brain</a></li>
         <li><a href="#lessons" title="Lessons (English) " onclick="show('lessons')">Lessons (English) </a></li>
-        <li><a href="#aulas title="Aulas (Português) " onclick="show('aulas')">Aulas (Português) </a></li>
+        <li><a href="#aulas title=" Aulas (Português) " onclick=" show('aulas')">Aulas (Português) </a></li>
         <li><a href="#lessen" title="Lessen (Nederlands) " onclick="show('lessen')">Lessen (Nederlands) </a></li>
         <li><a href="#lectures" title="Lectures and presentations" onclick="show('lectures')">Lectures and presentations</a></li>
         <li><a href="#artExpoProjects" title="Art exhibitions and projects" onclick="show('artExpoProjects')">Art exhibitions and projects</a></li>
@@ -38,9 +38,10 @@ include 'functions.php';
         <li><span>&nbsp;</span><span>Exhibition space for permanent collection and ad hoc shows</span></li>
         <li><span>Studio(s)</span></li>
         <li><span>Class/Lecture room(s)</span></li>
-        <li>A recording studio</li>
+
       </ul>
-      <p>In september 2015 we started with painting classes. In 2016 we'll add music lessons and organize a festival. The space is also available for artists in residence and for summer schools.&nbsp;</p>
+      <p>In past years <em>Atelier de Kaas fabriek</em> has been de center of many activities, varying from theatre shows, exhibitions,
+        performances to regular painting classes. The space is also available for artists in residence and for summer schools.</p>
       <div class="rj-painting-kaas-klas"><img src="assets/img/kaasfabriekklas.jpeg" alt="Lessen in Santo Antonio"></div>
     </article>
 
@@ -60,9 +61,10 @@ include 'functions.php';
     <article id="brain" style="display: none">
 
       <h3>Cognitive Realism: Painting for the Brain</h3>
-      <p><a href="http://www.schilderenvoorhetbrein.nl"><strong><img style="float: right;" src="assets/img/omslagadriaans2-2_1.jpg" alt="Omslag Boek Schilderen voor het brein" width="222" height="272" /></strong></a></p>
       <p><strong></strong>The new book&nbsp;<a href="http://www.schilderenvoorhetbrein.nl">'Schilderen voor het brein' (painting for the brain)&nbsp;</a>is published. We are working on an English version.</p>
-      <p><br />Ever since the training in realistic drawing and painting was abandoned in artschools about 40 years ago a tradition of reflection on realistic painting and its techniques, that had its roots in the Renaissance, has almost come to a stand still. Over the years I have spent a large part of my time trying to understand the relation between representation and reality. As a painter I have done hundreds of experiments investigating the way our brains process visual information. I have discovered many things, some ancient but forgotten, others completely new and based on recent insights in mathematics, neuroscience, biology or compluter science. The two basic rules of Cognitive realism are:</p>
+      <p><a href="http://www.schilderenvoorhetbrein.nl"><strong><img style="float: right;margin: 1em;" src="assets/img/omslagadriaans2-2_1.jpg" alt="Omslag Boek Schilderen voor het brein" width="222" height="272" /></strong></a></p>
+      <p><br />Ever since the training in realistic drawing and painting was abandoned in artschools about 40 years ago a tradition of reflection on realistic painting and its techniques, that had its roots in the Renaissance, has almost come to a stand still. Over the years I have spent a large part of my time trying to understand the relation between representation and reality. As a painter I have done hundreds of experiments investigating the way our brains process visual information. I have discovered many things, some ancient but forgotten, others completely new and based on recent insights in mathematics, neuroscience, biology or compluter science. 
+      <br>The two basic rules of Cognitive realism are:</p>
       <ol start="1">
         <li>A painting is a program for the visual machine in our brain.</li>
         <li>Our visual system compresses and expands information, therefore the painter can leave information out.</li>
@@ -78,7 +80,7 @@ include 'functions.php';
       <p><img src="assets/img/constructielijnen.jpg" alt="" width="220" height="165" /></p>
       <h3>Documentation of the lessons</h3>
       <ul>
-        <li><strong style="line-height: 1.6em;"><a title="Tips for making sketches after nature" href="assets/pdfdoc/tips-for-making-sketches-after-nature.pdf/tips-for-making-sketches-after-nature.pdf">Tips for making sketches after nature</a></strong></li>
+        <li><strong style="line-height: 1.6em;"><a title="Tips for making sketches after nature" href="assets/pdfdoc/tips-for-making-sketches-after-nature.pdf">Tips for making sketches after nature</a></strong></li>
         <li><strong style="line-height: 1.6em;"><a href="assets/pdfdoc/rules-for-painting-in-acrylics.pdf">Rules for painting in acrylics</a></strong></li>
         <li><strong><a title="Painting an Azores Whaling Canoe" href="assets/pdfdoc/painting-an-azorean-whaling-canoe---instruction.pdf">Painting an Azorean Whaling Canoe&nbsp;</a></strong></li>
       </ul>
@@ -91,7 +93,7 @@ include 'functions.php';
       <h3>Documenta&ccedil;&atilde;o das li&ccedil;&otilde;es</h3>
       <ul>
         <li><strong style="line-height: 1.6em;"><a title="Dicas para fazer esbo&ccedil;os da natureza." href="assets/pdfdoc/dicas-para-fazer-esbocos-da-natureza.pdf">Dicas para fazer esbo&ccedil;os da natureza.</a></strong></li>
-        <li><strong style="line-height: 1.6em;"><a title="Regras para fazer pinturas em acr&iacute;lico" href="assets/pdfdoc/files/documents/regras-para-fazer-pinturas-em-acrilico.pdf">Regras para fazer pinturas em acr&iacute;lico</a></strong></li>
+        <li><strong style="line-height: 1.6em;"><a title="Regras para fazer pinturas em acr&iacute;lico" href="assets/pdfdoc/documents/regras-para-fazer-pinturas-em-acrilico.pdf">Regras para fazer pinturas em acr&iacute;lico</a></strong></li>
       </ul>
     </article>
 
@@ -119,8 +121,9 @@ include 'functions.php';
         <p>
           <iframe src="https://www.youtube.com/embed/sMqYTBeWEHw" frameborder="0" width="175" height="144"></iframe>
         </p>
+        <hr>
         <p>
-          <img src="assets/img/capture2.jpeg" alt="Pieter speelt gitaar tijdens presentatie" width="150" height="120" style="float:right;">
+          <img src="assets/img/capture2.jpeg" alt="Pieter speelt gitaar tijdens presentatie" width="150" height="120">
           <br>
           <a href="https://www.sg.uu.nl/video/2013/09/schoonheid-berekenen">Lecture on Computation and Beauty:<br />Studium Generale Utrecht (October 2013)</a>
         </p>

@@ -866,9 +866,14 @@ img[src="assets/svg/navHome.svg"] {
         align-items: center;
         justify-content: center;
     }
-    .home .media-list a img {
+    /* .home .media-list a img {
         width: 100%;
-    }
+        object-fit: contain;
+    } */
+
+
+
+
     .home .media-list a:nth-child(3n) {
         margin-right: 15px;
     }
