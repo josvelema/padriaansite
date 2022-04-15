@@ -250,7 +250,7 @@ img[src="assets/svg/navHome.svg"] {
 }
 
 .content p {
-    padding: 25px 0;
+    padding: 0.5em 0 0.2em 0;
     margin: 0;
     color: #fafafa;
 }
@@ -1104,6 +1104,7 @@ a.rj-modal-btn {
     text-shadow: 1px 1px 2px #fafafa;
     
     border: 1px solid rgb(33 22 66 / 0.9);
+    border-radius: 4px;
     box-shadow: 1px 2px 3px rgb(0 0 0 / 55%);
     margin-bottom: 0.7rem;
 }

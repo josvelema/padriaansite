@@ -7,7 +7,7 @@ main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding: 5vh clamp(1rem, 5vw, 3rem) 1rem;
+    padding: 2vh clamp(1rem, 5vw, 3rem) 1rem;
     /* font-family: system-ui, sans-serif; */
     line-height: 1.5rem;
     color: #f0f0f0;

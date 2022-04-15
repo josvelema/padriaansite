@@ -152,7 +152,7 @@ echo <<<EOT
                 <div class="rj-dropdown-nav">
                 <ul class="rj-dropdown-nav-ul">
                 <li><a href="gallery.php">Works 1963 - present</a></li>
-                <li><a href="music.php">Music</a></li>
+                <li><a href="music.php">On Music</a></li>
                 <li><a href="painting.php">On Painting</a></li>
 
                 </ul>
@@ -164,7 +164,7 @@ echo <<<EOT
                 <div class="rj-nav-biz">
                 <ul class="rj-dropdown-nav-ul">
                 <li><a href="forsale.php">Art for sale</a></li>
-                <li><a href="manezinho.php" target="_blank">Grand cafe Manezinho</a></li>
+                <li><a href="manezinho.php">Grand cafe Manezinho</a></li>
                 </ul>
                 </div>
 
