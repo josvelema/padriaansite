@@ -151,10 +151,9 @@ echo <<<EOT
                 <a class="rj-dropdown-art" onclick="toggleArtNav()"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
                 <div class="rj-dropdown-nav">
                 <ul class="rj-dropdown-nav-ul">
-                <li><a href="expo.php">Expositions</a></li>
-                <li><a href="gallery.php">Works</a></li>
+                <li><a href="gallery.php">Works 1963 - present</a></li>
                 <li><a href="music.php">Music</a></li>
-                <li><a href="painting.php">Painting</a></li>
+                <li><a href="painting.php">On Painting</a></li>
 
                 </ul>
                 </div>

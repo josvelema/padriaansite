@@ -1,4 +1,4 @@
-Redirect permanent "/science" "/"
+Redirect permanent "/science/" "/"
 Redirect permanent "/music" "/"
 Redirect permanent "/contact.html" "/"
 Redirect permanent "/on-painting" "/"

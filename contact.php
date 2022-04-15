@@ -21,7 +21,7 @@ if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
   // If there are no errors
   if (!$responses) {
     // Where to send the mail? It should be your email address
-    $to      = 'pieter@pieter-adriaans.com';
+    $to      = 'info@codette.net';
     // Send mail from which email address?
     $from = 'pieter@pieteradriaans.codette.net';
     // Mail subject

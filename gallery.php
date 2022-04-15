@@ -68,7 +68,9 @@ $media_width = 300;
 $media_height = 200;
 ?>
 <?= template_header('Gallery') ?>
+<?= template_header_other() ?>
 <?= template_nav() ?>
+
 
 <main class="rj-black-bg-main">
 	<div class="content home">

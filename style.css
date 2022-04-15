@@ -14,9 +14,6 @@
     font-size: inherit;
 } */
 
-.rj-black-bg-main {
-    background: linear-gradient(180deg,rgba(0, 0, 0, 0.85),95%, transparent);
-}
 
 #scrolltop {
     position: fixed;
@@ -1107,4 +1104,12 @@ a.rj-modal-btn:hover {
 
 a.rj-modal-btn {
     transform: translateY(-3px);
+}
+
+.rj-black-bg-main {
+    background: linear-gradient(180deg,rgba(0, 0, 0, 0.85),95%, transparent);
+}
+
+.rj-black-bg-main div p > a {
+    color: #fafafa;
 }
