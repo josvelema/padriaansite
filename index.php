@@ -27,7 +27,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </header>
   <article class="rj-cta-main">
     <h3>
-      Now with a data base of over 1300 images, spanning almost 60 years!
+      Now with a database of over 1300 images, spanning almost 60 years!
       <br><a href="gallery.php">Click here to get access.</a>
     </h3>
   </article>

@@ -76,7 +76,7 @@ $media_height = 200;
 	<div class="content home">
 
 		<h2>Gallery</h2>
-		<p> Follow Pieter’s development as a visual artist over time and place. Use the "view all’ button to get access to the whole data base and “category" field to makes selections. New categories are under construction. </p>
+		<p> Follow Pieter’s development as a visual artist over time and place. Use the "view all’ button to get access to the whole data base and “category" field to make selections. New categories are under construction. </p>
 		<hr>
 
 		<?php
