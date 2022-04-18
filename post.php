@@ -51,7 +51,7 @@ if (isset($_GET['p_id'])) {
     <section class="rj-post-section">
       <article class="rj-blog-card rj-blog-card-post">
         <header class="rj-blog-header">
-          <h1><?php echo $post_title; ?></h1>
+          <h1 class="rj-post-h1"><?php echo $post_title; ?></h1>
           <p>by : <?php echo $post_author ?> - <em><?php echo $post_date . "</em> - <small>" . $post_views; ?> views</small></p>
         </header>
         <div class="rj-blog-card-content rj-post-column-reverse">
@@ -61,7 +61,7 @@ if (isset($_GET['p_id'])) {
           </div>
 
           <?php echo "<pre>" . trim($post_content) . "</pre>"; ?>
-          <?php if ($post_url !== null) {
+          <?php if ($post_url != null) {
             echo "<p><a href='" . $post_url . "' target='" . "_blank'>"
               . $post_url . "</a></p>";
           }
@@ -129,20 +129,20 @@ if (isset($_GET['p_id'])) {
       </div>
       <form action="#" method="POST" role="form" class="rj-comment-form">
 
-        <div class="">
+        <div class="rj-comment-form-group">
           <label for="Author">Author</label>
           <input type="text" name="comment_author" class="form-control" name="comment_author">
         </div>
 
-        <div class="">
+        <div class="rj-comment-form-group">
           <label for="Author">Email</label>
           <input type="email" name="comment_email" class="form-control" name="comment_email">
         </div>
 
-        <div class="">
+        <div class="rj-comment-form-group">
           <label for="comment">Your Comment</label>
           <textarea name="comment_content" class="form-control" rows="3"></textarea>
-          <button type="submit" name="create_comment" class="rj-btn-light">Submit</button>
+          <button type="submit" name="create_comment" class="rj-btn-light rj-comment-button">Submit</button>
         </div>
       </form>
       </div>

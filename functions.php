@@ -146,8 +146,6 @@ echo <<<EOT
                 <div class="rj-nav-wrap">
                 <a href="index.php" id="home"><img src="assets/svg/navHome.svg" class="rj-nav-svg"></a>
                 <a href="about.php" id="home"><img src="assets/svg/navAbout.svg" class="rj-nav-svg"></a>
-
-                
                 <a class="rj-dropdown-art" onclick="toggleArtNav()"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
                 <div class="rj-dropdown-nav">
                 <ul class="rj-dropdown-nav-ul">

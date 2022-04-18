@@ -592,6 +592,7 @@ img[src="assets/svg/navHome.svg"] {
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.125);
     padding: 15px;
+    margin: 0;
     transition: opacity 0.75s;
 }
 .home .media-list .description::after {
@@ -957,7 +958,13 @@ img[src="assets/svg/navHome.svg"] {
     transition: all 0.2s linear;
     cursor: pointer;
     border: none;
-    background: #fff;
+    background: #fafafa;
+    color: rgba(0, 0, 0, 0.85);
+}
+.rj-prev:hover,
+.rj-next:hover {
+    color: #000;
+    
 }
 
 .rj-prev > svg {

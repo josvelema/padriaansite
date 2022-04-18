@@ -55,10 +55,12 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
 .rj-post-section {
     display: grid;
-    place-items: center;
+    place-content: center;
+    gap: 1em;
 }
 
-.rj-blog-card {
+.rj-blog-card,
+.rj-comment-form-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -66,7 +68,20 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     margin-bottom: 1em;
     color: #000;
     /* width: 80%; */
-    background: white;
+    background: #ece9e6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to left,
+        #fafafa,
+        hsla(30, 14%, 91%, 0.80));
+    
+    ; /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to left,
+        #fafafa,
+        hsla(30, 14%, 91%, 0.80)
+    )
+    ; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     border-radius: 10px;
     transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
@@ -83,9 +98,9 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     margin-bottom: 1rem;
 }
 
-.rj-blog-card > * + * {
+/* .rj-blog-card > * + * {
     margin-top: 1rem;
-}
+} */
 
 .rj-blog-card-header {
     min-height: fit-content;
@@ -96,7 +111,7 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     margin-top: 0.3em;
     margin-bottom: 0.15em;
     padding: 0.25em;
-    border-bottom: 1px solid gray;
+    
     font-size: 0.9rem;
     word-break: break-word;
     /* Optional, not supported for all languages */
@@ -108,10 +123,13 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     margin-top: 0.3em;
     margin-bottom: 0.15em;
     padding: 0.25em;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #3332;
     word-break: break-word;
     /* Optional, not supported for all languages */
     hyphens: auto;
+    letter-spacing: 1px;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px #2229;
 }
 
 .rj-card-title::first-letter {
@@ -123,9 +141,9 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+    align-items: center;
     justify-content: space-around;
-    border-bottom: 1px solid gray;
+    
 }
 
 .rj-blog-card-content > p:first-of-type {
@@ -160,6 +178,12 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     background: #fafafa;
 }
 
+.rj-blog-card-content > span {
+    font-size: 0.9rem;
+    color: #4449;
+    font-style: italic;
+    text-align: center;
+}
 .rj-blog-card pre,
 .rj-blog-card-post pre {
     line-height: 1.4;
@@ -171,19 +195,37 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     /* Smol Responsive Padding FTW! */
     padding: clamp(0.55rem, 3%, 2rem);
     /* Provide a max-width and prevent overflow */
-    width: min(80ch, 90%);
+    /* width: min(80ch, 90%); */
     /* Help prevent overflow of long words/names/URLs */
     word-break: break-word;
     /* Optional, not supported for all languages */
     hyphens: auto;
+    background: #ECE9E6;
+    border: 2px inset #ccc6;
+    border-radius: 4px;
+    box-shadow: 1px 0 12px -3px #6665;
+    align-self: stretch;
+ 
 }
 
+
+
+
+
 .blog-image {
-    width: 100%;
+    /* width: 100%;
     margin-bottom: 0.75em;
+    box-shadow: 2px 3px 6px -1px rgb(22 44 66 / 80%);
+    border: 1px solid rgb(22 44 66 / 66%); */
+    width: auto;
+    height: 300px;
+    object-fit: contain;
+    margin: 0.1em auto 0.5em auto;
     box-shadow: 2px 3px 6px -1px rgb(22 44 66 / 80%);
     border: 1px solid rgb(22 44 66 / 66%);
 }
+
+
 .rj-blog-card > img {
     /* Fallback for `aspect-ratio` of defining
   a height */
@@ -204,7 +246,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 .rj-btn-light:link,
 .rj-btn-light:visited,
 .rj-button,
-.rj-comment-button a {
+.rj-comment-button a,
+.rj-comment-form-group button {
     text-transform: uppercase;
     text-decoration: none;
     color: rgb(27, 27, 27);
@@ -221,7 +264,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
 .rj-btn-light:hover,
 .rj-comment-button a:hover,
-.rj-button:hover {
+.rj-button:hover,
+.rj-comment-form-group button:hover  {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(27, 27, 27, 0.5);
 }
@@ -232,13 +276,15 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
 .rj-btn-light:active,
 .rj-comment-button a:active,
-.rj-button:active {
+.rj-button:active,
+.rj-comment-form-group button:active  {
     transform: translateY(-3px);
 }
 
 .rj-btn-light::after,
 .rj-comment-button a::after,
-.rj-button::after {
+.rj-button::after,
+.rj-comment-form-group button::after  {
     content: "";
     display: inline-block;
     height: 100%;
@@ -253,7 +299,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
 .rj-btn-light:hover::after,
 .rj-comment-button a:hover::after,
-.rj-button:hover::after {
+.rj-button:hover::after ,
+.rj-comment-form-group button:hover::after {
     background-color: rgb(157, 255, 0);
     transform: scaleX(1.4) scaleY(1.5);
     opacity: 0;
@@ -279,7 +326,15 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 .rj-post-comment-header {
     margin-top: 0.5em;
     padding: 0.25em;
-    border-bottom: 1px solid black;
+    
+}
+
+.rj-post-h1,
+.rj-post-comment-header h3,
+.rj-post-comment-header h4  {
+    letter-spacing: 1px;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px #2229;
 }
 
 .rj-post-content {
@@ -290,19 +345,24 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 .rj-post-content > p {
     width: 80ch;
 }
-/* 
-.rj-post-image > img {
-width: 200px;
-} */
 
-.rj-post-image > img {
-    /* Fallback for `aspect-ratio` of defining
-a height */
-    /* height: 18vh; */
+.rj-post-image {
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 60em) {
+    .rj-post-image {
+        width: 50%;
+    }
+}
+
+/* .rj-post-image > img {
+    
+    height: 18vh;
     object-fit: cover;
     width: 200px;
-    height: 100%;
-}
+    height: auto;
+} */
 
 /* When supported, use `aspect-ratio` */
 @supports (aspect-ratio: 1) {
@@ -335,23 +395,7 @@ a height */
 
 .rj-comment-form-wrapper {
     display: none;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-
-    border-radius: 7px;
-    /* background: #d9d9d8; */
-    /* box-shadow: inset -5px -5px 10px #b8b8b8, inset 5px 5px 10px #fafaf8; */
-    border-radius: 0.5rem;
-    color: #000;
-    width: 80%;
-    background: white;
-    border-radius: 10px;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
-        0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-    margin-bottom: 1rem;
-    padding: 1rem;
 }
 
 .rj-comment-form {
@@ -362,17 +406,39 @@ a height */
     /* background: #d9d9d8; */
     /* box-shadow: inset -5px -5px 10px #b8b8b8, inset 5px 5px 10px #fafaf8; */
     border-radius: 0.5rem;
-    color: #000;
-    width: 80%;
+    color: rgba(0, 0, 0, 0.85);
+    width: 90%;
     padding: 1em;
-    background: white;
+    background: #ECE9E6;
     border-radius: 10px;
     transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
         0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
     margin-bottom: 1em;
 }
+.rj-comment-form-group {
+    letter-spacing: 1px;
+}
+.rj-comment-form-group label {
+    margin-bottom: 2px;
+}
+.rj-comment-form-group input ,
+.rj-comment-form-group textarea {
+    color: rgba(0, 0, 0, 0.85);
+    background: #fafafa;
+    display: inline-flex;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border: 1px solid hsl(30, 14%, 80%);
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
+}
+
+
+x
 .rj-form-header {
     margin-bottom: 0.5em;
     border-bottom: none;
@@ -512,7 +578,6 @@ a height */
     .rj-about-article {
         width: 90vw;
     }
-   
 }
 
 @media screen and (max-width: 767px) {
@@ -523,10 +588,8 @@ a height */
 
 @media screen and (min-width: 1000px) {
     .rj-blog-card.rj-blog-card-post,
-    .rj-blog-card,
+    
     .rj-comment-form-wrapper {
-        /* width: 50vw; */
+        width: 50vw;
     }
 }
-
-
