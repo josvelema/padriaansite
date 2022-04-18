@@ -201,7 +201,7 @@ if (media_popup) {
                             }</h3><small style='margin-top:0.25em'>made in : ${
                         media_meta.dataset.year
                     } - nr. ${media_meta.dataset.fnr} </small>
-							<p>${media_meta.alt}</p>
+							<p class="rj-popup-p">${media_meta.alt}</p>
                             <div class="prevnext-small-media">
                             <a href="#" class="prev-small-media"><i class="fas fa-angle-left fa-4x"></i></a>
                         <a href="#" class="next-small-media"><i class="fas fa-angle-right fa-4x"></i></a>
