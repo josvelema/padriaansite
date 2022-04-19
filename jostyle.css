@@ -217,8 +217,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     margin-bottom: 0.75em;
     box-shadow: 2px 3px 6px -1px rgb(22 44 66 / 80%);
     border: 1px solid rgb(22 44 66 / 66%); */
-    width: auto;
-    height: 300px;
+    width: 100%;
+    /* height: 300px; */
     object-fit: contain;
     margin: 0.1em auto 0.5em auto;
     box-shadow: 2px 3px 6px -1px rgb(22 44 66 / 80%);
@@ -227,12 +227,13 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
 
 .rj-blog-card > img {
-    /* Fallback for `aspect-ratio` of defining
-  a height */
     /* height: 18vh; */
     object-fit: cover;
-    width: 100%;
-    height: 200px;
+    width: 90%;
+    /* height: 200px; */
+    box-shadow: 2px 3px 6px -1px rgb(22 44 66 / 80%);
+    border: 1px solid rgb(22 44 66 / 66%);
+    margin: 0.5em auto;
 }
 
 /* When supported, use `aspect-ratio` */
@@ -350,11 +351,11 @@ background: linear-gradient(to bottom, #434343, #000000);  */
     margin: 0 auto;
 }
 
-@media screen and (min-width: 60em) {
+/* @media screen and (min-width: 60em) {
     .rj-post-image {
         width: 50%;
     }
-}
+} */
 
 /* .rj-post-image > img {
     
