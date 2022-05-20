@@ -90,7 +90,7 @@ $media_height = 200;
 		<?php endif; ?>
 
 		<div class="con">
-			<form action="" method="post"><input type="submit" value="View All" name="viewAll"></form>
+			<form action="" method="post"><input type="submit" value="View All" name="viewAll" class="rj-button"></form>
 			<form action="" method="get">
 				<label for="category">Category:</label>
 				<select id="category" name="category" onchange="this.form.submit()">

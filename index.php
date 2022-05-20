@@ -83,7 +83,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </section>
       <div class="rj-about-logo-container">
         <a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank"><img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo" class="rj-kaas-logo"></a>
-        <a href="https://www.facebook.com/ManezinhoGrandCafe" target="_blank"><img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
+        <a href="https://www.facebook.com/Art-Restaurant-Manezinho-100617402655398" target="_blank"><img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
       </div>
 
 

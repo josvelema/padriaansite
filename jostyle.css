@@ -41,7 +41,7 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
 .blog-css-grid {
     border-radius: 0.5rem;
-    padding: 0.5em;
+    padding: 0.25em;
     --min: 50ch;
     --gap: 1.5em;
     display: grid;

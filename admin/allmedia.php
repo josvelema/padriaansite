@@ -31,9 +31,14 @@ if (isset($_POST['viewCat'])) {
     $stmt->execute();
     $catTitle = $stmt->fetchColumn();
 
-    $stmt = $pdo->prepare('SELECT * FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? ORDER BY m.id DESC ');
+    $stmt = $pdo->prepare('SELECT id FROM categories WHERE title = ? ');
+    $stmt->bindParam(1, $catTitle, PDO::PARAM_INT);
+    $stmt->execute();
+    $catId = $stmt->fetchColumn();
+
+    $stmt = $pdo->prepare('SELECT * FROM media m JOIN media_categories mc ON mc.media_id = m.id WHERE mc.category_id = ? ORDER BY m.id DESC ');
     // JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category' : 
-    $stmt->bindParam(1, $_POST['viewCat'], PDO::PARAM_INT);
+    $stmt->bindParam(1, $catId, PDO::PARAM_INT);
     $stmt->execute();
     // var_dump("<pre>",$stmt,"</pre>");
     $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
