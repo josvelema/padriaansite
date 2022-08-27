@@ -1,10 +1,10 @@
 <?php
-include_once 'config.php';
+// include_once 'config.php';
 // Connect to MySQL database function
 function pdo_connect_mysql()
 {
     try {
-        $pdo = new PDO('mysql:host=' . db_host . ';dbname=' . db_name . ';charset=utf8', db_user, db_pass);
+        $pdo = new PDO('mysql:host=localhost;dbname=avgtwo;charset=utf8', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $exception) {
         // If there is an error with the connection, stop the script and display the error.

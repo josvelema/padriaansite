@@ -150,7 +150,8 @@ const media_preview = (file) => {
         if (file.type.toLowerCase().includes("image")) {
             document.querySelector(
                 "#preview"
-            ).innerHTML = `<img src="${reader.result}" alt="preview" style="max-height:300px;max-width:100%;">`;
+            ).innerHTML = `<img src="${reader.result}" alt="preview" >`;
+            //! edited : inline style max-height:300px;max-width:100%;
         }
         if (file.type.toLowerCase().includes("audio")) {
             document.querySelector(
@@ -222,15 +223,33 @@ if (media_popup) {
 					`;
                     media_popup.style.display = "flex";
                     // Prevent portrait images from exceeding the window
-                    let height =
-                        media_popup.querySelector("img").getBoundingClientRect()
-                            .top -
-                        media_popup
-                            .querySelector(".con")
-                            .getBoundingClientRect().top;
-                    media_popup.querySelector(
-                        "img"
-                    ).style.maxHeight = `calc(100vh - ${height + 150}px)`;
+
+                    window.addEventListener('resize', function(e) {
+
+                        if(screen.height > screen.width) {
+                            let height =
+                            media_popup.querySelector("img").getBoundingClientRect()
+                                .top -
+                            media_popup
+                                .querySelector(".con")
+                                .getBoundingClientRect().top;
+                        media_popup.querySelector(
+                            "img"
+                        ).style.maxHeight = `calc(100vh - ${height + 150}px)`;
+    
+                        }else {
+                            console.log("jow");
+
+                            media_popup.querySelector(
+                                "img"
+                            ).style.maxHeight = `unset`;
+                            let popupCon = document.querySelector(".media-popup .con");
+
+                            popupCon.style="overflow-y: scroll";
+                        }
+                    })
+
+
                     // Execute the media_mext_prev function
                     media_next_prev(media_meta);
                     // Execute the media_like_dislike function
