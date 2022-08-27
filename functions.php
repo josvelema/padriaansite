@@ -1,6 +1,8 @@
 <?php
 // include_once 'config.php';
-// Connect to MySQL database function
+
+
+// igore this comment
 function pdo_connect_mysql()
 {
     try {
