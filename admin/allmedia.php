@@ -23,29 +23,55 @@ if (isset($_GET['approve'])) {
     exit;
 }
 // SQL query that will retrieve all the media from the database ordered by the ID column
+//cookie for remembering categories
 
 if (isset($_POST['viewCat'])) {
     // if ($_POST['viewCat'] !== 0) {
-    $stmt = $pdo->prepare('SELECT title FROM categories WHERE id = ? ');
-    $stmt->bindParam(1, $_POST['viewCat'], PDO::PARAM_INT);
-    $stmt->execute();
-    $catTitle = $stmt->fetchColumn();
 
-    $stmt = $pdo->prepare('SELECT * FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? ORDER BY m.id DESC ');
-    // JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category' : 
+    setcookie("viewing_cat" ,  $_POST['viewCat'] , time() + 86400);
+    
+    $stmt = $pdo->prepare('SELECT * FROM categories WHERE id = ? ');
     $stmt->bindParam(1, $_POST['viewCat'], PDO::PARAM_INT);
     $stmt->execute();
-    // var_dump("<pre>",$stmt,"</pre>");
+    $viewCat = $stmt->fetch(PDO::FETCH_ASSOC);
+    $catTitle =$viewCat['title'];
+
+    $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? WHERE m.type = "image" ORDER BY m.id DESC ');
+
+    $stmt->bindParam(1, $_POST['viewCat'], PDO::PARAM_INT);
+    $stmt->execute();
+    
     $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $countMedia = $stmt->rowCount();
-    // }
+
 } else {
+    setcookie("viewing_cat" , 0 , time() + 86400);
 
     $stmt = $pdo->prepare('SELECT * FROM media ORDER BY year,fnr DESC');
     $stmt->execute();
     $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $countMedia = $stmt->rowCount();
 }
+
+if (isset($_COOKIE['viewing_cat'])) {
+    if($_COOKIE['viewing_cat'] > 0){
+        $stmt = $pdo->prepare('SELECT * FROM categories WHERE id = ? ');
+    $stmt->bindParam(1, $_COOKIE['viewing_cat'], PDO::PARAM_INT);
+    $stmt->execute();
+    $viewCat = $stmt->fetch(PDO::FETCH_ASSOC);
+    $catTitle =$viewCat['title'];
+
+    $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? WHERE m.type = "image" ORDER BY m.id DESC ');
+
+    $stmt->bindParam(1, $_COOKIE['viewing_cat'], PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $countMedia = $stmt->rowCount();
+    }
+     
+}
+
 
 ?>
 
@@ -54,9 +80,10 @@ if (isset($_POST['viewCat'])) {
 
 <div class="links">
     <a href="media.php">Create Media</a>
+    
 </div>
 <div class="rj-form-admin">
-    <form action="" method='post'>
+    <form action="allmedia.php" method='post'>
         <?php
         $stmt = $pdo->prepare('SELECT * FROM categories ORDER BY id DESC');
         $stmt->execute();

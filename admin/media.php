@@ -74,9 +74,15 @@ if (isset($_GET['id'])) {
     $page = 'Edit';
     if (isset($_POST['submit'])) {
         //todo Update the media
-        $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, uploaded_date = ?, type = ?, thumbnail = ?, approved = ? WHERE id = ?');
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, date('Y-m-d H:i:s', strtotime($_POST['uploaded_date'])), $_POST['type'], $thumbnail_path, $_POST['approved'], $_GET['id']]);
+        $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?, thumbnail = ?, approved = ? WHERE id = ?');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved'], $_GET['id']]);
         addCategories($pdo, $_GET['id']);
+        
+        if (isset($_COOKIE['viewing_cat'])) {
+            $viewing_cat = $_COOKIE['viewing_cat'];
+        } else {
+            $viewing_cat = 0;
+        }
         echo '
         <label for="rj-modal" class="rj-modal-background"></label>
         <div class="rj-modal">
@@ -90,7 +96,7 @@ if (isset($_GET['id'])) {
             <a href="../' . $media_path . '" target="_blank" class="rj-modal-btn">Preview media</a>
             </p>
             <p>
-            <a href="allmedia.php" class="rj-modal-btn">Go back to media page</a>
+            <a href="allmedia.php?viewCat=' . $viewing_cat . '" class="rj-modal-btn">Go back to media page</a>
             </p>
             <p>
             <a href="#" onclick="closeModal()" class="rj-modal-btn">Close and stay on this page</a>
@@ -111,8 +117,8 @@ if (isset($_GET['id'])) {
     // Create new media
     $page = 'Create';
     if (isset($_POST['submit'])) {
-        $stmt = $pdo->prepare('INSERT INTO media (title,description,year,fnr,filepath,uploaded_date,type,thumbnail,approved) VALUES (?,?,?,?,?,?,?,?,?)');
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, date('Y-m-d H:i:s', strtotime($_POST['uploaded_date'])), $_POST['type'], $thumbnail_path, $_POST['approved']]);
+        $stmt = $pdo->prepare('INSERT INTO media (title,description,year,fnr,filepath,type,thumbnail,approved) VALUES (?,?,?,?,?,?,?,?)');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved']]);
         $title = str_replace(" ","-",$_POST['title']);
         $media_id = $pdo->lastInsertId();
         // . "-" . $_POST['year'] . "-" . $_POST['fnr'] . "-" . $title;
@@ -159,8 +165,8 @@ if (isset($_GET['id'])) {
         <label for="description">Description</label>
         <textarea id="description" name="description" placeholder="Description ..."><?= htmlspecialchars($media['description'], ENT_QUOTES) ?></textarea>
 
-        <label for="uploaded_date">Uploaded Date</label>
-        <input id="uploaded_date" type="datetime-local" name="uploaded_date" value="<?= date('Y-m-d\TH:i:s', strtotime($media['uploaded_date'])) ?>" required>
+        <!-- <label for="uploaded_date">Uploaded Date</label>
+        <input id="uploaded_date" type="datetime-local" name="uploaded_date" value="<?= date('Y-m-d\TH:i:s', strtotime($media['uploaded_date'])) ?>" required> -->
 
         <label for="year">Year of production</label>
         <input id="year" type="number" name="year" value="<?= $media['year'] ?>" min=1900 max=2058>
