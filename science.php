@@ -12,7 +12,7 @@ include 'functions.php';
     <!-- <div class="rj-science-img">
       </div> -->
   </header>
-  <section>
+  <section class="rj-science-section">
 
     <aside class="rj-main-menu">
       <h3>Menu</h3>

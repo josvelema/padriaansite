@@ -34,7 +34,7 @@ header {
     place-items: center;
 }
 
-section {
+.rj-science-section {
     margin-top: var(--layout-spacing);
     display: grid;
     grid-template-columns: fit-content(30ch) minmax(min(50vw, 30ch), 1fr);

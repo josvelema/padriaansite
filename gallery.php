@@ -73,7 +73,7 @@ $media_height = 200;
 
 
 <main class="rj-black-bg-main">
-	<div class="content home">
+	<div class="content home gallery">
 
 		<h2>Gallery</h2>
 		<p> Follow Pieter’s development as a visual artist over time and place. Use the "view all’ button to get access to the whole data base and “category" field to make selections. New categories are under construction. </p>
@@ -117,45 +117,57 @@ $media_height = 200;
 				</select>
 			</form>
 		</div>
-		<article class="rj-gallery">
+		<section class="rj-gallery">
 			<div class="rj-container-gallery">
 
 				<div class="media-list">
 					<?php foreach ($media as $m) : ?>
 						<?php if (file_exists($m['filepath'])) : ?>
-							<a href="#" style="width:<?= $media_width ?>px;height:<?= $media_height ?>px;">
-								<?php if ($m['type'] == 'image') : ?>
-									<img src="<?= $m['filepath'] ?>" alt="<?= $m['description'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-year="<?= $m['year'] ?>" data-fnr="<?= $m['fnr'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
-								<?php elseif ($m['type'] == 'video') : ?>
-
-									<?php if (empty($m['thumbnail'])) : ?>
-										<span class="placeholder" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>">
-											<i class="fas fa-film fa-4x"></i>
-											<?= $m['title'] ?>
-										</span>
-									<?php else : ?>
-										<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
+							<article class="gallery-card">
+							<div class="thumb">
+								<a href="#" title="<?= $m['title'] ?>">
+									<?php if ($m['type'] == 'image') : ?>
+										<img src="<?= $m['filepath'] ?>" alt="<?= $m['description'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-year="<?= $m['year'] ?>" data-fnr="<?= $m['fnr'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
+									<?php elseif ($m['type'] == 'video') : ?>
+										<?php if (empty($m['thumbnail'])) : ?>
+											<span class="placeholder" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>">
+												<i class="fas fa-film fa-4x"></i>
+												<?= $m['title'] ?>
+											</span>
+										<?php else : ?>
+											<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
+										<?php endif; ?>
+									<?php elseif ($m['type'] == 'audio') : ?>
+										<?php if (empty($m['thumbnail'])) : ?>
+											<span class="placeholder" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>">
+												<i class="fas fa-music fa-4x"></i>
+												<?= $m['title'] ?>
+											</span>
+										<?php else : ?>
+											<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
+										<?php endif; ?>
 									<?php endif; ?>
+									<span class="description"><?= $m['title'] ?></span>
+								</a>
+							</div>
+							<!-- <img src="<?= $m['filepath'] ?>" alt="<?= $m['description'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-year="<?= $m['year'] ?>" data-fnr="<?= $m['fnr'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img"> -->
+							<div class="gallery-card__content">
+								 <h3><?= $m['title'] ?></h3>
+								 <p><span><?= $m['year'] ?> - <?= $m['fnr'] ?></span></p>
+								 <div class="post-content-wrapper <?= (strlen($m['description']) > 300) ? "card-scrollbar" : "" ?> ">
+								 <pre>
+									<?= $m['description'] ?>
+									</pre>
+                </div>
 
-								<?php elseif ($m['type'] == 'audio') : ?>
-
-									<?php if (empty($m['thumbnail'])) : ?>
-										<span class="placeholder" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>">
-											<i class="fas fa-music fa-4x"></i>
-											<?= $m['title'] ?>
-										</span>
-									<?php else : ?>
-										<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
-									<?php endif; ?>
-
-								<?php endif; ?>
-								<span class="description"><?= $m['title'] ?></span>
-							</a>
+								<p>Audio | Video</p>
+							</div>
+							</article>
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</div>
 			</div>
-		</article>
+		</section>
 
 		<div class="pagination">
 			<?php if (!$viewingAll) {

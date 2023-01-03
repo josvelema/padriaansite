@@ -953,9 +953,7 @@ img[src="assets/svg/navHome.svg"] {
     /* border: 1px solid #fafafa; */
 }
 
-.rj-gallery section {
-    display: unset;
-}
+/* From cssbuttons.io by @Jedi-hongbin */
 
 .rj-btn-test {
     display: flex;

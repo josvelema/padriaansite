@@ -207,7 +207,7 @@ if (media_popup) {
                             <a href="#" class="prev-small-media"><i class="fas fa-angle-left fa-4x"></i></a>
                         <a href="#" class="next-small-media"><i class="fas fa-angle-right fa-4x"></i></a>
                             </div>
-							<img src="${img.src}" width="${img.width}" height="${img.height}" alt="">
+							<div class="rj-popup-img-wrap"><img src="${img.src}" alt=""></div>
 							<div class="thumbs-up-down">
 								<a href="#" class="thumbs-up${
                                     media_like_dislike_status == "liked"
