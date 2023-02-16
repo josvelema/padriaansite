@@ -64,7 +64,7 @@ const media_next_prev = (media_meta) => {
         // Determine the previous element (media)
         let prev_ele = document.querySelector(
             '[data-id="' + media_meta.dataset.id + '"]'
-        ).closest('.rj-gallery-card').previousElementSibling.querySelector(".card-body .tab a")
+        ).closest('.rj-gallery-card').previousElementSibling.querySelector(".card-body .tab .popup-selecter")
         // If the prev element exists, click it
         if (prev_ele) prev_ele.click();
     };
@@ -74,7 +74,7 @@ const media_next_prev = (media_meta) => {
         // Determine the previous element (media)
         let prev_ele = document.querySelector(
             '[data-id="' + media_meta.dataset.id + '"]'
-        ).closest('.rj-gallery-card').previousElementSibling.querySelector(".card-body .tab a")
+        ).closest('.rj-gallery-card').previousElementSibling.querySelector(".card-body .tab .popup-selecter")
         // If the prev element exists, click it
         if (prev_ele) prev_ele.click();
     };
@@ -86,7 +86,7 @@ const media_next_prev = (media_meta) => {
 
         let next_ele = document.querySelector(
         '[data-id="' + media_meta.dataset.id + '"]'
-    ).closest('.rj-gallery-card').nextElementSibling.querySelector(".card-body .tab a")
+    ).closest('.rj-gallery-card').nextElementSibling.querySelector(".card-body .tab .popup-selecter")
         // If the next element exists, click it
         if (next_ele) next_ele.click();
     };
@@ -96,7 +96,7 @@ const media_next_prev = (media_meta) => {
         // Determine the next element (media)
         let next_ele = document.querySelector(
             '[data-id="' + media_meta.dataset.id + '"]'
-        ).closest('.rj-gallery-card').nextElementSibling.querySelector(".card-body .tab a")
+        ).closest('.rj-gallery-card').nextElementSibling.querySelector(".card-body .tab .popup-selecter")
         // If the next element exists, click it
         if (next_ele) next_ele.click();
     };
@@ -168,143 +168,293 @@ const media_preview = (file) => {
     reader.readAsDataURL(file);
 };
 // If the media popup element exists...
-if (media_popup) {
 
+// if (media_popup) {
+// console.log("popup exists")
     
     
     // Iterate the images and create the onclick events
-    document.querySelectorAll(".card-footer .popup-button[data-active-tab='image']").forEach((media_link) => {
+    // document.querySelectorAll(".card-footer .popup-button[data-active-tab='image']").forEach((media_link) => {
+    //     console.log(media_link);
+    //     // If the user clicks the media
+    //     media_link.onclick = (e) => {
+    //         e.preventDefault();
+    //         console.log("iets clicked");
+    //         // Retrieve the meta data
+    //         let media_meta = media_link.closest(".card").querySelector(".card-body .gallery-img")
+    //         // Retrieve the like/dislike status for the media
+    //         let media_like_dislike_status = getCookieByName(
+    //             "like_dislike_" + media_meta.dataset.id
+    //         );
+    //         console.log(media_meta)
+    //         // If the media type is an image
+    //         if (media_meta.dataset.type == "image") {
+    //             // Create new image object
+    //             let img = new Image();
+    //             // Image onload event
+    //             img.onload = () => {
+    //                 // <a href="#" class="thumbs-down
+    //                 // ${media_like_dislike_status == 'disliked' ? ' active' : ''}
+    //                 // "><i class="far fa-thumbs-down"></i></a>
+    //                 // <span class="thumbs-down-count">${media_meta.dataset.dislikes}</span>
+
+    //                 // Create the pop out image
+    //                 media_popup.innerHTML = `
+	// 					<a href="#" class="prev"><i class="fas fa-angle-left fa-4x"></i></a>
+	// 					<div class="con">
+	// 					<div class="rj-close-popup">
+	// 					<i class="fa-solid fa-xmark"></i>
+	// 					</div>
+	// 						<h3>${
+    //                             media_meta.dataset.title
+    //                         }</h3><small style='margin-top:0.25em'>made in : ${
+    //                     media_meta.dataset.year
+    //                 } - nr. ${media_meta.dataset.fnr} </small>
+	// 						<p class="rj-popup-p">${media_meta.alt}</p>
+    //                         <div class="prevnext-small-media">
+    //                         <a href="#" class="prev-small-media"><i class="fas fa-angle-left fa-4x"></i></a>
+    //                     <a href="#" class="next-small-media"><i class="fas fa-angle-right fa-4x"></i></a>
+    //                         </div>
+	// 						<div class="rj-popup-img-wrap"><img src="${img.src}" alt=""></div>
+	// 						<div class="thumbs-up-down">
+	// 							<a href="#" class="thumbs-up${
+    //                                 media_like_dislike_status == "liked"
+    //                                     ? " active"
+    //                                     : ""
+    //                             }"><i class="far fa-thumbs-up"></i></a>
+	// 							<span class="thumbs-up-count">${media_meta.dataset.likes} </span> 
+								
+	// 						</div>
+	// 					</div>
+	// 					<a href="#" class="next"><i class="fas fa-angle-right fa-4x"></i></a>
+
+	// 				`;
+    //                 media_popup.style.display = "flex";
+    //                 // Prevent portrait images from exceeding the window
+
+    //                 window.addEventListener('resize', function(e) {
+
+    //                     if(screen.height > screen.width) {
+    //                         let height =
+    //                         media_popup.querySelector("img").getBoundingClientRect()
+    //                             .top -
+    //                         media_popup
+    //                             .querySelector(".con")
+    //                             .getBoundingClientRect().top;
+    //                     media_popup.querySelector(
+    //                         "img"
+    //                     ).style.maxHeight = `calc(100vh - ${height + 150}px)`;
+    
+    //                     }else {
+    //                         console.log("jow");
+
+    //                         media_popup.querySelector(
+    //                             "img"
+    //                         ).style.maxHeight = `unset`;
+    //                         let popupCon = document.querySelector(".media-popup .con");
+
+    //                         popupCon.style="overflow-y: scroll";
+    //                     }
+    //                 })
+
+
+    //                 // Execute the media_mext_prev function
+    //                 media_next_prev(media_meta);
+    //                 // Execute the media_like_dislike function
+    //                 media_like_dislike(media_meta);
+    //             };
+    //             // Set the image source
+    //             img.src = media_meta.src;
+    //         } else {
+    //             // Determine the media type
+    //             let type_ele = "";
+    //             // If the media type is a video
+    //             if (media_meta.dataset.type == "video") {
+    //                 type_ele = `<video src="${media_meta.dataset.src}" width="852" height="480" controls autoplay></video>`;
+    //             }
+    //             // If the media type is a audio file
+    //             if (media_meta.dataset.type == "audio") {
+    //                 type_ele = `<audio src="${media_meta.dataset.src}" controls autoplay></audio>`;
+    //             }
+    //             // Populate the media
+    //             media_popup.innerHTML = `
+	// 				<a href="#" class="prev"><i class="fas fa-angle-left fa-4x"></i></a>
+	// 				<div class="con">
+	// 					<h3>${media_meta.dataset.title}</h3>
+	// 					<p>${media_meta.dataset.description}</p>
+	// 					${type_ele}
+	// 					<div class="thumbs-up-down">
+	// 						<a href="#" class="thumbs-up${
+    //                             media_like_dislike_status == "liked"
+    //                                 ? " active"
+    //                                 : ""
+    //                         }"><i class="far fa-thumbs-up"></i></a>
+	// 						<span class="thumbs-up-count">${media_meta.dataset.likes}</span>
+	// 						<a href="#" class="thumbs-down${
+    //                             media_like_dislike_status == "disliked"
+    //                                 ? " active"
+    //                                 : ""
+    //                         }"><i class="far fa-thumbs-down"></i></a>
+	// 						<span class="thumbs-down-count">${media_meta.dataset.dislikes}</span>
+	// 					</div>
+	// 				</div>
+	// 				<a href="#" class="next"><i class="fas fa-angle-right fa-4x"></i></a>
+	// 			`;
+    //             media_popup.style.display = "flex";
+    //             // Execute the media_next_prev function
+    //             media_next_prev(media_meta);
+    //             // Execute the media_like_dislike function
+    //             media_like_dislike(media_meta);
+    //         }
+    //     };
+    // });
+
+    // If the media popup element exists...
+if (media_popup) {
+    // Iterate the media links and create the onclick events
+    document.querySelectorAll(".card-footer .popup-button").forEach((media_link) => {
         // If the user clicks the media
         media_link.onclick = (e) => {
             e.preventDefault();
+
             // Retrieve the meta data
-            let media_meta = media_link.closest(".card").querySelector(".card-body .popup-selecter .gallery-img")
+            let media_meta = media_link.closest(".card").querySelector(".card-body .gallery-img");
+
+            // Determine the active tab
+            let active_tab = media_link.getAttribute("data-active-tab");
+
             // Retrieve the like/dislike status for the media
-            let media_like_dislike_status = getCookieByName(
-                "like_dislike_" + media_meta.dataset.id
-            );
-            console.log(media_meta)
-            // If the media type is an image
-            if (media_meta.dataset.type == "image") {
-                // Create new image object
-                let img = new Image();
-                // Image onload event
-                img.onload = () => {
-                    // <a href="#" class="thumbs-down
-                    // ${media_like_dislike_status == 'disliked' ? ' active' : ''}
-                    // "><i class="far fa-thumbs-down"></i></a>
-                    // <span class="thumbs-down-count">${media_meta.dataset.dislikes}</span>
+            let media_like_dislike_status = getCookieByName("like_dislike_" + media_meta.dataset.id);
 
-                    // Create the pop out image
-                    media_popup.innerHTML = `
-						<a href="#" class="prev"><i class="fas fa-angle-left fa-4x"></i></a>
-						<div class="con">
-						<div class="rj-close-popup">
-						<i class="fa-solid fa-xmark"></i>
-						</div>
-							<h3>${
-                                media_meta.dataset.title
-                            }</h3><small style='margin-top:0.25em'>made in : ${
-                        media_meta.dataset.year
-                    } - nr. ${media_meta.dataset.fnr} </small>
-							<p class="rj-popup-p">${media_meta.alt}</p>
-                            <div class="prevnext-small-media">
-                            <a href="#" class="prev-small-media"><i class="fas fa-angle-left fa-4x"></i></a>
-                        <a href="#" class="next-small-media"><i class="fas fa-angle-right fa-4x"></i></a>
+            // Create the popup content based on the active tab
+            let popup_content = "";
+            switch (active_tab) {
+                case "image":
+                    // Create new image object
+                    let img = new Image();
+
+                    // Image onload event
+                    img.onload = () => {
+                        // Create the pop out image
+                        popup_content = `
+                            <a href="#" class="prev"><i class="fas fa-angle-left fa-4x"></i></a>
+                            <div class="con">
+                                <div class="rj-close-popup">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </div>
+                                <h3>${media_meta.dataset.title}</h3>
+                                <small style='margin-top:0.25em'>made in : ${media_meta.dataset.year} - nr. ${media_meta.dataset.fnr} </small>
+                                <p class="rj-popup-p">${media_meta.alt}</p>
+                                <div class="prevnext-small-media">
+                                    <a href="#" class="prev-small-media"><i class="fas fa-angle-left fa-4x"></i></a>
+                                    <a href="#" class="next-small-media"><i class="fas fa-angle-right fa-4x"></i></a>
+                                </div>
+                                <div class="rj-popup-img-wrap"><img src="${img.src}" alt=""></div>
+                                <div class="thumbs-up-down">
+                                    <a href="#" class="thumbs-up${media_like_dislike_status == 'liked' ? ' active' : ''}"><i class="far fa-thumbs-up"></i></a>
+                                    <span class="thumbs-up-count">${media_meta.dataset.likes} </span> 
+                                    <a href="#" class="thumbs-down${media_like_dislike_status == 'disliked' ? ' active' : ''}"><i class="far fa-thumbs-down"></i></a>
+                                    <span class="thumbs-down-count">${media_meta.dataset.dislikes}</span>
+                                </div>
                             </div>
-							<div class="rj-popup-img-wrap"><img src="${img.src}" alt=""></div>
-							<div class="thumbs-up-down">
-								<a href="#" class="thumbs-up${
-                                    media_like_dislike_status == "liked"
-                                        ? " active"
-                                        : ""
-                                }"><i class="far fa-thumbs-up"></i></a>
-								<span class="thumbs-up-count">${media_meta.dataset.likes} </span> 
-								
-							</div>
-						</div>
-						<a href="#" class="next"><i class="fas fa-angle-right fa-4x"></i></a>
+                            <a href="#" class="next"><i class="fas fa-angle-right fa-4x"></i></a>
+                        `;
+                        media_popup.style.display = "flex";
+                        media_popup.innerHTML = popup_content;
 
-					`;
+                        // Prevent portrait images from exceeding the window
+                        window.addEventListener("resize", function(e) {
+                            if (screen.height > screen.width) {
+                                let height = media_popup.querySelector("img").getBoundingClientRect().top - media_popup.querySelector(".con").getBoundingClientRect().top;
+                                media_popup.querySelector("img").style.maxHeight = `calc(100vh - ${height + 150}px)`;
+                            } else {
+                                media_popup.querySelector("img").style.maxHeight = `unset`;
+                                let popupCon = document.querySelector(".media-popup .con");
+                                popupCon.style="overflow-y: scroll";
+                            }
+                        });
+
+                        // Execute the media_next_prev function
+                        media_next_prev(media_meta);
+                        // Execute the media_like_dislike function
+                        media_like_dislike(media_meta);
+                    };
+                    // Set the image source
+                    img.src = media_meta.src;
+                    break;
+                case "info":
+                    popup_content = `
+                        <a href="#" class="prev"><i class="fas fa-angle-left fa-4x"></i></a>
+                        <div class="con">
+                            <div class="rj-close-popup">
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+                            <h3>${media_meta.dataset.title}</h3>
+                            <p class="rj-popup-p">${media_meta.dataset.description}</p>
+                            <div class="thumbs-up-down">
+                                <a href="#" class="thumbs-up${media_like_dislike_status == 'liked' ? ' active' : ''}"><i class="far fa-thumbs-up"></i></a>
+                                <span class="thumbs-up-count">${media_meta.dataset.likes} </span> 
+                                <a href="#" class="thumbs-down${media_like_dislike_status == 'disliked' ? ' active' : ''}"><i class="far fa-thumbs-down"></i></a>
+                                <span class="thumbs-down-count">${media_meta.dataset.dislikes}</span>
+                            </div>
+                        </div>
+                        <a href="#" class="next"><i class="fas fa-angle-right fa-4x"></i></a>
+                    `;
                     media_popup.style.display = "flex";
-                    // Prevent portrait images from exceeding the window
+                    media_popup.innerHTML = popup_content;
 
-                    window.addEventListener('resize', function(e) {
-
-                        if(screen.height > screen.width) {
-                            let height =
-                            media_popup.querySelector("img").getBoundingClientRect()
-                                .top -
-                            media_popup
-                                .querySelector(".con")
-                                .getBoundingClientRect().top;
-                        media_popup.querySelector(
-                            "img"
-                        ).style.maxHeight = `calc(100vh - ${height + 150}px)`;
-    
-                        }else {
-                            console.log("jow");
-
-                            media_popup.querySelector(
-                                "img"
-                            ).style.maxHeight = `unset`;
-                            let popupCon = document.querySelector(".media-popup .con");
-
-                            popupCon.style="overflow-y: scroll";
-                        }
-                    })
-
-
-                    // Execute the media_mext_prev function
+                    // Execute the media_next_prev function
                     media_next_prev(media_meta);
                     // Execute the media_like_dislike function
                     media_like_dislike(media_meta);
-                };
-                // Set the image source
-                img.src = media_meta.src;
-            } else {
-                // Determine the media type
-                let type_ele = "";
-                // If the media type is a video
-                if (media_meta.dataset.type == "video") {
-                    type_ele = `<video src="${media_meta.dataset.src}" width="852" height="480" controls autoplay></video>`;
-                }
-                // If the media type is a audio file
-                if (media_meta.dataset.type == "audio") {
-                    type_ele = `<audio src="${media_meta.dataset.src}" controls autoplay></audio>`;
-                }
-                // Populate the media
-                media_popup.innerHTML = `
-					<a href="#" class="prev"><i class="fas fa-angle-left fa-4x"></i></a>
-					<div class="con">
-						<h3>${media_meta.dataset.title}</h3>
-						<p>${media_meta.dataset.description}</p>
-						${type_ele}
-						<div class="thumbs-up-down">
-							<a href="#" class="thumbs-up${
-                                media_like_dislike_status == "liked"
-                                    ? " active"
-                                    : ""
-                            }"><i class="far fa-thumbs-up"></i></a>
-							<span class="thumbs-up-count">${media_meta.dataset.likes}</span>
-							<a href="#" class="thumbs-down${
-                                media_like_dislike_status == "disliked"
-                                    ? " active"
-                                    : ""
-                            }"><i class="far fa-thumbs-down"></i></a>
-							<span class="thumbs-down-count">${media_meta.dataset.dislikes}</span>
-						</div>
-					</div>
-					<a href="#" class="next"><i class="fas fa-angle-right fa-4x"></i></a>
-				`;
-                media_popup.style.display = "flex";
-                // Execute the media_next_prev function
-                media_next_prev(media_meta);
-                // Execute the media_like_dislike function
-                media_like_dislike(media_meta);
-            }
+                    break;
+                case "video":
+                    // Create video element
+                    let video = document.createElement("video");
+                    video.setAttribute("controls", "");
+                    video.setAttribute("autoplay", "");
+
+                    // Create source element
+                    let source = document.createElement("source");
+                    source.setAttribute("src", media_meta.dataset.src);
+                    source.setAttribute("type", "video/mp4");
+
+                    // Append the source element to the video element
+                    video.appendChild(source);
+
+                    // Create the popup video
+                    popup_content = `
+                        <a href="#" class="prev"><i class="fas fa-angle-left fa-4x"></i></a>
+                        <div class="con">
+                            <div class="rj-close-popup">
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+                            <h3>${media_meta.dataset.title}</h3>
+                            <p class="rj-popup-p">${media_meta.dataset.description}</p>
+                            <div class="rj-popup-video-wrap">${video.outerHTML}</div>
+                            <div class="thumbs-up-down">
+                                <a href="#" class="thumbs-up${media_like_dislike_status == 'liked' ? ' active' : ''}"><i class="far fa-thumbs-up"></i></a>
+                                <span class="thumbs-up-count">${media_meta.dataset.likes} </span> 
+                                <a href="#" class="thumbs-down${media_like_dislike_status == 'disliked' ? ' active' : ''}"><i class="far fa-thumbs-down"></i></a>
+                                <span class="thumbs-down-count">${media_meta.dataset.dislikes}</span>
+                            </div>
+                        </div>
+                        <a href="#" class="next"><i class="fas fa-angle-right fa-4x"></i></a>
+                    `;
+                    media_popup.style.display = "flex";
+                    media_popup.innerHTML = popup_content;
+
+                    // Execute the media_next_prev function
+                    media_next_prev(media_meta);
+                    // Execute the media_like_dislike function
+                    media_like_dislike(media_meta);
+                    break;
+                    default:
+                        break;
+        }
         };
     });
+
     // Hide the image popup container, if the user clicks the close btn or outside the popup
     media_popup.onclick = (e) => {
         if (
@@ -435,3 +585,5 @@ if (upload_form) {
         document.querySelector(".upload #media").click();
     };
 }
+
+

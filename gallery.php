@@ -139,7 +139,7 @@ $media_height = 200;
 
 									<div class="card-body">
 										<div class="tab" data-tab-id="image">
-											<a href="#" title="<?= $m['title'] ?>" class="popup-selecter">
+											<div title="<?= $m['title'] ?>" class="popup-selecter">
 												<?php if ($m['type'] == 'image') : ?>
 													<img src="<?= $m['filepath'] ?>" alt="<?= $m['description'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-year="<?= $m['year'] ?>" data-fnr="<?= $m['fnr'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" class="gallery-img">
 												<?php elseif ($m['type'] == 'video') : ?>
@@ -162,7 +162,7 @@ $media_height = 200;
 													<?php endif; ?>
 												<?php endif; ?>
 												<span class="description"><?= $m['title'] ?></span>
-											</a>
+											</div>
 										</div>
 										<div class="tab" data-tab-id="info">
 											<p><span><?= $m['year'] ?> - <?= $m['fnr'] ?></span></p>
