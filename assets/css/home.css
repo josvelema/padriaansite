@@ -531,6 +531,3 @@ max-height: 100%;
     }
 }
 
-.gallery-img {
-    object-fit: contain;
-}

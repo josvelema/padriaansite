@@ -544,12 +544,12 @@ img[src="assets/svg/navHome.svg"] {
 }
 
 .home .media-list {
-    display: flex;
-
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
     justify-content: center;
-
     /* border: 1px solid #cacaca; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30ch,400px));
 }
 
 .home .media-list a {

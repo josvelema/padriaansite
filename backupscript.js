@@ -64,7 +64,7 @@ const media_next_prev = (media_meta) => {
         // Determine the previous element (media)
         let prev_ele = document.querySelector(
             '[data-id="' + media_meta.dataset.id + '"]'
-        ).closest('.rj-gallery-card').previousElementSibling.querySelector(".card-body .tab a")
+        ).parentElement.previousElementSibling;
         // If the prev element exists, click it
         if (prev_ele) prev_ele.click();
     };
@@ -74,7 +74,7 @@ const media_next_prev = (media_meta) => {
         // Determine the previous element (media)
         let prev_ele = document.querySelector(
             '[data-id="' + media_meta.dataset.id + '"]'
-        ).closest('.rj-gallery-card').previousElementSibling.querySelector(".card-body .tab a")
+        ).parentElement.previousElementSibling;
         // If the prev element exists, click it
         if (prev_ele) prev_ele.click();
     };
@@ -83,10 +83,9 @@ const media_next_prev = (media_meta) => {
     next_btn.onclick = (event) => {
         event.preventDefault();
         // Determine the next element (media)
-
         let next_ele = document.querySelector(
-        '[data-id="' + media_meta.dataset.id + '"]'
-    ).closest('.rj-gallery-card').nextElementSibling.querySelector(".card-body .tab a")
+            '[data-id="' + media_meta.dataset.id + '"]'
+        ).parentElement.nextElementSibling;
         // If the next element exists, click it
         if (next_ele) next_ele.click();
     };
@@ -96,7 +95,7 @@ const media_next_prev = (media_meta) => {
         // Determine the next element (media)
         let next_ele = document.querySelector(
             '[data-id="' + media_meta.dataset.id + '"]'
-        ).closest('.rj-gallery-card').nextElementSibling.querySelector(".card-body .tab a")
+        ).parentElement.nextElementSibling;
         // If the next element exists, click it
         if (next_ele) next_ele.click();
     };
@@ -125,23 +124,23 @@ const media_like_dislike = (media_meta) => {
             });
     };
     // Add the onclick event
-    // dislike_btn.onclick = (event) => {
-    //     event.preventDefault();
-    //     // Use AJAX to update the value in the database
-    //     fetch("like-dislike.php?id=" + media_meta.dataset.id + "&type=dislike")
-    //         .then((res) => res.text())
-    //         .then((data) => {
-    //             // Increment the thumbs down value
-    //             if (data.includes("success")) {
-    //                 media_popup.querySelector(".thumbs-down-count").innerHTML =
-    //                     parseInt(
-    //                         media_popup.querySelector(".thumbs-down-count")
-    //                             .innerHTML
-    //                     ) + 1;
-    //                 dislike_btn.classList.add("active");
-    //             }
-    //         });
-    // };
+    dislike_btn.onclick = (event) => {
+        event.preventDefault();
+        // Use AJAX to update the value in the database
+        fetch("like-dislike.php?id=" + media_meta.dataset.id + "&type=dislike")
+            .then((res) => res.text())
+            .then((data) => {
+                // Increment the thumbs down value
+                if (data.includes("success")) {
+                    media_popup.querySelector(".thumbs-down-count").innerHTML =
+                        parseInt(
+                            media_popup.querySelector(".thumbs-down-count")
+                                .innerHTML
+                        ) + 1;
+                    dislike_btn.classList.add("active");
+                }
+            });
+    };
 };
 // Handle media preview
 const media_preview = (file) => {
@@ -169,21 +168,17 @@ const media_preview = (file) => {
 };
 // If the media popup element exists...
 if (media_popup) {
-
-    
-    
     // Iterate the images and create the onclick events
-    document.querySelectorAll(".card-footer .popup-button[data-active-tab='image']").forEach((media_link) => {
+    document.querySelectorAll(".media-list a").forEach((media_link) => {
         // If the user clicks the media
         media_link.onclick = (e) => {
             e.preventDefault();
             // Retrieve the meta data
-            let media_meta = media_link.closest(".card").querySelector(".card-body .popup-selecter .gallery-img")
+            let media_meta = media_link.firstElementChild;
             // Retrieve the like/dislike status for the media
             let media_like_dislike_status = getCookieByName(
                 "like_dislike_" + media_meta.dataset.id
             );
-            console.log(media_meta)
             // If the media type is an image
             if (media_meta.dataset.type == "image") {
                 // Create new image object
@@ -305,7 +300,7 @@ if (media_popup) {
             }
         };
     });
-    // Hide the image popup container, if the user clicks the close btn or outside the popup
+    // Hide the image popup container, but only if the user clicks outside the image
     media_popup.onclick = (e) => {
         if (
             e.target.className == "media-popup" ||

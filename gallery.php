@@ -123,45 +123,65 @@ $media_height = 200;
 				<div class="media-list">
 					<?php foreach ($media as $m) : ?>
 						<?php if (file_exists($m['filepath'])) : ?>
-							<article class="gallery-card">
-							<div class="thumb">
-								<a href="#" title="<?= $m['title'] ?>">
-									<?php if ($m['type'] == 'image') : ?>
-										<img src="<?= $m['filepath'] ?>" alt="<?= $m['description'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-year="<?= $m['year'] ?>" data-fnr="<?= $m['fnr'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
-									<?php elseif ($m['type'] == 'video') : ?>
-										<?php if (empty($m['thumbnail'])) : ?>
-											<span class="placeholder" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>">
-												<i class="fas fa-film fa-4x"></i>
-												<?= $m['title'] ?>
-											</span>
-										<?php else : ?>
-											<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
-										<?php endif; ?>
-									<?php elseif ($m['type'] == 'audio') : ?>
-										<?php if (empty($m['thumbnail'])) : ?>
-											<span class="placeholder" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>">
-												<i class="fas fa-music fa-4x"></i>
-												<?= $m['title'] ?>
-											</span>
-										<?php else : ?>
-											<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
-										<?php endif; ?>
-									<?php endif; ?>
-									<span class="description"><?= $m['title'] ?></span>
-								</a>
-							</div>
-							<!-- <img src="<?= $m['filepath'] ?>" alt="<?= $m['description'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-year="<?= $m['year'] ?>" data-fnr="<?= $m['fnr'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img"> -->
-							<div class="gallery-card__content">
-								 <h3><?= $m['title'] ?></h3>
-								 <p><span><?= $m['year'] ?> - <?= $m['fnr'] ?></span></p>
-								 <div class="post-content-wrapper <?= (strlen($m['description']) > 300) ? "card-scrollbar" : "" ?> ">
-								 <pre>
+							<article class="rj-gallery-card">
+								<div class="card">
+
+									<div class="card-header">
+										<h3><?= $m['title'] ?></h3>
+
+										<div class="tab-selector">
+											<button class="tab-button" data-tab-id="image">Image</button>
+											<button class="tab-button" data-tab-id="info">Info</button>
+											<button class="tab-button" data-tab-id="video">Video</button>
+											<button class="tab-button" data-tab-id="audio">Audio</button>
+										</div>
+									</div>
+
+									<div class="card-body">
+										<div class="tab" data-tab-id="image">
+											<a href="#" title="<?= $m['title'] ?>" class="popup-selecter">
+												<?php if ($m['type'] == 'image') : ?>
+													<img src="<?= $m['filepath'] ?>" alt="<?= $m['description'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-year="<?= $m['year'] ?>" data-fnr="<?= $m['fnr'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" class="gallery-img">
+												<?php elseif ($m['type'] == 'video') : ?>
+													<?php if (empty($m['thumbnail'])) : ?>
+														<span class="placeholder" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>">
+															<i class="fas fa-film fa-4x"></i>
+															<?= $m['title'] ?>
+														</span>x
+													<?php else : ?>
+														<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
+													<?php endif; ?>
+												<?php elseif ($m['type'] == 'audio') : ?>
+													<?php if (empty($m['thumbnail'])) : ?>
+														<span class="placeholder" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>">
+															<i class="fas fa-music fa-4x"></i>
+															<?= $m['title'] ?>
+														</span>
+													<?php else : ?>
+														<img src="<?= $m['thumbnail'] ?>" alt="<?= $m['description'] ?>" data-src="<?= $m['filepath'] ?>" data-id="<?= $m['id'] ?>" data-title="<?= $m['title'] ?>" data-description="<?= $m['description'] ?>" data-type="<?= $m['type'] ?>" data-likes="<?= $m['likes'] ?>" data-dislikes="<?= $m['dislikes'] ?>" width="<?= $media_width ?>" height="<?= $media_height ?>" class="gallery-img">
+													<?php endif; ?>
+												<?php endif; ?>
+												<span class="description"><?= $m['title'] ?></span>
+											</a>
+										</div>
+										<div class="tab" data-tab-id="info">
+											<p><span><?= $m['year'] ?> - <?= $m['fnr'] ?></span></p>
+											<div class="post-content-wrapper <?= (strlen($m['description']) > 300) ? "card-scrollbar" : "" ?> ">
+												<pre>
 									<?= $m['description'] ?>
 									</pre>
-                </div>
-
-								<p>Audio | Video</p>
-							</div>
+											</div>
+											<div class="tab" data-tab-id="video">
+												<video src="" controls></video>
+											</div>
+											<div class="tab" data-tab-id="audio">
+												<audio src="" controls></audio>
+											</div>
+										</div>
+									</div>
+									<div class="card-footer">
+										<button class="popup-button">Open Popup</button>
+									</div>
 							</article>
 						<?php endif; ?>
 					<?php endforeach; ?>
@@ -202,7 +222,86 @@ $media_height = 200;
 <div class="rj-btn-test">
 
 
+	<script>
+		// const cards = document.querySelectorAll('.card');
 
+		// cards.forEach((card) => {
+		// 	const tabButtons = card.querySelectorAll('.tab-button');
+		// 	const tabs = card.querySelectorAll('.tab');
+		// 	const popupButton = card.querySelector('.popup-button');
+
+		// 	tabButtons[0].classList.add('active');
+		// 	tabs[0].classList.add('active');
+
+
+		// 	tabButtons.forEach((button) => {
+		// 		button.addEventListener('click', () => {
+		// 			const tabId = button.getAttribute('data-tab-id');
+
+		// 			tabButtons.forEach((btn) => {
+		// 				btn.classList.remove('active');
+		// 			});
+		// 			button.classList.add('active');
+
+		// 			tabs.forEach((tab) => {
+		// 				tab.classList.remove('active');
+		// 				if (tab.getAttribute('data-tab-id') === tabId) {
+		// 					tab.classList.add('active');
+		// 				}
+		// 			});
+		// 		});
+		// 	});
+
+		// 	popupButton.addEventListener('click', () => {
+		// 		// code to open a popup goes here
+		// 	});
+		// });
+		const cards = document.querySelectorAll('.card');
+
+cards.forEach((card) => {
+  const tabButtons = card.querySelectorAll('.tab-button');
+  const tabs = card.querySelectorAll('.tab');
+  const popupButton = card.querySelector('.popup-button');
+
+  // make the first tab and tab button active by default
+  tabButtons[0].classList.add('active');
+  tabs[0].classList.add('active');
+  popupButton.setAttribute('data-active-tab', tabButtons[0].getAttribute('data-tab-id'));
+  popupButton.textContent = `Open ${tabButtons[0].textContent} Popup`;
+
+  tabButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+     
+      const tabId = button.getAttribute('data-tab-id');
+      const tabName = button.textContent;  // get the name of the tab
+
+      tabButtons.forEach((btn) => {
+        btn.classList.remove('active');
+      });
+      button.classList.add('active');
+
+      tabs.forEach((tab) => {
+        tab.classList.remove('active');
+        if (tab.getAttribute('data-tab-id') === tabId) {
+          tab.classList.add('active');
+        }
+      });
+
+      popupButton.setAttribute('data-active-tab', tabId);  // store the active tab in the popup button
+      popupButton.textContent = `Open ${tabName} Popup`;  // update the text of the popup button
+    });
+  });
+
+  popupButton.addEventListener('click', () => {
+    const activeTab = popupButton.getAttribute('data-active-tab');
+		console.log("popup btn clicke" + activeTab);
+    // code to open a popup goes here
+    // you can use the `activeTab` variable to determine which tab is active and open the appropriate popup
+  });
+});
+
+
+	</script>
 
 
 </div>
