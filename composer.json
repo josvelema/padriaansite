@@ -1,0 +1,20 @@
+{
+    "name": "user/pieter",
+    "description": "pieter adriaans dot com",
+    "type": "libary",
+    "require": {
+        "chillerlan/php-qrcode": "^4.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "User\\Pieter\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "josvelema",
+            "email": "volumensolutions@gmail.com"
+        }
+    ]
+}
