@@ -5,12 +5,14 @@
     "require": {
         "chillerlan/php-qrcode": "^4.3"
     },
+    
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "User\\Pieter\\": "src/"
+          "App\\": "src/"
         }
-    },
+      }
+      ,
     "authors": [
         {
             "name": "josvelema",

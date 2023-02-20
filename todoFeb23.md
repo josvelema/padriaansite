@@ -2,15 +2,15 @@
 
 ## Gallery grid/popup
 
-1. Add audio tab for popup
+1. Individual artwork view (copy of gallery.php)
 2. Restyle grid and popup (black background and boxshadows for art)
 3. Fix image overflow in popup
-4. Individual artwork view (copy of gallery.php)
+4. Add audio tab for popup
 
 
 ## QRcode for expo
 
-1. learn composer QR package and test
+1. learn composer QR package and test *
 2. make hidden category 
 3. test out GPT scripts for adding QR to database
 4. 

@@ -17,5 +17,20 @@ require_once __DIR__.'/vendor/autoload.php';
 
 $data = 'http://www.pieter-adriaans.com';
 
-// quick and simple:
-echo '<img src="'.(new QRCode)->render($data).'" alt="QR Code" />';
+// // quick and simple:
+// echo '<img src="'.(new QRCode)->render($data).'" alt="QR Code" />';
+
+$options = new QROptions([
+	'version'    => 5,
+	'outputType' => QRCode::OUTPUT_MARKUP_SVG,
+	'eccLevel'   => QRCode::ECC_L,
+]);
+
+// invoke a fresh QRCode instance
+$qrcode = new QRCode($options);
+
+// and dump the output
+$qrcode->render($data);
+
+// ...with additional cache file
+$qrcode->render($data, '/qrcode/testfile.svg');
