@@ -16,6 +16,7 @@ function template_admin_header($title, $selected = 'dashboard') {
         <a href="allmedia.php"' . ($selected == 'allmedia' ? ' class="selected"' : '') . '><i class="fas fa-images"></i>Media</a>
         <a href="posts.php"' . ($selected == 'posts' ? ' class="selected"' : '') . '><i class="fa-regular fa-comment-dots"></i>Blog posts</a>
         <a href="comments.php"' . ($selected == 'comments' ? ' class="selected"' : '') . '><i class="fa-regular fa-comment-dots"></i>Blog comments</a>
+        <a href="expo.php"' . ($selected == 'comments' ? ' class="selected"' : '') . '><i class="fa-regular fa-comment-dots"></i>Expositions</a>
         
 
         <a href="categories.php"' . ($selected == 'categories' ? ' class="selected"' : '') . '><i class="fas fa-list"></i>Categories</a>
