@@ -179,7 +179,8 @@ background: linear-gradient(to bottom, #434343, #000000);  */
   text-align: center;
 }
 .rj-blog-card pre,
-.rj-blog-card-post pre {
+.rj-blog-card-post pre,
+.rj-gallery-card .card pre {
   line-height: 1.4;
 
   font-size: 1.15rem;
@@ -581,7 +582,7 @@ x .rj-form-header {
   
 }
 .rj-gallery-card pre {
-    overflow-x: auto;
+    /* overflow-x: auto; */
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;
