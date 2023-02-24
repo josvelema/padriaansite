@@ -930,7 +930,7 @@ img[src="assets/svg/navHome.svg"] {
 }
 
 .rj-gallery {
-    padding: 0.5em;
+    padding: 4px;
 
     background: #ece9e6;
     background: -webkit-linear-gradient(to top, #ffffff, #ece9e6);
@@ -948,7 +948,7 @@ img[src="assets/svg/navHome.svg"] {
     background-color: black;
     color: rgba(0, 0, 0, 0.8);
 
-    padding: 0.5em;
+    /* padding: 4px; */
     border-radius: 7px;
     /* border: 1px solid #fafafa; */
 }

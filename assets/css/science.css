@@ -13,11 +13,19 @@ main {
     color: #f0f0f0;
     font-family: "IBM Plex Sans", sans-serif;
 }
-
+/* 
 main > * {
     --layout-spacing: max(8vh, 3rem);
     --max-width: 90%;
     width: min(90ch, var(--max-width));
+    margin-left: auto;
+    margin-right: auto;
+} */
+
+main > * {
+    /* --layout-spacing: max(8vh, 2rem); */
+    --max-width: 96%;
+    width: min(80ch, 100%);
     margin-left: auto;
     margin-right: auto;
 }

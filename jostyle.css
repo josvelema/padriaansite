@@ -539,7 +539,7 @@ x .rj-form-header {
   position: relative;
   top: 0;
   transition: all 0.2s ease-in;
-  padding: 0.66em;
+  padding: 4px;
 
 }
 .gallery-card:hover {
@@ -561,13 +561,13 @@ x .rj-form-header {
   
   text-shadow: 0 1px 2px #fafafa;
   text-align: center;
-  font-size: calc(1.1rem + .5vw);
+  /* font-size: calc(1.1rem + .5vw); */
 }
 .rj-gallery-card p
  {
   flex: 1;
   line-height: 1.4;
-  font-size: 1.15rem;
+  /* font-size: 1.15rem; */
   /* Smol Responsive Padding FTW! */
   padding: clamp(0.33em, 2%, 0.66em);
   /* Provide a max-width and prevent overflow */
@@ -722,8 +722,11 @@ x .rj-form-header {
     border: 1px solid #ccc;
     border-radius: 4px;
     flex: 1;
+
   }
-  
+  .card .qr-view  {
+    color: #000;
+  }
   .card-header {
     background-color: #f8f8f8;
     border-bottom: 1px solid #ccc;

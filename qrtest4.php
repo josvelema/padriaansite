@@ -15,16 +15,16 @@ $options = new LogoOptions(
     'eccLevel' => QRCode::ECC_H,
     'imageBase64' => true,
     'outputType' => QRCode::OUTPUT_IMAGE_JPG,
-    'logoSpaceHeight' => 17,
-    'logoSpaceWidth' => 17,
-    'scale' => 20,
+    'logoSpaceHeight' => 12,
+    'logoSpaceWidth' => 12,
+    'scale' => 3,
     'version' => 7,
   ]
 );
 
 $qrOutputInterface = new QRImageWithLogo(
   $options,
-  (new QRCode($options))->getMatrix('https://twilio.com')
+  (new QRCode($options))->getMatrix('https://pieter-adriaans.com/view.php?id=1034')
 );
 
 $qrcode = $qrOutputInterface->dump(
@@ -32,7 +32,7 @@ $qrcode = $qrOutputInterface->dump(
   __DIR__.'/public/img/favicon-32x32.png'
 );
 
-$file = __DIR__.'/public/img/qrcode.png';
+$file = __DIR__.'/public/img/qr-1034.png';
 
 
 $imageData = base64_decode(substr($qrcode, strpos($qrcode, ',') + 1));
