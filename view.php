@@ -135,7 +135,7 @@ if (isset($_GET['id'])) {
                             <?php if ($media['type'] == 'image') : ?>
                                 <div class="media-selection-container">
                                 <button class="audio-btn" data-src="<?= urldecode($media['audio_url'] )?>">Audio</button>
-  <button class="video-btn" data-src="media/videos/sample.mp4">Video</button>
+  <button class="video-btn" data-src="urldecode($media['video_url'] )?>">Video</button>
 </div>
 
                                 <div class="image-container">
