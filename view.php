@@ -33,7 +33,7 @@ if (isset($_GET['id'])) {
 .media-selection-container button {
   padding: 10px;
   background-color: #fff;
-  border: none;
+  
   cursor: pointer;
   margin: 0 10px;
 }
@@ -93,6 +93,7 @@ if (isset($_GET['id'])) {
     margin: 0 auto;
     height: 98%;
     object-fit: contain;
+    box-shadow: 1px 2px 4px 0px #0008;
 }
 
 #audio-modal-audio {
@@ -116,6 +117,12 @@ if (isset($_GET['id'])) {
   border: none;
   cursor: pointer;
 }
+
+.audio-btn , .video-btn {
+  border: 1px solid #222;
+  border-radius: 6px;
+
+}
 </style>
 
 <main class="rj-black-bg-main">
@@ -127,15 +134,15 @@ if (isset($_GET['id'])) {
                     <div class="card">
                         <div class="card-header">
                             <h3><?= $media['title'] ?></h3>
-                            <p>Catologue number: <?= $media['year'] ?> - <?= $media['fnr'] ?></p>
+                            <p>Catalogue number: <?= $media['year'] ?> - <?= $media['fnr'] ?></p>
                         </div>
 
 
                         <div class="card-body">
                             <?php if ($media['type'] == 'image') : ?>
                                 <div class="media-selection-container">
-                                <button class="audio-btn" data-src="<?= urldecode($media['audio_url'] )?>">Audio</button>
-  <button class="video-btn" data-src="urldecode($media['video_url'] )?>">Video</button>
+                                <button class="audio-btn" data-src="<?= urldecode($media['audio_url'] )?>">Audio <i class="fa-solid fa-headphones"></i></button>
+  <button class="video-btn" data-src="urldecode($media['video_url'] )?>">Video <i class="fa-solid fa-video"></i></button>
 </div>
 
                                 <div class="image-container">
