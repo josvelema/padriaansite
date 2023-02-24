@@ -24,7 +24,7 @@ $options = new LogoOptions(
 
 $qrOutputInterface = new QRImageWithLogo(
   $options,
-  (new QRCode($options))->getMatrix('https://pieter-adriaans.com/view.php?id=1034')
+  (new QRCode($options))->getMatrix('https://pieter-adriaans.com/view.php?id=1338')
 );
 
 $qrcode = $qrOutputInterface->dump(
@@ -32,7 +32,7 @@ $qrcode = $qrOutputInterface->dump(
   __DIR__.'/public/img/favicon-32x32.png'
 );
 
-$file = __DIR__.'/public/img/qr-1034.png';
+$file = __DIR__.'/public/img/qr-1338.png';
 
 
 $imageData = base64_decode(substr($qrcode, strpos($qrcode, ',') + 1));

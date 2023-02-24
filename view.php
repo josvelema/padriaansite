@@ -59,6 +59,8 @@ if (isset($_GET['id'])) {
 }
 
 .image-container img {
+  width: 100%;
+  object-fit: contain;
   max-width: 330px;
   max-height: 100%;
   cursor: pointer;
@@ -146,7 +148,7 @@ if (isset($_GET['id'])) {
 </div>
 
                                 <div class="image-container">
-                                    <img src="<?= $media['filepath'] ?>" alt="<?= $media['title'] ?>" class="gallery-img">
+                                    <img src="<?= $media['filepath'] ?>" alt="<?= $media['title'] ?>">
                                     <div class="large-btn">
                                     <i class="fas fa-search-plus"></i>
                                     </div>
