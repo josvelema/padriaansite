@@ -84,10 +84,6 @@ if (isset($_GET['id'])) {
 #audio-modal-content,
 #video-modal-content,
 #image-modal-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 }
 
 #image-modal-content img {
