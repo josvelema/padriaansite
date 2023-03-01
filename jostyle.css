@@ -179,8 +179,9 @@ background: linear-gradient(to bottom, #434343, #000000);  */
   text-align: center;
 }
 .rj-blog-card pre,
-.rj-blog-card-post pre,
-.rj-gallery-card .card pre {
+.rj-blog-card-post pre
+/* .rj-gallery-card .card pre */
+ {
   line-height: 1.4;
 
   font-size: 1.15rem;

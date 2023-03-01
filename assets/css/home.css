@@ -326,8 +326,10 @@ top: -2px;
     font-size: 1.1rem;
     color: white;
     text-shadow: 1px 1px black;
+    text-align: justify;
+    background-color: #2226;
+    padding: 0.5em;
 }
-
 /* .rj-about-hero img {
     width: 70%;
     object-fit: contain;
