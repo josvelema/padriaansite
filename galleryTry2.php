@@ -75,21 +75,24 @@ $media_height = 200;
 <style>
 
 .gallery-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 360px));
-  grid-gap: 0.5em;
-  place-content: center;
-  place-items: center;
-  
-  max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 360px));
+    grid-gap: 0.5em;
+    place-content: center;
+    place-items: center;
+    max-width: 1200px;
+    margin: 1em auto;
+    padding-block: 1em;
 }
 /* Responsive styles */
-@media (max-width: 768px) {
-  .gallery-container {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
-  }
-}
+/* .gallery-container {
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem,100%), 360px));
+} */
 
+article.rj-gallery-card * + * {
+  margin-top: unset;
+   /* margin: 0 0 0.5em 0; */
+}
 /* @media (max-width: 576px) {
   .gallery-container {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -100,46 +103,64 @@ $media_height = 200;
 
   .rj-gallery-card {
     width: 100%;
-    max-width: 360px;
+    /* max-width: 360px; */
     margin: 0 auto;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 1px 2px 4px 0px #0008;
-  }
+    box-shadow: inset 0px 0px 1px 1px #fff9;
+}
+
+  .rj-gallery-card .card {
+    background-color: #fff5;
+    background-image: linear-gradient(132deg, transparent , rgba(240, 240, 240, 0.5));
+}
 
   .rj-gallery-card .card-header {
-    background-color: #333;
+    background-color: #7777;
     color: #fff;
     padding: 16px;
     text-align: center;
   }
+  .rj-gallery-card .card-header p {
+    text-shadow: 0px 1px 1px #ddd6, -2px 2px 2px #0008;
+
+    text-align: center;
+  }
 
   .rj-gallery-card .card-body {
-    padding: 16px;
+    padding: unset;
   }
 
   .rj-gallery-card .image-container {
     position: relative;
     /* height: 0; */
-    padding-bottom: 56.25%;
+    /* padding-bottom: 56.25%; */
+    min-height: 280px;
     overflow: hidden;
-    border-radius: 10px;
+    /* border-radius: 10px; */
   }
 
-  .rj-gallery-card .image-container img,
-  .rj-gallery-card  audio,
-  .rj-gallery-card  video {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .rj-gallery-card .img-wrapper {
+   
+    margin: 1em;
+    box-shadow: 0 0px 6px 1px #aaa8;
+    border-radius: 8px;
+}
+/* .rj-gallery-card  audio, .rj-gallery-card  video { */
+
+
+.rj-gallery-card .image-container img {
+    /* position: absolute; */
+    /* top: 0;
+    left: 0; */
     width: 100%;
     height: 100%;
     object-fit: contain;
-  max-width: 330px;
-  max-height: 100%;
-  cursor: pointer;
-
-  }
+    /* max-width: 330px; */
+    max-height: 100%;
+    /* cursor: pointer; */
+    border: 1px solid #0006;
+}
 
   .loaded {
   opacity: 1;
@@ -147,51 +168,56 @@ $media_height = 200;
 }
 
 
-  .image-container .large-btn {
-    position: absolute;
-    /* inset: 0; */
-    color: #ccdd00;
-    text-shadow: 1px 1px 3px #0008, 0 -1px 3px #0008;
-    left: 8px;
-    bottom: 12px;
-    /* background: black; */
-    padding: 2px;
-    /* border-radius: 100vw; */
-}
-
-
-
-  .rj-gallery-card .media-selection-container {
+.rj-gallery-card .media-selection-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 0;
-  }
-
-  .rj-gallery-card .media-selection-container button {
-    padding: 8px;
-    background-color: #fff;
-    border-radius: 8px;
-    margin: 0 10px;
-    cursor: pointer;
-  }
-
-/* Style for modal container */
-.audio-modal-container,
-.video-modal-container,
-.image-modal-container,
-.info-modal-container {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.8);
+    /* margin: 0 0 1em 0; */
+    padding-block: 0.5em;
+    background-color: #cde5;
+    height: 3em;
+    border-block: 1px solid #dde6;
 }
 
+ .rj-gallery-card .media-selection-container button {
+    padding: 0.5em;
+    background-color: hsl(0deg 0% 94% / 80%);
+    border-radius: 6px;
+    margin: 0 0.75em;
+    cursor: pointer;
+    font-size: 12px;
+    display: grid;
+    place-items: center;
+    place-content: center;
+    box-shadow: 0 1px 2px 1px rgb(22 22 22 / 0.5);
+    transition: all 250ms ease-in-out;
+}
+  
+  .rj-gallery-card .media-selection-container button:hover,
+  .rj-gallery-card .media-selection-container button:focus,
+  .rj-gallery-card .media-selection-container button:focus-visible,
+  .rj-gallery-card .media-selection-container button:active
+   {
+    box-shadow: inset 0 1px 2px 1px rgb(22 22 22 / 0.5);
+  }
+
+  .rj-gallery-card .media-selection-container button i {
+    font-size: 16px;
+  
+}
+/* Style for modal container */
+.audio-modal-container, .video-modal-container, .image-modal-container, .info-modal-container {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(2px);
+}
 .audio-modal-content,
   .video-modal-content,
   .image-modal-content,
@@ -209,14 +235,27 @@ $media_height = 200;
     height: 100%;
   }
 
-  .image-modal-content img {
-    width: 98%;
+  .audio-modal-content, .video-modal-content, .image-modal-content, .info-modal-content {
     margin: 0 auto;
-    height: 98%;
-    object-fit: contain;
-    box-shadow: 1px 2px 4px 0px #0008;
+    display: grid;
+    place-items: center;
+    height: calc(100vh - 2.5em);
+    /* height: 100%; */
+    width: auto;
+    /* object-fit: contain; */
+    /* max-width: 800px; */
+    /* max-height: 800px; */
 }
-
+.image-modal-content img {
+    width: 97%;
+    margin: 0 auto;
+    /* height: 98%; */
+    max-height: 100vh;
+    object-fit: contain;
+    box-shadow: 0px 0px 9px 1px #fff8;
+    /* padding: 2px; */
+    background-color: #5557;
+}
   .audio-modal-audio {
   max-width: 90%;
   max-height: 90%;
@@ -227,19 +266,19 @@ $media_height = 200;
   max-height: 90%;
 }
 
-  .audio-modal-close,
-  .video-modal-close,
-  .image-modal-close,
-  .info-modal-close {
+.audio-modal-close, .video-modal-close, .image-modal-close, .info-modal-close {
     position: absolute;
     top: 0;
     right: 0;
     padding: 10px;
-    background-color: #fff;
-    border: none;
+    background-color: #f0f0f0;
+    border: 1px solid;
     cursor: pointer;
-  }
-  
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin: 1px 1px 0 0;
+}
   
   /* CSS style for the temporary image */
 /* .loading-image {
@@ -309,21 +348,22 @@ img {
       <div class="card">
         <div class="card-header">
           <h3><?= $m['title'] ?></h3>
-          <p>Catalogue number: <?= $m['year'] ?> - <?= $m['fnr'] ?></p>
+          <p>Catalogue nr : <?= $m['year'] ?> - <?= $m['fnr'] ?></p>
         </div>
 
         <div class="card-body">
           <?php if ($m['type'] == 'image') : ?>
             <div class="media-selection-container">
-              <button class="audio-btn" data-src="media/multimedia/audio/audio-1034-2016-26.mp3">Audio <i class="fa-solid fa-headphones"></i></button>
-              <button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>">Video <i class="fa-solid fa-video"></i></button>
-              <button class="info-btn" data-info="<?= trim($m['description']) ?>">Info <i class="fa-solid fa-video"></i></button>
+              <button class="img-btn" data-src="<?= $m['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
+              <button class="info-btn" data-info="<?= trim($m['description']) ?>"><i class="fa-solid fa-circle-info"></i></i></button>
+              <button class="audio-btn" data-src="media/multimedia/audio/audio-1034-2016-26.mp3"><i class="fa-solid fa-headphones"></i></button>
+              <button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
+              
             </div>
 
             <div class="image-container">
-              <img data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" data-placeholder="assets\img\bginverted.jpg">
-              <div class="large-btn">
-                <i class="fas fa-search-plus"></i>
+              <div class="img-wrapper">
+               <img data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" data-placeholder="assets\img\bginverted.jpg">
               </div>
             </div>
 
@@ -367,9 +407,6 @@ img {
             <audio src="<?= $m['filepath'] ?>" controls autoplay></audio>
           <?php endif; ?>
 
-          <pre class="description">
-            <?= $m['description'] ?>
-          </pre>
 
         </div>
       </div>
@@ -386,6 +423,7 @@ const infoModalClose = document.querySelectorAll('.info-modal-close');
 // Get all media selection buttons
 const audioBtns = document.querySelectorAll('.audio-btn');
 const videoBtns = document.querySelectorAll('.video-btn');
+const imgBtns= document.querySelectorAll('.img-btn')
 const infoBtns = document.querySelectorAll('.info-btn');
 
 // Get all modal containers
@@ -408,6 +446,7 @@ imageContainers.forEach((container, index) => {
   // Get the media selection buttons and modal containers that correspond to this card
   const audioBtn = audioBtns[index];
   const videoBtn = videoBtns[index];
+  const imgBtn = imgBtns[index];
   const infoBtn = infoBtns[index];
   const audioModalContainer = audioModalContainers[index];
   const videoModalContainer = videoModalContainers[index];
@@ -426,7 +465,16 @@ imageContainers.forEach((container, index) => {
     img.removeAttribute('data-src');
   });
 
-  container.addEventListener('click', () => {
+  // container.addEventListener('click', () => {
+  //   // Get the image source from the clicked container
+  //   const imageSource = img.getAttribute('src');
+
+  //   // Set the modal image source and display the modal
+  //   imageModalContainer.querySelector('img').setAttribute('src', imageSource);
+  //   imageModalContainer.style.display = 'block';
+  // });
+
+  imgBtn.addEventListener('click', () => {
     // Get the image source from the clicked container
     const imageSource = img.getAttribute('src');
 
@@ -508,6 +556,8 @@ infoModalClose.forEach((closeBtn) => {
 
 
     </script>
+
+</main>
 <script src="assets/js/Lazyload.js" type="module"></script>
 
 <?= template_footer() ?>
