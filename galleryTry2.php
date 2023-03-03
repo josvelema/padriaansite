@@ -247,6 +247,11 @@ article.rj-gallery-card * + * {
     /* max-height: 800px; */
 }
 
+.info-modal-content {
+	place-items: baseline;
+	place-content: center;
+}
+
 .info-modal-pre {
     color: #222;
     line-height: 1.4;
@@ -257,7 +262,14 @@ article.rj-gallery-card * + * {
     border-radius: 4px;
     box-shadow: 0 2px 5px 5px #fff8;
     border: 1px solid #2228;
+		margin: 0.5em;
 }
+
+.info-modal-title {
+	text-align: center;
+	margin: 3em 0 1em 0;
+}
+
 
 .image-modal-content img {
     width: 97%;
@@ -372,7 +384,7 @@ img {
           <?php if ($m['type'] == 'image') : ?>
             <div class="media-selection-container">
               <button class="img-btn" data-src="<?= $m['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
-              <button class="info-btn" data-info="<?= trim($m['description']) ?>"><i class="fa-solid fa-circle-info"></i></i></button>
+              <button class="info-btn" data-info="<?= trim($m['description']) ?>" data-title="<?= $m['title']?>"><i class="fa-solid fa-circle-info"></i></i></button>
               <button class="audio-btn" data-src="media/multimedia/audio/audio-1034-2016-26.mp3"><i class="fa-solid fa-headphones"></i></button>
               <button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
               
@@ -412,6 +424,7 @@ img {
 
               <div class="info-modal-container">
                 <div class="info-modal-content">
+									<h3 class="info-modal-title"></h3>
                   <pre class="info-modal-pre"></pre>
                   <button class="info-modal-close">Close</button>
                 </div>
@@ -551,7 +564,9 @@ imageContainers.forEach((container, index) => {
   infoBtn.addEventListener('click', () => {
     // Get the video source from the button data attribute
     const infoSource = infoBtn.getAttribute('data-info');
+    const infoTitle = infoBtn.getAttribute('data-title');
 
+    infoModalContainer.querySelector('h3').innerText = infoTitle;
     infoModalContainer.querySelector('pre').innerText = infoSource;
     infoModalContainer.style.display = 'block';
   });
