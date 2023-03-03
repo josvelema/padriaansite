@@ -385,7 +385,7 @@ img {
             <div class="media-selection-container">
               <button class="img-btn" data-src="<?= $m['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
               <button class="info-btn" data-info="<?= trim($m['description']) ?>" data-title="<?= $m['title']?>"><i class="fa-solid fa-circle-info"></i></i></button>
-              <button class="audio-btn" data-src="media/multimedia/audio/audio-1034-2016-26.mp3"><i class="fa-solid fa-headphones"></i></button>
+              <button class="audio-btn" data-src="<?= urldecode($m['audio_url']) ?>"><i class="fa-solid fa-headphones"></i></button>
               <button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
               
             </div>
