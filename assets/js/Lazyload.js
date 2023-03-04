@@ -1,9 +1,10 @@
 
-import dom from './Dom.js';
 
+console.log("laaad");
 export default new IntersectionObserver((entries, observer) => {
   entries.forEach(function (entry) {
     if (entry.intersectionRatio > 0 || entry.isIntersecting) {
+      console.log("intersss");
       const image = entry.target;
       observer.unobserve(image);
 
@@ -16,6 +17,8 @@ export default new IntersectionObserver((entries, observer) => {
 
       // Image has not been loaded so load it
       const sourceUrl = image.getAttribute('data-src');
+      console.log("hoi heeft data src");
+      console.log(sourceUrl);
       image.setAttribute('src', sourceUrl);
 
       const starttime = Date.now();

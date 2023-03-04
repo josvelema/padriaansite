@@ -587,3 +587,191 @@ if (upload_form) {
 }
 
 
+// Get modal elements
+const audioModalClose = document.querySelectorAll('.audio-modal-close');
+const videoModalClose = document.querySelectorAll('.video-modal-close');
+const imageModalClose = document.querySelectorAll('.image-modal-close');
+const infoModalClose = document.querySelectorAll('.info-modal-close');
+
+// Get all media selection buttons
+const audioBtns = document.querySelectorAll('.audio-btn');
+const videoBtns = document.querySelectorAll('.video-btn');
+const imgBtns= document.querySelectorAll('.img-btn')
+const infoBtns = document.querySelectorAll('.info-btn');
+
+// Get all modal containers
+const audioModalContainers = document.querySelectorAll('.audio-modal-container');
+const videoModalContainers = document.querySelectorAll('.video-modal-container');
+const imageModalContainers = document.querySelectorAll('.image-modal-container');
+const infoModalContainers = document.querySelectorAll('.info-modal-container');
+
+// Get all image containers
+const imageContainers = document.querySelectorAll('.image-container');
+
+// Intersection observer for lazy loading
+// const options = {
+//   rootMargin: '50px 0px',
+//   threshold: 0.01
+// };
+
+// Add event listeners to each image container
+imageContainers.forEach((container, index) => {
+  // Get the media selection buttons and modal containers that correspond to this card
+  const audioBtn = audioBtns[index];
+  const videoBtn = videoBtns[index];
+  const imgBtn = imgBtns[index];
+  const infoBtn = infoBtns[index];
+  const audioModalContainer = audioModalContainers[index];
+  const videoModalContainer = videoModalContainers[index];
+  const imageModalContainer = imageModalContainers[index];
+  const infoModalContainer = infoModalContainers[index];
+
+//   const img = container.querySelector('img');
+
+  // Get the image source from the data-src attribute
+//   const imgSrc = img.getAttribute('data-src');
+
+//   // Set the image source to the data-src attribute and add a load event listener
+//   img.setAttribute('src', imgSrc);
+//   img.addEventListener('load', () => {
+//     // Remove the data-src attribute to prevent lazy loading again
+//     img.removeAttribute('data-src');
+//   });
+
+  // container.addEventListener('click', () => {
+  //   // Get the image source from the clicked container
+  //   const imageSource = img.getAttribute('src');
+
+  //   // Set the modal image source and display the modal
+  //   imageModalContainer.querySelector('img').setAttribute('src', imageSource);
+  //   imageModalContainer.style.display = 'block';
+  // });
+
+  imgBtn.addEventListener('click', () => {
+    // Get the image source from the clicked container
+    const imageSource = imgBtn.getAttribute('data-src');
+
+    // Set the modal image source and display the modal
+    imageModalContainer.querySelector('img').setAttribute('src', imageSource);
+    imageModalContainer.style.display = 'block';
+  });
+
+  // Add click event listener to audio button
+  audioBtn.addEventListener('click', () => {
+    // Get the audio source from the button data attribute
+    const audioSource = audioBtn.getAttribute('data-src');
+
+    // Set the audio source and display the audio modal
+    audioModalContainer.querySelector('audio').setAttribute('src', audioSource);
+    audioModalContainer.style.display = 'block';
+  });
+
+  // Add click event listener to video button
+  videoBtn.addEventListener('click', () => {
+    // Get the video source from the button data attribute
+    const videoSource = videoBtn.getAttribute('data-src');
+
+    // Set the video source and display the video modal
+    videoModalContainer.querySelector('video').setAttribute('src', videoSource);
+    videoModalContainer.style.display = 'block';
+  });
+
+  // Add click event listener to info button
+  infoBtn.addEventListener('click', () => {
+    // Get the video source from the button data attribute
+    const infoSource = infoBtn.getAttribute('data-info');
+    const infoTitle = infoBtn.getAttribute('data-title');
+
+    infoModalContainer.querySelector('h3').innerText = infoTitle;
+    infoModalContainer.querySelector('pre').innerText = infoSource;
+    infoModalContainer.style.display = 'block';
+  });
+});
+
+
+// Add click event listener to the audio modal close buttons
+audioModalClose.forEach((closeBtn) => {
+  closeBtn.addEventListener('click', () => {
+    // Stop the audio and hide the audio modal
+    const audioModalAudio = closeBtn.parentNode.querySelector('audio');
+    audioModalAudio.pause();
+    audioModalAudio.currentTime = 0;
+    closeBtn.parentNode.parentNode.style.display = 'none';
+  });
+});
+
+// Add click event listener to the video modal close buttons
+videoModalClose.forEach((closeBtn) => {
+  closeBtn.addEventListener('click', () => {
+    // Stop the video and hide the video modal
+    const videoModalVideo = closeBtn.parentNode.querySelector('video');
+    videoModalVideo.pause();
+    videoModalVideo.currentTime = 0;
+    closeBtn.parentNode.parentNode.style.display = 'none';
+  });
+});
+
+// Add click event listener to the image modal close buttons
+imageModalClose.forEach((closeBtn) => {
+  closeBtn.addEventListener('click', () => {
+    // Hide the image modal
+    closeBtn.parentNode.parentNode.style.display = 'none';
+  });
+});
+
+// Add click event listener to the info modal close buttons
+infoModalClose.forEach((closeBtn) => {
+  closeBtn.addEventListener('click', () => {
+    // Hide the info modal
+    closeBtn.parentNode.parentNode.style.display = 'none';
+  });
+});
+
+const lazyImages = document.querySelectorAll('[data-imgsrc]');
+
+const options = {
+  rootMargin: '300px 0px',
+  threshold: [0, 1]
+};
+
+let jos = 0;
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+			jos++;
+			console.log('intersect ' + jos );
+      const image = entry.target;
+      const src = image.dataset.imgsrc;
+
+      // Create a new image element to act as the placeholder
+      const placeholder = new Image();
+      placeholder.src = 'assets\\img\\bginverted.jpg';
+      placeholder.classList.add('lazy-image-placeholder');
+      image.parentElement.insertBefore(placeholder, image);
+
+      // Hide the real image and show the placeholder until the real image is loaded
+      image.style.opacity = '0';
+      placeholder.style.opacity = '1';
+      const imgLoad = new Image();
+      imgLoad.src = src;
+      imgLoad.addEventListener('load', () => {
+        image.src = src;
+        image.style.opacity = '1';
+        placeholder.style.opacity = '0';
+        setTimeout(() => placeholder.remove(), 750);
+        image.classList.add('lazy-image-loaded');
+      });
+
+      observer.unobserve(image);
+			image.classList.add('loaded')
+    }
+  });
+}, options);
+
+lazyImages.forEach(image => {
+  observer.observe(image);
+});
+
+
+
+

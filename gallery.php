@@ -70,253 +70,35 @@ $media_height = 200;
 
 <?= template_header('Gallery') ?>
 <?= template_header_other() ?>
+<link rel="stylesheet" href="assets/css/gallery.css?v=2">
+
 <?= template_nav() ?>
 
 <style>
-
-.gallery-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 360px));
-    grid-gap: 0.5em;
-    place-content: center;
-    place-items: center;
-    max-width: 1200px;
-    margin: 1em auto;
-    padding-block: 1em;
-}
-/* Responsive styles */
-/* .gallery-container {
-    grid-template-columns: repeat(auto-fit, minmax(min(20rem,100%), 360px));
-} */
-
-article.rj-gallery-card * + * {
-  margin-top: unset;
-   /* margin: 0 0 0.5em 0; */
-}
-/* @media (max-width: 576px) {
-  .gallery-container {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    padding: 10px;
-  } */
-
-
-
-  .rj-gallery-card {
-    width: 100%;
-    /* max-width: 360px; */
-    margin: 0 auto;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: inset 0px 0px 1px 1px #fff9;
+.lazy-image-placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-  .rj-gallery-card .card {
-    background-color: #fff5;
-    background-image: linear-gradient(132deg, transparent , rgba(240, 240, 240, 0.5));
-}
-
-  .rj-gallery-card .card-header {
-    background-color: #7777;
-    color: #fff;
-    padding: 16px;
-    text-align: center;
-  }
-  .rj-gallery-card .card-header p {
-    text-shadow: 0px 1px 1px #ddd6, -2px 2px 2px #0008;
-
-    text-align: center;
-  }
-
-  .rj-gallery-card .card-body {
-    padding: unset;
-  }
-
-  .rj-gallery-card .image-container {
-    position: relative;
-    /* height: 0; */
-    /* padding-bottom: 56.25%; */
-    min-height: 280px;
-    overflow: hidden;
-    /* border-radius: 10px; */
-  }
-
-  .rj-gallery-card .img-wrapper {
-   
-    margin: 1em;
-    box-shadow: 0 0px 6px 1px #aaa8;
-    border-radius: 8px;
-}
-/* .rj-gallery-card  audio, .rj-gallery-card  video { */
-
-
-.rj-gallery-card .image-container img {
-    /* position: absolute; */
-    /* top: 0;
-    left: 0; */
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* max-width: 330px; */
-    max-height: 100%;
-    /* cursor: pointer; */
-    border: 1px solid #0006;
-}
-
-  .loaded {
+.lazy-image-placeholder {
   opacity: 1;
-  transition: opacity 0.5s ease-in-out 0.3s;
+  transition: opacity 1.5s ease-in-out;
+	
 }
 
-
-.rj-gallery-card .media-selection-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin: 0 0 1em 0; */
-    padding-block: 0.5em;
-    background-color: #cde5;
-    height: 3em;
-    border-block: 1px solid #dde6;
+.lazy-image-loaded {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
 }
 
- .rj-gallery-card .media-selection-container button {
-    padding: 0.5em;
-    background-color: hsl(0deg 0% 94% / 80%);
-    border-radius: 6px;
-    margin: 0 0.75em;
-    cursor: pointer;
-    font-size: 12px;
-    display: grid;
-    place-items: center;
-    place-content: center;
-    box-shadow: 0 1px 2px 1px rgb(22 22 22 / 0.5);
-    transition: all 250ms ease-in-out;
-}
-  
-  .rj-gallery-card .media-selection-container button:hover,
-  .rj-gallery-card .media-selection-container button:focus,
-  .rj-gallery-card .media-selection-container button:focus-visible,
-  .rj-gallery-card .media-selection-container button:active
-   {
-    box-shadow: inset 0 1px 2px 1px rgb(22 22 22 / 0.5);
-  }
-
-  .rj-gallery-card .media-selection-container button i {
-    font-size: 16px;
-  
-}
-/* Style for modal container */
-.audio-modal-container, .video-modal-container, .image-modal-container, .info-modal-container {
-    display: none;
-    position: fixed;
-    z-index: 99999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(2px);
-}
-.audio-modal-content,
-  .video-modal-content,
-  .image-modal-content,
-  .info-modal-content {
-    /* position: relative;
-    margin: 10% auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    max-width: 90%;
-    max-height: 90%;
-    text-align: center; */
-    display: grid;
-    place-items: center;
-    height: 100%;
-  }
-
-  .audio-modal-content, .video-modal-content, .image-modal-content, .info-modal-content {
-    margin: 0 auto;
-    display: grid;
-    place-items: center;
-    height: calc(100vh - 2.5em);
-    /* height: 100%; */
-    width: auto;
-    /* object-fit: contain; */
-    /* max-width: 800px; */
-    /* max-height: 800px; */
+.lazy-image-loaded.loaded {
+  opacity: 1;
 }
 
-.info-modal-content {
-	place-items: baseline;
-	place-content: center;
-}
-
-.info-modal-pre {
-    color: #222;
-    line-height: 1.4;
-    font-size: 1.15rem;
-    max-width: 66ch;
-    padding: 1em;
-    background: #e0e0e0;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px 5px #fff8;
-    border: 1px solid #2228;
-		margin: 0.5em;
-}
-
-.info-modal-title {
-	text-align: center;
-	margin: 3em 0 1em 0;
-}
-
-
-.image-modal-content img {
-    width: 97%;
-    margin: 0 auto;
-    /* height: 98%; */
-    max-height: 100vh;
-    object-fit: contain;
-    box-shadow: 0px 0px 9px 1px #fff8;
-    /* padding: 2px; */
-    background-color: #5557;
-}
-  .audio-modal-audio {
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.video-modal-video {
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.audio-modal-close, .video-modal-close, .image-modal-close, .info-modal-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border: 1px solid;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 700;
-    margin: 1px 1px 0 0;
-}
-  
-  /* CSS style for the temporary image */
-/* .loading-image {
-  background-image: url('assets/svg/pieterBg.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-
-} */
-
-
-img {
-  transition: opacity 0.5s ease-in-out;
-}
 
 </style>
 
@@ -392,7 +174,7 @@ img {
 
             <div class="image-container">
               <div class="img-wrapper">
-               <img data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" data-placeholder="assets\img\bginverted.jpg">
+               <img src="assets\img\bginverted.jpg" data-imgsrc="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>">
               </div>
             </div>
 
@@ -470,153 +252,10 @@ img {
 			} ?>
 		</div>
 
-    <script>
-// Get modal elements
-const audioModalClose = document.querySelectorAll('.audio-modal-close');
-const videoModalClose = document.querySelectorAll('.video-modal-close');
-const imageModalClose = document.querySelectorAll('.image-modal-close');
-const infoModalClose = document.querySelectorAll('.info-modal-close');
-
-// Get all media selection buttons
-const audioBtns = document.querySelectorAll('.audio-btn');
-const videoBtns = document.querySelectorAll('.video-btn');
-const imgBtns= document.querySelectorAll('.img-btn')
-const infoBtns = document.querySelectorAll('.info-btn');
-
-// Get all modal containers
-const audioModalContainers = document.querySelectorAll('.audio-modal-container');
-const videoModalContainers = document.querySelectorAll('.video-modal-container');
-const imageModalContainers = document.querySelectorAll('.image-modal-container');
-const infoModalContainers = document.querySelectorAll('.info-modal-container');
-
-// Get all image containers
-const imageContainers = document.querySelectorAll('.image-container');
-
-// Intersection observer for lazy loading
-const options = {
-  rootMargin: '50px 0px',
-  threshold: 0.01
-};
-
-// Add event listeners to each image container
-imageContainers.forEach((container, index) => {
-  // Get the media selection buttons and modal containers that correspond to this card
-  const audioBtn = audioBtns[index];
-  const videoBtn = videoBtns[index];
-  const imgBtn = imgBtns[index];
-  const infoBtn = infoBtns[index];
-  const audioModalContainer = audioModalContainers[index];
-  const videoModalContainer = videoModalContainers[index];
-  const imageModalContainer = imageModalContainers[index];
-  const infoModalContainer = infoModalContainers[index];
-
-  const img = container.querySelector('img');
-
-  // Get the image source from the data-src attribute
-  const imgSrc = img.getAttribute('data-src');
-
-  // Set the image source to the data-src attribute and add a load event listener
-  img.setAttribute('src', imgSrc);
-  img.addEventListener('load', () => {
-    // Remove the data-src attribute to prevent lazy loading again
-    img.removeAttribute('data-src');
-  });
-
-  // container.addEventListener('click', () => {
-  //   // Get the image source from the clicked container
-  //   const imageSource = img.getAttribute('src');
-
-  //   // Set the modal image source and display the modal
-  //   imageModalContainer.querySelector('img').setAttribute('src', imageSource);
-  //   imageModalContainer.style.display = 'block';
-  // });
-
-  imgBtn.addEventListener('click', () => {
-    // Get the image source from the clicked container
-    const imageSource = img.getAttribute('src');
-
-    // Set the modal image source and display the modal
-    imageModalContainer.querySelector('img').setAttribute('src', imageSource);
-    imageModalContainer.style.display = 'block';
-  });
-
-  // Add click event listener to audio button
-  audioBtn.addEventListener('click', () => {
-    // Get the audio source from the button data attribute
-    const audioSource = audioBtn.getAttribute('data-src');
-
-    // Set the audio source and display the audio modal
-    audioModalContainer.querySelector('audio').setAttribute('src', audioSource);
-    audioModalContainer.style.display = 'block';
-  });
-
-  // Add click event listener to video button
-  videoBtn.addEventListener('click', () => {
-    // Get the video source from the button data attribute
-    const videoSource = videoBtn.getAttribute('data-src');
-
-    // Set the video source and display the video modal
-    videoModalContainer.querySelector('video').setAttribute('src', videoSource);
-    videoModalContainer.style.display = 'block';
-  });
-
-  // Add click event listener to info button
-  infoBtn.addEventListener('click', () => {
-    // Get the video source from the button data attribute
-    const infoSource = infoBtn.getAttribute('data-info');
-    const infoTitle = infoBtn.getAttribute('data-title');
-
-    infoModalContainer.querySelector('h3').innerText = infoTitle;
-    infoModalContainer.querySelector('pre').innerText = infoSource;
-    infoModalContainer.style.display = 'block';
-  });
-});
-
-
-// Add click event listener to the audio modal close buttons
-audioModalClose.forEach((closeBtn) => {
-  closeBtn.addEventListener('click', () => {
-    // Stop the audio and hide the audio modal
-    const audioModalAudio = closeBtn.parentNode.querySelector('audio');
-    audioModalAudio.pause();
-    audioModalAudio.currentTime = 0;
-    closeBtn.parentNode.parentNode.style.display = 'none';
-  });
-});
-
-// Add click event listener to the video modal close buttons
-videoModalClose.forEach((closeBtn) => {
-  closeBtn.addEventListener('click', () => {
-    // Stop the video and hide the video modal
-    const videoModalVideo = closeBtn.parentNode.querySelector('video');
-    videoModalVideo.pause();
-    videoModalVideo.currentTime = 0;
-    closeBtn.parentNode.parentNode.style.display = 'none';
-  });
-});
-
-// Add click event listener to the image modal close buttons
-imageModalClose.forEach((closeBtn) => {
-  closeBtn.addEventListener('click', () => {
-    // Hide the image modal
-    closeBtn.parentNode.parentNode.style.display = 'none';
-  });
-});
-
-// Add click event listener to the info modal close buttons
-infoModalClose.forEach((closeBtn) => {
-  closeBtn.addEventListener('click', () => {
-    // Hide the info modal
-    closeBtn.parentNode.parentNode.style.display = 'none';
-  });
-});
-
-
-
-
-    </script>
+ 
 
 </main>
-<script src="assets/js/Lazyload.js" type="module"></script>
+
+
 
 <?= template_footer() ?>
