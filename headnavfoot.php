@@ -1,5 +1,20 @@
 <?php
+// Set the time period for which the page should be cached (in seconds)
+$cache_time = 60; // 3600 1 hour
 
+// Get the last modified time of the page
+$last_modified = filemtime(__FILE__);
+
+// Set the cache control headers
+header("Cache-Control: public, max-age=$cache_time");
+header("Expires: " . gmdate('D, d M Y H:i:s', time() + $cache_time) . ' GMT');
+header("Last-Modified: " . gmdate('D, d M Y H:i:s', $last_modified) . ' GMT');
+
+// Check if the browser has a cached version of the page
+if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) || isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
+    header('HTTP/1.1 304 Not Modified');
+    exit;
+}
 // Template header, feel free to customize this
 function template_header($title)
 {
