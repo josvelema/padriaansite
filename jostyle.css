@@ -535,12 +535,12 @@ x .rj-form-header {
 */
 
 .rj-gallery-card {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   min-height: 100%;
   position: relative;
   top: 0;
-  transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; */
   padding: 4px;
 
 }

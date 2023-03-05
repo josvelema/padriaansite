@@ -69,38 +69,11 @@ $media_height = 200;
 ?>
 
 <?= template_header('Gallery') ?>
-<?= template_header_other() ?>
+
 <link rel="stylesheet" href="assets/css/gallery.css?v=2">
 
 <?= template_nav() ?>
 
-<style>
-.lazy-image-placeholder {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.lazy-image-placeholder {
-  opacity: 1;
-  transition: opacity 1.5s ease-in-out;
-	
-}
-
-.lazy-image-loaded {
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
-}
-
-.lazy-image-loaded.loaded {
-  opacity: 1;
-}
-
-
-</style>
 
 <main class="rj-black-bg-main">
 	<div class="content home">
