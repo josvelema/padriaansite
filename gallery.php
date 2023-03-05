@@ -69,11 +69,10 @@ $media_height = 200;
 ?>
 
 <?= template_header('Gallery') ?>
-
+<?= template_header_other() ?>
 <link rel="stylesheet" href="assets/css/gallery.css?v=2">
 
 <?= template_nav() ?>
-
 
 <main class="rj-black-bg-main">
 	<div class="content home">
