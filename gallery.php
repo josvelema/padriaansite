@@ -70,7 +70,7 @@ $media_height = 200;
 
 <?= template_header('Gallery') ?>
 <?= template_header_other() ?>
-<link rel="stylesheet" href="assets/css/gallery.css?v=2">
+<link rel="stylesheet" href="assets/css/gallery.css?v=3">
 
 <?= template_nav() ?>
 
