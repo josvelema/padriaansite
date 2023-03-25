@@ -727,50 +727,50 @@ infoModalClose.forEach((closeBtn) => {
   });
 });
 
-const lazyImages = document.querySelectorAll('[data-imgsrc]');
+// const lazyImages = document.querySelectorAll('[data-imgsrc]');
 
-const options = {
-  rootMargin: '300px 0px',
-  threshold: [0, 1]
-};
+// const options = {
+//   rootMargin: '300px 0px',
+//   threshold: [0, 1]
+// };
 
-let jos = 0;
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-			jos++;
-			console.log('intersect ' + jos );
-      const image = entry.target;
-      const src = image.dataset.imgsrc;
+// let jos = 0;
+// const observer = new IntersectionObserver(entries => {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+// 			jos++;
+// 			console.log('intersect ' + jos );
+//       const image = entry.target;
+//       const src = image.dataset.imgsrc;
 
-      // Create a new image element to act as the placeholder
-      const placeholder = new Image();
-      placeholder.src = 'assets\\img\\bginverted.jpg';
-      placeholder.classList.add('lazy-image-placeholder');
-      image.parentElement.insertBefore(placeholder, image);
+//       // Create a new image element to act as the placeholder
+//       const placeholder = new Image();
+//       placeholder.src = 'assets\\img\\bginverted.jpg';
+//       placeholder.classList.add('lazy-image-placeholder');
+//       image.parentElement.insertBefore(placeholder, image);
 
-      // Hide the real image and show the placeholder until the real image is loaded
-      image.style.opacity = '0';
-      placeholder.style.opacity = '1';
-      const imgLoad = new Image();
-      imgLoad.src = src;
-      imgLoad.addEventListener('load', () => {
-        image.src = src;
-        image.style.opacity = '1';
-        placeholder.style.opacity = '0';
-        setTimeout(() => placeholder.remove(), 750);
-        image.classList.add('lazy-image-loaded');
-      });
+//       // Hide the real image and show the placeholder until the real image is loaded
+//       image.style.opacity = '0';
+//       placeholder.style.opacity = '1';
+//       const imgLoad = new Image();
+//       imgLoad.src = src;
+//       imgLoad.addEventListener('load', () => {
+//         image.src = src;
+//         image.style.opacity = '1';
+//         placeholder.style.opacity = '0';
+//         setTimeout(() => placeholder.remove(), 750);
+//         image.classList.add('lazy-image-loaded');
+//       });
 
-      observer.unobserve(image);
-			image.classList.add('loaded')
-    }
-  });
-}, options);
+//       observer.unobserve(image);
+// 			image.classList.add('loaded')
+//     }
+//   });
+// }, options);
 
-lazyImages.forEach(image => {
-  observer.observe(image);
-});
+// lazyImages.forEach(image => {
+//   observer.observe(image);
+// });
 
 
 

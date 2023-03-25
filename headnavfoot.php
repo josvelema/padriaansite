@@ -30,16 +30,16 @@ function template_header($title)
     <link rel="icon" type="image/png" href="assets/favicon/favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="style.css?v=3" rel="stylesheet" type="text/css">
-    <link href="jostyle.css?v=3" rel="stylesheet" type="text/css">
-    <link href="assets/css/home.css?v=3" rel="stylesheet" type="text/css">
+    <link href="style.css?v=4" rel="stylesheet" type="text/css">
+    <link href="jostyle.css?v=4" rel="stylesheet" type="text/css">
+    <link href="assets/css/home.css?v=4" rel="stylesheet" type="text/css">
     EOT;
 }
 function template_header_other()
 {
     echo <<<EOT
-    <link href="assets/css/painting.css?v=3" rel="stylesheet" type="text/css">
-    <link href="assets/css/science.css?v=3" rel="stylesheet" type="text/css">
+    <link href="assets/css/painting.css?v=4" rel="stylesheet" type="text/css">
+    <link href="assets/css/science.css?v=4" rel="stylesheet" type="text/css">
 EOT;
 }
 
@@ -130,8 +130,8 @@ function toggleBizNav() {
 } 
 </script>
 	    
-
-        <script src="script.js?v=3"></script>
+        <script src="node_modules/lozad/dist/lozad.min.js"></script>
+        <script src="script.js?v=4"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
 </html>

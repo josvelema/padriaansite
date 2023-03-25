@@ -70,7 +70,7 @@ $media_height = 200;
 
 <?= template_header('Gallery') ?>
 <?= template_header_other() ?>
-<link rel="stylesheet" href="assets/css/gallery.css?v=3">
+<link rel="stylesheet" href="assets/css/gallery.css?v=4">
 
 <?= template_nav() ?>
 
@@ -146,7 +146,7 @@ $media_height = 200;
 
             <div class="image-container">
               <div class="img-wrapper">
-               <img src="assets\img\bginverted.jpg" data-imgsrc="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>">
+               <img src="assets/img/bginverted.jpg" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad">
               </div>
             </div>
 
@@ -229,5 +229,15 @@ $media_height = 200;
 </main>
 
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const observer = lozad(".lozad", {
+      loaded: function(el) {
+        el.classList.add("fade");
+      }
+    });
+    observer.observe();
+  });
+</script>
 
 <?= template_footer() ?>

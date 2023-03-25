@@ -265,3 +265,13 @@ transition: opacity 0.5s ease-in-out;
 .lazy-image-loaded.loaded {
   opacity: 1;
 }
+
+
+  .lozad {
+    opacity: 0;
+    transition: opacity 1s;
+  }
+
+  .lozad.fade {
+    opacity: 1;
+  }
