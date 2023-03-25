@@ -21,7 +21,7 @@ $sort_by_sql = $sort_by == 'year' ? 'm.year DESC' : $sort_by_sql;
 $type = isset($_GET['type']) ? $_GET['type'] : 'all';
 $type_sql = $type != 'all' ? 'AND m.type = :type' : '';
 //! Limit the amount of media on each page
-$media_per_page = 6;
+$media_per_page = 12;
 // The current pagination page
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
@@ -146,7 +146,7 @@ $media_height = 200;
 
             <div class="image-container">
               <div class="img-wrapper">
-               <img src="assets/img/bginverted.jpg" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad">
+               <img src="assets/img/bginverted.jpg" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad placeholder">
               </div>
             </div>
 
@@ -234,6 +234,7 @@ $media_height = 200;
     const observer = lozad(".lozad", {
       loaded: function(el) {
         el.classList.add("fade");
+				console.log("loadewe");
       }
     });
     observer.observe();
