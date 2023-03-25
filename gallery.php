@@ -10,18 +10,19 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $category = isset($_GET['category']) ? $_GET['category'] : 'all';
 $category_sql = $category != 'all' ? 'JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category' : '';
 // Sort by default is newest, feel free to change it..
-$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'year';
+$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'year0_9';
 $sort_by_sql = 'm.uploaded_date DESC';
 $sort_by_sql = $sort_by == 'newest' ? 'm.uploaded_date DESC' : $sort_by_sql;
 $sort_by_sql = $sort_by == 'oldest' ? 'm.uploaded_date ASC' : $sort_by_sql;
 $sort_by_sql = $sort_by == 'a_to_z' ? 'm.title DESC' : $sort_by_sql;
 $sort_by_sql = $sort_by == 'z_to_a' ? 'm.title ASC' : $sort_by_sql;
-$sort_by_sql = $sort_by == 'year' ? 'm.year DESC' : $sort_by_sql;
+$sort_by_sql = $sort_by == 'year0_9' ? 'm.year ASC' : $sort_by_sql;
+$sort_by_sql = $sort_by == 'year9_0' ? 'm.year DESC' : $sort_by_sql;
 // Get media by the type (ignore if set to all)
 $type = isset($_GET['type']) ? $_GET['type'] : 'all';
 $type_sql = $type != 'all' ? 'AND m.type = :type' : '';
 //! Limit the amount of media on each page
-$media_per_page = 12;
+$media_per_page = 50;
 // The current pagination page
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
@@ -70,7 +71,7 @@ $media_height = 200;
 
 <?= template_header('Gallery') ?>
 <?= template_header_other() ?>
-<link rel="stylesheet" href="assets/css/gallery.css?v=4">
+<link rel="stylesheet" href="assets/css/gallery.css?v=5">
 
 <?= template_nav() ?>
 
@@ -79,7 +80,7 @@ $media_height = 200;
     <header>
 		<h1>Artworks Gallery</h1>
 
-		<p> Follow Pieter’s development as a visual artist over time and place. Use the "view all’ button to get access to the whole data base and “category" field to make selections. New categories are under construction. </p>
+		<p> Follow Pieter’s development as a visual artist over time and place. Use the “category" field to make selections and "sort" for sorting options. New categories are under construction. </p>
 		
 
 		<?php
@@ -94,9 +95,9 @@ $media_height = 200;
 		<?php endif; ?>
     </header>
 		<div class="con">
-			<form action="" method="post"><input type="submit" value="View All" name="viewAll" class="rj-button">
+			<!-- <form action="" method="post"><input type="submit" value="View All" name="viewAll" class="rj-button">
       <label for="viewAll"> from category</label>
-    </form>
+    </form> -->
 			<form action="" method="get">
 				<label for="category">Category:</label>
 				<select id="category" name="category" onchange="this.form.submit()">
@@ -107,11 +108,12 @@ $media_height = 200;
 				</select>
 				<label for="sort_by">Sort By:</label>
 				<select id="sort_by" name="sort_by" onchange="this.form.submit()">
+					<option value="year0_9" <?= $sort_by == 'year0_9' ? ' selected' : '' ?>>Year 1 > 10 </option>
+					<option value="year9_0" <?= $sort_by == 'year9_0' ? ' selected' : '' ?>>Year 10 > 1 </option>
 					<option value="newest" <?= $sort_by == 'newest' ? ' selected' : '' ?>>Newest</option>
 					<option value="oldest" <?= $sort_by == 'oldest' ? ' selected' : '' ?>>Oldest</option>
 					<option value="a_to_z" <?= $sort_by == 'a_to_z' ? ' selected' : '' ?>>A-Z</option>
 					<option value="z_to_a" <?= $sort_by == 'z_to_a' ? ' selected' : '' ?>>Z-A</option>
-					<option value="year" <?= $sort_by == 'year' ? ' selected' : '' ?>>year</option>
 
 				</select>
 				<!-- <label for="type">Type:</label> -->
