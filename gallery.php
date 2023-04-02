@@ -105,11 +105,11 @@ $media_height = 200;
 			<!-- <form action="" method="post"><input type="submit" value="View All" name="viewAll" class="rj-button">
       <label for="viewAll"> from category</label>
     </form> -->
-			<form id="search-form">
+			<!-- <form id="search-form">
 				<label for="search">Search:</label>
 				<input type="text" id="search" name="search" placeholder="Enter title or year">
 				<button type="submit" class="rj-button">Search</button>
-			</form>
+			</form> -->
 
 			<form action="" method="get">
 				<label for="category">Category:</label>
@@ -246,35 +246,35 @@ $media_height = 200;
 
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const searchForm = document.getElementById('search-form');
-  const searchInput = document.getElementById('search');
-  const categorySelect = document.getElementById('category');
+// document.addEventListener('DOMContentLoaded', () => {
+//   const searchForm = document.getElementById('search-form');
+//   const searchInput = document.getElementById('search');
+//   const categorySelect = document.getElementById('category');
 
-  searchForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    loadMedia(categorySelect.value, searchInput.value);
-  });
+//   searchForm.addEventListener('submit', (event) => {
+//     event.preventDefault();
+//     loadMedia(categorySelect.value, searchInput.value);
+//   });
 
-  categorySelect.addEventListener('change', () => {
-    loadMedia(categorySelect.value, searchInput.value);
-  });
+//   categorySelect.addEventListener('change', () => {
+//     loadMedia(categorySelect.value, searchInput.value);
+//   });
 
-  async function loadMedia(category, search = '') {
-    const response = await fetch('search.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: `category=${encodeURIComponent(category)}&search=${encodeURIComponent(search)}`
-    });
+//   async function loadMedia(category, search = '') {
+//     const response = await fetch('search.php', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/x-www-form-urlencoded'
+//       },
+//       body: `category=${encodeURIComponent(category)}&search=${encodeURIComponent(search)}`
+//     });
 
-    if (response.ok) {
-      const resultsHtml = await response.text();
-      const galleryContainer = document.querySelector('.gallery-container');
-      galleryContainer.innerHTML = resultsHtml;
-    }
-  }
+//     if (response.ok) {
+//       const resultsHtml = await response.text();
+//       const galleryContainer = document.querySelector('.gallery-container');
+//       galleryContainer.innerHTML = resultsHtml;
+//     }
+//   }
 
   // Load media initially
   loadMedia(categorySelect.value);
