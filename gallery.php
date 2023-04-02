@@ -246,7 +246,7 @@ $media_height = 200;
 
 
 <script>
-// document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 //   const searchForm = document.getElementById('search-form');
 //   const searchInput = document.getElementById('search');
 //   const categorySelect = document.getElementById('category');
@@ -277,7 +277,7 @@ $media_height = 200;
 //   }
 
   // Load media initially
-  loadMedia(categorySelect.value);
+  // loadMedia(categorySelect.value);
 
 
 
