@@ -3,6 +3,9 @@ include 'functions.php';
 // Connect to MySQL
 $pdo = pdo_connect_mysql();
 
+// Search condition
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$search_sql = $search ? ' AND (m.title LIKE :search OR m.year LIKE :search)' : '';
 
 // Retrieve all unique years from the media table
 $stmt = $pdo->prepare('SELECT DISTINCT year FROM media ORDER BY year ASC');
@@ -33,7 +36,7 @@ $sort_by_sql = $sort_by == 'year9_0' ? 'm.year DESC' : $sort_by_sql;
 $type = isset($_GET['type']) ? $_GET['type'] : 'all';
 $type_sql = $type != 'all' ? 'AND m.type = :type' : '';
 //! Limit the amount of media on each page
-$media_per_page = 10;
+$media_per_page = 50;
 // The current pagination page
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
@@ -47,16 +50,16 @@ if (isset($_POST['viewAll'])) {
 	// MySQL query that selects all the media
 	$viewingAll = true;	
 
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql .  ' ORDER BY ' . $sort_by_sql . ', fnr  ');
+	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . $search_sql . $year_sql . ' ORDER BY ' . $sort_by_sql . ', fnr  ');
 
-	
+	if ($year != 'all') $stmt->bindValue(':year', $year);
 
 	// Check if the category is not set to all
 	if ($category != 'all') $stmt->bindValue(':category', $category);
-
+	if ($search) $stmt->bindValue(':search', '%' . $search . '%');
 	// Execute the SQL
 	$stmt->execute();
-} else  {
+} else {
 	$viewingAll = false;
 
 	// MySQL query that selects all the media
@@ -73,46 +76,15 @@ if (isset($_POST['viewAll'])) {
 	$stmt->execute();
 }
 
-// check if year is set
-
-if ($year != 'all') {
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' AND m.year = :year ORDER BY ' . $sort_by_sql . ', fnr');
-	// Determine which page the user is on and bind the value into our SQL statement
-	// $stmt->bindValue(':page', ((int)$current_page - 1) * $media_per_page, PDO::PARAM_INT);
-	// How many media will show on each page
-	// $stmt->bindValue(':media_per_page', $media_per_page, PDO::PARAM_INT);
-	// Check if the type is not set to all
-	if ($type != 'all') $stmt->bindValue(':type', $type);
-	// Check if the category is not set to all
-	if ($category != 'all') $stmt->bindValue(':category', $category);
-	// Check if the year is not set to all
-	if ($year != 'all') $stmt->bindValue(':year', $year);
-	// Execute the SQL
-	$stmt->execute();
-}	else {
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' ORDER BY ' . $sort_by_sql . ', fnr LIMIT :page,:media_per_page');
-	// Determine which page the user is on and bind the value into our SQL statement
-	$stmt->bindValue(':page', ((int)$current_page - 1) * $media_per_page, PDO::PARAM_INT);
-	// How many media will show on each page
-	$stmt->bindValue(':media_per_page', $media_per_page, PDO::PARAM_INT);
-	// Check if the type is not set to all
-	if ($type != 'all') $stmt->bindValue(':type', $type);
-	// Check if the category is not set to all
-	if ($category != 'all') $stmt->bindValue(':category', $category);
-	// Execute the SQL
-	$stmt->execute();
-}
-
-
 
 
 
 $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Get the total number of media with search condition
-$stmt = $pdo->prepare('SELECT COUNT(*) FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql);
+$stmt = $pdo->prepare('SELECT COUNT(*) FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . $search_sql);
 if ($type != 'all') $stmt->bindValue(':type', $type);
 if ($category != 'all') $stmt->bindValue(':category', $category);
-
+if ($search) $stmt->bindValue(':search', '%' . $search . '%');
 $stmt->execute();
 $total_media = $stmt->fetchColumn();
 $last_page = ceil($total_media / $media_per_page);
@@ -148,7 +120,14 @@ $media_height = 200;
 			<?php endif; ?>
 		</header>
 		<div class="con">
-
+			<!-- <form action="" method="post"><input type="submit" value="View All" name="viewAll" class="rj-button">
+      <label for="viewAll"> from category</label>
+    </form> -->
+			<!-- <form id="search-form">
+				<label for="search">Search:</label>
+				<input type="text" id="search" name="search" placeholder="Enter title or year">
+				<button type="submit" class="rj-button">Search</button>
+			</form> -->
 
 			<form action="" method="get">
 			<label for="year">Year:</label>
@@ -158,8 +137,6 @@ $media_height = 200;
 		<option value="<?= $year['year'] ?>" <?= isset($_GET['year']) && $_GET['year'] == $year['year'] ? ' selected' : '' ?>><?= $year['year'] ?></option>
 	<?php endforeach; ?>
 </select>
-<!-- </form>
-<form action="" method="get"> -->
 
 				<label for="category">Category:</label>
 				<select id="category" name="category" onchange="this.form.submit()">
@@ -202,21 +179,9 @@ $media_height = 200;
 								<?php if ($m['type'] == 'image') : ?>
 									<div class="media-selection-container">
 										<button class="img-btn" data-src="<?= $m['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
-										 <!-- chek if description is not equal to '...' -->
-										<?php if (trim($m['description']) != '...') : ?>
-											<button class="info-btn" data-info="<?= trim($m['description']) ?>" data-title="<?= $m['title'] ?>"><i class="fa-solid fa-circle-info"></i></i></button>
-										<?php endif; ?>
-										
-										 <!-- check if audio url is not empty -->
-										<?php if (!empty($m['audio_url'])) : ?>
-											<button class="audio-btn" data-src="<?= urldecode($m['audio_url']) ?>"><i class="fa-solid fa-headphones"></i></button>
-										<?php endif; ?>
-										
-										<!-- check if video url is not empty -->
-										<?php if (!empty($m['video_url'])) : ?>
-											<button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
-										<?php endif; ?>
-									
+										<button class="info-btn" data-info="<?= trim($m['description']) ?>" data-title="<?= $m['title'] ?>"><i class="fa-solid fa-circle-info"></i></i></button>
+										<button class="audio-btn" data-src="<?= urldecode($m['audio_url']) ?>"><i class="fa-solid fa-headphones"></i></button>
+										<button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
 
 									</div>
 
@@ -274,34 +239,32 @@ $media_height = 200;
 								
 				<?php endforeach; ?>
 		</section>
-
 		<div class="pagination">
-<?php if (!$viewingAll) {
-  if ($current_page > 1) : ?>
+			<?php if (!$viewingAll) {
+				if ($current_page > 1) : ?>
 
-    <a class="rj-prev" href="?page=<?= $current_page - 1 ?>&sort_by=<?= $sort_by ?>&category=<?= $category ?>&search=<?= urlencode($search) ?>">
-      <svg height="16" width="16" viewBox="0 0 1024 1024">
-        <path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path>
-      </svg>
-      <span>Prev</span>
-    </a>
-  <?php endif; ?>
-  <div class="rj-current-page">
-    Page <?= $current_page ?> of <?= $last_page ?>
-  </div>
-  <?php if ($current_page * $media_per_page < $total_media) : ?>
-    <a class="rj-next" href="?page=<?= $current_page + 1 ?>&sort_by=<?= $sort_by ?>&category=<?= $category ?>>&search=<?= urlencode($search) ?>">
-      <span>Next</span>
-      <svg height="16" width="16" viewBox="0 0 1024 1024">
-        <path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z" transform="matrix(-1, 0, 0, -1, 1054.269043, 991.052002)"></path>
-      </svg>
-    </a>
-<?php endif;
-} else {
-  echo '<a href="#top">Back to top</a>';
-} ?>
-</div>
-
+					<a class="rj-prev" href="?page=<?= $current_page - 1 ?>&sort_by=<?= $sort_by ?>&category=<?= $category ?>&search=<?= urlencode($search) ?>">
+						<svg height="16" width="16" viewBox="0 0 1024 1024">
+							<path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path>
+						</svg>
+						<span>Prev</span>
+					</a>
+				<?php endif; ?>
+				<div class="rj-current-page">
+					Page <?= $current_page ?> of <?= $last_page ?>
+				</div>
+				<?php if ($current_page * $media_per_page < $total_media) : ?>
+					<a class="rj-next" href="?page=<?= $current_page + 1 ?>&sort_by=<?= $sort_by ?>&category=<?= $category ?>>&search=<?= urlencode($search) ?>">
+						<span>Next</span>
+						<svg height="16" width="16" viewBox="0 0 1024 1024">
+							<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z" transform="matrix(-1, 0, 0, -1, 1054.269043, 991.052002)"></path>
+						</svg>
+					</a>
+			<?php endif;
+			} else {
+				echo '<a href="#top">Back to top</a>';
+			} ?>
+		</div>
 
 
 
@@ -310,15 +273,59 @@ $media_height = 200;
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+//   const searchForm = document.getElementById('search-form');
+//   const searchInput = document.getElementById('search');
+//   const categorySelect = document.getElementById('category');
+
+//   searchForm.addEventListener('submit', (event) => {
+//     event.preventDefault();
+//     loadMedia(categorySelect.value, searchInput.value);
+//   });
+
+//   categorySelect.addEventListener('change', () => {
+//     loadMedia(categorySelect.value, searchInput.value);
+//   });
+
+//   async function loadMedia(category, search = '') {
+//     const response = await fetch('search.php', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/x-www-form-urlencoded'
+//       },
+//       body: `category=${encodeURIComponent(category)}&search=${encodeURIComponent(search)}`
+//     });
+
+//     if (response.ok) {
+//       const resultsHtml = await response.text();
+//       const galleryContainer = document.querySelector('.gallery-container');
+//       galleryContainer.innerHTML = resultsHtml;
+//     }
+//   }
+
+  // Load media initially
+  // loadMedia(categorySelect.value);
+
+
 
 		const observer = lozad(".lozad", {
 			loaded: function(el) {
 				el.classList.add("fade");
-				// console.log("loadewe");
+				console.log("loadewe");
 			}
 		});
 		observer.observe();
 	});
+	// function loadMedia(category, search = '') {
+  // const xhr = new XMLHttpRequest();
+  // xhr.onreadystatechange = function() {
+  //   if (this.readyState === 4 && this.status === 200) {
+  //     document.getElementById('media-container').innerHTML = this.responseText;
+  //   }
+  // };
+
+  // const url = `gallery.php?category=${category}&search=${encodeURIComponent(search)}`;
+  // xhr.open('GET', url, true);
+  // xhr.send();}
 
 
 
