@@ -47,19 +47,22 @@ ul {
     align-items: center;
     flex-wrap: nowrap;
     background-color: rgba(99 99 99 / 0.65);
-    margin-bottom: 2rem;
-    width: 100%;
+    margin-block: 2em;
+    margin-inline: auto;
+    max-width: 1240px;
     height: auto;
     border: 1px solid rgb(0 0 0 / 0.5);
     box-shadow: 1px 2px 3px rgb(0 0 0 / 55%);
     border-radius: 4px;
+    position: relative;
 }
-
-.rj-home-header img{
-    width: 80%;
+.rj-home-header img {
+    width: min(100% - 2em, 80ch);
     height: auto;
-object-fit: contain;
-filter: drop-shadow(9px 11px 7px rgba(12 12 12 / 0.6) );
+    object-fit: contain;
+    filter: drop-shadow(9px 11px 7px rgba(12 12 12 / 0.6) );
+    position: absolute;
+    top: -3rem;
 }
 
 .rj-home-header-img {
@@ -69,14 +72,6 @@ filter: drop-shadow(9px 11px 7px rgba(12 12 12 / 0.6) );
     padding: 0;
 }
 
-.rj-home-header-img img {
-    width: 100%;
-    object-fit: contain;
-    border: 1px solid rgba(1, 29, 40, 0.5);
-    border-radius: 7px;
-    /* box-shadow: 0 1px 2px 3px rgba(130,147,152,0.5); */
-    box-shadow: 0 2px 8px 4px rgba(0, 0, 0, 19%);
-}
 
 .rj-home-header .rj-home-btn-about {
     position: relative;
@@ -85,6 +80,26 @@ filter: drop-shadow(9px 11px 7px rgba(12 12 12 / 0.6) );
     background-color: rgba(250, 250, 250, 0.7);
 }
 
+.rj-home-hero {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: end;
+    align-items: end;
+    flex-wrap: nowrap;
+    background-color: rgba(99 99 99 / 0.65);
+    background-image: url(../img/2022-40-Sunrise-at-Manadas.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: min(100%, 1240px);
+    height: 600px;
+    border: 1px solid rgb(0 0 0 / 0.5);
+    box-shadow: 1px 2px 3px rgb(0 0 0 / 55%);
+    border-radius: 4px;
+    padding: 1em;
+    position: relative;
+
+}
 .rj-social-list {
     position: relative;
     top: -1rem;

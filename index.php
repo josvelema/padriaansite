@@ -13,24 +13,32 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <main class="rj-home">
   <header class="rj-home-header">
-    <img src="assets/img/pieterheaderlogo.png" alt="pieter adriaans logo">
     <!-- <h1>Pieter Adriaans</h1> -->
     <!-- <div class="rj-home-header-img">
       <img src="assets/img/pieterheader.jpg" alt="banner of pieter">
       <a href="#about" class="rj-btn-light rj-home-btn-about">About</a>
     </div> -->
+    
+    <div class="rj-home-hero">
+      
+      <div class="rj-cta-main">
+        <p>This page is dedicated to the works of the philosopher, scientist, painter, musician Pieter Adriaans (1955). It is intended as a digital archive that over time will give an extensive overview of his production.</p>
+        
+      </div>
+    </div>
+    <img src="assets/img/pieterheaderlogo.png" alt="pieter adriaans logo">
     <ul class="rj-social-list">
       <li class="rj-social-item"><a href="https://www.facebook.com/pieter.adriaans" target="_blank"><i class="fa-brands fa-facebook"></i>Pieter Adriaans</a></li>
       <li class="rj-social-item"><a href="http://www.youtube.com/user/pwadriaans/featured" target="_blank"><i class="fa-brands fa-youtube"></i>Youtube channel</a></li>
       <li class="rj-social-item"><a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank"><i class="fa-brands fa-facebook"></i>Atelier de Kaasfabriek</a></li>
     </ul>
   </header>
-  <article class="rj-cta-main">
-    <h3>
-      Now with a database of over 1300 images, spanning almost 60 years!
-      <br><a href="gallery.php">Click here to get access.</a>
-    </h3>
-  </article>
+  <!-- <article class="rj-cta-main">
+    
+    This page is dedicated to the works of the philosopher, scientist, painter, musician Pieter Adriaans (1955). It is intended as a digital archive that over time will give an extensive overview of his production.
+      
+   
+  </article> -->
   <!-- <section class=" rj-news-section"> -->
         <div class="blog-css-grid">
           <?php
@@ -68,13 +76,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
               </article>
             </div>
-            <div class="rj-about-hero">
-              <!-- <img src="assets/img/heroimg201519.jpg" alt=""> -->
-              <p>
-                This page is dedicated to the works of the philosopher, scientist, painter, musician Pieter Adriaans (1955). It is intended as a digital archive that over time will give an extensive overview of his production.
 
-              </p>
-            </div>
         </div>
       <?php
           }
@@ -83,7 +85,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </section>
       <div class="rj-about-logo-container">
         <a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank"><img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo" class="rj-kaas-logo"></a>
-        <a href="https://www.facebook.com/ManezinhoGrandCafe" target="_blank"><img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
+        <a href="http://wwww.artrestaurantmanezinho.com" target="_blank"><img src="assets/img/Manezinho Logo.jpg" alt="manezinhos logo" class="rj-mz">
       </div>
 
 

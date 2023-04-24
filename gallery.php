@@ -7,6 +7,15 @@ $pdo = pdo_connect_mysql();
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $search_sql = $search ? ' AND (m.title LIKE :search OR m.year LIKE :search)' : '';
 
+// Retrieve all unique years from the media table
+$stmt = $pdo->prepare('SELECT DISTINCT year FROM media ORDER BY year ASC');
+$stmt->execute();
+$years = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$year = isset($_GET['year']) ? $_GET['year'] : 'all';
+$year_sql = $year != 'all' ? ' AND m.year = :year' : '';
+
+
 // Retrieve the categories
 $stmt = $pdo->prepare('SELECT * FROM categories ORDER BY title');
 $stmt->execute();
@@ -31,10 +40,19 @@ $media_per_page = 50;
 // The current pagination page
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
+// Retrieve all unique years from the media table
+$stmt = $pdo->prepare('SELECT DISTINCT year FROM media ORDER BY year ASC');
+$stmt->execute();
+$years = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 if (isset($_POST['viewAll'])) {
 	// MySQL query that selects all the media
-	$viewingAll = true;
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . $search_sql . ' ORDER BY ' . $sort_by_sql . ', fnr  ');
+	$viewingAll = true;	
+
+	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . $search_sql . $year_sql . ' ORDER BY ' . $sort_by_sql . ', fnr  ');
+
+	if ($year != 'all') $stmt->bindValue(':year', $year);
 
 	// Check if the category is not set to all
 	if ($category != 'all') $stmt->bindValue(':category', $category);
@@ -112,6 +130,14 @@ $media_height = 200;
 			</form> -->
 
 			<form action="" method="get">
+			<label for="year">Year:</label>
+<select id="year" name="year" onchange="this.form.submit()">
+	<option value="all">All</option>
+	<?php foreach ($years as $year) : ?>
+		<option value="<?= $year['year'] ?>" <?= isset($_GET['year']) && $_GET['year'] == $year['year'] ? ' selected' : '' ?>><?= $year['year'] ?></option>
+	<?php endforeach; ?>
+</select>
+
 				<label for="category">Category:</label>
 				<select id="category" name="category" onchange="this.form.submit()">
 					<option value="all" <?= $sort_by == 'all' ? ' selected' : '' ?>>All</option>

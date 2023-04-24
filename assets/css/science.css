@@ -23,11 +23,8 @@ main > * {
 } */
 
 main > * {
-    /* --layout-spacing: max(8vh, 2rem); */
-    --max-width: 96%;
-    width: min(80ch, 100%);
-    margin-left: auto;
-    margin-right: auto;
+    width: min(100% - 2em, 88ch + 2em);
+    margin-inline: auto;
 }
 
 .rj-black-bg-main {
@@ -42,11 +39,11 @@ header {
     place-items: center;
 }
 
-.rj-science-section {
+/* .rj-science-section {
     margin-top: var(--layout-spacing);
     display: grid;
     grid-template-columns: fit-content(30ch) minmax(min(50vw, 30ch), 1fr);
-}
+} */
 
 header img {
     width: 150px;
@@ -104,7 +101,9 @@ a {
     text-underline-offset: 0.25em;
 }
 
-a:hover {
+a:hover,
+a:focus,
+a:focus-visible {
     color: rgb(222, 222, 211);
 }
 
@@ -113,45 +112,54 @@ article li {
     text-align: justify;
 }
 
+.rj-science-section {
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
+.rj-main-menu {
+    order: 1;
+    flex-basis: 100%;
+}
+
+
+
+#main {
+    display: block;
+}
+
+
+
 .rj-flex {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5em;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.rj-flex img {
-    width: 160px;
-    height: auto;
-    object-fit: contain;
-    padding: 0.5em;
-    margin: 0.25em;
+img {
+   max-width: 100%;
+    margin: 0.5rem;
 }
 
-.bibliography {
+.science-article {
     display: none;
 }
 
-@media screen and (max-width: 1000px) {
-    section {
-        display: flex;
-        flex-direction: column;
-    }
+.science-article.active {
+    display: block;
+}
 
-    .rj-science-main {
-        width: 100vw;
-    }
-    article[style*="display"],
-    article[class*=".rj-science-main"] {
-        width: 100%;
-        /* padding: 5vh clamp(1rem, 5vw, 3rem) 1rem; */
-    }
+.toc {
+    font-size: 0.9rem;
+}
 
-    img[src="assets/img/pieter-adriaans.jpg"] {
-        width: 200px;
-    }
+.toc ul {
+    padding-left: 1.5rem;
+}
 
-    .rj-flex {
-        flex-direction: column;
-    }
+iframe {
+    width: min(100%, 560px - 1em);
+    min-height: 323px;
+    object-fit: contain;
+    margin-inline: auto;
 }

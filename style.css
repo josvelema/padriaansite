@@ -1164,26 +1164,24 @@ a.rj-modal-btn {
     color: rgb(255, 255, 204);
 }
 .rj-cta-main {
-    color: #222;
+    color: #000;
     display: flex;
-    /* place-content: center; */
-    /* width: 33ch; */
-    /* place-items: center; */
-    align-items: center;
+
     flex-direction: column;
     justify-content: center;
-    background: rgba(199 199 199 / 0.75);
+    background: rgba(199 199 199 / 0.85);
     padding: 1em;
     text-shadow: 1px 1px 2px #fafafa;
     border: 1px solid rgb(33 22 66 / 0.9);
     border-radius: 4px;
     box-shadow: 1px 2px 3px rgb(0 0 0 / 55%);
     max-width: 66ch;
-    margin: 0.5em auto;
+    backdrop-filter: blur(1px);
+    /* margin: 0.5em auto; */
 }
-/* .rj-cta-main p {
-    
-} */
+.rj-cta-main p {
+    max-width: 50ch;
+}
 
 .rj-cta-main a {
     color: #000;

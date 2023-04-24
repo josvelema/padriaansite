@@ -1,6 +1,7 @@
 <?php
 include 'main.php';
 
+
 // Delete the selected media
 if (isset($_GET['delete'])) {
     $stmt = $pdo->prepare('SELECT * FROM media WHERE id = ?');
@@ -28,24 +29,23 @@ if (isset($_GET['approve'])) {
 if (isset($_POST['viewCat'])) {
     // if ($_POST['viewCat'] !== 0) {
 
-    setcookie("viewing_cat" ,  $_POST['viewCat'] , time() + 86400);
-    
+    setcookie("viewing_cat",  $_POST['viewCat'], time() + 86400);
+
     $stmt = $pdo->prepare('SELECT * FROM categories WHERE id = ? ');
     $stmt->bindParam(1, $_POST['viewCat'], PDO::PARAM_INT);
     $stmt->execute();
     $viewCat = $stmt->fetch(PDO::FETCH_ASSOC);
-    $catTitle =$viewCat['title'];
+    $catTitle = $viewCat['title'];
 
     $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? WHERE m.type = "image" ORDER BY m.id DESC ');
 
     $stmt->bindParam(1, $_POST['viewCat'], PDO::PARAM_INT);
     $stmt->execute();
-    
+
     $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $countMedia = $stmt->rowCount();
-
 } else {
-    setcookie("viewing_cat" , 0 , time() + 86400);
+    setcookie("viewing_cat", 0, time() + 86400);
 
     $stmt = $pdo->prepare('SELECT * FROM media ORDER BY year,fnr DESC');
     $stmt->execute();
@@ -54,22 +54,21 @@ if (isset($_POST['viewCat'])) {
 }
 
 if (isset($_COOKIE['viewing_cat'])) {
-    if($_COOKIE['viewing_cat'] > 0){
+    if ($_COOKIE['viewing_cat'] > 0) {
         $stmt = $pdo->prepare('SELECT * FROM categories WHERE id = ? ');
-    $stmt->bindParam(1, $_COOKIE['viewing_cat'], PDO::PARAM_INT);
-    $stmt->execute();
-    $viewCat = $stmt->fetch(PDO::FETCH_ASSOC);
-    $catTitle =$viewCat['title'];
+        $stmt->bindParam(1, $_COOKIE['viewing_cat'], PDO::PARAM_INT);
+        $stmt->execute();
+        $viewCat = $stmt->fetch(PDO::FETCH_ASSOC);
+        $catTitle = $viewCat['title'];
 
-    $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? WHERE m.type = "image" ORDER BY m.id DESC ');
+        $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? WHERE m.type = "image" ORDER BY m.id DESC ');
 
-    $stmt->bindParam(1, $_COOKIE['viewing_cat'], PDO::PARAM_INT);
-    $stmt->execute();
-    
-    $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $countMedia = $stmt->rowCount();
+        $stmt->bindParam(1, $_COOKIE['viewing_cat'], PDO::PARAM_INT);
+        $stmt->execute();
+
+        $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $countMedia = $stmt->rowCount();
     }
-     
 }
 
 
@@ -80,7 +79,7 @@ if (isset($_COOKIE['viewing_cat'])) {
 
 <div class="links">
     <a href="media.php">Create Media</a>
-    
+
 </div>
 <div class="rj-form-admin">
     <form action="allmedia.php" method='post'>
@@ -150,7 +149,12 @@ if (isset($_COOKIE['viewing_cat'])) {
                                 <?php if (!$m['approved']) : ?>
                                     <a href="allmedia.php?approve=<?= $m['id'] ?>">Approve</a>
                                 <?php endif; ?>
+                                <button onclick="generateQRCode(<?= $m['id'] ?>)">Make QR </button> <!-- Add this line -->
+                                <button onclick="generateQrCardAndSave(<?= $m['id'] ?>, '<?= '../' . $m['qr_url'] ?>')">Make QR Card</button>
+
+                                
                             </td>
+                           
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -188,6 +192,25 @@ if (isset($_COOKIE['viewing_cat'])) {
         delModal.style.display = "none";
 
     }
+</script>
+<script src="generateBusinessCard.js"></script>
+
+<script>
+
+
+    function generateQRCode(media_id) {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // document.('qr_url_' + media_id).innerText = this.responseText;
+                console.log('response', this.responseText);
+            }
+        };
+        xhr.open("GET", "qrcode.php?media_id=" + media_id, true);
+        xhr.send();
+    }
+
+
 </script>
 
 

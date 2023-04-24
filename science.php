@@ -27,20 +27,15 @@ include 'functions.php';
       </ul>
     </aside>
 
-    <article class="rj-science-main" id="main">
+
+    <article class="rj-science-main science-article" id="main">
       <h2>Current research interests:</h2>
       <ul>
-        <li>
-          The interaction between information and computation
-        </li>
-        <li>
-          Learning as data compression
-        </li>
         <li>
           Philosophy of information
         </li>
         <li>
-          Information and Art
+          Information, Cognition and Art
         </li>
       </ul>
 
@@ -52,40 +47,51 @@ include 'functions.php';
         <img title="Cover Data Mining " src="assets/img/data-mining.jpg" alt="Cover Data Mining ">
         <img title="Managing Client/Server" src="assets/img/client-server-management.jpg" alt="Managing Client/Server">
         <img title="Cover Robot op Zee" src="assets/img/robot-op-zee.jpg" alt="Cover Robot op Zee">
-
+        <img title="Cover Painting for the Brain" src="assets\img\Painting-for-the-Brain-cover.jpg" alt="Cover Painting for the Brain">
       </div>
 
     </article>
 
-    <article id="biblio" style="display: none;">
+    <article id="biblio" class="science-article">
 
       <h2>Bibliography</h2>
 
       <h3 style="margin-top: 1rem">20's</h3>
 
       <ul>
-        <li><em style="font-size: 0.9rem;"><strong>P. W. Adriaans</strong>,&nbsp; Differential information theory,<br> </em>
-          <em style="font-size: 0.9rem;"><a href="https://arxiv.org/abs/2111.04335">&nbsp;&lsquo;https://arxiv.org/abs/2111.04335.&rsquo;&nbsp;</a></em>
-          <em style="font-size: 0.9rem;"> ArXiv, 2021. &nbsp;</em>
+
+        <li>
+          <strong>Daan&nbsp;van &nbsp;den &nbsp;Berg, Pieter&nbsp;Adriaans</strong>, Subset Sum and the Distribution of Information,
+
+          <em><a href="https://bit.ly/3wm34v2">&nbsp;&lsquo;https://bit.ly/3wm34v2.&rsquo;&nbsp;</a></em>
+
+
+          <em> 13th International Conference on Evolutionary Computation Theory and Applications, </em> 2021.
         </li>
-        <li><em style="font-size: 0.9rem;"><strong>P. W. Adriaans</strong>,&nbsp; A computational theory of meaning</em>
-          <em style="font-size: 0.9rem;">, in</em><em style="font-size: 0.9rem;">&nbsp;&lsquo;Advances in Info-Metrics: Information and Information Processing across Disciplines.&rsquo;&nbsp;</em>
-          <em style="font-size: 0.9rem;">Editors: Min Chen, Michael Dunn, Amos Golan and Aman Ullah, OUP, 2020. &nbsp;</em>
+        <li> <strong>P.W. Adriaans</strong>,&nbsp; Differential information theory, </em>
+          <em><a href="https://arxiv.org/abs/2111.04335">&nbsp;&lsquo;https://arxiv.org/abs/2111.04335.&rsquo;&nbsp;</a></em>
+          <em> ArXiv, 2021. &nbsp;</em>
+        </li>
+
+        <li> <strong>P.W. Adriaans </strong>,&nbsp; A computational theory of meaning</em>
+          <em>, in</em><em>&nbsp;&lsquo;Advances in Info-Metrics: Information and Information Processing across Disciplines.&rsquo;&nbsp;</em>
+          <em style="font-size: 0.9rem;">Editors: Min Chen, Michael Dunn, Amos Golan and Aman Ullah, OUP, </em>
+          2020. &nbsp;
         </li>
       </ul>
 
       <h3 style="margin-top: 1rem">10's</h3>
 
       <ul>
-        <li><em style="font-size: 0.9rem;"><strong>P. W. Adriaans</strong>,
-            "<a title="SEP Information " href="https://plato.stanford.edu/archives/spr2019/entries/information/">Information</a>",
-            &nbsp;The Stanford Encyclopedia of Philosophy&nbsp;(Spring 2019 Edition), Edward N. Zalta&nbsp;(ed.)</em>
+        <li> <strong>P.W. Adriaans</strong>,
+          "<a title="SEP Information " href="https://plato.stanford.edu/archives/spr2019/entries/information/">Information</a>",
+          &nbsp;The Stanford Encyclopedia of Philosophy&nbsp;(Spring 2019 Edition), Edward N. Zalta&nbsp;(ed.)</em>
         </li>
-        <li><strong style="font-size: 0.9rem;">P. W. Adriaans</strong><span style="font-size: 0.9rem;">, </span>
+        <li><strong>P. W. Adriaans</strong><span style="font-size: 0.9rem;">, </span>
           <a style="font-size: 0.9rem;" title="Fueter-Polya" href="https://arxiv.org/abs/1809.09871">A simple information theoretical proof of the Fueter-Polya conjecture</a><span style="font-size: 0.9rem;">, 2018.</span>
         </li>
         <li>
-          <strong style="font-size: 0.9rem;">P. W. Adriaans, </strong><span style="font-size: 0.9rem;">A General Theory of Information and Computation, eprint </span><a style="font-size: 0.9rem;" title="A General Theory of Information and Computation" href="https://arxiv.org/abs/1611.07829">arXiv:1611.07829</a><span style="font-size: 0.9rem;">, November, 2016.&nbsp;</span>
+          <strong>P.W. Adriaans, </strong><span style="font-size: 0.9rem;">A General Theory of Information and Computation, eprint </span><a style="font-size: 0.9rem;" title="A General Theory of Information and Computation" href="https://arxiv.org/abs/1611.07829">arXiv:1611.07829</a><span style="font-size: 0.9rem;">, November, 2016.&nbsp;</span>
         </li>
         <li>
           <strong>Peter&nbsp;Bloem, Steven&nbsp;de &nbsp;Rooij, Pieter&nbsp;Adriaans</strong>, Two Problems for Sophistication, <a href="http://link.springer.com/book/10.1007/978-3-319-24486-0">Algorithmic Learning Theory</a>, Volume 9355 of the series <a href="http://link.springer.com/bookseries/558">Lecture Notes in Computer Science</a> pp 379-394, 2015. (Find related material <a href="http://peterbloem.nl/publications/two-problems">here</a>).
@@ -94,10 +100,10 @@ include 'functions.php';
           <strong>Peter&nbsp;Bloem, Francisco&nbsp;Mota, Steven&nbsp;de&nbsp;Rooij, Lu&iacute;s&nbsp;Antunes, Pieter&nbsp;Adriaans,&nbsp;</strong><a href="http://link.springer.com/book/10.1007/978-3-319-11662-4">Algorithmic Learning Theory</a><span>,&nbsp;A Safe Approximation for Kolmogorov Complexity,&nbsp;Volume 8776 of the series&nbsp;</span><a href="http://link.springer.com/bookseries/558">Lecture Notes in Computer Science</a><span>&nbsp;pp 336-350, 2014.&nbsp;</span>
         </li>
         <li>
-          <strong>P.W. Adriaans, </strong><a title="www.schilderenvoorhetbrein.nl/" href="http://www.schilderenvoorhetbrein.nl/">Schilderen voor het Brein</a><span>, Uiteverij Mooi Media, 2013.&nbsp;</span>
+          <strong>P.W. Adriaans, </strong><a title="www.schilderenvoorhetbrein.nl/" href="http://www.schilderenvoorhetbrein.nl/">Schilderen voor het Brein</a><span>, Uitgeverij Mooi Media, 2013.&nbsp;</span>
         </li>
         <li>
-          <strong>P.W.Adriaans</strong><span>, </span><a title="Pleidooi voor het trage kijken" href="assets/pdfdoc/documents/fd20131123.pdf">Pleidooi voor het trage kijken</a><span>, FrieschDagblad, 23 november, 2013.&nbsp;</span>
+          <strong>P.W.Adriaans</strong><span>, </span><a title="Pleidooi voor het trage kijken" href="assets/pdfdoc/documents/fd20131123.pdf">Pleidooi voor het trage kijken</a><span>, Friesch Dagblad, 23 november, 2013.&nbsp;</span>
         </li>
         <li>
           <strong>P.W. Adriaans,</strong><span>&nbsp;"</span><a href="https://plato.stanford.edu/entries/information/">Information</a><span>",&nbsp;</span><em>The Stanford Encyclopedia of Philosophy</em><span>&nbsp;(Winter 2012 Edition), Edward N. Zalta&nbsp;(ed.),</span><span>&nbsp;2016.&nbsp;</span>
@@ -154,13 +160,13 @@ include 'functions.php';
           <strong> S. Katrenko and P. Adriaans.</strong> Using Semi-Supervised Techniques to Detect Gene Mentions. In Proceedings of the Second BioCreative Challenge Workshop, April 2007.
         </li>
         <li>
-          <strong>P.W. Adriaans,</strong>Learning deterministic DEC grammars is learning rational numbers, In Proceedings of the 8th International Colloquium on Grammatical Inference (ICGI). Lecture Notes in Artificial Intelligence, Sakaibara, Y.; Kobayashi, S.; Sato, K.; Nishino, T.; Tomita, E. (Eds.). Tokyo, Japan, September 21, 2006. LNAI, vol. 4201 <a href="http://staff.science.uva.nl/%7Epietera/publications/ICGI-DEC.ps">Postscript</a>
+          <strong>P.W. Adriaans, </strong>Learning deterministic DEC grammars is learning rational numbers, In Proceedings of the 8th International Colloquium on Grammatical Inference (ICGI). Lecture Notes in Artificial Intelligence, Sakaibara, Y.; Kobayashi, S.; Sato, K.; Nishino, T.; Tomita, E. (Eds.). Tokyo, Japan, September 21, 2006. LNAI, vol. 4201
         </li>
         <li>
-          <strong>P.W. Adriaans, C. Jacobs, </strong> Using MDL for grammar induction, , In Proceedings of the 8th International Colloquium on Grammatical Inference (ICGI). Lecture Notes in Artificial Intelligence, Sakaibara, Y.; Kobayashi, S.; Sato, K.; Nishino, T.; Tomita, E. (Eds.). Tokyo, Japan, September 21, 2006. LNAI, vol. 4201 <a href="http://staff.science.uva.nl/%7Epietera/publications/ICGI-MDL.ps">Postscript</a>
+          <strong>P.W. Adriaans, C. Jacobs, </strong> Using MDL for grammar induction, , In Proceedings of the 8th International Colloquium on Grammatical Inference (ICGI). Lecture Notes in Artificial Intelligence, Sakaibara, Y.; Kobayashi, S.; Sato, K.; Nishino, T.; Tomita, E. (Eds.). Tokyo, Japan, September 21, 2006. LNAI, vol. 4201
         </li>
         <li>
-          <strong>P.W. Adriaans, </strong> SSTT, Speed Search in Truth Tables, a complete inductive approach to SAT, in Proceedings of the Fifteenth Dutch-Belgian Conference on Machine Learning (Benelearn), 2006. <a href="http://staff.science.uva.nl/%7Epietera/publications/my-benelearn.ps">Postscript</a>
+          <strong>P.W. Adriaans, </strong> SSTT, Speed Search in Truth Tables, a complete inductive approach to SAT, in Proceedings of the Fifteenth Dutch-Belgian Conference on Machine Learning (Benelearn), 2006.
         </li>
         <li>
           <strong>S. Katrenko, and P. Adriaans.</strong> Grammatical Inference in Practice: A Case Study in the Biomedical Domain. In Proceedings of the 8th International Colloquium on Grammatical Inference (ICGI). Lecture Notes in Artificial Intelligence, Sakaibara, Y.; Kobayashi, S.; Sato, K.; Nishino, T.; Tomita, E. (Eds.). Tokyo, Japan, September 21, 2006. LNAI, vol. 4201
@@ -184,7 +190,7 @@ include 'functions.php';
           <strong>S. Katrenko and P. Adriaans.</strong> Using Maximal Embedded Syntactic Subtrees for Textual Entailment Recognition. In Proceedings of RTE-2 workshop, Venice, Italy, April 10, 2006.
         </li>
         <li>
-          <strong>Sophia Katrenko, M. Scott Marshall, Marco Roos and Pieter Adriaans.</strong> Learning Biological Interactions from Medline Abstracts. In Proceedings of the ICML'05 workshop "Learning Language in Logic", Bonn, Germany, August 7, 2005. <a href="http://staff.science.uva.nl/%7Epietera/publications/lll05-katrenko.pdf">Pdf</a>
+          <strong>Sophia Katrenko, M. Scott Marshall, Marco Roos and Pieter Adriaans.</strong> Learning Biological Interactions from Medline Abstracts. In Proceedings of the ICML'05 workshop "Learning Language in Logic", Bonn, Germany, August 7, 2005.
         </li>
         <li>
           <strong>P. Adriaans </strong>&lsquo;<a href="http://www.ziedaar.nl/index.php?theme=7&amp;id=230" target="_BLANK">De filosofie van het leren</a>&rsquo; in Blind Interdiciplinair tijdschrift. Januari 2006.
@@ -199,7 +205,7 @@ include 'functions.php';
           <strong>Lavrac, N., Motoda, H., Fawcett, T., Holte, R., Langley, P., &amp; Adriaans, P. </strong> Lessons learned from data mining applications and collaborative problem solving. Machine Learning, 57, 13-34, 2004.
         </li>
         <li>
-          <strong>Adriaans, P. &amp; Zaanen, M. van </strong> Computational Grammar Induction for Linguists. Grammars; special issue with the theme "Grammar Induction", 7, 57-68, 2004. <a href="http://staff.science.uva.nl/%7Epietera/publications/paper_def.pdf">Pdf</a>
+          <strong>Adriaans, P. &amp; Zaanen, M. van </strong> Computational Grammar Induction for Linguists. Grammars; special issue with the theme "Grammar Induction", 7, 57-68, 2004.
         </li>
         <li>
           <strong>Adriaans, P., Fernau, H., Higuera, C. de la &amp; Zaanen, M. van </strong> Introduction to the Special Issue on Grammar Induction. Grammars; special issue with the theme "Grammar Induction", 7, 41-43, 2004
@@ -211,7 +217,7 @@ include 'functions.php';
           <strong>Pieter Adriaans,</strong> Backgrounds and General Trends. In Dealing with the Data Flood (pp. 16-25). The Hague: STT Beweton, 2002.
         </li>
         <li>
-          <strong>Pieter Adriaans,</strong> Data mining in industry, lessons leaned, in Machine Learning Journal, to appear.
+          <strong>Pieter Adriaans,</strong> Data mining in industry, lessons learned, in Machine Learning Journal, to appear.
         </li>
         <li>
           <strong>Pieter Adriaans,</strong> Grammar Induction for Linguists, in Grammars, to appear.
@@ -232,7 +238,7 @@ include 'functions.php';
           <strong>Adriaans, P.W., Henning Fernau, Menno van Zaanen</strong> Grammatical Inference: Algorithms and applications, 6th Proceedings of the International Colloqium, ICGI 2002. Amsterdam, September, Berlin/Heidelberg: Springer Verlag, 2002.
         </li>
         <li>
-          <strong>P.W. Adriaans</strong> Multimedia: het gezicht van toekomst, op weg naar een perfecte synergie tussen mens en computer, Next Generation Scenario, Ministerie van Economische zaken, 2002 (www.cic-online.nl/files/NGSmultimedia.pdf)
+          <strong>P.W. Adriaans</strong> Multimedia: het gezicht van de toekomst, op weg naar een perfecte synergie tussen mens en computer, Next Generation Scenario, Ministerie van Economische zaken, 2002 (www.cic-online.nl/files/NGSmultimedia.pdf)
         </li>
         <li>
           <strong>Adriaans, Pieter,</strong> Semantic Induction with EMILE, Opportunities in Bioinformatics, TWLT19, Information Extraction in Molecular Biology, Proceedings Twente Workshop on Language Technology 19, ESF Scientific Programme on Integrated Approaches for Functional Genomics, ed. Paul van der Vet et al, pg. 1-6, Enschede, 2001",
@@ -241,7 +247,7 @@ include 'functions.php';
           <strong>Zaanen, Menno van and Adriaans, Pieter,</strong> Alignment-Based Learning versus EMILE: A Comparison, in Proceedings of the 13th Dutch-Belgian Artificial Intelligence Conference, Ben Kr&ouml;se et al. De Rode Hoed, Amsterdam, pg. 315-322, 25-26 October 2001.
         </li>
         <li>
-          <strong>Adriaans, Pieter,</strong> Learning Shallow Context-free Languages under Simple Distributions, Algebras, Diagrams and Decisions in Language, Logic and Computation, CSLI/CUP", Ann Copestake and Kees Vermeulen (eds.)", 2001. <a href="http://staff.science.uva.nl/%7Epietera/publications/shallowlanguages.pdf">Pdf</a>
+          <strong>Adriaans, Pieter,</strong> Learning Shallow Context-free Languages under Simple Distributions, Algebras, Diagrams and Decisions in Language, Logic and Computation, CSLI/CUP", Ann Copestake and Kees Vermeulen (eds.)", 2001.
         </li>
         <li>
           <strong>Adriaans, Pieter and Haas, Erik de,</strong> Learning from a Substructural Perspective", Proceedings of the Fourth Conference on Computational Natural Language Learning and of the Second Learning Language in Logic Workshop, Lisbon, Portugal, 2000, Cardie, Claire et al ed., pg. 176--183, September 2000.
@@ -250,7 +256,7 @@ include 'functions.php';
           <strong>Adriaans, Pieter and Erik de Haas,</strong> Grammar Induction as Substructural Inductive Logic Programming, In Learning Language in Logic (by Cussens, James et al), Lecture Notes in Artificial Intelligence, Vol. 1925, pg. 127-142, Berlin: Springer Verlag, 2000.
         </li>
         <li>
-          <strong>Trautwein, M.H., Adriaans, P.W., &amp; Vervoort M.R.</strong> Towards high speed grammar induction on large text corpora. In G.K. Hlavac. V. Feffrey, &amp; J. Wiederman (Eds.), Lecture Notes SOFSEM 2000: Theory and practice of Informatics, Vol. 1963, Lecture Notes in Cmputer Science, (pp. 173-186), Berlin: Springer Verlag, 2000. <a href="http://staff.science.uva.nl/%7Epietera/publications/sofsem2000.ps">Postscript</a>
+          <strong>Trautwein, M.H., Adriaans, P.W., &amp; Vervoort M.R.</strong> Towards high speed grammar induction on large text corpora. In G.K. Hlavac. V. Feffrey, &amp; J. Wiederman (Eds.), Lecture Notes SOFSEM 2000: Theory and practice of Informatics, Vol. 1963, Lecture Notes in Computer Science, (pp. 173-186), Berlin: Springer Verlag, 2000.
         </li>
       </ul>
 
@@ -293,7 +299,7 @@ include 'functions.php';
           <strong>Adriaans, Pieter,</strong> Predicting pilot bid behavior with genetic algorithms (Abstract), Symbiosis of Human and Artifact, Proceedings of the Sixth International Conference on Human-Computer Interaction, Anzai, Yuichiro et al, (HCI International '95), pg. 1109-1113, Tokyo, Japan, 1995,
         </li>
         <li>
-          <strong>Pieter Adriaans and Sylvia Janssen and Erik Nomden,</strong> Effective identification of semantic categories in curriculum texts by means of cluster analysis, ECML-93, European Conference on Machine Learning, Workshop notes Machine Learning Techniques and Text Analysis, ="Department of Medical Cybernetics and Artificial Intelligence, University of Vienna in cooperation with the Austrian Rezsearch Institute for Artificial Intelligence,Vienna, Austria. pg. 37-44,1993".
+          <strong>Pieter Adriaans and Sylvia Janssen and Erik Nomden,</strong> Effective identification of semantic categories in curriculum texts by means of cluster analysis, ECML-93, European Conference on Machine Learning, Workshop notes Machine Learning Techniques and Text Analysis, ="Department of Medical Cybernetics and Artificial Intelligence, University of Vienna in cooperation with the Austrian Research Institute for Artificial Intelligence,Vienna, Austria. pg. 37-44,1993".
         </li>
         <li>
           <strong>Adriaans, Willem, Pieter,</strong> Language Learning from a Categorial Perspective, Phd Thesis, Universiteit van Amsterdam,1992.
@@ -302,7 +308,7 @@ include 'functions.php';
           <strong>Adriaans, P.W.,</strong> A Domain Theory for Categorial Language Learning Algorithms, in Proceedings of the Eighth Amsterdam Colloquium, P. Dekker and M. Stokhof (eds.), University of Amsterdam, 1992. <a href="http://staff.science.uva.nl/%7Epietera/publications/coll.ps">Postscript</a>
         </li>
         <li>
-          <strong>Adriaans, P.W.,</strong> Bias in Inductive Language Learning, Proceedings of the ML92 Workshop on Biases in Inductive Language Learning, Diana F. Gordon ed., Abderdeen 1992.
+          <strong>Adriaans, P.W.,</strong> Bias in Inductive Language Learning, Proceedings of the ML92 Workshop on Biases in Inductive Language Learning, Diana F. Gordon ed., Aberdeen 1992.
         </li>
         <li>
           <strong>Adriaans, Pieter,</strong> Visual Programming and Knowledge Manipulation, Proceedings Share Europe Anniversary meeting Amsterdam, Managing your DP Assets", 1991, Share Europe (Seas)", vol. 2", pg. 525-551, 1991.
@@ -336,7 +342,7 @@ include 'functions.php';
 
     </article>
 
-    <article id="biblioInfo" style="display: none;">
+    <article id="biblioInfo"  class="science-article">
 
       <h2>Biographical and Background Information</h2>
 
@@ -468,50 +474,49 @@ include 'functions.php';
       <p>
         <strong>&nbsp;Recent Activities </strong>
       <p>
-        <span>Originally my chair &ldquo;Learning and adaptive systems&rdquo; had a strong industrial component, related to my commercial machine learning and data mining activities. In the past decennium after the release of the &ldquo;Handbook of Philosophy of Information&rdquo; my focus of attention has shifted to cognition and philosophy of information. In short, my research program is the application of insights of algorithmic complexity theory to the analysis of issues in cognition and philosophy.&nbsp;</span>
+        <span>Originally the chair &ldquo;Learning and adaptive systems&rdquo; had a strong industrial component, related to commercial machine learning and data mining activities. In the past decennium after the release of the &ldquo;Handbook of Philosophy of Information&rdquo; the focus of attention has shifted to cognition and philosophy of information. In short, his research program is the application of insights of algorithmic complexity theory to the analysis of issues in cognition and philosophy.&nbsp;</span>
       </p>
       <p>
 
-        Pivotal is the lemma on information that I wrote for the Stanford Encyclopedia of Philosophy<br>
-        <a href="http://plato.stanford.edu/entries/information/">(http://plato.stanford.edu/entries/information/)</a>.<br> This article, that took me several years of research, gives, for the first time,
+        Pivotal is the lemma on information that Adriaans wrote for the Stanford Encyclopedia of Philosophy<br>
+        <a href="http://plato.stanford.edu/entries/information/">(http://plato.stanford.edu/entries/information/)</a>.<br> This article gives, for the first time,
       <ol type="1">
-        <li> Acomprehensive overview of the development of the notion of information from antiquity to modern times, both from the perspective of history of ideas and the development of the terminology.</li>
+        <li> A comprehensive overview of the development of the notion of information from antiquity to modern times, both from the perspective of history of ideas and the development of the terminology.</li>
         <li> An extensive analysis of the emergence of the formal notion of information in the 20<sup>th</sup> century in the context of algorithmic complexity theory.</li>
       </ol>
       </p>
       <p>
 
-        In the past decade I have been working on several open problems in philosophy of information, specifically the issue of meaningful information, and the issue of the interaction between information and computation. Some preliminary results have been published
+        In the past decade Adriaans has been working on several open problems in philosophy of information, specifically the issue of meaningful information, and the issue of the interaction between information and computation. Some preliminary results have been published
         <a href="#biblio" onclick="show('biblio')">(bibliography)</a> but the bulk of the work is still under construction<a href="#projects">(projects)</a>.
         The research into the definition of meaningful information by means of two-part code optimization<a href="http://arxiv.org/abs/1203.2245">(http://arxiv.org/abs/1203.2245)</a>
-        was seriously impaired by the growing concern that an a priori separation of a data set in a structural part and an ad hoc part was not mathematically feasible. In 2017 I succeeded in proving this conjecture: using generalizations of the Cantor pairing function any data set can be split into any set of parts at constant cost. The results have been published as as a book chapter:
+        was seriously impaired by the growing concern that an a priori separation of a data set in a structural part and an ad hoc part was not mathematically feasible. In 2017 Adriaans succeeded in proving this conjecture: using generalizations of the Cantor pairing function any data set can be split into any set of parts at constant cost. The results have been published as a book chapter:
 
 
       <p>
-        <li><em><strong>P. W. Adriaans</strong>,&nbsp; A computational theory of meaning, Advances in Info-Metrics: Information and Information Processing across Disciplines.&rsquo;&nbsp;, Ullah, OUP, 2020. &nbsp;</em>
+        <li><strong>P. W. Adriaans</strong>,&nbsp;<em> A computational theory of meaning, Advances in Info-Metrics: Information and Information Processing across Disciplines.&rsquo;&nbsp;,</em> Ullah, OUP, 2020. &nbsp;
         </li>
 
       <p>
-        An extensive paper on the interaction of information and computation is in proparation. A preliminsary version can be found at:
+        An extensive paper on the interaction of information and computation is in preparation. A preliminary version can be found at:
 
       <p>
-        <li><em><strong>P. W. Adriaans</strong>, Differential information theory,<br> <a href="https://arxiv.org/abs/2111.04335">https://arxiv.org/abs/2111.04335</a>.</em>
-          ArXiv, 2021.</em>
+        <li><strong>P. W. Adriaans</strong>, Differential information theory, <a href="https://arxiv.org/abs/2111.04335">https://arxiv.org/abs/2111.04335</a>.</em>
+          ArXiv, 2021.
         </li>
 
 
       </p>
       <p>
-        Apart from this work I have been involved in a number of smaller projects. Amongst others:&nbsp;
+        Apart from this work Adriaans has been involved in a number of smaller projects. Amongst others:&nbsp;
       </p>
 
       <ul>
         <li>
 
-          A book &lsquo;Schilderen voor het brein&rsquo; was published in 2013. An English translatation is in preparation. This book generated some publicity which lead to a number of public lectures, and courses on creativity, e.g.:&nbsp;
+          A book &lsquo;Schilderen voor het brein&rsquo; (in Dutch) was published in 2013. An <a href="http://www.paintingforthebrain.com">English translation</a> is in preparation. This book generated some publicity which lead to a number of public lectures, and courses on creativity, e.g.:&nbsp;
           <br />
-          Studium Generale Utrecht: <br><a href="https://www.sg.uu.nl/sprekers/pieter-adriaans">https://www.sg.uu.nl/sprekers/pieter-adriaans</a>
-          , <a href="http://www.uu.nl/wetfilos/wetfil14/sprekers/index.html">http://www.uu.nl/wetfilos/wetfil14/sprekers/index.html</a>, <br>
+          Studium Generale Utrecht: <br><a href="https://www.sg.uu.nl/sprekers/pieter-adriaans">https://www.sg.uu.nl/sprekers/pieter-adriaans</a> <br>
 
           Instituut voor beeldtaal,<br>
           <a href="http://www.instituutvoorbeeldtaal.nl/artikelen/prof-pieter-adriaans-zien-we-beeldig-of-zien-we-talig/">http://www.instituutvoorbeeldtaal.nl/artikelen/prof-pieter-adriaans-zien-we-beeldig-of-zien-we-talig/</a>
@@ -520,32 +525,36 @@ include 'functions.php';
 
           A philosophical interpretation of the poetry of J.A. D&egrave;r Mouw (
           <a href="assets/pdfdoc/papers-under-construction-/der-mouw-final.pdf">der-mouw-final.pdf</a>
-          ) written for the 2014 D&egrave;r Mouw symposium. As an assistant in Leiden I have made an extensive analysis of the unpublished philosophical manuscripts of D&egrave;r Mouw and at this moment I seem to be one of the few persons alive with some deeper understanding of the philosophical background of this oeuvre. To be published.&nbsp;
+          ) written for the 2014 D&egrave;r Mouw symposium. As an assistant in Leiden Adriaans has made an extensive analysis of the unpublished philosophical manuscripts of D&egrave;r Mouw and at this moment he is one of the few persons alive with some deeper understanding of the philosophical background of this oeuvre. To be published.&nbsp;
 
         </li>
         <li>
 
-          A course &lsquo;Philosophy of Art&rsquo; that I teach at the Foudgumse School (
+          A course &lsquo;Philosophy of Art&rsquo; that Adriaans teaches at the Foudgumse School (
           <a href="http://defoudgumseschool.nl/website/">http://defoudgumseschool.nl/website/</a>
           ) on a yearly basis.&nbsp;
 
-        </li>
-        <li>
-          Information theoretical analysis of speech recognition by patients with cochlear implants with Dr. A.F. Van Olphen. To be published.&nbsp;
         </li>
       </ul>
       <p>
         <strong>Background information&nbsp;</strong>
       <p>
-        <span>In the coming years I hope to continue and combine my work as an artist, philosopher and scientist.&nbsp;&nbsp;My current practice has a strong international orientation and my output consists of scientific papers, book, paintings, exhibitions, and musical performances, courses and lectures. Only a small part of these activities fit in to an academic setting, and I will spend only a small part of my time in the Netherlands.&nbsp;</span> In 2015 my wife and I founded a cultural center at the island of S&atilde;o Jorge on the Azores. The ideal is to combine art, science and business in to a sustainable, eco-friendly, artistically rewarding and financially healthy venture.
+        <span>In the coming years Adriaans hopes to continue and combine his work as an artist, philosopher and scientist.&nbsp;&nbsp; His current practice has a strong international orientation and his output consists of scientific papers, books, paintings, exhibitions, and musical performances, courses and lectures. Only a small part of these activities fit in to an academic setting.&nbsp;</span> In 2015 Adriaans and his wife Rini founded a cultural center at the island of S&atilde;o Jorge on the Azores. The ideal is to combine art, science and business in to a sustainable, eco-friendly, artistically rewarding and financially healthy venture.
       </p>
 
     </article>
-    <article id="talksEtc" style="display: none;">
+    <article id="talksEtc" class="science-article">
 
       <h2>Talks, Keynotes, Workshops</h2>
 
       <ul>
+
+        <li>
+          2022 January ILLC Course,<a href="https://msclogic.illc.uva.nl/current-students/courses/previous-projects/project/200/2nd-Semester-2021-22-Philosophy-of-information-and-the-P-vs-NP-problem">Philosophy of Information and the P vs NP problem.&nbsp;</a>
+
+        </li>
+
+
         <li>
           2019 The<a title="THe business of Nature Forum " href="https://geoversity.org/en/executive-programs/nature-of-business"> Businiess of Nature Forum</a>, Keynote, AI and Learning from nature
         </li>
@@ -578,23 +587,19 @@ include 'functions.php';
           2013 Keynote, September 21, De estetica van Johan Andreas D&egrave;r Mouw&nbsp; in modern perpectief (werktitel), D&egrave;r Mouw Symposium Doetinchem
         </li>
         <li>
-          2013 Workshop, April 26, <a href="http://www.american.edu/cas/economics/info-metrics/workshop/workshop-2013-spring.cfm">Philosophy of Information Info-Metrics Institute</a>,
-          <br>American University Washington
+          2013 Workshop, April 26, Philosophy of Information Info-Metrics Institute, American University Washington
         </li>
         <li>
-          2012 Keynote, December 10,<a id="sites-chrome-userheader-title" dir="ltr" href="https://sites.google.com/site/ptdm2012/">Practical Theories for Exploratory Data Mining (PTDM 2012)</a>
-        </li>
+          2012 Keynote, December 10, Practical Theories for Exploratory Data Mining (PTDM 2012) </li>
         <li>
-          2012 Keynote, November 1, <a href="http://www.atiaconference.nl/">ATIA Conference</a>, Almere,
-          <br><a href="http://www.atiaconference.nl/sites/atiaconference.nl/files/121108%20%20Adriaans%20Medical%20Inompletness%20theories-final%20PDF.pdf">Medical incompleteness theories.&nbsp;</a>
+          2012 Keynote, November 1, ATIA Conference, Almere, Medical incompleteness theories.
         </li>
         <li>
           2012 Workshop <a href="http://www.mathcomp.leeds.ac.uk/turing2012/WScie12/give-page.php?8">Open Problems in the Philosophy of Information</a>
-          <br>Camdridge Turing Centennial Conference.
+          <br>Cambridge Turing Centennial Conference.
         </li>
         <li>
-          2011 Workshop, <a href="http://www.american.edu/cas/economics/info-metrics/workshop/workshop-2011-fall.cfm">Philosophy of Information Info-Metrics Institute</a>
-          <br>American University Washington
+          2011 Workshop, Philosophy of Information Info-Metrics Institute, American University Washington
         </li>
         <li>
           2011 <a title="Door schilderijen heen kijken " href="http://www.uitzendinggemist.net/aflevering/73227/Labyrint.html">Door schilderijen heen kijken</a>, VPRO Television, Labyrint, Interview,&nbsp;<a title="Experiment Labyrint" href="http://www.npo.nl/labyrint-site-interview-pieter-adriaans-experiment/19-09-2011/WO_VPRO_035721">Experiment</a>.&nbsp;<a href="http://www.uitzendinggemist.net/aflevering/73227/Labyrint.html">Pieter Adriaans on information and painting</a>,&nbsp;<a href="http://www.uitzendinggemist.net/aflevering/73227/Labyrint.html">Labyrint(VPRO 14 september 2011, in Dutch)</a>
@@ -615,6 +620,11 @@ include 'functions.php';
       <li>
         <span>2002, </span><a title="From Knowledge-based Systems to Skill-based Systems: Sailing as a Machine Learning Challenge" href="http://videolectures.net/ecml03_adriaans_fkbs/">From Knowledge-based Systems to Skill-based Systems: Sailing as a Machine Learning Challenge&nbsp;(Dubrovnik 2002)</a>
       </li>
+
+      <li>
+        <span>1999, </span> Kwintessens, Pieter Adriaans, Lerende systemen, VPRO Televisie, directed by Ben Jurna, Teleac/NOT. Nominated for best Science documentary, Netherlands Film Festival, 1999. <br> <a href="https://www.filmfestival.nl/film/kwintessens-pieter-adriaans-lerende-systemen">https://www.filmfestival.nl/film/kwintessens-pieter-adriaans-lerende-systemen</a>
+      </li>
+
       </ul>
 
     </article>
@@ -635,7 +645,7 @@ include 'functions.php';
             It offers unifying perspective on information theory developing the subject as a purely mathematical theory (so no narratives about systems of messages or strings of symbols etc.). &nbsp
           </li>
           <li>
-          It offers a detailed analysis of the &lsquo;flow of information&rsquo; through computational operations: starting with primitive recursion, via elementary arithmetic to polynomial functions and Diophantine equations. So via the MRDP-theorem it is really a general theory about information and computation.
+            It offers a detailed analysis of the &lsquo;flow of information&rsquo; through computational operations: starting with primitive recursion, via elementary arithmetic to polynomial functions and Diophantine equations. So via the MRDP-theorem it is really a general theory about information and computation.
           </li>
 
           <p>
@@ -690,8 +700,8 @@ include 'functions.php';
         <ul>
 
           <li>
-            <span><strong>Johan Andreas dėr Mouw.</strong>&nbsp;The Dutch Poet\Philosopher Johan Andreas dėr Mouw (1863-1919) has been a life long inspiration for me. For the 2014 dėr Mouw symposium I wrote a philosphical analysis of his esthetics.&nbsp;</span><a href="assets/pdfdoc/papers-under-construction-/der-mouw-final.pdf">Here is the paper</a><span>(in Dutch). Inspired by dėr Mouws notion of absolute idealism I have had plans to write a monographs on the history of Solipisism for years. 
-            <a href="assets/pdfdoc/papers-under-construction-/notes-on-solipsis-english.pdf">Here are some notes.&nbsp;</a></span>
+            <span><strong>Johan Andreas dėr Mouw.</strong>&nbsp;The Dutch Poet\Philosopher Johan Andreas dėr Mouw (1863-1919) has been a life long inspiration for me. For the 2014 dėr Mouw symposium I wrote a philosphical analysis of his esthetics.&nbsp;</span><a href="assets/pdfdoc/papers-under-construction-/der-mouw-final.pdf">Here is the paper</a><span>(in Dutch). Inspired by dėr Mouws notion of absolute idealism I have had plans to write a monographs on the history of Solipisism for years.
+              <a href="assets/pdfdoc/papers-under-construction-/notes-on-solipsis-english.pdf">Here are some notes.&nbsp;</a></span>
           </li>
 
         </ul>
@@ -717,8 +727,7 @@ include 'functions.php';
 
     </article>
 
-    <article id="patents" style="display: none">
-
+    <article id="patents" class="science-article">
       <h2>Patents</h2>
 
       <ul>
@@ -739,8 +748,7 @@ include 'functions.php';
 
     </article>
 
-    <article id="fundamentals" style="display: none">
-
+    <article id="fundamentals" class="science-article">
       <h2>Fundamental problems in the study of Information and Computation</h2>
 
       <ul>
@@ -838,7 +846,21 @@ include 'functions.php';
   </section>
 
 </main>
-
+<script>
+        function show(section) {
+            const sections = ['main', 'biblio', 'biblioInfo', 'talksEtc', 'projects', 'patents', 'fundamentals'];
+            sections.forEach(s => {
+                const el = document.getElementById(s);
+                if (el) {
+                    if (s === section) {
+                        el.classList.add('active');
+                    } else {
+                        el.classList.remove('active');
+                    }
+                }
+            });
+        }
+ </script>
 <script src="showandhide.js" defer></script>
 
 

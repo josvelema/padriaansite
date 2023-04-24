@@ -75,9 +75,10 @@ echo <<<EOT
                 <a class="rj-dropdown-art" onclick="toggleArtNav()"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
                 <div class="rj-dropdown-nav">
                 <ul class="rj-dropdown-nav-ul">
-                <li><a href="gallery.php">Works 1963 - present</a></li>
-                <li><a href="music.php">On Music</a></li>
-                <li><a href="painting.php">On Painting</a></li>
+                <li><a href="painting.php">Painting</a></li>
+                <li><a href="music.php">Music</a></li>
+                <li><a href="gallery.php">Virtual Museum</a></li>
+                
 
                 </ul>
                 </div>
@@ -87,8 +88,8 @@ echo <<<EOT
                 <a id="blog" class="rj-dropdown-biz" onclick="toggleBizNav()"><img src="assets/svg/navBusiness.svg" class="rj-nav-svg"></a>
                 <div class="rj-nav-biz">
                 <ul class="rj-dropdown-nav-ul">
-                <li><a href="forsale.php">Art for sale</a></li>
                 <li><a href="manezinho.php">Grand cafe Manezinho</a></li>
+                <li><a href="kaasfabriek.php">Atelier de Kaasfabriek</a></li>
                 </ul>
                 </div>
 

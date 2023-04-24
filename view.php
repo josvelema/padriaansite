@@ -48,7 +48,7 @@ if (isset($_GET['id'])) {
             </div>
             <div class="image-container">
               <div class="img-wrapper">
-               <img src="assets\img\bginverted.jpg" data-imgsrc="<?= $media['filepath'] ?>" alt="<?= $media['title'] ?>" data-placeholder="assets\img\bginverted.jpg">
+               <img src="assets\img\bginverted.jpg" data-src="<?= $media['filepath'] ?>" alt="<?= $media['title'] ?>" data-placeholder="assets\img\bginverted.jpg" class="lozad placeholder">
               </div>
             </div>
 
@@ -105,6 +105,67 @@ if (isset($_GET['id'])) {
 
 
 </main>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+//   const searchForm = document.getElementById('search-form');
+//   const searchInput = document.getElementById('search');
+//   const categorySelect = document.getElementById('category');
+
+//   searchForm.addEventListener('submit', (event) => {
+//     event.preventDefault();
+//     loadMedia(categorySelect.value, searchInput.value);
+//   });
+
+//   categorySelect.addEventListener('change', () => {
+//     loadMedia(categorySelect.value, searchInput.value);
+//   });
+
+//   async function loadMedia(category, search = '') {
+//     const response = await fetch('search.php', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/x-www-form-urlencoded'
+//       },
+//       body: `category=${encodeURIComponent(category)}&search=${encodeURIComponent(search)}`
+//     });
+
+//     if (response.ok) {
+//       const resultsHtml = await response.text();
+//       const galleryContainer = document.querySelector('.gallery-container');
+//       galleryContainer.innerHTML = resultsHtml;
+//     }
+//   }
+
+  // Load media initially
+  // loadMedia(categorySelect.value);
+
+
+
+		const observer = lozad(".lozad", {
+			loaded: function(el) {
+				el.classList.add("fade");
+				console.log("loadewe");
+			}
+		});
+		observer.observe();
+	});
+	// function loadMedia(category, search = '') {
+  // const xhr = new XMLHttpRequest();
+  // xhr.onreadystatechange = function() {
+  //   if (this.readyState === 4 && this.status === 200) {
+  //     document.getElementById('media-container').innerHTML = this.responseText;
+  //   }
+  // };
+
+  // const url = `gallery.php?category=${category}&search=${encodeURIComponent(search)}`;
+  // xhr.open('GET', url, true);
+  // xhr.send();}
+
+
+
+</script>
 
 
 
