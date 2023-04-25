@@ -14,6 +14,8 @@ function template_admin_header($title, $selected = 'dashboard') {
     $admin_links = '
         <a href="index.php"' . ($selected == 'dashboard' ? ' class="selected"' : '') . '><i class="fas fa-tachometer-alt"></i>Dashboard</a>
         <a href="allmedia.php"' . ($selected == 'allmedia' ? ' class="selected"' : '') . '><i class="fas fa-images"></i>Media</a>
+        <a href="multimedia.php"' . ($selected == 'multimedia' ? ' class="selected"' : '') . '><i class="fas fa-images"></i>Multimedia/QR</a>
+
         <a href="posts.php"' . ($selected == 'posts' ? ' class="selected"' : '') . '><i class="fa-regular fa-comment-dots"></i>Blog posts</a>
         <a href="comments.php"' . ($selected == 'comments' ? ' class="selected"' : '') . '><i class="fa-regular fa-comment-dots"></i>Blog comments</a>
         

@@ -3,124 +3,101 @@ include 'functions.php';
 // Connect to MySQL
 $pdo = pdo_connect_mysql();
 
-
 // Retrieve all unique years from the media table
 $stmt = $pdo->prepare('SELECT DISTINCT year FROM media ORDER BY year ASC');
 $stmt->execute();
 $years = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $year = isset($_GET['year']) ? $_GET['year'] : 'all';
-$year_sql = $year != 'all' ? ' AND m.year = :year' : '';
-
+$category = isset($_GET['category']) ? $_GET['category'] : 'all';
+$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'year0_9';
+$type = isset($_GET['type']) ? $_GET['type'] : 'all';
 
 // Retrieve the categories
 $stmt = $pdo->prepare('SELECT * FROM categories ORDER BY title');
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// Retrieve the requested category
-$category = isset($_GET['category']) ? $_GET['category'] : 'all';
-$category_sql = $category != 'all' ? 'JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category' : '';
-// Sort by default is newest, feel free to change it..
-$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'year0_9';
-$sort_by_sql = 'm.uploaded_date DESC';
-$sort_by_sql = $sort_by == 'newest' ? 'm.uploaded_date DESC' : $sort_by_sql;
-$sort_by_sql = $sort_by == 'oldest' ? 'm.uploaded_date ASC' : $sort_by_sql;
-$sort_by_sql = $sort_by == 'a_to_z' ? 'm.title DESC' : $sort_by_sql;
-$sort_by_sql = $sort_by == 'z_to_a' ? 'm.title ASC' : $sort_by_sql;
-$sort_by_sql = $sort_by == 'year0_9' ? 'm.year ASC' : $sort_by_sql;
-$sort_by_sql = $sort_by == 'year9_0' ? 'm.year DESC' : $sort_by_sql;
-// Get media by the type (ignore if set to all)
-$type = isset($_GET['type']) ? $_GET['type'] : 'all';
-$type_sql = $type != 'all' ? 'AND m.type = :type' : '';
-//! Limit the amount of media on each page
-$media_per_page = 10;
-// The current pagination page
+
+// Pagination settings
+$media_per_page = 32;
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
-// Retrieve all unique years from the media table
-$stmt = $pdo->prepare('SELECT DISTINCT year FROM media ORDER BY year ASC');
-$stmt->execute();
-$years = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Prepare query conditions
+$conditions = ' WHERE m.approved = 1 ';
+$conditions .= ($year != 'all') ? ' AND m.year = :year' : '';
+$conditions .= ($type != 'all') ? ' AND m.type = :type' : '';
+$conditions .= ($category != 'all') ? ' AND EXISTS (SELECT 1 FROM media_categories mc WHERE mc.media_id = m.id AND mc.category_id = :category)' : '';
 
-
-if (isset($_POST['viewAll'])) {
-	// MySQL query that selects all the media
-	$viewingAll = true;	
-
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql .  ' ORDER BY ' . $sort_by_sql . ', fnr  ');
-
-	
-
-	// Check if the category is not set to all
-	if ($category != 'all') $stmt->bindValue(':category', $category);
-
-	// Execute the SQL
-	$stmt->execute();
-} else  {
-	$viewingAll = false;
-
-	// MySQL query that selects all the media
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' ORDER BY ' . $sort_by_sql . ', fnr LIMIT :page,:media_per_page');
-	// Determine which page the user is on and bind the value into our SQL statement
-	$stmt->bindValue(':page', ((int)$current_page - 1) * $media_per_page, PDO::PARAM_INT);
-	// How many media will show on each page
-	$stmt->bindValue(':media_per_page', $media_per_page, PDO::PARAM_INT);
-	// Check if the type is not set to all
-	if ($type != 'all') $stmt->bindValue(':type', $type);
-	// Check if the category is not set to all
-	if ($category != 'all') $stmt->bindValue(':category', $category);
-	// Execute the SQL
-	$stmt->execute();
+// Prepare sort order
+$sort_order = ' ORDER BY ';
+switch ($sort_by) {
+    case 'newest':
+        $sort_order .= 'm.uploaded_date DESC';
+        break;
+    case 'oldest':
+        $sort_order .= 'm.uploaded_date ASC';
+        break;
+    case 'a_to_z':
+        $sort_order .= 'm.title ASC';
+        break;
+    case 'z_to_a':
+        $sort_order .= 'm.title DESC';
+        break;
+    case 'year0_9':
+        $sort_order .= 'm.year ASC';
+        break;
+    case 'year9_0':
+        $sort_order .= 'm.year DESC';
+        break;
+    default:
+        $sort_order .= 'm.uploaded_date DESC';
 }
 
-// check if year is set
-
-if ($year != 'all') {
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' AND m.year = :year ORDER BY ' . $sort_by_sql . ', fnr');
-	// Determine which page the user is on and bind the value into our SQL statement
-	// $stmt->bindValue(':page', ((int)$current_page - 1) * $media_per_page, PDO::PARAM_INT);
-	// How many media will show on each page
-	// $stmt->bindValue(':media_per_page', $media_per_page, PDO::PARAM_INT);
-	// Check if the type is not set to all
-	if ($type != 'all') $stmt->bindValue(':type', $type);
-	// Check if the category is not set to all
-	if ($category != 'all') $stmt->bindValue(':category', $category);
-	// Check if the year is not set to all
-	if ($year != 'all') $stmt->bindValue(':year', $year);
-	// Execute the SQL
-	$stmt->execute();
-}	else {
-	$stmt = $pdo->prepare('SELECT * FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql . ' ORDER BY ' . $sort_by_sql . ', fnr LIMIT :page,:media_per_page');
-	// Determine which page the user is on and bind the value into our SQL statement
-	$stmt->bindValue(':page', ((int)$current_page - 1) * $media_per_page, PDO::PARAM_INT);
-	// How many media will show on each page
-	$stmt->bindValue(':media_per_page', $media_per_page, PDO::PARAM_INT);
-	// Check if the type is not set to all
-	if ($type != 'all') $stmt->bindValue(':type', $type);
-	// Check if the category is not set to all
-	if ($category != 'all') $stmt->bindValue(':category', $category);
-	// Execute the SQL
-	$stmt->execute();
-}
-
-
-
-
-
-$media = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// Get the total number of media with search condition
-$stmt = $pdo->prepare('SELECT COUNT(*) FROM media m ' . $category_sql . ' WHERE m.approved = 1 ' . $type_sql);
+// Get total media count
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM media m" . $conditions);
+if ($year != 'all') $stmt->bindValue(':year', $year);
 if ($type != 'all') $stmt->bindValue(':type', $type);
 if ($category != 'all') $stmt->bindValue(':category', $category);
-
 $stmt->execute();
 $total_media = $stmt->fetchColumn();
+
+// Get media data
+$offset = ($current_page - 1) * $media_per_page;
+$stmt = $pdo->prepare("SELECT * FROM media m" . $conditions . $sort_order . " LIMIT :offset, :limit");
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->bindValue(':limit', $media_per_page, PDO::PARAM_INT);
+if ($year != 'all') $stmt->bindValue(':year', $year);
+if ($type != 'all') $stmt->bindValue(':type', $type);
+if ($category != 'all') $stmt->bindValue(':category', $category);
+$stmt->execute();
+$media = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 $last_page = ceil($total_media / $media_per_page);
 
 // Set media properties below
 $media_width = 300;
 $media_height = 200;
+
+$viewingAll = ($total_media <= $media_per_page);
+
+function generatePaginationLink($label, $type, $current_page, $sort_by, $category) {
+  $page = $type === 'prev' ? $current_page - 1 : $current_page + 1;
+  $arrow_transform = $type === 'prev' ? '' : 'matrix(-1, 0, 0, -1, 1054.269043, 991.052002)';
+  $content = $type === 'prev' ? '<span>' . $label . '</span>' : '';
+
+  return '
+    <a class="rj-' . $type . '" href="?page=' . $page . '&sort_by=' . $sort_by . '&category=' . $category . '">
+      ' . $content . '
+      <svg height="16" width="16" viewBox="0 0 1024 1024">
+        <path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z" transform="' . $arrow_transform . '"></path>
+      </svg>
+      ' . ($type === 'next' ? '<span>' . $label . '</span>' : '') . '
+    </a>';
+}
+
+
 ?>
+
 
 <?= template_header('Gallery') ?>
 <?= template_header_other() ?>
@@ -275,33 +252,22 @@ $media_height = 200;
 				<?php endforeach; ?>
 		</section>
 
-		<div class="pagination">
+<div class="pagination">
 <?php if (!$viewingAll) {
-  if ($current_page > 1) : ?>
-
-    <a class="rj-prev" href="?page=<?= $current_page - 1 ?>&sort_by=<?= $sort_by ?>&category=<?= $category ?>&search=<?= urlencode($search) ?>">
-      <svg height="16" width="16" viewBox="0 0 1024 1024">
-        <path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path>
-      </svg>
-      <span>Prev</span>
-    </a>
-  <?php endif; ?>
+  if ($current_page > 1) {
+    echo generatePaginationLink('Prev', 'prev', $current_page, $sort_by, $category);
+  }
+  ?>
   <div class="rj-current-page">
     Page <?= $current_page ?> of <?= $last_page ?>
   </div>
-  <?php if ($current_page * $media_per_page < $total_media) : ?>
-    <a class="rj-next" href="?page=<?= $current_page + 1 ?>&sort_by=<?= $sort_by ?>&category=<?= $category ?>>&search=<?= urlencode($search) ?>">
-      <span>Next</span>
-      <svg height="16" width="16" viewBox="0 0 1024 1024">
-        <path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z" transform="matrix(-1, 0, 0, -1, 1054.269043, 991.052002)"></path>
-      </svg>
-    </a>
-<?php endif;
+  <?php if ($current_page * $media_per_page < $total_media) {
+    echo generatePaginationLink('Next', 'next', $current_page, $sort_by, $category);
+  }
 } else {
   echo '<a href="#top">Back to top</a>';
 } ?>
 </div>
-
 
 
 
