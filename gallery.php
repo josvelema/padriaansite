@@ -4,13 +4,13 @@ include 'functions.php';
 $pdo = pdo_connect_mysql();
 
 // Retrieve all unique years from the media table
-$stmt = $pdo->prepare('SELECT DISTINCT year FROM media ORDER BY year ASC');
+$stmt = $pdo->prepare('SELECT DISTINCT year FROM media ORDER BY year DESC');
 $stmt->execute();
 $years = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $year = isset($_GET['year']) ? $_GET['year'] : 'all';
 $category = isset($_GET['category']) ? $_GET['category'] : 'all';
-$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'year0_9';
+$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'year9_0';
 $type = isset($_GET['type']) ? $_GET['type'] : 'all';
 
 // Retrieve the categories
@@ -50,7 +50,7 @@ switch ($sort_by) {
         $sort_order .= 'm.year DESC';
         break;
     default:
-        $sort_order .= 'm.uploaded_date DESC';
+        $sort_order .= 'm.uploaded_date ASC';
 }
 
 // Get total media count
@@ -147,8 +147,8 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 				</select>
 				<label for="sort_by">Sort By:</label>
 				<select id="sort_by" name="sort_by" onchange="this.form.submit()">
-					<option value="year0_9" <?= $sort_by == 'year0_9' ? ' selected' : '' ?>>Year 1 > 10 </option>
 					<option value="year9_0" <?= $sort_by == 'year9_0' ? ' selected' : '' ?>>Year 10 > 1 </option>
+					<option value="year0_9" <?= $sort_by == 'year0_9' ? ' selected' : '' ?>>Year 1 > 10 </option>
 					<option value="newest" <?= $sort_by == 'newest' ? ' selected' : '' ?>>Newest</option>
 					<option value="oldest" <?= $sort_by == 'oldest' ? ' selected' : '' ?>>Oldest</option>
 					<option value="a_to_z" <?= $sort_by == 'a_to_z' ? ' selected' : '' ?>>A-Z</option>

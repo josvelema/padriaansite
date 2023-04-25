@@ -42,7 +42,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <!-- <section class=" rj-news-section"> -->
         <div class="blog-css-grid">
           <?php
-          $stmt = $pdo->prepare('SELECT * FROM posts ORDER BY post_id DESC LIMIT 1 ');
+          $stmt = $pdo->prepare('SELECT * FROM posts ORDER BY post_id DESC LIMIT 2 ');
 
           $stmt->execute();
 
@@ -77,11 +77,11 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </article>
             </div>
 
-        </div>
-      <?php
+            <?php
           }
-      ?>
+          ?>
 
+</div>
       </section>
       <div class="rj-about-logo-container">
         <a href="https://www.facebook.com/AtelierdeKaasfabriek" target="_blank"><img src="assets/img/kaasfabriek.png" alt="kaasfabriek logo" class="rj-kaas-logo"></a>

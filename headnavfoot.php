@@ -75,9 +75,9 @@ echo <<<EOT
                 <a class="rj-dropdown-art" onclick="toggleArtNav()"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
                 <div class="rj-dropdown-nav">
                 <ul class="rj-dropdown-nav-ul">
+                <li><a href="gallery.php">Virtual Museum</a></li>
                 <li><a href="painting.php">Painting</a></li>
                 <li><a href="music.php">Music</a></li>
-                <li><a href="gallery.php">Virtual Museum</a></li>
                 
 
                 </ul>
@@ -88,7 +88,7 @@ echo <<<EOT
                 <a id="blog" class="rj-dropdown-biz" onclick="toggleBizNav()"><img src="assets/svg/navBusiness.svg" class="rj-nav-svg"></a>
                 <div class="rj-nav-biz">
                 <ul class="rj-dropdown-nav-ul">
-                <li><a href="manezinho.php">Grand cafe Manezinho</a></li>
+                <li><a href="manezinho.php">Art Restaurant Manezinho</a></li>
                 <li><a href="kaasfabriek.php">Atelier de Kaasfabriek</a></li>
                 </ul>
                 </div>
@@ -105,9 +105,10 @@ echo <<<EOT
 // Template footer
 function template_footer()
 {
+    $currentYear = date('Y');
     echo <<<EOT
 <footer class="rj-footer">
-<p>2022 Pieter Adriaans
+<p> $currentYear Pieter Adriaans 
 <br>
 <small> Designed and Developed by Jos Velema <a href="http://www.codette.net">codette.net</a></small>
 </p>

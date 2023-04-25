@@ -8,7 +8,7 @@ include 'functions.php';
 <main class="rj-black-bg-main">
   <header>
     <h1>Science</h1>
-    <img src="assets/img/pieter-adriaans.jpg" alt="Pieter">
+    <img src="assets/img/pieter-adriaans.jpg" alt="Pieter" class="pieter-profile">
     <!-- <div class="rj-science-img">
       </div> -->
   </header>
@@ -17,7 +17,7 @@ include 'functions.php';
     <aside class="rj-main-menu">
       <h3>Menu</h3>
       <ul>
-        <li><a href="#main" title="Science main page" onclick="show('main')">Current research</a></li>
+        <li><a href="#main" title="Current research" onclick="show('main')">Current research</a></li>
         <li><a href="#biblio" title="Bibliography" onclick="show('biblio')">Bibliography</a></li>
         <li><a href="#biblioInfo" title="Biographical information" onclick="show('biblioInfo')">Biographical information</a></li>
         <li><a href="#talksEtc" title="Talks, Keynotes, Workshops, Lectures " onclick="show('talksEtc')">Talks, Keynotes, Workshops, Lectures </a></li>
@@ -28,7 +28,7 @@ include 'functions.php';
     </aside>
 
 
-    <article class="rj-science-main science-article" id="main">
+    <article class="science-article" id="main">
       <h2>Current research interests:</h2>
       <ul>
         <li>
@@ -41,7 +41,7 @@ include 'functions.php';
 
       <h3>Some Publications</h3>
 
-      <div class="rj-flex">
+      <div class="rj-flex thumbnails">
 
         <img title="Cover Handbook of Philosophy of Information" src="assets/img/hpi-cover-big.jpg" alt="Cover Handbook of Philosophy of Information">
         <img title="Cover Data Mining " src="assets/img/data-mining.jpg" alt="Cover Data Mining ">
@@ -629,7 +629,7 @@ include 'functions.php';
 
     </article>
 
-    <article id="projects" style="display:none;">
+    <article id="projects" class="science-article">
 
       <h2>Projects under construction</h2>
 
@@ -847,6 +847,8 @@ include 'functions.php';
 
 </main>
 <script>
+  show('main');
+
         function show(section) {
             const sections = ['main', 'biblio', 'biblioInfo', 'talksEtc', 'projects', 'patents', 'fundamentals'];
             sections.forEach(s => {

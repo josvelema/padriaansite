@@ -16,20 +16,14 @@ a {
 .rj-blog-main {
   min-height: 100vh;
   position: relative;
-  top: 4rem;
+  /* top: 4rem; */
   padding: 2rem;
+  width: min(100%, 1280px);
+  margin: 3.5em auto;
 
-  width: 80vw;
-  margin: 0.5em auto;
-  /* border: 1px solid #fafafa; */
-  border-radius: 0.5rem;
-  background: #000000;
-  /* background: -webkit-linear-gradient(to bottom, #434343, #000000);  
-background: linear-gradient(to bottom, #434343, #000000);  */
-  background: linear-gradient(180deg, rgb(0, 0, 0, 0.6), 95%, transparent);
-  box-shadow: -5px -5px 10px #2e2e2e, 5px 5px 10px #585858;
   color: #fafafa;
 }
+
 
 .rj-blog {
   margin: 0 auto;
@@ -37,6 +31,9 @@ background: linear-gradient(to bottom, #434343, #000000);  */
 
 .rj-blog-header {
   text-align: center;
+  padding-top: 0.5em;
+  background-color: rgb(12 12 12 / 0.90);
+  border-radius: 6px;
 }
 
 .blog-css-grid {
@@ -474,23 +471,23 @@ x .rj-form-header {
 
 .rj-footer {
   width: 100%;
-  margin-top: 5rem;
+  margin-top: 0.5em;
   padding: 1em;
   height: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   color: #fafafa;
-  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.5),
-    1px 1px 1px rgba(12, 34, 66, 0.5);
-  background: linear-gradient(180deg, transparent, #000);
+  /* text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.5),
+  1px 1px 1px rgba(12, 34, 66, 0.5); */
+  background: linear-gradient(to bottom, transparent ,#000000 95%);
 }
 .rj-footer p {
   text-align: center;
 }
 .rj-footer a {
-  color: rgb(255, 255, 204);
+  color: rgb(255, 255, 200);
   font-size: inherit;
 }
 
@@ -710,11 +707,11 @@ blockquote.rj-about-quote {
     margin-bottom: 0.55em;
   }
 
-  .rj-blog-main {
+  /* .rj-blog-main {
     width: 100%;
     margin: 0 0.5em;
     padding: 1rem;
-  }
+  } */
 
   .rj-blog-main {
     top: 2rem;

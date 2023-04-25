@@ -33,6 +33,10 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
+
+label {
+    display: block;
+}
 .rj-background {
     background-image: url(assets/img/backgroundimage.jpg);
     /* background-color: rgb(0,0,0,0.45); */
@@ -197,7 +201,7 @@ a.rj-nav-home {
     background-color: rgb(222, 223, 222);
     border: 1px solid rgba(85, 85, 85, 0.333);
     border-radius: 4px;
-    list-style: circle;
+    /* list-style: circle; */
 }
 
 .rj-dropdown-nav-ul li {
@@ -1176,7 +1180,7 @@ a.rj-modal-btn {
     border-radius: 4px;
     box-shadow: 1px 2px 3px rgb(0 0 0 / 55%);
     max-width: 66ch;
-    backdrop-filter: blur(1px);
+    /* backdrop-filter: blur(1px); */
     /* margin: 0.5em auto; */
 }
 .rj-cta-main p {

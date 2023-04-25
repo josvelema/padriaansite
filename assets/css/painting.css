@@ -40,7 +40,7 @@
   box-shadow: -8px 8px 33px rgba(0 0 2 / 61%);
 }
 
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
 
   img[src*="assets"]:not(img[src$=".svg"]) {
     width: 100%;
@@ -49,5 +49,5 @@
   
 }
 
-
+ */
 

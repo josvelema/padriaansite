@@ -12,11 +12,12 @@ header {
     display: grid;
     place-content: center;
     margin: 1.5rem 0 0.2rem;
+    background-color: rgb(25 25 25 / 0.85);
 }
 
 h1 {
     letter-spacing: 2px;
-    font-weight: 400;
+    font-weight: 500;
     border: none;
     color: #fafafa;
 }

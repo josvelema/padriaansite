@@ -410,7 +410,7 @@ border-radius: 3px;
 .rj-mz {
     width: 250px;
     height: 210px;
-    
+    object-fit: cover;
     margin: 0.5em;
     border-radius: 10px;
 

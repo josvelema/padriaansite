@@ -29,7 +29,7 @@ include 'functions.php';
       </ul>
     </aside>
 
-    <article id="main" class="rj-science-main science-article">
+    <article id="main" class="science-article">
 
       <p>
       <h2>My different styles</h2>
@@ -203,6 +203,9 @@ include 'functions.php';
 <!-- <script src="showandhide.js" defer></script> -->
 
 <script>
+  // only show #main on first load
+  show('main');
+  
   function show(section) {
 
     const sections = ["main", "styles", "brain", "lessons", "aulas", "lessen", "lectures", "artExpoProjects", "pieterAction"];
