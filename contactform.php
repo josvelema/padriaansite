@@ -1,4 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+include 'functions.php';
+// Connect to MySQL
+$pdo = pdo_connect_mysql();
 
 session_start();
 file_put_contents('debug.log', 'Script started' . PHP_EOL, FILE_APPEND);
@@ -6,29 +12,23 @@ file_put_contents('debug.log', 'Script started' . PHP_EOL, FILE_APPEND);
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'lib/phpmailer/Exception.php';
-require 'lib/phpmailer/PHPMailer.php';
-require 'lib/phpmailer/SMTP.php';
+require 'vendor/phpmailer/phpmailer/src/Exception.php';
+require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require 'vendor/phpmailer/phpmailer/src/SMTP.php';
 require 'vendor/autoload.php';
 require 'config.php';
 
 $mail = new PHPMailer(true);
 
-try {
-    $pdo = new PDO('mysql:host=' . db_host . ';dbname=' . db_name . ';charset=' . db_charset, db_user, db_pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $exception) {
-    exit('Failed to connect to database!');
-}
 
 file_put_contents('debug.log', '$_POST contents: ' . print_r($_POST, true) . PHP_EOL, FILE_APPEND);
 
 if (isset($_POST['name'], $_POST['email'], $_POST['msg'], $_POST['subject'], $_POST['g-recaptcha-response'])) {
     $errors = [];
     file_put_contents('debug.log', 'Inside if statement' . PHP_EOL, FILE_APPEND);
-    $extra = [
-        'name' => $_POST['name']
-    ];
+    // $extra = [
+    //     'name' => $_POST['name']
+    // ];
 
     // if (isset($_POST['achtername'])) {
     //     $extra['achtername'] = $_POST['achtername'];

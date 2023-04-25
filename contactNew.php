@@ -4,9 +4,43 @@ include 'functions.php';
 <?= template_header('Science') ?>
 
 <link rel="stylesheet" href="assets/css/contact.css">
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
 <?= template_nav() ?>
+<?php
+// Output messages
+$responses = [];
+// Check if the form was submitted
+if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
+  // Validate email adress
+  if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+    $responses[] = 'Email is not valid!';
+  }
+  // Make sure the form fields are not empty
+  if (empty($_POST['email']) || empty($_POST['subject']) || empty($_POST['name']) || empty($_POST['msg'])) {
+    $responses[] = 'Please complete all fields!';
+  }
+  // If there are no errors
+  if (!$responses) {
+    // Where to send the mail? It should be your email address
+    $to      = 'info@codette.net';
+    // Send mail from which email address?
+    $from = 'pieter@pieteradriaans.codette.net';
+    // Mail subject
+    $subject = $_POST['subject'];
+    // Mail message
+    $message = $_POST['msg'];
+    // Mail headers
+    $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $_POST['email'] . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+    // Try to send the mail
+    if (mail($to, $subject, $message, $headers)) {
+      // Success
+      $responses[] = 'Message sent!';
+    } else {
+      // Fail
+      $responses[] = 'Message could not be sent! Please check your mail server settings!';
+    }
+  }
+}
+?>
 
 <header>
   <h1>Contact / Address</h1>
@@ -15,7 +49,8 @@ include 'functions.php';
 <main class="rj-home">
   <section class="rj-contact-section">
 
-    <form class="contact" method="post" id="contact-form">
+    <form class="contact" method="post" action="">
+      <h2>Contact Form</h2>
       <div class="fields">
         <label for="email">
           <i class="fas fa-envelope"></i>
@@ -26,15 +61,13 @@ include 'functions.php';
           <i class="fas fa-user"></i>
           <input type="text" name="name" placeholder="Your Name" required>
         </label>
-        <div class="response">
-
-        </div>
+        
         <input type="text" name="subject" placeholder="Subject" required>
           <textarea name="msg" placeholder="Message" required></textarea>
       </div>
- 
-      <div class="g-recaptcha" data-sitekey="6LfdSrglAAAAAEWiISY3wc6FZWDizXDcTSXp_S1p"></div>
-
+      <?php if ($responses) : ?>
+        <p class="responses"><?php echo implode('<br>', $responses); ?></p>
+      <?php endif; ?>
       <input type="submit" class="rj-button rj-contact-submit">
     </form>
     <article class="rj-about rj-contact-address">
@@ -66,50 +99,6 @@ include 'functions.php';
   </section>
 
 </main>
-
-<script>
-    document.getElementById('contact-form').addEventListener('submit', async (e) => {
-      console.log('submitting form');
-        e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-
-        const responseDiv = document.querySelector('.response');
-        responseDiv.innerHTML = '';
-
-        try {
-            const response = await fetch('contactform.php', {
-                method: 'POST',
-                body: formData,
-            });
-            const responseText = await response.text(); // Get the response text
-            console.log(responseText); // Log the response text
-            const result = JSON.parse(responseText); // Parse the response text as JSON
-
-            if (result.success) {
-              console.log('success');
-                responseDiv.innerHTML = result.success;
-                form.reset();
-                grecaptcha.reset();
-            } else if (result.errors) {
-              responseDiv.innerHTML = '';
-              result.errors.forEach(error => {
-                  const errorParagraph = document.createElement('p');
-                  errorParagraph.textContent = error;
-                  responseDiv.appendChild(errorParagraph);
-              });
-                console.log(result.errors);
-            } else {
-                responseDiv.innerHTML = 'An unexpected error occurred.';
-                console.log(result);
-            }
-        } catch (err) {
-            console.error(err);
-            responseDiv.innerHTML = 'An error occurred while submitting the form. Please try again.';
-        }
-    });
-</script>
-
 
 
 <?= template_footer() ?>
