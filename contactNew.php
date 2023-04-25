@@ -33,7 +33,7 @@ include 'functions.php';
           <textarea name="msg" placeholder="Message" required></textarea>
       </div>
  
-      <div class="g-recaptcha" data-sitekey="6LdhJbglAAAAAEECAOg09uQkk9hK7qUMqQwJdY36"></div>
+      <div class="g-recaptcha" data-sitekey="6LfdSrglAAAAAEWiISY3wc6FZWDizXDcTSXp_S1p"></div>
 
       <input type="submit" class="rj-button rj-contact-submit">
     </form>
