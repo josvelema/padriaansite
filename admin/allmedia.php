@@ -47,7 +47,7 @@ if (isset($_POST['viewCat'])) {
 } else {
     setcookie("viewing_cat", 0, time() + 86400);
 
-    $stmt = $pdo->prepare('SELECT * FROM media ORDER BY year,fnr DESC');
+    $stmt = $pdo->prepare('SELECT * FROM media ORDER BY year,fnr ASC');
     $stmt->execute();
     $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $countMedia = $stmt->rowCount();

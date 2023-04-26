@@ -190,7 +190,7 @@ if (isset($_COOKIE['viewing_cat'])) {
   .modal {
   display: none;
   position: fixed;
-  z-index: 1000;
+  z-index: 9999;
   left: 0;
   top: 0;
   width: 100%;
@@ -211,7 +211,7 @@ if (isset($_COOKIE['viewing_cat'])) {
 /* CSS */
 .custom-modal {
   position: fixed;
-  z-index: 1;
+  z-index: 9999;
   left: 0;
   top: 0;
   width: 100%;
