@@ -101,7 +101,7 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 
 <?= template_header('Gallery') ?>
 <?= template_header_other() ?>
-<link rel="stylesheet" href="assets/css/gallery.css?v=5">
+<link rel="stylesheet" href="assets/css/gallery.css?v=55">
 
 <?= template_nav() ?>
 
