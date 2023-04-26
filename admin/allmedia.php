@@ -149,10 +149,7 @@ if (isset($_COOKIE['viewing_cat'])) {
                                 <?php if (!$m['approved']) : ?>
                                     <a href="allmedia.php?approve=<?= $m['id'] ?>">Approve</a>
                                 <?php endif; ?>
-                                <button onclick="generateQRCode(<?= $m['id'] ?>)">Make QR </button> <!-- Add this line -->
-                                <button onclick="generateQrCardAndSave(<?= $m['id'] ?>, '<?= '../' . $m['qr_url'] ?>')">Make QR Card</button>
-
-                                
+                            
                             </td>
                            
                         </tr>
@@ -193,7 +190,7 @@ if (isset($_COOKIE['viewing_cat'])) {
 
     }
 </script>
-<script src="generateBusinessCard.js"></script>
+<!-- <script src="generateBusinessCard.js"></script>
 
 <script>
 
@@ -211,7 +208,7 @@ if (isset($_COOKIE['viewing_cat'])) {
     }
 
 
-</script>
+</script> -->
 
 
 

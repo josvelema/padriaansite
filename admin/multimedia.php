@@ -50,7 +50,8 @@ if (isset($_COOKIE['viewing_cat'])) {
 ?>
 
 
-<?= template_admin_header('MultiMedia', 'MultiMedia') ?>
+
+<?= template_admin_header('MultiMedia', 'multimedia') ?>
 
 <div class="rj-form-admin">
     <h2>Multimedia</h2>
