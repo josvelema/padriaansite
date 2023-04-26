@@ -91,6 +91,66 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </main>
 
+<script>
+  // // Get the modal
+  // var modal = document.getElementById("myModal");
 
+  // // Get the button that opens the modal
+  // var btn = document.querySelector(".rj-btn-light");
+
+  // // Get the <span> element that closes the modal
+  // var span = document.getElementsByClassName("rj-close")[0];
+
+  // // When the user clicks the button, open the modal 
+  // btn.onclick = function() {
+  //   modal.style.display = "block";
+  //   console.log("clicked");
+  // }
+
+  // // When the user clicks on <span> (x), close the modal
+  // span.onclick = function() {
+  //   modal.style.display = "none";
+
+  // }
+
+  // // When the user clicks anywhere outside of the modal, close it
+  // window.onclick = function(event) {
+  //   console.log(event.target);
+  //   if (event.target == modal) {
+  //     modal.style.display = "none";
+  //   }
+  // }
+
+  // // When the user clicks anywhere outside of the modal, close it
+  // window.onclick = function(event) {
+  //   console.log(event.target);
+  //   if (event.target == modal) {
+  //     modal.style.display = "none";
+  //   }
+  // }
+  const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+  
+        dropdownToggle.addEventListener('click', function () {
+          const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+          dropdownToggle.setAttribute('aria-expanded', !expanded);
+          console.log("dropclick");
+        });
+  
+        window.addEventListener('click', function (event) {
+          if (!event.target.closest('.dropdown')) {
+            dropdownToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        
+
+      window.addEventListener('click', function(event) {
+        if (!event.target.closest('.dropdown')) {
+          dropdownToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+</script>
 
 <?= template_footer() ?>

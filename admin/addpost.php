@@ -14,7 +14,7 @@ $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (isset($_POST['create_post'])) {
 
   $post_title        = ($_POST['title']);
-  $post_category_id  = ($_POST['post_category']);
+  // $post_category_id  = ($_POST['post_category']);
   // $post_status       = ($_POST['post_status']);
   $post_status       = "published";
 
@@ -39,18 +39,18 @@ if (isset($_POST['create_post'])) {
   // $create_post_query = mysqli_query($connection, $query);  
   //todo 1 user ???
   $pieter = "Pieter";
-  $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date,post_image,post_content,post_url,post_tags,post_status) ";
-  $query .= "VALUES(? , ? , ? , now() , ? , ? , ? , ? , ?) ";
+  $query = "INSERT INTO posts(post_title, post_author, post_date,post_image,post_content,post_url,post_tags,post_status) ";
+  $query .= "VALUES(? , ? , now() , ? , ? , ? , ? , ?) ";
 
   $stmt = $pdo->prepare($query);
-  $stmt->bindParam(1, $post_category_id, PDO::PARAM_INT);
-  $stmt->bindParam(2, $post_title, PDO::PARAM_STR);
-  $stmt->bindParam(3, $pieter, PDO::PARAM_STR);
-  $stmt->bindParam(4, $post_image, PDO::PARAM_STR);
-  $stmt->bindParam(5, $post_content, PDO::PARAM_STR);
-  $stmt->bindParam(6, $post_url, PDO::PARAM_STR);
-  $stmt->bindParam(7, $post_tags, PDO::PARAM_STR);
-  $stmt->bindParam(8, $post_status, PDO::PARAM_STR);
+ 
+  $stmt->bindParam(1, $post_title, PDO::PARAM_STR);
+  $stmt->bindParam(2, $pieter, PDO::PARAM_STR);
+  $stmt->bindParam(3, $post_image, PDO::PARAM_STR);
+  $stmt->bindParam(4, $post_content, PDO::PARAM_STR);
+  $stmt->bindParam(5, $post_url, PDO::PARAM_STR);
+  $stmt->bindParam(6, $post_tags, PDO::PARAM_STR);
+  $stmt->bindParam(7, $post_status, PDO::PARAM_STR);
   $stmt->execute();
 
   $the_post_id = $pdo->lastInsertId();
@@ -102,20 +102,7 @@ if (isset($_POST['create_post'])) {
     <input type="text" class="form-control" name="title">
   </div>
 
-  <div class="form-group">
-    <label for="category">Category</label>
-    <select name="post_category" id="">
 
-      <?php
-      $stmt = $pdo->query('SELECT * FROM categories');
-      while ($row = $stmt->fetch()) {
-        $cat_id = $row['id'];
-        $cat_title = $row['title'];
-        echo "<option value='$cat_id'>{$cat_title}</option>";
-      }
-      ?>
-    </select>
-  </div>
   <!-- <div class="form-group">
       <label for="users">Users</label>
       <select name="post_user" id="">

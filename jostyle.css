@@ -32,8 +32,12 @@ a {
 .rj-blog-header {
   text-align: center;
   padding-top: 0.5em;
+  margin-top: 0.5em;
   background-color: rgb(12 12 12 / 0.90);
   border-radius: 6px;
+  color: #fafafa;
+  max-width: 88ch;
+  margin-inline: auto;
 }
 
 .blog-css-grid {

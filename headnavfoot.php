@@ -32,7 +32,21 @@ function template_header($title)
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="author" content="Pieter Adriaans">
+    <meta name="robots" content="index, follow">
+    <meta name="title" content="Pieter Adriaans: Balancing Art, Science, and Business">
+    <meta name="description" content="Pieter Adriaans, philosopher, painter, and entrepreneur, strives to create a balance between art, science, and business. Explore his journey from Holland to São Jorge Island, his accomplishments in AI, and his creative endeavors at Atelier de Kaasfabriek.">
+    <meta name="keywords" content="Pieter Adriaans, philosopher, painter, entrepreneur, art, science, business, Artificial Intelligence, University of Amsterdam, São Jorge Island, Atelier de Kaasfabriek, Manezinho, Syllogic">
+    <meta property="og:site_name" content="Pieter Adriaans">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Pieter Adriaans: Balancing Art, Science, and Business">
+    <meta property="og:description" content="Discover the inspiring journey of Pieter Adriaans, a philosopher, painter, and entrepreneur who has dedicated his life to balancing art, science, and business. Learn about his work in AI, creative pursuits, and life on São Jorge Island.">
+    <meta property="og:image" content="https://www.pieter-adriaans.com/assets/img/aboutpieterprofiel.JPG">
+    <meta property="og:url" content="https://www.pieter-adriaans.com">
+    <meta property="og:type" content="website">
+    
     <title>$title - Pieter Adriaans</title>
+    <link rel="canonical" href="https://www.pieter-adriaans.com">
     <link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" href="assets/favicon/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="assets/favicon/favicon-16x16.png" sizes="16x16" />
@@ -41,6 +55,42 @@ function template_header($title)
     <link href="style.css?v=4" rel="stylesheet" type="text/css">
     <link href="jostyle.css?v=4" rel="stylesheet" type="text/css">
     <link href="assets/css/home.css?v=4" rel="stylesheet" type="text/css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pieter Adriaans",
+    "image": "http://localhost/pieter/assets/img/aboutpieterprofiel.JPG",
+    "url": "http://www.pieter-adriaans.com",
+    "nationality": "Dutch",
+    "birthDate": "1955",
+    "alumniOf": "Leiden University, University of Amsterdam",
+    "worksFor": "Atelier de Kaasfabriek",
+    "jobTitle": "Philosopher, Painter, Musician",
+    "description": "Pieter Adriaans is a philosopher, painter, and musician who has devoted his life to harmonizing art, science, and music. His journey has taken him from Holland to São Jorge Island, where he continues to explore his creative passions.",
+    "award": "PhD in Theoretical Computer Science",
+    "memberOf": "University of Amsterdam",
+    "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Philosopher, Painter, Musician"
+    },
+    "knowsAbout": [
+        "Art",
+        "Science",
+        "Music",
+        "Artificial Intelligence",
+        "Data Mining"
+    ],
+    "location": {
+        "@type": "Place",
+        "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "São Jorge Island",
+        "addressCountry": "Portugal"
+        }
+    }
+    }
+    </script>
     EOT;
 }
 function template_header_other()
@@ -88,7 +138,7 @@ echo <<<EOT
                 <a id="blog" class="rj-dropdown-biz" onclick="toggleBizNav()"><img src="assets/svg/navBusiness.svg" class="rj-nav-svg"></a>
                 <div class="rj-nav-biz">
                 <ul class="rj-dropdown-nav-ul">
-                <li><a href="manezinho.php">Art Restaurant Manezinho</a></li>
+                <li><a href="manezinho.php">Grand cafe Manezinho</a></li>
                 <li><a href="kaasfabriek.php">Atelier de Kaasfabriek</a></li>
                 </ul>
                 </div>

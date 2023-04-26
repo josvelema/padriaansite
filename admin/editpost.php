@@ -24,7 +24,7 @@ if (isset($_GET['p_id'])) {
     $post_id            = $row['post_id'];
     $post_author          = $row['post_author'];
     $post_title         = $row['post_title'];
-    $post_category_id   = $row['post_category_id'];
+   
     $post_status        = $row['post_status'];
     $post_image         = $row['post_image'];
     $post_content       = $row['post_content'];
@@ -41,7 +41,7 @@ if (isset($_POST['update_post'])) {
 
   $post_author         =  $_POST['post_user'];
   $post_title          =  $_POST['post_title'];
-  $post_category_id    =  $_POST['post_category'];
+ 
   // $post_status         =  $_POST['post_status'];
   $post_status         =  "published";
 
@@ -70,7 +70,7 @@ if (isset($_POST['update_post'])) {
 
   $query = "UPDATE posts SET ";
   $query .= "post_title  = ? , ";
-  $query .= "post_category_id = ? , ";
+  // $query .= "post_category_id = ? , ";
   $query .= "post_date   = now(), ";
   $query .= "post_author = ? , ";
   $query .= "post_status = ? , ";
@@ -83,15 +83,15 @@ if (isset($_POST['update_post'])) {
 
   $stmt = $pdo->prepare($query);
   $stmt->bindParam(1, $post_title, PDO::PARAM_STR);
-  $stmt->bindParam(2, $post_category_id, PDO::PARAM_INT);
-  $stmt->bindParam(3, $post_author, PDO::PARAM_STR);
-  $stmt->bindParam(4, $post_status, PDO::PARAM_STR);
-  $stmt->bindParam(5, $post_tags, PDO::PARAM_STR);
-  $stmt->bindParam(6, $post_content, PDO::PARAM_STR);
-  $stmt->bindParam(7, $post_url, PDO::PARAM_STR);
+  // $stmt->bindParam(2, $post_category_id, PDO::PARAM_INT);
+  $stmt->bindParam(2, $post_author, PDO::PARAM_STR);
+  $stmt->bindParam(3, $post_status, PDO::PARAM_STR);
+  $stmt->bindParam(4, $post_tags, PDO::PARAM_STR);
+  $stmt->bindParam(5, $post_content, PDO::PARAM_STR);
+  $stmt->bindParam(6, $post_url, PDO::PARAM_STR);
 
-  $stmt->bindParam(8, $post_image, PDO::PARAM_STR);
-  $stmt->bindParam(9, $post_id, PDO::PARAM_INT);
+  $stmt->bindParam(7, $post_image, PDO::PARAM_STR);
+  $stmt->bindParam(8, $post_id, PDO::PARAM_INT);
   $stmt->execute();
 
 
@@ -136,30 +136,7 @@ if (isset($_POST['update_post'])) {
     <input value="<?php echo htmlspecialchars(stripslashes($post_title)); ?>" type="text" class="form-control" name="post_title">
   </div>
 
-  <div class="form-group">
-    <label for="categories">Categories</label>
-    <select name="post_category" id="">
-
-      <?php
-      $stmt = $pdo->query('SELECT * FROM categories');
-      while ($row = $stmt->fetch()) {
-        $cat_id = $row['id'];
-        $cat_title = $row['title'];
-        if ($cat_id == $post_category_id) {
-
-
-          echo "<option selected value='{$cat_id}'>{$cat_title}</option>";
-        } else {
-
-          echo "<option value='{$cat_id}'>{$cat_title}</option>";
-        }
-      }
-      ?>
-
-
-    </select>
-
-  </div>
+ 
 
   <div class="form-group">
     <label for="users">Users</label>
