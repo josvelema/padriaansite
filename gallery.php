@@ -176,25 +176,7 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 							</div>
 
 							<div class="card-body">
-								<?php if ($m['type'] == 'image') : ?>
-									<div class="media-selection-container">
-										<button class="img-btn" data-src="<?= $m['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
-										 <!-- chek if description is not equal to '...' -->
-										<?php if (trim($m['description']) != '...') : ?>
-											<button class="info-btn" data-info="<?= trim($m['description']) ?>" data-title="<?= $m['title'] ?>"><i class="fa-solid fa-circle-info"></i></i></button>
-										<?php endif; ?>
-										
-										 <!-- check if audio url is not empty -->
-										<?php if (!empty($m['audio_url'])) : ?>
-											<button class="audio-btn" data-src="<?= urldecode($m['audio_url']) ?>"><i class="fa-solid fa-headphones"></i></button>
-										<?php endif; ?>
-										
-										<!-- check if video url is not empty -->
-										<?php if (!empty($m['video_url'])) : ?>
-											<button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
-										<?php endif; ?>
-									
-
+			
 									</div>
 
 									<div class="image-container">

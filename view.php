@@ -38,13 +38,25 @@ if (isset($_GET['id'])) {
 
 
                         <div class="card-body">
-                            <?php if ($media['type'] == 'image') : ?>
-                              <div class="media-selection-container">
-              <button class="img-btn" data-src="<?= $media['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
-              <button class="info-btn" data-info="<?= trim($media['description']) ?>" data-title="<?= $media['title']?>"><i class="fa-solid fa-circle-info"></i></i></button>
-              <button class="audio-btn" data-src="<?= urldecode($media['audio_url']) ?>"><i class="fa-solid fa-headphones"></i></button>
-              <button class="video-btn" data-src="<?= urldecode($media['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
-              
+                        <?php if ($media['type'] == 'image') : ?>
+									<div class="media-selection-container">
+										<button class="img-btn" data-src="<?= $media['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
+										 <!-- chek if description is not equal to '...' -->
+										<?php if (trim($media['description']) != '...') : ?>
+											<button class="info-btn" data-info="<?= trim($media['description']) ?>" data-title="<?= $media['title'] ?>"><i class="fa-solid fa-circle-info"></i></i></button>
+										<?php endif; ?>
+										
+										 <!-- check if audio url is not empty -->
+										<?php if (!empty($media['audio_url'])) : ?>
+											<button class="audio-btn" data-src="<?= urldecode($media['audio_url']) ?>"><i class="fa-solid fa-headphones"></i></button>
+										<?php endif; ?>
+										
+										<!-- check if video url is not empty -->
+										<?php if (!empty($media['video_url'])) : ?>
+											<button class="video-btn" data-src="<?= urldecode($media['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
+										<?php endif; ?>
+									
+
             </div>
             <div class="image-container">
               <div class="img-wrapper">
@@ -88,10 +100,10 @@ if (isset($_GET['id'])) {
               </div>
             </div>
 
-          <?php elseif ($m['type'] == 'video') : ?>
-            <video src="<?= $m['filepath'] ?>" width="852" height="480" controls autoplay></video>
-          <?php elseif ($m['type'] == 'audio') : ?>
-            <audio src="<?= $m['filepath'] ?>" controls autoplay></audio>
+          <?php elseif ($media['type'] == 'video') : ?>
+            <video src="<?= $media['filepath'] ?>" width="852" height="480" controls autoplay></video>
+          <?php elseif ($media['type'] == 'audio') : ?>
+            <audio src="<?= $media['filepath'] ?>" controls autoplay></audio>
           <?php endif; ?>
 
 
