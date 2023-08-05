@@ -23,8 +23,14 @@ if (isset($_GET['approve'])) {
     header('Location: allmedia.php');
     exit;
 }
-// SQL query that will retrieve all the media from the database ordered by the ID column
-//cookie for remembering categories
+
+// Which columns the users can order by, add/remove from the array below.
+$order_by_list = array('id', 'title', 'year', 'fnr', 'description');
+// Order by which column if specified (default to id)
+$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], $order_by_list) ? $_GET['order_by'] : 'id';
+// Sort by ascending or descending if specified (default to ASC)
+$order_sort = isset($_GET['order_sort']) && $_GET['order_sort'] == 'DESC' ? 'DESC' : 'ASC';
+
 
 if (isset($_POST['viewCat'])) {
     // if ($_POST['viewCat'] !== 0) {
@@ -37,7 +43,7 @@ if (isset($_POST['viewCat'])) {
     $viewCat = $stmt->fetch(PDO::FETCH_ASSOC);
     $catTitle = $viewCat['title'];
 
-    $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? WHERE m.type = "image" ORDER BY m.id DESC ');
+    $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? WHERE m.type = "image" ORDER BY ' . $order_by . ' ' . $order_sort);
 
     $stmt->bindParam(1, $_POST['viewCat'], PDO::PARAM_INT);
     $stmt->execute();
@@ -47,7 +53,7 @@ if (isset($_POST['viewCat'])) {
 } else {
     setcookie("viewing_cat", 0, time() + 86400);
 
-    $stmt = $pdo->prepare('SELECT * FROM media ORDER BY year,fnr ASC');
+    $stmt = $pdo->prepare('SELECT * FROM media ORDER BY ' . $order_by . ' ' . $order_sort);
     $stmt->execute();
     $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $countMedia = $stmt->rowCount();
@@ -61,7 +67,7 @@ if (isset($_COOKIE['viewing_cat'])) {
         $viewCat = $stmt->fetch(PDO::FETCH_ASSOC);
         $catTitle = $viewCat['title'];
 
-        $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? WHERE m.type = "image" ORDER BY m.id DESC ');
+        $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = ? WHERE m.type = "image" ORDER BY ' . $order_by . ' ' . $order_sort);
 
         $stmt->bindParam(1, $_COOKIE['viewing_cat'], PDO::PARAM_INT);
         $stmt->execute();
@@ -112,16 +118,44 @@ if (isset($_COOKIE['viewing_cat'])) {
 
 <div class="content-block">
     <div class="table">
+        
         <table class="table">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th class="responsive-hidden">Year</th>
-                    <th class="responsive-hidden">fnr</th>
-                    <th class="responsive-hidden">Description</th>
+                    <th> <a href="allmedia.php?order_by=id&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>">
+                            #
+                            <?php if ($order_by == 'id') : ?>
+                                <i class="fas fa-long-arrow-alt-<?= str_replace(array('ASC', 'DESC'), array('up', 'down'), $order_sort) ?>"></i>
+                            <?php endif; ?>
+                        </a></th>
+                    <th><a href="allmedia.php?order_by=title&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>">
+                            title
+                            <?php if ($order_by == 'title') : ?>
+                                <i class="fas fa-long-arrow-alt-<?= str_replace(array('ASC', 'DESC'), array('up', 'down'), $order_sort) ?>"></i>
+                            <?php endif; ?>
+                        </a></th>
+
+                    <th><a href="allmedia.php?order_by=year&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>">
+                            Year
+                            <?php if ($order_by == 'year') : ?>
+                                <i class="fas fa-long-arrow-alt-<?= str_replace(array('ASC', 'DESC'), array('up', 'down'), $order_sort) ?>"></i>
+                            <?php endif; ?>
+                        </a></th>
+                    <th><a href="allmedia.php?order_by=fnr&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>">
+                            fnr
+                            <?php if ($order_by == 'fnr') : ?>
+                                <i class="fas fa-long-arrow-alt-<?= str_replace(array('ASC', 'DESC'), array('up', 'down'), $order_sort) ?>"></i>
+                            <?php endif; ?>
+                        </a></th>
+                    <th class="responsive-hidden"><a href="allmedia.php?order_by=description&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>">
+                            Description
+                            <?php if ($order_by == 'description') : ?>
+                                <i class="fas fa-long-arrow-alt-<?= str_replace(array('ASC', 'DESC'), array('up', 'down'), $order_sort) ?>"></i>
+                            <?php endif; ?>
+                        </a></th>
                     <th>Media</th>
                     <th class="responsive-hidden">Type</th>
-                    <th>Approved</th>
+                    <!-- <th>Approved</th> -->
                     <th class="responsive-hidden">Date</th>
                     <th>Actions</th>
                 </tr>
@@ -134,24 +168,25 @@ if (isset($_COOKIE['viewing_cat'])) {
                 <?php else : ?>
                     <?php foreach ($media as $m) : ?>
                         <tr>
+                            <td><?= $m['id'] ?></td>
                             <td><?= htmlspecialchars($m['title'], ENT_QUOTES) ?></td>
                             <td><?= $m['year'] ?></td>
                             <td><?= $m['fnr'] ?></td>
 
                             <td class="responsive-hidden"><?= nl2br(htmlspecialchars($m['description'], ENT_QUOTES)) ?></td>
-                            <td><a href="../<?= $m['filepath'] ?>" target="_blank">View</a></td>
+                            <td><a href="../view.php?id=<?= $m['id'] ?>" target="_blank">View</a></td>
                             <td class="responsive-hidden"><?= $m['type'] ?></td>
-                            <td><?= $m['approved'] ? 'Yes' : 'No' ?></td>
-                            <td class="responsive-hidden"><?= date('F j, Y H:ia', strtotime($m['uploaded_date'])) ?></td>
+
+                            <td class="responsive-hidden"><?= date('d-m-y H:i', strtotime($m['uploaded_date'])) ?></td>
                             <td class="rj-action-td">
                                 <a href="media.php?id=<?= $m['id'] ?>" class="rj-action-edit">Edit</a>
                                 <a href="#" class="rj-action-del" onclick="deleteMediaModal(<?= $m['id'] ?>)">Delete</a>
                                 <?php if (!$m['approved']) : ?>
                                     <a href="allmedia.php?approve=<?= $m['id'] ?>">Approve</a>
                                 <?php endif; ?>
-                            
+
                             </td>
-                           
+
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -190,26 +225,6 @@ if (isset($_COOKIE['viewing_cat'])) {
 
     }
 </script>
-<!-- <script src="generateBusinessCard.js"></script>
-
-<script>
-
-
-    function generateQRCode(media_id) {
-        let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // document.('qr_url_' + media_id).innerText = this.responseText;
-                console.log('response', this.responseText);
-            }
-        };
-        xhr.open("GET", "qrcode.php?media_id=" + media_id, true);
-        xhr.send();
-    }
-
-
-</script> -->
-
 
 
 <?= template_admin_footer() ?>
