@@ -1,0 +1,157 @@
+:root {
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1400px;
+    --font-sans-serif: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+    --font-monospace: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    --body-font-size: 0.875rem;
+    --body-font-weight: 400;
+    --body-line-height: 1.4285714286;
+
+
+    --gray-50: #f8fafc;
+    --gray-50-darken: #dfe1e3;
+    --gray-100: #f1f5f9;
+    --gray-100-darken: #d9dde0;
+    --gray-200: #e2e8f0;
+    --gray-200-darken: #cbd1d8;
+    --gray-300: #c8d3e1;
+    --gray-300-darken: #b4becb;
+    --gray-400: #9ba9be;
+    --gray-400-darken: #8c98ab;
+    --gray-500: #6c7a91;
+    --gray-500-darken: #616e83;
+    --gray-600: #49566c;
+    --gray-600-darken: #424d61;
+    --gray-700: #313c52;
+    --gray-700-darken: #2c364a;
+    --gray-800: #1d273b;
+    --gray-800-darken: #1a2335;
+    --gray-900: #0f172a;
+    --gray-900-darken: #0e1526;
+
+    
+    --border-color-translucent: rgba(97, 104, 118, 0.16);
+    --border-color: #e6e7e9;
+    --border-color-light: #f2f3f4;
+    --border-color-active: #b3b7bd;
+
+    --dark-mode-border-color: #243049;
+    --dark-mode-border-color-light: #243049;
+    --dark-mode-border-color-active: #314264;
+    
+
+    --body-color: #1d273b;
+    
+    
+    --shadow: rgba(var(--rgb-body-color), 0.04) 0 2px 4px 0;
+    --shadow-transparent: 0 0 0 0 transparent;
+
+    --shadow-btn: 0 1px 0 rgba(var(--rgb-body-color), 0.04);
+    --shadow-btn-inset: inset 0 -1px 0 rgba(var(--rgb-body-color), 0.2);
+
+    --shadow-card: 0 0 4px rgba(var(--rgb-body-color), 0.04);
+    --shadow-card-hover: rgba(var(--rgb-body-color), 0.16) 0 2px 16px 0;
+
+    --box-shadow: 0 0.5rem 1rem rgba(var(--rgb-body-color), 0.15);
+    --box-shadow-sm: 0 0.125rem 0.25rem rgba(var(--rgb-body-color), 0.075);
+    --box-shadow-lg: 0 1rem 3rem rgba(var(--rgb-body-color), 0.175);
+    --box-shadow-inset: inset 0 1px 2px rgba(var(--rgb-body-color), 0.075);
+
+    
+    --sys-primary: #206bc4;
+    --sys-primary-2: #1a569d;
+    --sys-primary-bg: #d2e1f3;
+
+    --sys-secondary: #49566c;
+    --sys-secondary-2: #616876;
+    --sys-secondary-bg: #f1f5f9;
+    --sys-secondary-border: #e2e8f0;
+
+
+    --sys-success: #268f36;
+    --sys-success-2: #2fb344;
+    --sys-info: #0e616e;
+    --sys-info-2: #4299e1;
+    --sys-warning: #935f00;
+    --sys-warning-2: #f76707;
+    --sys-danger: #ab2e2e;
+    --sys-danger-2: #d63939;
+    --sys-light: #49566c;
+    --sys-dark: #313c52;
+
+    --sys-success-bg: #d5f0da;
+    --sys-info-bg: #d1ecf1;
+    --sys-warning-bg: #fdeccc;
+    --sys-danger-bg: #f7d7d7;
+    --sys-light-bg: #f8fafc;
+    --sys-dark-bg: #9ba9be;
+
+    --sys-primary-border: #a6c4e7;
+    --sys-success-border: #ace1b4;
+    --sys-info-border: #a2dae3;
+    --sys-warning-border: #fbd999;
+    --sys-danger-border: #efb0b0;
+    --sys-light-border: #e2e8f0;
+    --sys-dark-border: #6c7a91;
+
+
+    --gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+
+    --secondary-color: rgba(29, 39, 59, 0.75);
+    --secondary-bg: #e2e8f0;
+    --tertiary-color: rgba(29, 39, 59, 0.5);
+    --tertiary-bg: #f1f5f9;
+    --body-bg: #f1f5f9;
+    --link-color: #206bc4;
+    --link-decoration: none;
+    --link-hover-color: #1a569d;
+    --link-hover-decoration: underline;
+    --highlight-bg: #fdeccc;
+    --border-width: 1px;
+    --border-style: solid;
+
+    --border-radius: 4px;
+    --border-radius-sm: 2px;
+    --border-radius-lg: 8px;
+    --border-radius-xl: 1rem;
+    --border-radius-2xl: 2rem;
+    --border-radius-pill: 100rem;
+    
+
+    /* --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #c8d3e1;
+    --gray-400: #9ba9be;
+    --gray-500: #6c7a91;
+    --gray-600: #49566c;
+    --gray-700: #313c52;
+    --gray-800: #1d273b;
+    --gray-900: #0f172a; */
+
+    --rgb-body-color:(29, 39, 59);
+    --rgb-body-bg:(241, 245, 249);
+    --rgb-blue:(32, 107, 196);
+    --rgb-azure:(66, 153, 225);
+    --rgb-indigo:(66, 99, 235);
+    --rgb-purple:(174, 62, 201);
+    --rgb-pink:(214, 51, 108);
+    --rgb-red:(214, 57, 57);
+    --rgb-orange:(247, 103, 7);
+    --rgb-yellow:(245, 159, 0);
+    --rgb-lime:(116, 184, 22);
+    --rgb-green:(47, 179, 68);
+    --rgb-teal:(12, 166, 120);
+    --rgb-cyan:(23, 162, 184);
+
+    --facebook: #1877F2;
+    --twitter: #1da1f2;
+    --linkedin: #0a66c2;
+    --google: #dc4e41;
+    --youtube: #ff0000;
+    --vimeo: #1ab7ea;
+
+}
