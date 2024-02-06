@@ -143,6 +143,7 @@ if (isset($_POST['checkBoxArray'])) {
       <a class="btn btn-primary push-right" href="addpost.php">Add New Post</a>
 
     </div>
+</form>
 
     <table class="table table-bordered ">
       <thead>

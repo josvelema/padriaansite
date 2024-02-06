@@ -24,15 +24,15 @@ $options = new LogoOptions(
 
 $qrOutputInterface = new QRImageWithLogo(
   $options,
-  (new QRCode($options))->getMatrix('https://www.meergeluk.com')
+  (new QRCode($options))->getMatrix('https://pieter-adriaans.com/')
 );
 
 $qrcode = $qrOutputInterface->dump(
   null,
-  __DIR__.'/public/img/clover.png'
+  __DIR__.'/public/img/favicon-32x32.png'
 );
 
-$file = __DIR__.'/public/img/qr-meergeluk-klaver.png';
+$file = __DIR__.'/public/img/qr-1338.png';
 
 
 $imageData = base64_decode(substr($qrcode, strpos($qrcode, ',') + 1));

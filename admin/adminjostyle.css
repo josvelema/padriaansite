@@ -1,0 +1,140 @@
+.rj-modal-background {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 9998;
+}
+.rj-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    background-color: #fff;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+.rj-modal > p {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 15px;
+    margin: 0;
+}
+.rj-modal-header {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #dddddd;
+    box-sizing: border-box;
+    height: 50px;
+}
+.rj-modal-header h3 {
+    margin: 0;
+    box-sizing: border-box;
+    padding-left: 15px;
+    line-height: 50px;
+    color: #4d4d4d;
+    font-size: 16px;
+    display: inline-block;
+}
+.rj-modal-header label {
+    box-sizing: border-box;
+    border-left: 1px solid #dddddd;
+    float: right;
+    line-height: 50px;
+    padding: 0 15px 0 15px;
+    cursor: pointer;
+}
+.rj-modal-header label:hover img {
+    opacity: 0.6;
+}
+
+.rj-modal-btn {
+    text-transform: uppercase;
+    text-decoration: none !important;
+    color: rgb(27, 27, 27);
+    margin: 1em;
+    padding: 10px 30px;
+    border: 1px solid;
+    border-radius: 1000px;
+    display: inline-block;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.rj-modal-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(27, 27, 27, 0.5);
+}
+
+.rj-modal-btn:hover {
+    box-shadow: 0 10px 20px rgba(222, 222, 222, 0.5);
+}
+
+.rj-modal-btn {
+    transform: translateY(-3px);
+}
+
+.rj-action-td {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rj-action-edit,
+.rj-action-del {
+    text-align: center;
+    letter-spacing: 2px;
+
+    width: 9ch;
+    text-decoration: none;
+    padding: 0.5em;
+    margin: 0.15em;
+    border: 1px solid #0007;
+    border-radius: 4px;
+}
+.rj-action-edit:hover,
+.rj-action-del:hover { 
+border-color: orangered;
+}
+
+.rj-action-edit {
+    color: #fafefe !important;
+    background-color: hsl(36, 66%, 50%);
+}
+
+.rj-action-edit:hover {
+    color: #fff;
+
+    background-color: hsl(26, 100%, 50%);
+}
+
+.rj-action-del {
+    color: #fafefe;
+    background-color: hsl(5, 76%, 50%);
+}
+
+.rj-action-del:hover {
+    color: #fff;
+
+    background-color: hsl(5, 100%, 50%);
+}
+
+.rj-form-admin {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em;
+    padding: 0.5em;
+    width: fit-content;
+} 
+.rj-form-admin select,
+.rj-form-admin input {
+    margin: 0.25em;
+}

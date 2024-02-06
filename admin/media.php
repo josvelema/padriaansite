@@ -77,19 +77,36 @@ if (isset($_GET['id'])) {
         $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?, thumbnail = ?, approved = ? WHERE id = ?');
         $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved'], $_GET['id']]);
         addCategories($pdo, $_GET['id']);
+        
+        if (isset($_COOKIE['viewing_cat'])) {
+            $viewing_cat = $_COOKIE['viewing_cat'];
+        } else {
+            $viewing_cat = 0;
+        }
+        echo '
+        <label for="rj-modal" class="rj-modal-background"></label>
+        <div class="rj-modal">
+            <div class="modal-header">
+                <h3>Media Updated!</h3>
+                <label for="rj-modal">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="" onclick="closeModal()">
+                </label>
+            </div>
+            <p>
+            <a href="../' . $media_path . '" target="_blank" class="rj-modal-btn">Preview media</a>
+            </p>
+            <p>
+            <a href="allmedia.php?viewCat=' . $viewing_cat . '" class="rj-modal-btn">Go back to media page</a>
+            </p>
+            <p>
+            <a href="#" onclick="closeModal()" class="rj-modal-btn">Close and stay on this page</a>
+            </p>
+        </div>
+        
+        ';
 
-        // Show the loading spinner and progress bar during media editing
-        echo '<div class="loading-spinner">Updating Media...</div>';
-        echo '<div class="progress-bar-container"><div class="progress-bar"></div></div>';
-
-        // Redirect to allmedia.php after 3 seconds
-        echo '<script>
-                setTimeout(function() { 
-                    window.location.href = "allmedia.php"; 
-                }, 3000);
-              </script>';
-
-        exit;
+        // header('Location: allmedia.php');
+        // exit;
     }
     if (isset($_POST['delete'])) {
         // Redirect and delete the media
@@ -102,23 +119,35 @@ if (isset($_GET['id'])) {
     if (isset($_POST['submit'])) {
         $stmt = $pdo->prepare('INSERT INTO media (title,description,year,fnr,filepath,type,thumbnail,approved) VALUES (?,?,?,?,?,?,?,?)');
         $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved']]);
-        $title = str_replace(" ", "-", $_POST['title']);
+        $title = str_replace(" ","-",$_POST['title']);
         $media_id = $pdo->lastInsertId();
         // . "-" . $_POST['year'] . "-" . $_POST['fnr'] . "-" . $title;
         addCategories($pdo, $media_id);
 
-        // Show the loading spinner and progress bar during media creation
-        echo '<div class="loading-spinner">Creating Media...</div>';
-        echo '<div class="progress-bar-container"><div class="progress-bar"></div></div>';
+        echo '
+        <label for="rj-modal" class="rj-modal-background"></label>
+        <div class="rj-modal">
+            <div class="modal-header">
+                <h3>Media Uploaded!</h3>
+                <label for="rj-modal">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="" onclick="closeModal()">
+                </label>
+            </div>
+            <p>
+            <a href="../' . $media_path . '" target="_blank" class="rj-modal-btn">Preview media</a>
+            </p>
+            <p>
+            <a href="allmedia.php" class="rj-modal-btn">Go back to media page</a>
+            </p>
+            <p>
+            <a href="#" onclick="closeModal()" class="rj-modal-btn">Add another Media file</a>
+            </p>
+        </div>
+        
+        ';
 
-        // Redirect to allmedia.php after 3 seconds
-        echo '<script>
-         setTimeout(function() { 
-             window.location.href = "allmedia.php"; 
-         }, 3000);
-       </script>';
-
-        exit;
+        // header('Location: allmedia.php');
+        // exit;
     }
 }
 ?>
@@ -129,9 +158,6 @@ if (isset($_GET['id'])) {
 <div class="content-block">
 
     <form action="" method="post" class="form responsive-width-100" enctype="multipart/form-data">
-    <div class="loading-spinner">Creating Media...</div>
-        <div class="progress-bar-container"><div class="progress-bar"></div></div>
-
 
         <label for="title">Title</label>
         <input id="title" type="text" name="title" placeholder="Title" value="<?= htmlspecialchars($media['title'], ENT_QUOTES) ?>" required>
@@ -161,7 +187,7 @@ if (isset($_GET['id'])) {
             <option value="0" <?= $media['approved'] == 0 ? ' selected' : '' ?>>No</option>
             <option value="1" <?= $media['approved'] == 1 ? ' selected' : '' ?>>Yes</option>
         </select>
-        <img src="../<?= $media['filepath'] ?>" alt="<?= $media['title'] ?>" style="display: block; width: min(100%, 200px);">
+
         <label for="media">Media</label>
         <input type="file" name="media" accept="audio/*,video/*,image/*">
 
@@ -180,8 +206,8 @@ if (isset($_GET['id'])) {
                     <option value="<?= $cat['id'] ?>"><?= $cat['title'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <button id="add_selected_categories" style="width:50%;;background-color: #33aa22; color: #f0f0f0;">Add</button>
-            <button id="remove_selected_categories" style="width:50%;;background-color: #aa5622;color: #f0f0f0;">Remove</button>
+            <button id="add_selected_categories" style="width:50%;">Add</button>
+            <button id="remove_selected_categories" style="width:50%;">Remove</button>
             <input type="hidden" name="categories_list" value="<?= implode(',', array_column($media['categories'], 'id')) ?>">
         </div>
 
@@ -231,29 +257,6 @@ if (isset($_GET['id'])) {
             }
         });
     };
-</script>
-<script>
-    // Function to display the loading spinner during file upload
-    function showLoadingSpinner() {
-        const loadingSpinner = document.querySelector('.loading-spinner');
-        loadingSpinner.style.display = 'block';
-    }
-
-    // Function to hide the loading spinner after file upload completion
-    function hideLoadingSpinner() {
-        const loadingSpinner = document.querySelector('.loading-spinner');
-        loadingSpinner.style.display = 'none';
-    }
-
-    // Function to update the progress bar during file upload
-    function updateProgressBar(progress) {
-        const progressBar = document.querySelector('.progress-bar');
-        progressBar.style.width = progress + '%';
-    }
-
-
-    // Show the loading spinner during media creation/editing
-    showLoadingSpinner();
 </script>
 
 <?= template_admin_footer() ?>
