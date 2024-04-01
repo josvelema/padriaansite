@@ -341,9 +341,8 @@ letter-spacing: 2px;
 
 .content h2 {
     margin: 0;
-    padding: 25px 0;
+    padding: 1rem;
     font-size: 22px;
-    border-bottom: 1px solid #ebebeb;
     color: #fafafa;
 }
 
@@ -1058,6 +1057,24 @@ letter-spacing: 2px;
     border-radius: 7px;
     /* border: 1px solid #fafafa; */
 }
+
+.gallery-description {
+padding: 1rem;
+background-color: #7776;
+border: 1px solid #fafafa;
+border-radius: 4px;
+
+
+}
+
+.gallery-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
 
 .rj-gallery section {
     display: unset;

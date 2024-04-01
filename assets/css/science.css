@@ -36,6 +36,7 @@ ul {
 }
 header {
     display: grid;
+    gap: 0.5rem;
     place-items: center;
 }
 
@@ -81,7 +82,7 @@ h1 {
 }
 
 :is(h2, h3):not(:first-child) {
-    margin-top: 2em;
+    margin-top: 1rem;
 }
 
 article * + * {

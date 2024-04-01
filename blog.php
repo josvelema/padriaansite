@@ -47,7 +47,7 @@ if ($count < 1) {
       <header class="rj-blog-header">
         <h2>Pieter Adriaans - Blog </h2>
         <small>total posts: 
-          <?php echo $total_posts . ' | viewing page ' . $current_page . ' of ' . $count ;?>
+          <?= $total_posts . ' | viewing page ' . $current_page . ' of ' . $count ;?>
         </small>
 
           <ul class="rj-pager">
@@ -100,18 +100,18 @@ if ($count < 1) {
 
           <div data-component class="rj-blog-card">
             <div class="rj-blog-card-header">
-              <a href="post.php?p_id=<?php echo $post_id; ?>" class="rj-card-title"><?php echo $post_title ?></a>
-              <p>by : <?php echo $post_author ?> - <em><?php echo $post_date . "</em> - <small>" . $post_views; ?> views</small></p>
+              <a href="post.php?p_id=<?= $post_id; ?>" class="rj-card-title"><?= $post_title ?></a>
+              <p>by : <?= $post_author ?> - <em><?= $post_date . "</em> - <small>" . $post_views; ?> views</small></p>
             </div>
             <div class="rj-blog-card-content">
-              <a href="post.php?p_id=<?php echo $post_id; ?>">
-                <img class="blog-image" src="images/<?php echo $post_image; ?>" alt="<?php echo $post_title ?>">
+              <a href="post.php?p_id=<?= $post_id; ?>">
+                <img class="blog-image" src="images/<?= $post_image; ?>" alt="<?= $post_title ?>">
               </a>
-              <?php echo "<pre>" . trim($post_content) . "</pre>"; ?>
+              <?= "<pre>" . trim($post_content) . "</pre>"; ?>
 
             </div>
             <div class="rj-blog-card-footer">
-              <a class="rj-btn-light" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+              <a class="rj-btn-light" href="post.php?p_id=<?= $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
               <!-- <a href="https://moderncss.dev">Visit ModernCSS.dev</a> -->
             </div>
           </div>

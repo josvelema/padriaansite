@@ -1,5 +1,5 @@
 let aside = document.querySelector("aside"), main = document.querySelector("main"), header = document.querySelector("header");
-console.log('jos')
+
 let asideopen = false;
 document.querySelector(".aside-toggle").onclick = function(event) {
     event.preventDefault();

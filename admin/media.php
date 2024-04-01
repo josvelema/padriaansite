@@ -16,6 +16,11 @@ $media = [
     'type' => '',
     'thumbnail' => '',
     'approved' => 1,
+    'art_material' => '',
+    'art_dimensions' => '',
+    'art_type' => '',
+    'art_status' => '',
+    'art_price' => 0,
     'categories' => []
 ];
 // Retrieve all the categories from the database
@@ -74,10 +79,12 @@ if (isset($_GET['id'])) {
     $page = 'Edit';
     if (isset($_POST['submit'])) {
         //todo Update the media
-        $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?, thumbnail = ?, approved = ? WHERE id = ?');
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved'], $_GET['id']]);
+
+        $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?, thumbnail = ?, approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ? WHERE id = ?');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $_GET['id']]);
         addCategories($pdo, $_GET['id']);
-        
+
+        //todo redirect to previous page on allmedia.php
         if (isset($_COOKIE['viewing_cat'])) {
             $viewing_cat = $_COOKIE['viewing_cat'];
         } else {
@@ -117,11 +124,10 @@ if (isset($_GET['id'])) {
     // Create new media
     $page = 'Create';
     if (isset($_POST['submit'])) {
-        $stmt = $pdo->prepare('INSERT INTO media (title,description,year,fnr,filepath,type,thumbnail,approved) VALUES (?,?,?,?,?,?,?,?)');
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved']]);
-        $title = str_replace(" ","-",$_POST['title']);
+        // add art_ fields 
+        $stmt = $pdo->prepare('INSERT INTO media (title,description,year,fnr,filepath,type,thumbnail,approved,art_material,art_dimensions,art_type,art_status,art_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price']]);
         $media_id = $pdo->lastInsertId();
-        // . "-" . $_POST['year'] . "-" . $_POST['fnr'] . "-" . $title;
         addCategories($pdo, $media_id);
 
         echo '
@@ -168,25 +174,59 @@ if (isset($_GET['id'])) {
         <!-- <label for="uploaded_date">Uploaded Date</label>
         <input id="uploaded_date" type="datetime-local" name="uploaded_date" value="<?= date('Y-m-d\TH:i:s', strtotime($media['uploaded_date'])) ?>" required> -->
 
-        <label for="year">Year of production</label>
-        <input id="year" type="number" name="year" value="<?= $media['year'] ?>" min=1900 max=2058>
+        <div class="form-group">
+            <div class="form-group-item">
+                <label for="year">Year of production</label>
+                <input id="year" type="number" name="year" value="<?= $media['year'] ?>" min=1900 max=2058>
+            </div>
+            <div class="form-group-item">
+                <label for="fnr">Follow-up number (if none default is 0)</label>
+                <input id="fnr" type="number" name="fnr" value="<?= $media['fnr'] ?>" min=0 max=99>
+            </div>
 
-        <label for="fnr">Follow-up number (if none default is 0)</label>
-        <input id="fnr" type="number" name="fnr" value="<?= $media['fnr'] ?>" min=0 max=99>
+            <div class="form-group-item">
 
-
-        <label for="type">Type</label>
-        <select id="type" name="type" required>
-            <option value="image" <?= $media['type'] == 'image' ? ' selected' : '' ?>>Image</option>
-            <option value="audio" <?= $media['type'] == 'audio' ? ' selected' : '' ?>>Audio</option>
-            <option value="video" <?= $media['type'] == 'video' ? ' selected' : '' ?>>Video</option>
-        </select>
-
-        <label for="approved">Approved</label>
-        <select id="approved" name="approved" required>
-            <option value="0" <?= $media['approved'] == 0 ? ' selected' : '' ?>>No</option>
-            <option value="1" <?= $media['approved'] == 1 ? ' selected' : '' ?>>Yes</option>
-        </select>
+                <label for="type">Type</label>
+                <select id="type" name="type" required>
+                    <option value="image" <?= $media['type'] == 'image' ? ' selected' : '' ?>>Image</option>
+                    <option value="audio" <?= $media['type'] == 'audio' ? ' selected' : '' ?>>Audio</option>
+                    <option value="video" <?= $media['type'] == 'video' ? ' selected' : '' ?>>Video</option>
+                </select>
+            </div>
+            <div class="form-group-item">
+                <label for="approved">Approved</label>
+                <select id="approved" name="approved" required>
+                    <option value="0" <?= $media['approved'] == 0 ? ' selected' : '' ?>>No</option>
+                    <option value="1" <?= $media['approved'] == 1 ? ' selected' : '' ?>>Yes</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group-item">
+                <label for="art_material">Material</label>
+                <input id="art_material" type="text" name="art_material" value="<?= htmlspecialchars($media['art_material'], ENT_QUOTES) ?>" placeholder="Oil on canvas">
+            </div>
+            <div class="form-group-item">
+                <label for="art_dimensions">Dimensions</label>
+                <input id="art_dimensions" type="text" name="art_dimensions" value="<?= htmlspecialchars($media['art_dimensions'], ENT_QUOTES) ?>" placeholder="Length * Width">
+            </div>
+            <div class="form-group-item">
+                <label for="art_type">Type</label>
+                <input id="art_type" type="text" name="art_type" value="<?= htmlspecialchars($media['art_type'], ENT_QUOTES) ?>" placeholder="Painting, Drawing, etc">
+            </div>
+            <div class="form-group-item">
+                <label for="art_status">Status</label>
+                <select id="art_status" name="art_status" required>
+                    <option value="available" <?= $media['art_status'] == 'available' ? ' selected' : '' ?>>Available</option>
+                    <option value="sold" <?= $media['art_status'] == 'sold' ? ' selected' : '' ?>>Sold</option>
+                    <option value="not for sale" <?= $media['art_status'] == 'not for sale' ? ' selected' : '' ?>>Not for sale</option>
+                </select>
+            </div>
+            <div class="form-group-item">
+                <label for="art_price">Price</label>
+                <input id="art_price" type="number" name="art_price" value="<?= $media['art_price'] ?>" min=0>
+            </div>
+        </div>
 
         <label for="media">Media</label>
         <input type="file" name="media" accept="audio/*,video/*,image/*">
@@ -195,29 +235,31 @@ if (isset($_GET['id'])) {
         <input type="file" name="thumbnail" accept="image/*">
 
         <label for="add_categories">Categories</label>
-        <div style="display:flex;flex-flow:wrap;">
-            <select name="add_categories" id="add_categories" style="width:50%;" multiple>
-                <?php foreach ($categories as $cat) : ?>
-                    <option value="<?= $cat['id'] ?>"><?= $cat['title'] ?></option>
-                <?php endforeach; ?>
-            </select>
-            <select name="categories" style="width:50%;" multiple>
-                <?php foreach ($media['categories'] as $cat) : ?>
-                    <option value="<?= $cat['id'] ?>"><?= $cat['title'] ?></option>
-                <?php endforeach; ?>
-            </select>
-            <button id="add_selected_categories" style="width:50%;">Add</button>
-            <button id="remove_selected_categories" style="width:50%;">Remove</button>
-            <input type="hidden" name="categories_list" value="<?= implode(',', array_column($media['categories'], 'id')) ?>">
+        <div class="form-group">
+            <div class="form-group-item">
+                <select name="add_categories" id="add_categories" style="" multiple>
+                    <?php foreach ($categories as $cat) : ?>
+                        <option value="<?= $cat['id'] ?>"><?= $cat['title'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button id="add_selected_categories" style="width:min(90%,44ch); background: #99aa22; color: #f0f0f0;">Add</button>
+            </div>
+            <div class="form-group-item">
+                <select name="categories" style="" multiple>
+                    <?php foreach ($media['categories'] as $cat) : ?>
+                        <option value="<?= $cat['id'] ?>"><?= $cat['title'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button id="remove_selected_categories" style="width:min(90%,44ch);background: #aa4400; color: #f0f0f0;">Remove</button>
+            </div>
         </div>
+        <input type="hidden" name="categories_list" value="<?= implode(',', array_column($media['categories'], 'id')) ?>">
 
         <br>
 
         <div class="submit-btns">
-            <input type="submit" name="submit" value="Submit">
-            <?php if ($page == 'Edit') : ?>
-                <input type="submit" name="delete" value="Delete" class="delete">
-            <?php endif; ?>
+            <?= ($page == 'Edit') ? ' <input type="submit" name="submit" value="Submit changes"> '
+                : '  <input type="submit" name="submit" value="Create new media"> ' ?>
         </div>
 
     </form>
@@ -252,8 +294,13 @@ if (isset($_GET['id'])) {
                 if (!list.includes(option.value)) {
                     list.push(option.value);
                 }
+                // prevent duplicates
+                list = list.filter(function(value, index, self) {
+                    return self.indexOf(value) === index;
+                });
                 document.querySelector("input[name='categories_list']").value = list.join(",");
                 document.querySelector("select[name='categories']").add(option.cloneNode(true));
+
             }
         });
     };

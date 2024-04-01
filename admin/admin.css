@@ -10,43 +10,24 @@
   }
   
   :root {
+
+    --my-purple: #3d22aa;
     --header-height: 4em;
   
     --aside-width: 12em;
     --aside-width-neg: calc(var(--aside-width) * -1 + var(--aside-width-min)); 
     --aside-width-min: 3em;
+
+    --bs-pagination-active-bg: var(--my-purple)  !important;
+    --bs-pagination-active-border-color: var(--my-purple) !important;
   
-  
+}
+
+  .pagination {
+    width: min(100%, 90ch);
+    margin-inline: 0 auto;
+
   }
-  
-  ::-webkit-scrollbar {
-    width: 1.25em;
-    background: #e0e0e0;
-    border: 2px inset #000037;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: hsla(225, 46%, 40%, 0.781);
-    border-radius: 12px;
-    min-height: 2em;
-  
-   
-    border: 1px outset hsl(225, 46%, 70%);
-  }
-  
-  ::-webkit-scrollbar-track {
-    background-color: #d0d0d0;
-    border: 1px solid #2226;
-    width: 1em;
-    padding: 1em;
-    margin: 1em;
-    position: relative;
-  }
-  ::-webkit-scrollbar-track-piece {
-   background-color: #eee5;
-  }
-  
-  
   html {
     height: 100%;
   }
@@ -81,7 +62,7 @@
     z-index: 888;
     width: 100%;
     height: var(--header-height);
-    background-color: #fff;
+    background-color: #fdfaf0;
     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.15);
   }
   
@@ -178,7 +159,7 @@
     color: #fafafa;
     border-radius: 6px;
     border:1px solid #fafafa;
-    box-shadow: 0 0 4px -2px #fff8;
+    box-shadow: 0 0 4px -2px #fdfaf08;
     padding: 0.5em;
     margin-inline: 0.2em;
   }
@@ -206,8 +187,8 @@
   }
   
   aside a:hover, aside a.selected {
-    background-color: #3d22aa;
-    color: #fff;
+    background-color: var(--my-purple);
+    color: #fdfaf0;
   }
   
   a.selected::after {
@@ -292,7 +273,7 @@
   }
   
   main .content-block {
-    background-color: #fff;
+    background-color: #fdfaf0;
     margin-top: 25px;
     padding: 15px;
   }
@@ -420,7 +401,7 @@
   }
   
   main .form select option:hover {
-      background-color: #fff;
+      background-color: #fdfaf0;
     }
   
   main .form select {
@@ -446,7 +427,7 @@
   main .form input[type="submit"] {
     background: #4a79b4;
     border: 0;
-    color: #ffffff;
+    color: #fdfaf0fff;
     width: 50%;
     padding: 12px 0;
     font-size: 14px;
@@ -519,7 +500,7 @@
     display: inline-flex;
     text-decoration: none;
     background: #4a79b4;
-    color: #ffffff;
+    color: #fdfaf0fff;
     padding: 12px 15px;
     margin-right: 10px;
     font-size: 14px;
@@ -564,7 +545,7 @@
   .login form input[type="submit"] {
     background: #606c7e;
     border: 0;
-    color: #ffffff;
+    color: #fdfaf0fff;
     width: 100%;
     padding: 12px 0;
     font-size: 14px;
@@ -764,7 +745,7 @@
     color: #1b1e24;
     max-height: 80px;
     overflow: hidden;
-    background: #fff9;
+    background: #fdfaf09;
   }
   
   td:last-child {
@@ -932,7 +913,7 @@
   .edit-icon:focus-visible,
   .edit-icon:active
   {
-    background-color: #fff;
+    background-color: #fdfaf0;
     border: 1px solid hsl(100, 90%, 30%);
   }
   .edit-icon small {
@@ -970,7 +951,7 @@
     display: block;
     width: fit-content;
     height: fit-content;
-    background-color: #fff;
+    background-color: #fdfaf0;
     box-sizing: border-box;
     z-index: 9999;
   }
@@ -1070,7 +1051,7 @@
   
   .bulkOptionContainer {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     gap: 0.66em;
     padding: 0.5em;
     /* width: min(100%, 50ch); */
@@ -1162,7 +1143,7 @@
   }
   
   .btn--edit:hover {
-    color: #fff;
+    color: #fdfaf0;
   
     background-color: hsl(26, 100%, 50%);
   }
@@ -1173,7 +1154,7 @@
   }
   
   .btn--del:hover {
-    color: #fff;
+    color: #fdfaf0;
   
     background-color: hsl(5, 100%, 50%);
   }
@@ -1190,7 +1171,7 @@
       transform: translate(-50%, -50%);
       padding: 15px;
       background-color: rgba(0, 0, 0, 0.8);
-      color: #fff;
+      color: #fdfaf0;
       font-size: 18px;
       border-radius: 5px;
       z-index: 9999;
@@ -1218,7 +1199,7 @@
       background-color: #4CAF50;
       text-align: center;
       line-height: 20px;
-      color: #fff;
+      color: #fdfaf0;
   }
   
   /* Styling for the success message */
@@ -1230,10 +1211,23 @@
       transform: translate(-50%, -50%);
       padding: 15px;
       background-color: #4CAF50;
-      color: #fff;
+      color: #fdfaf0;
       font-size: 18px;
       border-radius: 5px;
       z-index: 9999;
   }
   
-  
+  .form-group {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .form-group-item
+   {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+  }
