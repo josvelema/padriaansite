@@ -4,7 +4,7 @@ include 'main.php';
 $viewCat = filter_input(INPUT_GET, 'viewCat', FILTER_VALIDATE_INT) ?? 0;
 
 $term = filter_input(INPUT_GET, 'term') ?? '';
-$show = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 20;
+$show = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 25;
 $from = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0;
 
 // $show = $_GET['show'] ?? 22;
@@ -38,7 +38,10 @@ if ($viewCat > 0) {
         'term1' => '%' . $term . '%',
         'term2' => '%' . $term . '%'
     ];
-
+    // get category title
+    $stmt = $pdo->prepare('SELECT title FROM categories WHERE id = :category_id');
+    $stmt->execute(['category_id' => $viewCat]);
+    $catTitle = $stmt->fetchColumn();
     // count query
     $stmt = $pdo->prepare('SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2)');
     $stmt->execute($params);
@@ -46,8 +49,8 @@ if ($viewCat > 0) {
     if ($count > 0) {
         $params['show'] = (int)$show;
         $params['from'] = (int)$from;
-
         $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2) ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
+
         foreach ($params as $key => &$value) {
             if ($key == 'show' || $key == 'from') {
                 $stmt->bindParam($key, $value, PDO::PARAM_INT);
@@ -85,9 +88,6 @@ if ($viewCat > 0) {
     }
 }
 
-
-
-
 if ($count > $show) {
     $total_pages = ceil($count / $show);
     $current_page = ceil($from / $show) + 1;
@@ -95,66 +95,59 @@ if ($count > $show) {
     $total_pages = 1;
     $current_page = 1;
 }
-
+// get current get parameters into string
+$get_params = $_GET;
+// http_build_query(array_merge($_GET, ['page' => null]));
+template_admin_header('Media Gallery\'s', 'MediaGallery')
 ?>
-
-
-<?= template_admin_header('Media Gallery\'s', 'MediaGallery') ?>
 <section>
-
-    <h2>Viewing <?= (isset($catTitle)) ?
-                    $catTitle . " - " . $count . " media files." :
-                    "all media." . " - " . $count . " media files" ?>
-    </h2>
+    <div class="table-results">
+        <h2>
+            <?php if ($viewCat > 0) : ?>
+                Viewing <?= (isset($term) && $term != '') ? 'search results for <strong>"' . $term . '</strong>" in ' . $catTitle  : 'Category: ' . $catTitle ?>
+            <?php else : ?>
+                Viewing <?= (isset($term) && $term != '') ? 'search results for <strong>"' . $term . '"</strong>' : 'All Media' ?>
+            <?php endif; ?>
+        </h2>
+        <p><?= $count ?> media files found.   </p>
+        <p>viewing page <?= $current_page ?> of <?= $total_pages ?>.</p>
+    </div>
 
 
     <div class="rj-table-ctrl">
-
-
         <form action="allmedia.php" method='GET' class="bulkOptionContainer">
-
-
             <label for="selectCat">Select category to view</label>
             <select class="form-control" name="viewCat" id="selectCat">
                 <option value="0">All Categories</option>
                 <?php foreach ($categories as $category) : ?>
-
                     <option value=<?= $category['id'] ?> <?= $category['id'] == $viewCat ? 'selected' : '' ?>><?= $category['title'] ?></option>
                 <?php endforeach; ?>
             </select>
-
-
-
             <input type="text" name="term" id="search" value="<?= htmlspecialchars($term) ?>" placeholder="enter search term" class="form-control">
             <input type="submit" value="Search" class="btn btn-primary">
         </form>
-    </div>
-    <div class="rj-btn-grid">
-        <a href="allmedia.php" class="btn btn-primary">View All Media</a>
 
-        <a href="media.php" class="btn">Create Media</a>
+        <div class="rj-btn-grid">
+            <a href="allmedia.php" class="btn btn-primary">View All Media</a>
+            <a href="media.php" class="btn">Create Media</a>
+        </div>
     </div>
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li class="page-item"><a class="page-link" href="#" id="page-item-prev">Previous</a></li>
-
             <?php
             $start = max(1, $current_page - 7);
             $end = min($total_pages, $current_page + 7);
-
             for ($i = $start; $i <= $end; $i++) : ?>
-
                 <li class="page-item <?= $i == $current_page ? 'active' : '' ?>">
                     <a href="allmedia.php?viewCat=<?= $viewCat ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($i - 1) * $show) ?>&order_by=<?= $order_by ?>&order_sort=<?= $order_sort ?>" class="page-link"><?= $i ?></a>
                 </li>
             <?php endfor; ?>
-
             <?php if ($end < $total_pages) : ?>
                 <li class="page-item">
                     <a href="allmedia.php?viewCat=<?= $viewCat ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($end) * $show) ?>&order_by=<?= $order_by ?>&order_sort=<?= $order_sort ?>" class="page-link">+<?= $total_pages - $end ?></a>
                 </li>
             <?php endif; ?>
-
             <li class="page-item"><a class="page-link" href="#" id="page-item-next">Next</a></li>
         </ul>
     </nav>
@@ -240,32 +233,24 @@ if ($count > $show) {
                                     <div class="td-item"><small><?= date('d/m/y', strtotime($m['uploaded_date'])) ?></small></div>
                                 </div>
                             </td>
-                            <!-- <td></td> -->
-
                             <td class="responsive-hidden">
-
                                 <?= (strlen($m['description']) >= 100) ?
                                     "<span data-short-content=1>" . $short_desc . "<span class='rj-elips'>...</span>" . "</span>" :
                                     "<span data-short-content=0>" . $m['description'] . "</span>"
                                 ?>
                             </td>
-                            <!-- view and media type removed  -->
                             <td class="rj-action-td">
-                                <a href="media.php?id=<?= $m['id'] ?>" class="btn btn--edit">Edit</a>
+                                <a href="media.php?id=<?= $m['id'] ?>&<?= http_build_query($get_params) ?>" class="btn btn--edit">Edit</a>
                                 <a href="#" class="btn btn--del" onclick="deleteMediaModal(<?= $m['id'] ?>)">Delete</a>
                                 <?php if (!$m['approved']) : ?>
                                     <a href="allmedia.php?approve=<?= $m['id'] ?>">Approve</a>
                                 <?php endif; ?>
-
                             </td>
-
                         </tr>
-
                     <?php endforeach; ?>
                 <?php endif; ?>
             </tbody>
         </table>
-
     </div>
 
 </section>

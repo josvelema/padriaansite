@@ -1034,13 +1034,13 @@
   
   .rj-btn-grid {
     display: grid;
-    width: 100%;
+    width: min(100%,30ch);
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20ch), 1fr));
     gap: 0.33em;
     place-content: center;
     place-items: center;
     margin-block: 0.5em;
-  }
+}
   .rj-table-ctrl {
     display: flex;
     /* flex-wrap: wrap; */
@@ -1231,3 +1231,21 @@
     border: 1px solid #ddd;
     padding: 0.5rem;
   }
+
+  .table-results {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: #fefaf0;
+    padding: 0.5rem;
+    border: 1px solid #7777;
+  }
+
+  .table-results strong {
+    font-size: inherit;
+    color: #4a5361;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  
