@@ -171,13 +171,16 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 				<?php endif; ?>
 			</div>
 		</header>
-		<div class="con">
 
-		</div>
 		<section>
 			<div class="gallery-container">
 
 				<?php foreach ($media as $m) : ?>
+					<!-- check if there is content in art_type , art_material and art_ dimensions and if so put in front of description -->
+					<?php if (!empty($m['art_type']) || !empty($m['art_material']) || !empty($m['art_dimensions'])) : ?>
+						<?php $m['description'] = (!empty($m['art_type']) ? $m['art_type'] . ', ' : '') . (!empty($m['art_material']) ? $m['art_material'] . ', ' : '') . (!empty($m['art_dimensions']) ? $m['art_dimensions'] . ', ' : '') . $m['description']; ?>
+					<?php endif; ?>
+
 					<article class="rj-gallery-card">
 						<div class="card">
 							<div class="card-header">
@@ -190,7 +193,7 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 									<div class="media-selection-container">
 										<button class="img-btn" data-src="<?= $m['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
 										<!-- chek if description is not equal to '...' -->
-										<?php if (trim($m['description']) != '...') : ?>
+										<?php if (!empty($m['description']) && trim($m['description']) != '...') : ?>
 											<button class="info-btn" data-info="<?= trim($m['description']) ?>" data-title="<?= $m['title'] ?>"><i class="fa-solid fa-circle-info"></i></i></button>
 										<?php endif; ?>
 
@@ -203,16 +206,12 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 										<?php if (!empty($m['video_url'])) : ?>
 											<button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
 										<?php endif; ?>
-
-
 									</div>
-
 									<div class="image-container">
 										<div class="img-wrapper">
 											<img src="assets/img/bginverted.jpg" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad placeholder">
 										</div>
 									</div>
-
 									<div class="modal-container">
 										<div class="audio-modal-container">
 											<div class="audio-modal-content">
@@ -222,7 +221,6 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 												<button class="audio-modal-close">Close</button>
 											</div>
 										</div>
-
 										<div class="video-modal-container">
 											<div class="video-modal-content">
 												<video class="video-modal-video" controls>
@@ -231,14 +229,12 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 												<button class="video-modal-close">Close</button>
 											</div>
 										</div>
-
 										<div class="image-modal-container">
 											<div class="image-modal-content">
 												<img class="image-modal-image" src="" alt="">
 												<button class="image-modal-close">Close</button>
 											</div>
 										</div>
-
 										<div class="info-modal-container">
 											<div class="info-modal-content">
 												<h3 class="info-modal-title"></h3>

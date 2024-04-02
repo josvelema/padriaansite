@@ -350,7 +350,7 @@ letter-spacing: 2px;
     padding: 0.5em 0 0.2em 0;
     margin: 0;
     color: #fafafa;
-    max-width: 66ch;
+    /* max-width: 66ch; */
 }
 
 .content .pagination {
@@ -1063,8 +1063,12 @@ padding: 1rem;
 background-color: #7776;
 border: 1px solid #fafafa;
 border-radius: 4px;
+width: min(100%, 80ch);
+}
 
-
+.gallery-description h2,
+.gallery-description h3 {
+    text-wrap: balance;
 }
 
 .gallery-form {
