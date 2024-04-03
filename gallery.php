@@ -8,104 +8,130 @@ $stmt = $pdo->prepare('SELECT DISTINCT year FROM media ORDER BY year DESC');
 $stmt->execute();
 $years = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$year = isset($_GET['year']) ? $_GET['year'] : 'all';
-$category = isset($_GET['category']) ? $_GET['category'] : 'all';
-$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'year9_0';
-$type = isset($_GET['type']) ? $_GET['type'] : 'all';
+// $year = isset($_GET['year']) ? $_GET['year'] : 'all';
+// $category = isset($_GET['category']) ? $_GET['category'] : 'all';
+// $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'year9_0';
+// $type = isset($_GET['type']) ? $_GET['type'] : 'all';
+
+$year = filter_input(INPUT_GET, 'year', FILTER_VALIDATE_INT) ?? 0;
+$category = filter_input(INPUT_GET, 'category', FILTER_VALIDATE_INT) ?? 0;
+$sort_by = filter_input(INPUT_GET, 'sort_by') ?? 'year9_0';
+$type = filter_input(INPUT_GET, 'type') ?? 'all';
+
+$show = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 25;
+$from = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0;
+
 
 // Retrieve the categories
 $stmt = $pdo->prepare('SELECT * FROM categories ORDER BY title');
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Pagination settings
-$media_per_page = 32;
-$current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$conditions = ' WHERE m.approved = 1';
 $params = [];
-
-if ($category != 'all') {
-	$conditions .= ' AND EXISTS (SELECT 1 FROM media_categories mc WHERE mc.media_id = m.id AND mc.category_id = :category)';
-	$params[':category'] = $category;
-} else if ($year != 'all') {
-	$conditions .= ' AND m.year = :year';
-	$params[':year'] = $year;
-}
-
-if ($type != 'all') {
-	$conditions .= ' AND m.type = :type';
-	$params[':type'] = $type;
-}
 
 // Prepare sort order
 $sort_order = '';
 switch ($sort_by) {
 	case 'newest':
-		$sort_order = ' ORDER BY m.uploaded_date DESC';
+		$sort_order = 'uploaded_date DESC';
 		break;
 	case 'oldest':
-		$sort_order = ' ORDER BY m.uploaded_date ASC';
+		$sort_order = 'uploaded_date ASC';
 		break;
 	case 'a_to_z':
-		$sort_order = ' ORDER BY m.title ASC';
+		$sort_order = 'title ASC';
 		break;
 	case 'z_to_a':
-		$sort_order = ' ORDER BY m.title DESC';
+		$sort_order = 'title DESC';
 		break;
 	case 'year0_9':
-		$sort_order = ' ORDER BY m.year ASC';
+		$sort_order = 'year ASC';
 		break;
 	case 'year9_0':
 	default:
-		$sort_order = ' ORDER BY m.year DESC';
+		$sort_order = 'year DESC';
 		break;
 }
-
-// Get total media count
-$stmt = $pdo->prepare("SELECT COUNT(*) FROM media m" . $conditions);
-$stmt->execute($params);
-$total_media = $stmt->fetchColumn();
-
-// Calculate last page
-$last_page = ceil($total_media / $media_per_page);
-
-// Calculate offset (cast to integer)
-$offset = ($current_page - 1) * $media_per_page;
-
-// Get media data
-// Get media data
-$stmt = $pdo->prepare("SELECT * FROM media m" . $conditions . $sort_order . " LIMIT " . (int)$media_per_page . " OFFSET " . (int)$offset);
-$stmt->execute($params);
-$media = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// sort orrder without 
 
 
-// Set media properties below
-$media_width = 300;
-$media_height = 200;
 
-$viewingAll = ($total_media <= $media_per_page);
 
-// Function to generate pagination links
-function generatePaginationLink($label, $type, $current_page, $sort_by, $category)
-{
-	$page = $type === 'prev' ? $current_page - 1 : $current_page + 1;
-	$arrow_transform = $type === 'prev' ? '' : 'matrix(-1, 0, 0, -1, 1054.269043, 991.052002)';
-	$content = $type === 'prev' ? '<span>' . $label . '</span>' : '';
 
-	return '
-        <a class="rj-' . $type . '" href="?page=' . $page . '&sort_by=' . $sort_by . '&category=' . $category . '">
-            ' . $content . '
-            <svg height="16" width="16" viewBox="0 0 1024 1024">
-                <path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z" transform="' . $arrow_transform . '"></path>
-            </svg>
-            ' . ($type === 'next' ? '<span>' . $label . '</span>' : '') . '
-        </a>';
+if ($category > 0) {
+	$conditions = ' WHERE m.approved = 1';
+
+	$params['category'] = $category;
+
+	if ($year > 0) {
+		$params['year'] = $year;
+		$conditions .= ' AND mc.category_id = :category AND m.year = :year';
+	} else {
+		$conditions .= ' AND mc.category_id = :category';
+	}
+	// count media id in catergories query for pagination
+	$stmt = $pdo->prepare("SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id" . $conditions);
+	// inspectAndDie($stmt);
+	$stmt->execute($params);
+	$count = $stmt->fetchColumn();
+	if ($count > 0) {
+		$params['show'] = (int)$show;
+		$params['from'] = (int)$from;
+		$stmt = $pdo->prepare("SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id " . $conditions . ' ORDER BY m.' . $sort_order . " LIMIT :show OFFSET :from");
+		foreach ($params as $key => &$value) {
+			if ($key == 'show' || $key == 'from') {
+				$stmt->bindParam($key, $value, PDO::PARAM_INT);
+			} else {
+				$stmt->bindParam($key, $value);
+			}
+		}
+		$stmt->execute();
+		$media = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+} else {
+	$conditions = ' WHERE approved = 1';
+
+	if ($year > 0) {
+		$params['year'] = $year;
+		$conditions .= ' AND year = :year';
+	}
+	// count media id in catergories query for pagination
+	// $stmt = $pdo->prepare("SELECT COUNT(id) FROM media WHERE type='image' . $conditions ");
+	$stmt = $pdo->prepare("SELECT COUNT(id) FROM media" . $conditions);
+	// inspectAndDie($stmt);
+	$stmt->execute($params);
+	$count = $stmt->fetchColumn();
+	if ($count > 0) {
+		$params['show'] = (int)$show;
+		$params['from'] = (int)$from;
+		$stmt = $pdo->prepare("SELECT * FROM media " . $conditions . ' ORDER BY ' . $sort_order . " LIMIT :show OFFSET :from");
+		// inspectAndDie($stmt);
+		foreach ($params as $key => &$value) {
+			if ($key == 'show' || $key == 'from') {
+				$stmt->bindParam($key, $value, PDO::PARAM_INT);
+			} else {
+				$stmt->bindParam($key, $value);
+			}
+		}
+		$stmt->execute();
+		$media = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 }
 
+if ($count > $show) {
+	$total_pages = ceil($count / $show);
+	$current_page = ceil($from / $show) + 1;
+} else {
+	$total_pages = 1;
+	$current_page = 1;
+}
+
+// Get total media in db count
+// $stmt = $pdo->prepare("SELECT COUNT(*) FROM media m" . $conditions);
+// $stmt->execute($params);
+// $count = $stmt->fetchColumn();
 ?>
-
-
 
 
 <?= template_header('Gallery') ?>
@@ -125,18 +151,18 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 
 			<form action="" method="GET" class="gallery-form">
 				<label for="year">Year:</label>
-				<select id="year" name="year" onchange="resetSelects(this.id); this.form.submit();">
-					<option value="all">All</option>
-					<?php foreach ($years as $year) : ?>
-						<option value="<?= $year['year'] ?>" <?= isset($_GET['year']) && $_GET['year'] == $year['year'] ? ' selected' : '' ?>><?= $year['year'] ?></option>
+				<select id="year" name="year" onchange="this.form.submit();">
+					<option value=0>All</option>
+					<?php foreach ($years as $yearSingle) : ?>
+						<option value="<?= $yearSingle['year'] ?>" <?= $year == $yearSingle['year'] ? ' selected' : '' ?>><?= $yearSingle['year'] ?></option>
 					<?php endforeach; ?>
 				</select>
 				<!-- </form>
 <form action="" method="get"> -->
 
 				<label for="category">Category:</label>
-				<select id="category" name="category" onchange="resetSelects(this.id); this.form.submit();">
-					<option value="all" <?= $sort_by == 'all' ? ' selected' : '' ?>>All</option>
+				<select id="category" name="category" onchange="this.form.submit();">
+					<option value=0 <?= $sort_by == 'all' ? ' selected' : '' ?>>All</option>
 					<?php foreach ($categories as $c) : ?>
 						<option value="<?= $c['id'] ?>" <?= $category == $c['id'] ? ' selected' : '' ?>><?= $c['title'] ?></option>
 					<?php endforeach; ?>
@@ -162,118 +188,144 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 			</form>
 			<div class="gallery-description">
 				<?php if ($category != 'all') : ?>
-					<h3>Viewing <?= $categories[array_search($category, array_column($categories, 'id'))]['title'] ?> (<?= $total_media ?> results).</h3>
+					<h3>Viewing <?= $categories[array_search($category, array_column($categories, 'id'))]['title'] ?> (<?= $count ?> results).</h3>
 					<p><?= $categories[array_search($category, array_column($categories, 'id'))]['description'] ?> </p>
 				<?php elseif (isset($_GET['year']) && $_GET['year'] !== 'all') : ?>
-					<h3>Viewing the year <?= $_GET['year'] ?> (<?= $total_media ?> results).</h3>
+					<h3>Viewing the year <?= $_GET['year'] ?> (<?= $count ?> results).</h3>
 				<?php else : ?>
-					<h3>Viewing all <?= $total_media ?> results. (<?= $last_page ?> pages)</h3>
+					<h3>Viewing all <?= $count ?> results. (<?= $last_page ?> pages)</h3>
 				<?php endif; ?>
 			</div>
+
+			<nav aria-label="Pagination">
+				<ul class="rj-pagination">
+					<li>
+						<a class="rj-prev" href="#" id="rj-page-item-prev">
+
+							<svg height="16" width="16" viewBox="0 0 1024 1024" fill="currentColor">
+								<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z"></path>
+							</svg>
+						</a>
+					</li>
+					<?php
+					$start = max(1, $current_page - 7);
+					$end = min($total_pages, $current_page + 7);
+					for ($i = $start; $i <= $end; $i++) : ?>
+						<li class="rj-page-item <?= $i == $current_page ? 'active' : '' ?>">
+							<a href="gallery.php?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($i - 1) * $show ?>" class="rj-page-link"><?= $i ?></a>
+						</li>
+					<?php endfor; ?>
+					<?php if ($end < $total_pages) : ?>
+						<li class="rj-page-item">
+
+							<a class="rj-page-link" href="gallery.php?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($end) * $show ?>">...</a>
+						</li>
+					<?php endif; ?>
+					<li>
+						<a class="rj-next" href="#" id="rj-page-item-next">
+
+							<svg height="16" width="16" viewBox="0 0 1024 1024" fill="currentColor">
+								<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z" transform="matrix(-1, 0, 0, -1, 1054.269043, 991.052002)"></path>
+							</svg>
+						</a>
+					</li>
+				</ul>
+			</nav>
+
 		</header>
 
 		<section>
 			<div class="gallery-container">
+				<?php if ($count > 0) : ?>
+					<?php foreach ($media as $m) : ?>
+						<!-- check if there is content in art_type , art_material and art_ dimensions and if so put in front of description -->
+						<?php if (!empty($m['art_type']) || !empty($m['art_material']) || !empty($m['art_dimensions'])) : ?>
+							<?php $m['description'] = (!empty($m['art_type']) ? $m['art_type'] . ', ' : '') . (!empty($m['art_material']) ? $m['art_material'] . ', ' : '') . (!empty($m['art_dimensions']) ? $m['art_dimensions'] . ', ' : '') . $m['description']; ?>
+						<?php endif; ?>
 
-				<?php foreach ($media as $m) : ?>
-					<!-- check if there is content in art_type , art_material and art_ dimensions and if so put in front of description -->
-					<?php if (!empty($m['art_type']) || !empty($m['art_material']) || !empty($m['art_dimensions'])) : ?>
-						<?php $m['description'] = (!empty($m['art_type']) ? $m['art_type'] . ', ' : '') . (!empty($m['art_material']) ? $m['art_material'] . ', ' : '') . (!empty($m['art_dimensions']) ? $m['art_dimensions'] . ', ' : '') . $m['description']; ?>
-					<?php endif; ?>
+						<article class="rj-gallery-card">
+							<div class="card">
+								<div class="card-header">
+									<h3><?= $m['title'] ?></h3>
+									<p>Catalogue nr : <?= $m['year'] ?> - <?= $m['fnr'] ?></p>
+								</div>
 
-					<article class="rj-gallery-card">
-						<div class="card">
-							<div class="card-header">
-								<h3><?= $m['title'] ?></h3>
-								<p>Catalogue nr : <?= $m['year'] ?> - <?= $m['fnr'] ?></p>
+								<div class="card-body">
+									<?php if ($m['type'] == 'image') : ?>
+										<div class="media-selection-container">
+											<button class="img-btn" data-src="<?= $m['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
+											<!-- chek if description is not equal to '...' -->
+											<?php if (!empty($m['description']) && trim($m['description']) != '...') : ?>
+												<button class="info-btn" data-info="<?= trim($m['description']) ?>" data-title="<?= $m['title'] ?>"><i class="fa-solid fa-circle-info"></i></i></button>
+											<?php endif; ?>
+
+											<!-- check if audio url is not empty -->
+											<?php if (!empty($m['audio_url'])) : ?>
+												<button class="audio-btn" data-src="<?= urldecode($m['audio_url']) ?>"><i class="fa-solid fa-headphones"></i></button>
+											<?php endif; ?>
+
+											<!-- check if video url is not empty -->
+											<?php if (!empty($m['video_url'])) : ?>
+												<button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
+											<?php endif; ?>
+										</div>
+										<div class="image-container">
+											<div class="img-wrapper">
+												<img src="assets/img/bginverted.jpg" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad placeholder">
+											</div>
+										</div>
+										<div class="modal-container">
+											<div class="audio-modal-container">
+												<div class="audio-modal-content">
+													<audio class="audio-modal-audio" controls poster="assets\img\bginverted.jpg">
+														Your browser does not support the audio tag.
+													</audio>
+													<button class="audio-modal-close">Close</button>
+												</div>
+											</div>
+											<div class="video-modal-container">
+												<div class="video-modal-content">
+													<video class="video-modal-video" controls>
+														Your browser does not support the video tag.
+													</video>
+													<button class="video-modal-close">Close</button>
+												</div>
+											</div>
+											<div class="image-modal-container">
+												<div class="image-modal-content">
+													<img class="image-modal-image" src="" alt="">
+													<button class="image-modal-close">Close</button>
+												</div>
+											</div>
+											<div class="info-modal-container">
+												<div class="info-modal-content">
+													<h3 class="info-modal-title"></h3>
+													<pre class="info-modal-pre"></pre>
+													<button class="info-modal-close">Close</button>
+												</div>
+											</div>
+										</div>
+
+									<?php elseif ($m['type'] == 'video') : ?>
+										<video src="<?= $m['filepath'] ?>" width="852" height="480" controls autoplay></video>
+									<?php elseif ($m['type'] == 'audio') : ?>
+										<audio src="<?= $m['filepath'] ?>" controls autoplay></audio>
+									<?php endif; ?>
+
+
+								</div>
 							</div>
+						</article>
 
-							<div class="card-body">
-								<?php if ($m['type'] == 'image') : ?>
-									<div class="media-selection-container">
-										<button class="img-btn" data-src="<?= $m['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
-										<!-- chek if description is not equal to '...' -->
-										<?php if (!empty($m['description']) && trim($m['description']) != '...') : ?>
-											<button class="info-btn" data-info="<?= trim($m['description']) ?>" data-title="<?= $m['title'] ?>"><i class="fa-solid fa-circle-info"></i></i></button>
-										<?php endif; ?>
-
-										<!-- check if audio url is not empty -->
-										<?php if (!empty($m['audio_url'])) : ?>
-											<button class="audio-btn" data-src="<?= urldecode($m['audio_url']) ?>"><i class="fa-solid fa-headphones"></i></button>
-										<?php endif; ?>
-
-										<!-- check if video url is not empty -->
-										<?php if (!empty($m['video_url'])) : ?>
-											<button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>"><i class="fa-solid fa-video"></i></button>
-										<?php endif; ?>
-									</div>
-									<div class="image-container">
-										<div class="img-wrapper">
-											<img src="assets/img/bginverted.jpg" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad placeholder">
-										</div>
-									</div>
-									<div class="modal-container">
-										<div class="audio-modal-container">
-											<div class="audio-modal-content">
-												<audio class="audio-modal-audio" controls poster="assets\img\bginverted.jpg">
-													Your browser does not support the audio tag.
-												</audio>
-												<button class="audio-modal-close">Close</button>
-											</div>
-										</div>
-										<div class="video-modal-container">
-											<div class="video-modal-content">
-												<video class="video-modal-video" controls>
-													Your browser does not support the video tag.
-												</video>
-												<button class="video-modal-close">Close</button>
-											</div>
-										</div>
-										<div class="image-modal-container">
-											<div class="image-modal-content">
-												<img class="image-modal-image" src="" alt="">
-												<button class="image-modal-close">Close</button>
-											</div>
-										</div>
-										<div class="info-modal-container">
-											<div class="info-modal-content">
-												<h3 class="info-modal-title"></h3>
-												<pre class="info-modal-pre"></pre>
-												<button class="info-modal-close">Close</button>
-											</div>
-										</div>
-									</div>
-
-								<?php elseif ($m['type'] == 'video') : ?>
-									<video src="<?= $m['filepath'] ?>" width="852" height="480" controls autoplay></video>
-								<?php elseif ($m['type'] == 'audio') : ?>
-									<audio src="<?= $m['filepath'] ?>" controls autoplay></audio>
-								<?php endif; ?>
-
-
-							</div>
-						</div>
-					</article>
-
-				<?php endforeach; ?>
+					<?php endforeach; ?>
+				<?php else : ?>
+					<p>No media found in that year and/or category.
+						You can view the year <a href="gallery.php?year=<?= $_GET['year'] ?>"><?= $_GET['year'] ?> </a> or the category <a href="gallery.php?category=<?= $_GET['category'] ?>"><?= $categories[array_search($category, array_column($categories, 'id'))]['title'] ?></a> or <a href="gallery.php">all media</a>.
+					</p>
+				<?php endif; ?>
 		</section>
 
-		<div class="pagination">
-			<?php if (!$viewingAll) {
-				if ($current_page > 1) {
-					echo generatePaginationLink('Prev', 'prev', $current_page, $sort_by, $category);
-				}
-			?>
-				<div class="rj-current-page">
-					Page <?= $current_page ?> of <?= $last_page ?>
-				</div>
-			<?php if ($current_page * $media_per_page < $total_media) {
-					echo generatePaginationLink('Next', 'next', $current_page, $sort_by, $category);
-				}
-			} else {
-				echo '<a href="#top">Back to top</a>';
-			} ?>
-		</div>
+
 
 
 
@@ -288,6 +340,28 @@ function generatePaginationLink($label, $type, $current_page, $sort_by, $categor
 			document.getElementById('year').selectedIndex = 0;
 		}
 	}
+
+	// control pagination
+	const pageItemPrev = document.getElementById('rj-page-item-prev');
+	const pageItemNext = document.getElementById('rj-page-item-next');
+	const pageItems = document.querySelectorAll('.pagination .rj-page-item');
+
+	pageItemPrev.addEventListener('click', function(e) {
+		e.preventDefault();
+		let prev = document.querySelector('.rj-pagination .active').previousElementSibling;
+		if (prev) {
+			prev.querySelector('a').click();
+		}
+	});
+
+	pageItemNext.addEventListener('click', function(e) {
+		e.preventDefault();
+		console.log('next');
+		let next = document.querySelector('.rj-pagination .active').nextElementSibling;
+		if (next) {
+			next.querySelector('a').click();
+		}
+	});
 	document.addEventListener('DOMContentLoaded', () => {
 
 		const observer = lozad(".lozad", {

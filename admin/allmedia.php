@@ -7,8 +7,7 @@ $term = filter_input(INPUT_GET, 'term') ?? '';
 $show = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 25;
 $from = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0;
 
-// $show = $_GET['show'] ?? 22;
-// $from = $_GET['from'] ?? 0;
+
 $count = 0;
 $media = [];
 
