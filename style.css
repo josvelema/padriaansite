@@ -8,25 +8,20 @@
     outline: 1px solid green;
    */
 }
-/* pre {
-    font-family: "IBM Plex Sans", sans-serif;
-    overflow: none !important;
-    font-size: inherit;
-} */
 
 html {
     scroll-behavior: smooth;
 }
-
 #scrolltop {
     position: fixed;
-    bottom: 15px;
-    right: 15px;
-    padding: 30px;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    padding: 1.25rem;
     background-color: rgba(0, 0, 0, 0.5);
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAe1BMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////NgkbwAAAAKHRSTlMAAQIDDRITFBcdHh8gIyQlJjdDREx1d4CCg4WXmpu5urzZ6e3v+fv9pStiuwAAAI9JREFUOE/dylkWgkAMRNFqUXEW53kC1Ox/hWKOtG3SZgHkq3LuAxp4q7xv+oboPrDdLNiNYktkFt7/FIFHix+viqHwHYkThffr7Bkrvp4gixT7wIHsURcj6ZeE/6kopMtirTwsUuCmHZjUxRxIS17n0H1xctXultqB8bs4Ot6dQjsXB/fZ7WVLOdBbODTmXgKJJx7c/fm3AAAAAElFTkSuQmCC);
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: 50%;
     border-radius: 5px;
     border: 1px solid #fff7;
     display: block;
@@ -1058,14 +1053,55 @@ letter-spacing: 2px;
     /* border: 1px solid #fafafa; */
 }
 
+.gallery-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 0.25rem;
+    background-color: #5555;
+    border-radius: 4px;
+    gap: 0.66rem;
+}
+
+.gallery-header > * {
+    flex: 0 1 auto;
+    width: min(100%,52vh);
+    padding: 0.5rem;
+}
 .gallery-form {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    padding: 1rem;
-    width: min(100%,1110px);
+    border: 1px solid #7777;
+    border-radius: 4px;
+}
+
+.gallery-form label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: rgb(230, 223, 173);
+}
+
+.gallery-form input,
+.gallery-form select 
+{
+    padding: 0.3rem;
+    border-radius: 4px;
+    border: 1px solid #7777;
+    background-color: rgba(255, 255, 255, 0.85);
+    width: min(100% , 44ch);
+}
+
+.gallery-description {
+    border: 1px solid #7777;
+    border-radius: 4px;    
 }
 
 .gallery-description h2,
@@ -1100,15 +1136,14 @@ letter-spacing: 2px;
 
 .rj-page-item {
     display: inline-block;
-    width: 2rem;
+    width: 1.66rem;
     flex: 0 1 auto;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
-
-    padding: 0.5rem;
+    padding: 0.33rem;
     border-radius: 4px;
-    background-color: #f0f0f0;
+    background-color: rgba(255, 255, 255, 0.85);
     color: rgba(0, 0, 0, 0.85);
     transition: all 0.2s linear;
     cursor: pointer;
@@ -1147,7 +1182,7 @@ letter-spacing: 2px;
     transition: all 0.2s linear;
     cursor: pointer;
     border: none;
-    background: #fafafa;
+    background: rgba(255, 255, 255, 0.85);
     color: rgba(0, 0, 0, 0.85);
     outline: 1px solid transparent;
     outline-offset: 2px;

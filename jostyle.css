@@ -597,12 +597,13 @@ blockquote.rj-about-quote {
 }
 
 .rj-gallery-card h3 {
-  /* font-size: 20px; */
-  /* margin: 0; */
+ 
   text-shadow: 0px 1px 1px #ddd6, -2px 2px 2px #0008;
   text-align: center;
   font-size: calc(1.1rem + .5vw);
   letter-spacing: 1px;
+  text-wrap: balance;
+  font-size: clamp(1rem, 5vmin + 1.1rem,1.25rem);
 }
 .rj-gallery-card p
  {

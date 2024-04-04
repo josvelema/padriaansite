@@ -27,7 +27,7 @@ $media = [
 // $redirect_params = isset($_GET['redirect_params']) ? '?' . $_GET['redirect_params'] : '?viewCat=0';
 // http_build_query(array_merge($_GET, ['page' => null]));
 // Define the parameters you want to check for
-$params_to_check = ['viewCat', 'term','show', 'from', 'order_by','order_sort'];
+$params_to_check = ['viewCat', 'term', 'show', 'from', 'order_by', 'order_sort'];
 
 // Initialize the redirect_params array
 $redirect_params = [];
@@ -117,7 +117,7 @@ if (isset($_GET['id'])) {
             <a href="../' . $media_path . '" target="_blank" class="rj-modal-btn">Preview media</a>
             </p>
             <p>
-            <a href="allmedia.php?' . http_build_query($redirect_params). '" class="rj-modal-btn">Go back to media page</a>
+            <a href="allmedia.php?' . http_build_query($redirect_params) . '" class="rj-modal-btn">Go back to media page</a>
             </p>
             <p>
             <a href="#" onclick="closeModal()" class="rj-modal-btn">Close and stay on this page</a>
@@ -139,7 +139,8 @@ if (isset($_GET['id'])) {
     $page = 'Create';
     if (isset($_POST['submit'])) {
         // add art_ fields 
-        $stmt = $pdo->prepare('INSERT INTO media (title,description,year,fnr,filepath,type,thumbnail,approved,art_material,art_dimensions,art_type,art_status,art_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+        $stmt = $pdo->prepare('INSERT INTO media (title, description, year, fnr, filepath, type, thumbnail, approved, art_material, art_dimensions, art_type, art_status, art_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
+        // inspectAndDie($stmt);
         $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price']]);
         $media_id = $pdo->lastInsertId();
         addCategories($pdo, $media_id);
@@ -157,7 +158,7 @@ if (isset($_GET['id'])) {
             <a href="../' . $media_path . '" target="_blank" class="rj-modal-btn">Preview media</a>
             </p>
             <p>
-            <a href="allmedia.php' . http_build_query($redirect_params) .'" class="rj-modal-btn">Go back to media page</a>
+            <a href="allmedia.php' . http_build_query($redirect_params) . '" class="rj-modal-btn">Go back to media page</a>
             </p>
             <p>
             <a href="#" onclick="closeModal()" class="rj-modal-btn">Add another Media file</a>

@@ -1,12 +1,10 @@
 .gallery-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 350px));
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 320px));
   grid-gap: 0.5em;
   place-content: center;
   /* place-items: center; */
-  max-width: 1200px;
-  padding:  0.5rem;
-  margin: 0 auto;
+  width: min(100%, 1280px);
 }
 /* Responsive styles */
 /* .gallery-container {
@@ -26,8 +24,7 @@ margin-top: unset;
 
 
 .rj-gallery-card {
-  width: 100%;
-  height: 500px; /* adjust this value to set the desired card height */
+aspect-ratio: 4 / 3;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -35,23 +32,64 @@ margin-top: unset;
   box-shadow: inset 0px 0px 1px 1px #fff9;
 }
 
-
 .rj-gallery-card .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff5;
   background-image: linear-gradient(132deg, transparent, rgba(240, 240, 240, 0.5));
+  position: relative;
 }
 
+/* create a down arrow for the overlay to appear */
+.card-overlay-content-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 1.35rem;
+  z-index: 2;
+  background-color: rgb(22, 22, 22 , 0.8);
+  border: 1px solid rgb(232, 200, 100);
+  color: rgb(232, 200, 100);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0.25rem 0.5rem;
+  margin: 0.2rem;
+  border-radius: 100vw;
+  cursor: pointer;
+}
+/* create a button in the corner that when clicked will show the card-overlay-content  */
+.rj-gallery-card .card-overlay-content {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-300px);
+  transition: transform 250ms ease-in-out;
+}
+
+.rj-gallery-card .card-overlay-content.active {
+  transform: translateY(0);
+}
+
+
+
+
 .rj-gallery-card .card-header {
-  background-color: #7777;
+  background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   padding: 16px;
   text-align: center;
+  position: relative;
 }
+
+
 .rj-gallery-card .card-header p {
-  text-shadow: 0px 1px 1px #ddd6, -2px 2px 2px #0008;
+  text-shadow: 0px 1px 1px #ddd6, -2px 2px 2px #7778;
 
   text-align: center;
 }
@@ -62,8 +100,7 @@ margin-top: unset;
 
 .rj-gallery-card .image-container {
   position: relative;
-  min-height: 280px;
-  overflow: hidden;
+  height: min(100%, 300px);
   flex: 1;
   display: flex;
   align-items: center;
@@ -98,15 +135,29 @@ transition: opacity 0.5s ease-in-out 0.3s;
 
 
 .rj-gallery-card .media-selection-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   /* margin: 0 0 1em 0; */
   padding-block: 0.5em;
-  background-color: #cde5;
+  background-color: rgba(0, 0, 0, 0.7);
+
   height: 3em;
   border-block: 1px solid #dde6;
 }
+
+.rj-gallery-card .card-header::before,
+.rj-gallery-card .media-selection-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: auto;
+  backdrop-filter: blur(5px) saturate(0.4);
+  z-index: -1;
+}
+
 
 .rj-gallery-card .media-selection-container button {
   padding: 0.5em;
