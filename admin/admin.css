@@ -1256,3 +1256,12 @@
     border-radius: 4px;
     flex: 1 0 auto;
   }
+
+  .table-results .rj-private-cat  {
+    background: #f0f0f0;
+    text-transform: uppercase;
+    color: orangered;
+    border: 1px solid orangered;
+    padding: 0.25rem;
+    margin-left: auto;
+  }

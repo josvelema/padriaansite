@@ -37,10 +37,13 @@ if ($viewCat > 0) {
         'term1' => '%' . $term . '%',
         'term2' => '%' . $term . '%'
     ];
-    // get category title
-    $stmt = $pdo->prepare('SELECT title FROM categories WHERE id = :category_id');
+    // get category title and is_private
+    $stmt = $pdo->prepare('SELECT * FROM categories WHERE id = :category_id');
     $stmt->execute(['category_id' => $viewCat]);
-    $catTitle = $stmt->fetchColumn();
+    $category = $stmt->fetch(PDO::FETCH_ASSOC);
+    $catTitle = $category['title'];
+    $catDesc = $category['description'];
+    $catPrivate = $category['is_private'];
     // count query
     $stmt = $pdo->prepare('SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2)');
     $stmt->execute($params);
@@ -107,8 +110,11 @@ template_admin_header('Media Gallery\'s', 'MediaGallery')
             <?php else : ?>
                 Viewing <?= (isset($term) && $term != '') ? 'search results for <strong>"' . $term . '"</strong>' : 'All Media' ?>
             <?php endif; ?>
+            <?php if ($viewCat > 0 && $catPrivate) : ?>
+                <span class="rj-private-cat">Private</span>
+            <?php endif; ?>
         </h2>
-        <p><?= $count ?> media files found.   </p>
+        <p><?= $count ?> media files found. </p>
         <p>viewing page <?= $current_page ?> of <?= $total_pages ?>.</p>
     </div>
 

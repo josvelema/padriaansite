@@ -14,14 +14,15 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <div class="content-block">
-    <div class="table">
+    <div class="jostable">
         <table>
             <thead>
                 <tr>
-                    <td>#</td>
-                    <td>Title</td>
-                    <td>Description</td>
-                    <td>Actions</td>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Private</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?=$category['id']?></td>
                     <td><?=$category['title']?></td>
                     <td><?=$category['description']?></td>
+                    <td><?=$category['is_private']  ? 'Yes' : 'No'?></td>
                     <td><a href="category.php?id=<?=$category['id']?>" class="rj-action-edit">Edit</a></td>
                 </tr>
                 <?php endforeach; ?>

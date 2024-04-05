@@ -23,7 +23,7 @@ $from = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0;
 
 
 // Retrieve the categories
-$stmt = $pdo->prepare('SELECT * FROM categories ORDER BY title');
+$stmt = $pdo->prepare('SELECT * FROM categories WHERE is_private = 0 ORDER BY title');
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -66,9 +66,9 @@ if ($category > 0) {
 
 	if ($year > 0) {
 		$params['year'] = $year;
-		$conditions .= ' AND mc.category_id = :category AND m.year = :year';
+		$conditions .= ' AND mc.category_id = :category AND m.year = :year AND mc.is_private = 0';
 	} else {
-		$conditions .= ' AND mc.category_id = :category';
+		$conditions .= ' AND mc.category_id = :category AND mc.is_private = 0';
 	}
 	// count media id in catergories query for pagination
 	$stmt = $pdo->prepare("SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id" . $conditions);

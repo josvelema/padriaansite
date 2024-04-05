@@ -3,26 +3,27 @@ include 'main.php';
 // Default category values
 $category = [
     'title' => '',
-    'description' => ''
+    'description' => '',
+    'is_private' => 0
 ];
 if (isset($_GET['id'])) {
     // Retrieve the category from the database
     $stmt = $pdo->prepare('SELECT * FROM categories WHERE id = ?');
-    $stmt->execute([ $_GET['id'] ]);
+    $stmt->execute([$_GET['id']]);
     $category = $stmt->fetch(PDO::FETCH_ASSOC);
     // ID param exists, edit an existing category
     $page = 'Edit';
     if (isset($_POST['submit'])) {
         // Update the category
-        $stmt = $pdo->prepare('UPDATE categories SET title = ?, description = ? WHERE id = ?');
-        $stmt->execute([ $_POST['title'], $_POST['description'], $_GET['id'] ]);
+        $stmt = $pdo->prepare('UPDATE categories SET title = ?, description = ?, is_private = ? WHERE id = ?');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['is_private'], $_GET['id']]);
         header('Location: categories.php');
         exit;
     }
     if (isset($_POST['delete'])) {
         // Delete the category
         $stmt = $pdo->prepare('DELETE c, mc FROM categories c LEFT JOIN media_categories mc ON mc.category_id = c.id WHERE c.id = ?');
-        $stmt->execute([ $_GET['id'] ]);
+        $stmt->execute([$_GET['id']]);
         header('Location: categories.php');
         exit;
     }
@@ -30,31 +31,37 @@ if (isset($_GET['id'])) {
     // Create a new category
     $page = 'Create';
     if (isset($_POST['submit'])) {
-        $stmt = $pdo->prepare('INSERT INTO categories (title,description) VALUES (?,?)');
-        $stmt->execute([ $_POST['title'], $_POST['description'] ]);
+        $stmt = $pdo->prepare('INSERT INTO categories (title,description,is_private) VALUES (?,?,?)');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['is_private']]);
         header('Location: categories.php');
         exit;
     }
 }
 ?>
-<?=template_admin_header($page . ' Category', 'categories')?>
+<?= template_admin_header($page . ' Category', 'categories') ?>
 
-<h2><?=$page?> Category</h2>
+<h2><?= $page ?> Category</h2>
 
 <div class="content-block">
 
     <form action="" method="post" class="form responsive-width-100">
 
         <label for="title">Title</label>
-        <input id="title" type="text" name="title" placeholder="Title" value="<?=$category['title']?>" required>
+        <input id="title" type="text" name="title" placeholder="Title" value="<?= $category['title'] ?>" required>
 
         <label for="description">Description</label>
-        <textarea name="description" id="description" placeholder="Description ..."><?=$category['description']?></textarea>
+        <textarea name="description" id="description" placeholder="Description ..."><?= $category['description'] ?></textarea>
+
+        <label for="is_private">Private Category?</label>
+        <select name="is_private" id="is_private">
+            <option value="0" <?= $category['is_private'] == 0 ? ' selected' : '' ?>>No</option>
+            <option value="1" <?= $category['is_private'] == 1 ? ' selected' : '' ?>>Yes</option>
+        </select>
 
         <div class="submit-btns">
             <input type="submit" name="submit" value="Submit">
-            <?php if ($page == 'Edit'): ?>
-            <input type="submit" name="delete" value="Delete" class="delete">
+            <?php if ($page == 'Edit') : ?>
+                <input type="submit" name="delete" value="Delete" class="delete">
             <?php endif; ?>
         </div>
 
@@ -62,4 +69,4 @@ if (isset($_GET['id'])) {
 
 </div>
 
-<?=template_admin_footer()?>
+<?= template_admin_footer() ?>

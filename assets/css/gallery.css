@@ -31,6 +31,13 @@ aspect-ratio: 4 / 3;
   overflow: hidden;
   box-shadow: inset 0px 0px 1px 1px #fff9;
 }
+@media (min-width: 1023px) {
+  .rj-gallery-card:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+    }
+
+}
 
 .rj-gallery-card .card {
   display: flex;
@@ -98,9 +105,10 @@ aspect-ratio: 4 / 3;
   padding: unset;
 }
 
-.rj-gallery-card .image-container {
+.rj-gallery-card .image-container {             
   position: relative;
-  height: min(100%, 300px);
+  /* height: min(100%, 300px); */
+  height: 100%;
   flex: 1;
   display: flex;
   align-items: center;
