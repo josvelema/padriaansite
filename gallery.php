@@ -66,9 +66,9 @@ if ($category > 0) {
 
 	if ($year > 0) {
 		$params['year'] = $year;
-		$conditions .= ' AND mc.category_id = :category AND m.year = :year AND mc.is_private = 0';
+		$conditions .= ' AND mc.category_id = :category AND m.year = :year';
 	} else {
-		$conditions .= ' AND mc.category_id = :category AND mc.is_private = 0';
+		$conditions .= ' AND mc.category_id = :category';
 	}
 	// count media id in catergories query for pagination
 	$stmt = $pdo->prepare("SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id" . $conditions);
@@ -79,6 +79,7 @@ if ($category > 0) {
 		$params['show'] = (int)$show;
 		$params['from'] = (int)$from;
 		$stmt = $pdo->prepare("SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id " . $conditions . ' ORDER BY m.' . $sort_order . " LIMIT :show OFFSET :from");
+
 		foreach ($params as $key => &$value) {
 			if ($key == 'show' || $key == 'from') {
 				$stmt->bindParam($key, $value, PDO::PARAM_INT);

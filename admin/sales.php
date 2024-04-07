@@ -28,36 +28,19 @@ $order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], $order_by_li
 $order_sort = isset($_GET['order_sort']) && $_GET['order_sort'] == 'DESC' ? 'DESC' : 'ASC';
 
 
-$params = [
-  'term1' => '%' . $term . '%',
-  'term2' => '%' . $term . '%'
-];
-// get category title
-$stmt = $pdo->prepare('SELECT * FROM categories WHERE title = "For Sale"');
-$stmt->execute();
-$cat = $stmt->fetch(PDO::FETCH_ASSOC);
-$category_id = $cat['id'];
-// add to params
-$params['category_id'] = $category_id;
+// get media all media files that are not not for sale 
 
-// count query
-$stmt = $pdo->prepare('SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2)');
-$stmt->execute($params);
-$count = $stmt->fetchColumn();
-if ($count > 0) {
-  $params['show'] = (int)$show;
-  $params['from'] = (int)$from;
-  $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2) ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
-
-  foreach ($params as $key => &$value) {
-    if ($key == 'show' || $key == 'from') {
-      $stmt->bindParam($key, $value, PDO::PARAM_INT);
-    } else {
-      $stmt->bindParam($key, $value);
-    }
-  }
+if (isset($_GET['viewCat'])) {
+  $viewCat = $_GET['viewCat'];
+  $stmt = $pdo->prepare("SELECT * FROM media WHERE art_status = ? ORDER BY $order_by $order_sort LIMIT $from, $show");
+  $stmt->execute([$viewCat]);
+  $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $count = $pdo->query("SELECT COUNT(*) FROM media WHERE art_status = '$viewCat'")->fetchColumn();
+} else {
+  $stmt = $pdo->prepare("SELECT * FROM media WHERE art_status != 'not for sale' ORDER BY $order_by $order_sort LIMIT $from, $show");
   $stmt->execute();
   $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $count = $pdo->query("SELECT COUNT(*) FROM media WHERE art_status != 'not for sale'")->fetchColumn();
 }
 
 
@@ -76,7 +59,7 @@ template_admin_header('Sales Page', 'Sales Page')
 <section>
   <div class="table-results">
     <h2>
-      Viewing <?= (isset($term) && $term != '') ? 'search results for <strong>"' . $term . '"</strong>' : 'All Media' ?>
+      Viewing <?= (isset($term) && $term != '') ? 'search results for <strong>"' . $term . '"</strong>' : 'All Media for sale' ?>
     </h2>
     <p><?= $count ?> media files found. </p>
     <p>viewing page <?= $current_page ?> of <?= $total_pages ?>.</p>
@@ -236,9 +219,9 @@ template_admin_header('Sales Page', 'Sales Page')
 
 <script>
   // select category
-  document.getElementById('selectCat').addEventListener('change', function() {
-    this.form.submit();
-  });
+  // document.getElementById('selectCat').addEventListener('change', function() {
+  //   this.form.submit();
+  // });
 
 
   // control pagination

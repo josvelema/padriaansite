@@ -87,8 +87,8 @@ if (isset($_COOKIE['viewing_cat'])) {
 
 
 <div class="content-block">
-  <div class="table">
-    <table class="table">
+  
+    <table class="jostable">
       <thead>
         <tr>
           <th>ID & view</th>
@@ -97,6 +97,7 @@ if (isset($_COOKIE['viewing_cat'])) {
           <th>FNR</th>
           <th>QRcode</th>
           <th>QRcard</th>
+          <th>Factsheet</th>
           <th>Audio</th>
           <th>Video</th>
         </tr>
@@ -134,6 +135,14 @@ if (isset($_COOKIE['viewing_cat'])) {
                 <?php endif; ?>
               </td>
               <td>
+                <?php if ($m['factsheet_url']) : ?>
+                  <a href="../<?= $m['factsheet_url'] ?>" target="_blank" class="rj-table-link">View Factsheet</a>
+                <?php else : ?>
+                  <button onclick="generateFactSheetAndSave(<?= $m['id'] ?>)" class="rj-table-btn">Make Factsheet</button>
+                <?php endif; ?>
+              </td>
+
+              <td>
                 <?php if ($m['audio_url']) : ?>
                   <a href="../<?= $m['audio_url'] ?>" target="_blank" class="rj-table-link">View audio</a>
                 <?php else : ?>
@@ -153,7 +162,6 @@ if (isset($_COOKIE['viewing_cat'])) {
         <?php endif; ?>
       </tbody>
     </table>
-  </div>
 </div>
 <style>
   .rj-table-btn {
@@ -290,6 +298,7 @@ if (isset($_COOKIE['viewing_cat'])) {
 
 
 <script src="generateBusinessCard.js"></script>
+<script src="generateFactsheet.js"></script>
 
 <script>
   function generateQRCode(media_id) {

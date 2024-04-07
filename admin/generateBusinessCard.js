@@ -106,5 +106,4 @@ async function generateQrCardAndSave(mediaId, qrCodeUrl) {
   const imageDataUrl = await createBusinessCard(cardData);
   await saveImageOnServer(imageDataUrl, mediaId);
   updateMediaData(mediaId);
-
 }
