@@ -14,7 +14,6 @@ $media = [
     'filepath' => '',
     'uploaded_date' => date('Y-m-d\TH:i:s'),
     'type' => '',
-    'thumbnail' => '',
     'approved' => 1,
     'art_material' => '',
     'art_dimensions' => '',
@@ -23,24 +22,22 @@ $media = [
     'art_price' => 0,
     'categories' => []
 ];
-// get redirect_params if it exists
-// $redirect_params = isset($_GET['redirect_params']) ? '?' . $_GET['redirect_params'] : '?viewCat=0';
-// http_build_query(array_merge($_GET, ['page' => null]));
-// Define the parameters you want to check for
-$params_to_check = ['viewCat', 'term', 'show', 'from', 'order_by', 'order_sort'];
 
-// Initialize the redirect_params array
-$redirect_params = [];
+// Check if the media ID exists and set type of page 
 
-// Check if each parameter exists in the $_GET array
-foreach ($params_to_check as $param) {
-    if (isset($_GET[$param])) {
-        // If it does, add it to the redirect_params array
-        $redirect_params[$param] = $_GET[$param];
-    }
+if (isset($_GET['id'])) {
+    $page = 'Edit';
+    // Retrieve the media from the database
+    $stmt = $pdo->prepare('SELECT * FROM media WHERE id = ?');
+    $stmt->execute([$_GET['id']]);
+    $media = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Retrieve the categories
+    $stmt = $pdo->prepare('SELECT c.title, c.id FROM media_categories mc JOIN categories c ON c.id = mc.category_id WHERE mc.media_id = ?');
+    $stmt->execute([$_GET['id']]);
+    $media['categories'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $page = 'Create';
 }
-
-
 
 // Retrieve all the categories from the database
 $stmt = $pdo->query('SELECT * FROM categories');
@@ -61,48 +58,63 @@ function addCategories($pdo, $media_id)
         }
     }
 }
-if (isset($_GET['id'])) {
-    // Retrieve the media from the database
-    $stmt = $pdo->prepare('SELECT * FROM media WHERE id = ?');
-    $stmt->execute([$_GET['id']]);
-    $media = $stmt->fetch(PDO::FETCH_ASSOC);
-    // Retrieve the categories
-    $stmt = $pdo->prepare('SELECT c.title, c.id FROM media_categories mc JOIN categories c ON c.id = mc.category_id WHERE mc.media_id = ?');
-    $stmt->execute([$_GET['id']]);
-    $media['categories'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$params_to_check = ['viewCat', 'term', 'show', 'from', 'order_by', 'order_sort'];
+
+// Initialize the redirect_params array
+$redirect_params = [];
+
+// Check if each parameter exists in the $_GET array
+foreach ($params_to_check as $param) {
+    if (isset($_GET[$param])) {
+        // If it does, add it to the redirect_params array
+        $redirect_params[$param] = $_GET[$param];
+    }
 }
-//! Handle media upload
-$media_id = md5(uniqid());
+
 $media_path = $media['filepath'];
-if (isset($_FILES['media']) && !empty($_FILES['media']['tmp_name'])) {
-    $media_type = '';
-    $media_type = preg_match('/image\/*/', $_FILES['media']['type']) ? 'image' : $media_type;
-    $media_type = preg_match('/audio\/*/', $_FILES['media']['type']) ? 'audio' : $media_type;
-    $media_type = preg_match('/video\/*/', $_FILES['media']['type']) ? 'video' : $media_type;
-    $media_parts = explode('.', $_FILES['media']['name']);
-    $media_path = 'media/' . $media_type . 's/' . $media_id . '.' . end($media_parts);
-    move_uploaded_file($_FILES['media']['tmp_name'], '../' . $media_path);
-}
-// Handle thumbnail upload
-
-$thumbnail_path = $media['thumbnail'];
 
 
-if (isset($_FILES['thumbnail']) && !empty($_FILES['thumbnail']['tmp_name'])) {
-    $thumbnail_parts = explode('.', $_FILES['thumbnail']['name']);
-    $thumbnail_path = 'media/thumbnails/' . $media_id . '.' . end($thumbnail_parts);
-    move_uploaded_file($_FILES['thumbnail']['tmp_name'], '../' . $thumbnail_path);
-}
-if (isset($_GET['id'])) {
-    // ID param exists, edit an existing media
-    $page = 'Edit';
-    if (isset($_POST['submit'])) {
-        //todo Update the media
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Handle file uploads
+    if (isset($_FILES['media']) && !empty($_FILES['media']['tmp_name'])) {
+        //! Handle media upload
+        $media_id = md5(uniqid());
+        if (isset($_FILES['media']) && !empty($_FILES['media']['tmp_name'])) {
+            $media_type = '';
+            $media_type = preg_match('/image\/*/', $_FILES['media']['type']) ? 'image' : $media_type;
+            $media_type = preg_match('/audio\/*/', $_FILES['media']['type']) ? 'audio' : $media_type;
+            $media_type = preg_match('/video\/*/', $_FILES['media']['type']) ? 'video' : $media_type;
+            $media_parts = explode('.', $_FILES['media']['name']);
+            $media_path = 'media/' . $media_type . 's/' . $media_id . '.' . end($media_parts);
+            move_uploaded_file($_FILES['media']['tmp_name'], '../' . $media_path);
+        }
+    }
 
-        $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?, thumbnail = ?, approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ? WHERE id = ?');
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $_GET['id']]);
+    // if (isset($_FILES['thumbnail']) && !empty($_FILES['thumbnail']['tmp_name'])) {
+    //     // Handle thumbnail upload
+    //     $thumbnail_path = $media['thumbnail'];
+    //     if (isset($_FILES['thumbnail']) && !empty($_FILES['thumbnail']['tmp_name'])) {
+    //         $thumbnail_parts = explode('.', $_FILES['thumbnail']['name']);
+    //         $thumbnail_path = 'media/thumbnails/' . $media_id . '.' . end($thumbnail_parts);
+    //         move_uploaded_file($_FILES['thumbnail']['tmp_name'], '../' . $thumbnail_path);
+    //     }
+    // }
+
+
+    if (isset($_GET['id'])) {
+
+        // Update the media
+
+        $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?,  approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ? WHERE id = ?');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $_GET['id']]);
         addCategories($pdo, $_GET['id']);
 
+        // close the loading screen indicator
+        echo '<script>document.querySelector(".loading-indicator").style.display = "none";</script>';
+        sleep(1);
 
         echo '
         <label for="rj-modal" class="rj-modal-background"></label>
@@ -128,20 +140,20 @@ if (isset($_GET['id'])) {
 
         // header('Location: allmedia.php');
         // exit;
-    }
-    if (isset($_POST['delete'])) {
-        // Redirect and delete the media
-        header('Location: allmedia.php?delete=' . $_GET['id']);
-        exit;
-    }
-} else {
-    // Create new media
-    $page = 'Create';
-    if (isset($_POST['submit'])) {
+
+        if (isset($_POST['delete'])) {
+            // Redirect and delete the media
+            header('Location: allmedia.php?delete=' . $_GET['id']);
+            exit;
+        }
+    } else {
+        // Create new media
+        $page = 'Create';
+
         // add art_ fields 
-        $stmt = $pdo->prepare('INSERT INTO media (title, description, year, fnr, filepath, type, thumbnail, approved, art_material, art_dimensions, art_type, art_status, art_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
+        $stmt = $pdo->prepare('INSERT INTO media (title, description, year, fnr, filepath, type, approved, art_material, art_dimensions, art_type, art_status, art_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)');
         // inspectAndDie($stmt);
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $thumbnail_path, $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price']]);
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price']]);
         $media_id = $pdo->lastInsertId();
         addCategories($pdo, $media_id);
 
@@ -169,16 +181,21 @@ if (isset($_GET['id'])) {
 
         // header('Location: allmedia.php');
         // exit;
+
     }
 }
 ?>
 <?= template_admin_header($page . ' Media', 'allmedia') ?>
 
 <h2><?= $page ?> Media</h2>
+<div class="loading-indicator" style="display: none;"><p>Loading</p>
+<img src="../assets/img/loader-2.png" alt="loader">
+</div>
 
 <div class="content-block">
 
-    <form action="" method="post" class="form responsive-width-100" enctype="multipart/form-data">
+
+    <form action="" method="post" class="form responsive-width-100" enctype="multipart/form-data" data-page="<?= $page ?>">
 
         <label for="title">Title</label>
         <input id="title" type="text" name="title" placeholder="Title" value="<?= htmlspecialchars($media['title'], ENT_QUOTES) ?>" required>
@@ -245,9 +262,26 @@ if (isset($_GET['id'])) {
 
         <label for="media">Media</label>
         <input type="file" name="media" accept="audio/*,video/*,image/*">
+        <div id="media-preview">
+            <?php if ($page == "Edit") : ?>
+                <?php if ($media['type'] == 'image') : ?>
+                    <img src="../<?= $media['filepath'] ?>" alt="Media preview">
+                <?php elseif ($media['type'] == 'audio') : ?>
+                    <audio controls>
+                        <source src="../<?= $media['filepath'] ?>" type="audio/ogg">
+                        <source src="../<?= $media['filepath'] ?>" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                <?php elseif ($media['type'] == 'video') : ?>
+                    <video controls>
+                        <source src="../<?= $media['filepath'] ?>" type="video/mp4">
+                        <source src="../<?= $media['filepath'] ?>" type="video/ogg">
+                        Your browser does not support the video element.
+                    </video>
+                <?php endif; ?>
+            <?php endif; ?>
 
-        <label for="thumbnail">Thumbnail</label>
-        <input type="file" name="thumbnail" accept="image/*">
+        </div>
 
         <label for="add_categories">Categories</label>
         <div class="form-group">
@@ -281,6 +315,12 @@ if (isset($_GET['id'])) {
 
 </div>
 <script>
+    // Add an event listener to the form submission
+    document.querySelector('form').addEventListener('submit', function() {
+        // Show the loading indicator when the form is submitted
+        document.querySelector('.loading-indicator').style.display = 'flex';
+    });
+
     modalBg = document.querySelector('.rj-modal-background');
     modal = document.querySelector('.rj-modal');
 
@@ -318,6 +358,23 @@ if (isset($_GET['id'])) {
 
             }
         });
+    };
+    let typeOfpage = document.querySelector("form").getAttribute("data-page");
+    // preview media
+    document.querySelector("input[name='media']").onchange = function(e) {
+
+
+        let preview = document.querySelector("#media-preview");
+        preview.innerHTML = "";
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let media = document.createElement("img");
+            media.src = e.target.result;
+            preview.appendChild(media);
+        };
+        reader.readAsDataURL(file);
+
     };
 </script>
 
