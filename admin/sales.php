@@ -35,14 +35,14 @@ $params = [
 ];
 
 // count query 
-$stmt = $pdo->prepare('SELECT COUNT(id) FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2) AND art_status IS NOT NULL');
+$stmt = $pdo->prepare('SELECT COUNT(id) FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2) AND art_status IS NOT NULL AND art_status <> "not for sale"');
 $stmt->execute($params);
 $count = $stmt->fetchColumn();
 if ($count > 0) {
   $params['show'] = (int)$show;
   $params['from'] = (int)$from;
 
-  $stmt = $pdo->prepare('SELECT * FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2) AND art_status IS NOT NULL ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
+  $stmt = $pdo->prepare('SELECT * FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2) AND art_status IS NOT NULL AND art_status <> "not for sale" ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
   foreach ($params as $key => &$value) {
     if ($key == 'show' || $key == 'from') {
       $stmt->bindParam($key, $value, PDO::PARAM_INT);
@@ -220,7 +220,7 @@ template_admin_header('Sales Page', 'Sales Page')
                 <a href="media.php?id=<?= $m['id'] ?>&<?= http_build_query($get_params) ?>&salesPage=true" class="btn btn--edit">Edit</a>
                 <a href="#" class="btn btn--del" onclick="deleteMediaModal(<?= $m['id'] ?>)">Delete</a>
                 <?php if (!$m['approved']) : ?>
-                  <a href="sales.php?approve=<?= $m['id'] ?>">Approve</a>
+                  <a href="sales.php?approve=<?= $m['id'] ?>" class="btn btn--edit">Approve</a>
                 <?php endif; ?>
               </td>
             </tr>

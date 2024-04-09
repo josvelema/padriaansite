@@ -747,11 +747,12 @@
     overflow: hidden;
     background: #fdfaf0;
   }
-  
   td:last-child {
     border-right: 0px;
+    height: 100%;
     display: flex;
-  }
+    gap: 0.25em;
+}
   
   .td-items {
     display: flex;

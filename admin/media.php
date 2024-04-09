@@ -115,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // close the loading screen indicator
         echo '<script>document.querySelector(".loading-indicator").style.display = "none";</script>';
-        sleep(1);
 
         echo '
         <label for="rj-modal" class="rj-modal-background"></label>
@@ -250,7 +249,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group-item">
                 <label for="art_status">Status</label>
                 <select id="art_status" name="art_status" required>
-                    <option value="available" <?= $media['art_status'] == 'available' ? ' selected' : '' ?>>Available</option>
+                    <option value="available" <?= $media['art_status'] == 'available' ? ' selected' : '' ?>>Available for sale</option>
+                    <option value="reserved" <?= $media['art_status'] == 'reserved' ? ' selected' : '' ?>>Reserved</option>
                     <option value="sold" <?= $media['art_status'] == 'sold' ? ' selected' : '' ?>>Sold</option>
                     <option value="not for sale" <?= $media['art_status'] == 'not for sale' ? ' selected' : '' ?>>Not for sale</option>
                 </select>
