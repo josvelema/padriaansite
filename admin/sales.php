@@ -5,6 +5,7 @@ include 'main.php';
 $term = filter_input(INPUT_GET, 'term') ?? '';
 $show = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 25;
 $from = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0;
+$salesPage = true;
 
 // $show = $_GET['show'] ?? 22;
 // $from = $_GET['from'] ?? 0;
@@ -16,31 +17,41 @@ $media = [];
 if (isset($_GET['approve'])) {
   $stmt = $pdo->prepare('UPDATE media SET approved = 1 WHERE id = ?');
   $stmt->execute([$_GET['approve']]);
-  header('Location: allmedia.php?page=' . $page); // Redirect to the current page after approval
+  header('Location: sales.php?page=' . $page); // Redirect to the current page after approval
   exit;
 }
 
 // Which columns the users can order by, add/remove from the array below.
-$order_by_list = array('id', 'title', 'year', 'fnr', 'description');
+$order_by_list = array('id', 'title', 'year', 'fnr', 'description', 'art_price', 'art_status');
 // Order by which column if specified (default to id)
 $order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], $order_by_list) ? $_GET['order_by'] : 'id';
 // Sort by ascending or descending if specified (default to ASC)
 $order_sort = isset($_GET['order_sort']) && $_GET['order_sort'] == 'DESC' ? 'DESC' : 'ASC';
 
 
-// get media all media files that are not not for sale 
+$params = [
+  'term1' => '%' . $term . '%',
+  'term2' => '%' . $term . '%'
+];
 
-if (isset($_GET['viewCat'])) {
-  $viewCat = $_GET['viewCat'];
-  $stmt = $pdo->prepare("SELECT * FROM media WHERE art_status = ? ORDER BY $order_by $order_sort LIMIT $from, $show");
-  $stmt->execute([$viewCat]);
-  $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  $count = $pdo->query("SELECT COUNT(*) FROM media WHERE art_status = '$viewCat'")->fetchColumn();
-} else {
-  $stmt = $pdo->prepare("SELECT * FROM media WHERE art_status != 'not for sale' ORDER BY $order_by $order_sort LIMIT $from, $show");
+// count query 
+$stmt = $pdo->prepare('SELECT COUNT(id) FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2) AND art_status IS NOT NULL');
+$stmt->execute($params);
+$count = $stmt->fetchColumn();
+if ($count > 0) {
+  $params['show'] = (int)$show;
+  $params['from'] = (int)$from;
+
+  $stmt = $pdo->prepare('SELECT * FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2) AND art_status IS NOT NULL ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
+  foreach ($params as $key => &$value) {
+    if ($key == 'show' || $key == 'from') {
+      $stmt->bindParam($key, $value, PDO::PARAM_INT);
+    } else {
+      $stmt->bindParam($key, $value);
+    }
+  }
   $stmt->execute();
   $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  $count = $pdo->query("SELECT COUNT(*) FROM media WHERE art_status != 'not for sale'")->fetchColumn();
 }
 
 
@@ -67,7 +78,7 @@ template_admin_header('Sales Page', 'Sales Page')
 
 
   <div class="rj-table-ctrl">
-    <form action="allmedia.php" method='GET' class="bulkOptionContainer">
+    <form action="sales.php" method='GET' class="bulkOptionContainer">
       <input type="text" name="term" id="search" value="<?= htmlspecialchars($term) ?>" placeholder="enter search term" class="form-control">
       <input type="submit" value="Search" class="btn btn-primary">
     </form>
@@ -81,12 +92,12 @@ template_admin_header('Sales Page', 'Sales Page')
       $end = min($total_pages, $current_page + 7);
       for ($i = $start; $i <= $end; $i++) : ?>
         <li class="page-item <?= $i == $current_page ? 'active' : '' ?>">
-          <a href="allmedia.php?viewCat=<?= $viewCat ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($i - 1) * $show) ?>&order_by=<?= $order_by ?>&order_sort=<?= $order_sort ?>" class="page-link"><?= $i ?></a>
+          <a href="sales.php?term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($i - 1) * $show) ?>&order_by=<?= $order_by ?>&order_sort=<?= $order_sort ?>" class="page-link"><?= $i ?></a>
         </li>
       <?php endfor; ?>
       <?php if ($end < $total_pages) : ?>
         <li class="page-item">
-          <a href="allmedia.php?viewCat=<?= $viewCat ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($end) * $show) ?>&order_by=<?= $order_by ?>&order_sort=<?= $order_sort ?>" class="page-link">+<?= $total_pages - $end ?></a>
+          <a href="sales.php?term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($end) * $show) ?>&order_by=<?= $order_by ?>&order_sort=<?= $order_sort ?>" class="page-link">+<?= $total_pages - $end ?></a>
         </li>
       <?php endif; ?>
       <li class="page-item"><a class="page-link" href="#" id="page-item-next">Next</a></li>
@@ -99,21 +110,21 @@ template_admin_header('Sales Page', 'Sales Page')
       <thead>
         <tr>
           <th>
-            <a href="allmedia.php?order_by=id&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>&viewCat=<?= $viewCat ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($current_page - 1) * $show) ?>" class="th-link">
+            <a href="sales.php?order_by=id&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($current_page - 1) * $show) ?>" class="th-link">
               <p>ID
                 <i class="fa-solid fa-sort" class="i-th-link"></i>
               </p>
             </a>
           </th>
           <th>
-            <a href="allmedia.php?order_by=title&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>&viewCat=<?= $viewCat ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($current_page - 1) * $show) ?>" class="th-link">
+            <a href="sales.php?order_by=title&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($current_page - 1) * $show) ?>" class="th-link">
               <p>title
                 <i class="fa-solid fa-sort" class="th-link"></i>
               </p>
             </a>
           </th>
           <th class="td-items">
-            <a href="allmedia.php?order_by=year&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>&viewCat=<?= $viewCat ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($current_page - 1) * $show) ?>" class="th-link">
+            <a href="sales.php?order_by=year&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($current_page - 1) * $show) ?>" class="th-link">
               <p>Year </p>
               <p>fNr. <i class="fa-solid fa-sort" class="th-link"></i></p>
               <p> Date </p>
@@ -131,10 +142,18 @@ template_admin_header('Sales Page', 'Sales Page')
             </p>
           </th>
           <th>
-            sale status
+            <a href="sales.php?order_by=art_status&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($current_page - 1) * $show) ?>" class="th-link">
+              <p>status
+                <i class="fa-solid fa-sort" class="th-link"></i>
+              </p>
+            </a>
           </th>
           <th>
-            price
+            <a href="sales.php?order_by=art_price&order_sort=<?= $order_sort == 'ASC' ? 'DESC' : 'ASC' ?>&term=<?= trim($term) ?>&show=<?= $show ?>&from=<?= (($current_page - 1) * $show) ?>" class="th-link">
+              <p>price
+                <i class="fa-solid fa-sort" class="th-link"></i>
+              </p>
+            </a>
           </th>
           <th>Actions</th>
         </tr>
@@ -198,10 +217,10 @@ template_admin_header('Sales Page', 'Sales Page')
                 </div>
               </td>
               <td class="rj-action-td">
-                <a href="media.php?id=<?= $m['id'] ?>&<?= http_build_query($get_params) ?>" class="btn btn--edit">Edit</a>
+                <a href="media.php?id=<?= $m['id'] ?>&<?= http_build_query($get_params) ?>&salesPage=true" class="btn btn--edit">Edit</a>
                 <a href="#" class="btn btn--del" onclick="deleteMediaModal(<?= $m['id'] ?>)">Delete</a>
                 <?php if (!$m['approved']) : ?>
-                  <a href="allmedia.php?approve=<?= $m['id'] ?>">Approve</a>
+                  <a href="sales.php?approve=<?= $m['id'] ?>">Approve</a>
                 <?php endif; ?>
               </td>
             </tr>

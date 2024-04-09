@@ -69,12 +69,13 @@ $redirect_params = [];
 foreach ($params_to_check as $param) {
     if (isset($_GET[$param])) {
         // If it does, add it to the redirect_params array
-        $redirect_params[$param] = $_GET[$param];
+        $redirect_params[$param] = $_GET[$param];     
     }
 }
 
 $media_path = $media['filepath'];
 
+$gotoPage = (isset($_GET['salesPage']) ? 'sales.php?' : 'allmedia.php?'); 
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -129,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="../' . $media_path . '" target="_blank" class="rj-modal-btn">Preview media</a>
             </p>
             <p>
-            <a href="allmedia.php?' . http_build_query($redirect_params) . '" class="rj-modal-btn">Go back to media page</a>
+            <a href="' . $gotoPage . http_build_query($redirect_params) . '" class="rj-modal-btn">Go back to media page</a>
             </p>
             <p>
             <a href="#" onclick="closeModal()" class="rj-modal-btn">Close and stay on this page</a>
@@ -170,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="../' . $media_path . '" target="_blank" class="rj-modal-btn">Preview media</a>
             </p>
             <p>
-            <a href="allmedia.php' . http_build_query($redirect_params) . '" class="rj-modal-btn">Go back to media page</a>
+            <a href="' . $gotoPage . http_build_query($redirect_params) . '" class="rj-modal-btn">Go back to media page</a>
             </p>
             <p>
             <a href="#" onclick="closeModal()" class="rj-modal-btn">Add another Media file</a>
