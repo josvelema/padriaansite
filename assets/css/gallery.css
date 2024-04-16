@@ -6,6 +6,12 @@
   /* place-items: center; */
   width: min(100%, 1280px);
 }
+.view-container {
+  display: block;
+  width: min(100%, 1200px);
+  margin: auto;
+  padding: 1rem;
+}
 /* Responsive styles */
 /* .gallery-container {
   grid-template-columns: repeat(auto-fit, minmax(min(20rem,100%), 360px));

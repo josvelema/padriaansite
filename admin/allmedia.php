@@ -2,11 +2,11 @@
 include 'main.php';
 
 $viewCat = filter_input(INPUT_GET, 'viewCat', FILTER_VALIDATE_INT) ?? 0;
-
+$dt = time();
 $term = filter_input(INPUT_GET, 'term') ?? '';
 $show = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 25;
 $from = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0;
-
+$refresh = filter_input(INPUT_GET, 'refresh', FILTER_VALIDATE_INT) ?? $dt;
 
 $count = 0;
 $media = [];
@@ -29,7 +29,7 @@ $order_by_list = array('id', 'title', 'year', 'fnr', 'description');
 // Order by which column if specified (default to id)
 $order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], $order_by_list) ? $_GET['order_by'] : 'id';
 // Sort by ascending or descending if specified (default to ASC)
-$order_sort = isset($_GET['order_sort']) && $_GET['order_sort'] == 'DESC' ? 'DESC' : 'ASC';
+$order_sort = isset($_GET['order_sort']) && $_GET['order_sort'] == 'ASC' ? 'ASC' : 'DESC';
 if ($viewCat > 0) {
 
     $params = [
@@ -211,8 +211,8 @@ template_admin_header('Media Gallery\'s', 'MediaGallery')
                         <tr>
                             <td>
                                 <?php if ($m['type'] == 'image') : ?>
-                                    <a href="../view.php?id=<?= $m['id'] ?>" target="_blank" class="copy-link" id="copyLink<?= $key ?>">
-                                        <img src="../<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" loading="lazy">
+                                    <a href="../view.php?id=<?= $m['id'] ?>?refresh=<?= $refresh ?>" target="_blank" class="copy-link" id="copyLink<?= $key ?>">
+                                        <img src="../<?= $m['thumbnail'] ?>" alt="<?= $m['title'] ?>" loading="lazy">
                                     </a>
                                     <span class="rj-tooltip" id="rj-tooltip<?= $key ?>">Copied!</span>
 
@@ -268,33 +268,5 @@ template_admin_header('Media Gallery\'s', 'MediaGallery')
 
 </section>
 
-<script>
-    // select category
-    document.getElementById('selectCat').addEventListener('change', function() {
-        this.form.submit();
-    });
-
-
-    // control pagination
-    const pageItemPrev = document.getElementById('page-item-prev');
-    const pageItemNext = document.getElementById('page-item-next');
-    const pageItems = document.querySelectorAll('.pagination .page-item');
-
-    pageItemPrev.addEventListener('click', function(e) {
-        e.preventDefault();
-        let prev = document.querySelector('.pagination .active').previousElementSibling;
-        if (prev) {
-            prev.querySelector('a').click();
-        }
-    });
-
-    pageItemNext.addEventListener('click', function(e) {
-        e.preventDefault();
-        let next = document.querySelector('.pagination .active').nextElementSibling;
-        if (next) {
-            next.querySelector('a').click();
-        }
-    });
-</script>
-
+<script src="js/pagination.js"></script>
 <?= template_admin_footer() ?>

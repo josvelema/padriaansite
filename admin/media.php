@@ -1,7 +1,11 @@
 <?php
 include 'main.php';
-// disable the code execution time limit
-set_time_limit(0);
+
+include 'generate_thumbnail.php';
+
+// check for refresh get
+$dt = time
+$refresh = $_GET['refresh'] ??
 // Disable the default upload file size limits
 ini_set('post_max_size', '0');
 ini_set('upload_max_filesize', '0');
@@ -60,7 +64,7 @@ function addCategories($pdo, $media_id)
 }
 
 
-$params_to_check = ['viewCat', 'term', 'show', 'from', 'order_by', 'order_sort'];
+$params_to_check = ['viewCat', 'term', 'show', 'from', 'order_by', 'order_sort','refresh'];
 
 // Initialize the redirect_params array
 $redirect_params = [];
@@ -74,6 +78,7 @@ foreach ($params_to_check as $param) {
 }
 
 $media_path = $media['filepath'];
+$thumb = '';
 
 $gotoPage = (isset($_GET['salesPage']) ? 'sales.php?' : 'allmedia.php?'); 
 
@@ -91,8 +96,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $media_parts = explode('.', $_FILES['media']['name']);
             $media_path = 'media/' . $media_type . 's/' . $media_id . '.' . end($media_parts);
             move_uploaded_file($_FILES['media']['tmp_name'], '../' . $media_path);
+            if ($media_type == 'image') {
+                $thumb = generateThumb('../' . $media_path);
+            }
         }
     }
+
 
     // if (isset($_FILES['thumbnail']) && !empty($_FILES['thumbnail']['tmp_name'])) {
     //     // Handle thumbnail upload
@@ -109,8 +118,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Update the media
 
-        $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?,  approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ? WHERE id = ?');
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $_GET['id']]);
+        $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?,  approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ?, thumbnail = ? WHERE id = ?');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $thumb ,$_GET['id']]);
         addCategories($pdo, $_GET['id']);
 
         // close the loading screen indicator
@@ -151,9 +160,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $page = 'Create';
 
         // add art_ fields 
-        $stmt = $pdo->prepare('INSERT INTO media (title, description, year, fnr, filepath, type, approved, art_material, art_dimensions, art_type, art_status, art_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)');
+        $stmt = $pdo->prepare('INSERT INTO media (title, description, year, fnr, filepath, type, approved, art_material, art_dimensions, art_type, art_status, art_price,thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
         // inspectAndDie($stmt);
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price']]);
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'] , $thumb]);
         $media_id = $pdo->lastInsertId();
         addCategories($pdo, $media_id);
 
@@ -266,7 +275,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="media-preview">
             <?php if ($page == "Edit") : ?>
                 <?php if ($media['type'] == 'image') : ?>
-                    <img src="../<?= $media['filepath'] ?>" alt="Media preview">
+                    <img src="../<?= $media['filepath'] ?>?refresh=<?= $refresh ?>" alt="Media preview">
                 <?php elseif ($media['type'] == 'audio') : ?>
                     <audio controls>
                         <source src="../<?= $media['filepath'] ?>" type="audio/ogg">

@@ -1,6 +1,7 @@
 <?php
 session_start();
 // Include the configuration and functions file
+
 include_once '../config.php';
 include_once '../functions.php';
 // Check if admin is logged in
@@ -8,10 +9,14 @@ if (!isset($_SESSION['admin_loggedin'])) {
     header('Location: login.php');
     exit;
 }
+
+
 $pdo = pdo_connect_mysql();
 // Template admin header
 function template_admin_header($title, $selected = 'dashboard')
 {
+    $dt = time();
+    $refresh = substr($dt, -4, 4);
     $admin_links = '
         <a href="index.php"' . ($selected == 'dashboard' ? ' class="selected"' : 'title="Dashboard"') . '>
         <span class="rj-icon rj-icon-nav">
@@ -41,7 +46,7 @@ function template_admin_header($title, $selected = 'dashboard')
         <span class="aside-span">Categories</span>
         </a>
 
-        <a href="allmedia.php"' . ($selected == 'MediaGallery' ? ' class="selected"' : 'title="MediaGallery"') . '>
+        <a href="allmedia.php?refresh=' . $refresh . '"' . ($selected == 'MediaGallery' ? ' class="selected"' : 'title="MediaGallery"') . '>
         <span class="rj-icon rj-icon-nav">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>

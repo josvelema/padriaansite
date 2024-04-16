@@ -104,6 +104,10 @@
     margin-inline: 2px;
     border: 4px inset hsla(211deg 41% 67% /61%);
   }
+
+  .header-current-page p {
+    font-size: 2rem;
+  }
   .header-links-r {
     display: flex;
     align-items: center;

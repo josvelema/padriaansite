@@ -247,7 +247,7 @@ if ($count > $show) {
 						<?php endif; ?>
 						<article class="rj-gallery-card">
 							<div class="card">
-								<div class="card-overlay-content-button">+</div> 
+								<div class="card-overlay-content-button">+</div>
 								<div class="card-overlay-content">
 									<div class="card-header">
 										<h3><?= $m['title'] ?></h3>
@@ -273,7 +273,7 @@ if ($count > $show) {
 									<?php if ($m['type'] == 'image') : ?>
 										<div class="image-container">
 											<div class="img-wrapper">
-												<img src="assets/img/bginverted.jpg" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad placeholder">
+												<img src="<?= $m['thumbnail'] ?>" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad placeholder">
 											</div>
 										</div>
 										<div class="modal-container">
@@ -335,7 +335,6 @@ if ($count > $show) {
 
 
 <script>
-
 	// card overlay content button
 	const cardOverlayContentButton = document.querySelectorAll('.card-overlay-content-button');
 	const cardOverlayContent = document.querySelectorAll('.card-overlay-content');
@@ -344,7 +343,7 @@ if ($count > $show) {
 	cardOverlayContentButton.forEach((button, index) => {
 		button.addEventListener('click', () => {
 			cardOverlayContent[index].classList.toggle('active');
-			(button.textContent == '+') ? button.textContent = '-' : button.textContent = '+';
+			(button.textContent == '+') ? button.textContent = '-': button.textContent = '+';
 		});
 	});
 
