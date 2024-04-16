@@ -4,8 +4,8 @@ include 'main.php';
 include 'generate_thumbnail.php';
 
 // check for refresh get
-$dt = time
-$refresh = $_GET['refresh'] ??
+// $dt = time
+// $refresh = $_GET['refresh'] ??
 // Disable the default upload file size limits
 ini_set('post_max_size', '0');
 ini_set('upload_max_filesize', '0');
@@ -64,7 +64,7 @@ function addCategories($pdo, $media_id)
 }
 
 
-$params_to_check = ['viewCat', 'term', 'show', 'from', 'order_by', 'order_sort','refresh'];
+$params_to_check = ['viewCat', 'term', 'show', 'from', 'order_by', 'order_sort'];
 
 // Initialize the redirect_params array
 $redirect_params = [];
@@ -73,14 +73,14 @@ $redirect_params = [];
 foreach ($params_to_check as $param) {
     if (isset($_GET[$param])) {
         // If it does, add it to the redirect_params array
-        $redirect_params[$param] = $_GET[$param];     
+        $redirect_params[$param] = $_GET[$param];
     }
 }
 
 $media_path = $media['filepath'];
 $thumb = '';
 
-$gotoPage = (isset($_GET['salesPage']) ? 'sales.php?' : 'allmedia.php?'); 
+$gotoPage = (isset($_GET['salesPage']) ? 'sales.php?' : 'allmedia.php?');
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Update the media
 
         $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?,  approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ?, thumbnail = ? WHERE id = ?');
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $thumb ,$_GET['id']]);
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $thumb, $_GET['id']]);
         addCategories($pdo, $_GET['id']);
 
         // close the loading screen indicator
@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // add art_ fields 
         $stmt = $pdo->prepare('INSERT INTO media (title, description, year, fnr, filepath, type, approved, art_material, art_dimensions, art_type, art_status, art_price,thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
         // inspectAndDie($stmt);
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'] , $thumb]);
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $thumb]);
         $media_id = $pdo->lastInsertId();
         addCategories($pdo, $media_id);
 
@@ -197,8 +197,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?= template_admin_header($page . ' Media', 'allmedia') ?>
 
 <h2><?= $page ?> Media</h2>
-<div class="loading-indicator" style="display: none;"><p>Loading</p>
-<img src="../assets/img/loader-2.png" alt="loader">
+<div class="loading-indicator" style="display: none;">
+    <p>Loading</p>
+    <img src="../assets/img/loader-2.png" alt="loader">
 </div>
 
 <div class="content-block">
@@ -275,7 +276,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="media-preview">
             <?php if ($page == "Edit") : ?>
                 <?php if ($media['type'] == 'image') : ?>
-                    <img src="../<?= $media['filepath'] ?>?refresh=<?= $refresh ?>" alt="Media preview">
+                    <img src="../<?= $media['filepath'] ?>" alt="Media preview">
                 <?php elseif ($media['type'] == 'audio') : ?>
                     <audio controls>
                         <source src="../<?= $media['filepath'] ?>" type="audio/ogg">
