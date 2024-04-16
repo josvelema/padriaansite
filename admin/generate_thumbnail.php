@@ -32,6 +32,7 @@ function generateThumb($image_path)
     $image_info = getimagesize($original_image);
     $mime = $image_info['mime'];
 
+
     // create the image based on the type
     switch ($mime) {
         case 'image/jpeg':
@@ -46,6 +47,7 @@ function generateThumb($image_path)
         default:
             die('Invalid image type');
     }
+
     // Fix orientation
     if ($mime == 'image/jpeg') {
         $exif = exif_read_data($original_image);
@@ -67,6 +69,14 @@ function generateThumb($image_path)
     // resize the image
     imagecopyresampled($new_image, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 
+    // Crop the image
+    $width = imagesx($new_image);
+    $height = imagesy($new_image);
+    $minSize = min($width, $height);
+    $cropX = ($width - $minSize) / 2;
+    $cropY = ($height - $minSize) / 2;
+    $new_image = imagecrop($new_image, ['x' => $cropX, 'y' => $cropY, 'width' => $minSize, 'height' => $minSize]);
+    
     // save the image to a file
     $new_image_path = '../media/thumbnails/' . basename($original_image);
 
