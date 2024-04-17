@@ -6,9 +6,7 @@ $term = filter_input(INPUT_GET, 'term') ?? '';
 $show = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 25;
 $from = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0;
 $refresh = filter_input(INPUT_GET, 'refresh', FILTER_VALIDATE_INT) ?? 0;
-+
-
-$count = 0;
++$count = 0;
 $media = [];
 
 $stmt = $pdo->prepare('SELECT * FROM categories ORDER BY id DESC');
@@ -262,7 +260,7 @@ template_admin_header('Media Gallery\'s', 'MediaGallery')
                                 <a href="media.php?id=<?= $m['id'] ?>&<?= http_build_query($get_params) ?>" class="btn btn--edit">Edit</a>
                                 <a class="btn btn--del" onclick="deleteMediaModal(<?= $m['id'] ?>, '<?= http_build_query($get_params) ?>')">Delete</a>
                                 <?php if (!$m['approved']) : ?>
-                                    <a href="allmedia.php?approve=<?= $m['id'] ?>">Approve</a>
+                                    <a href="allmedia.php?approve=<?= $m['id'] ?>" class="btn btn--edit">Approve</a>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -281,35 +279,13 @@ template_admin_header('Media Gallery\'s', 'MediaGallery')
 <div class="editModalWrap"></div>
 
 </section>
-<script>
-    let delModal = document.querySelector('.delMediaModalWrap');
-
-    let delModalMediaContent = `<label for="rj-modal" class="rj-modal-background"></label>
-          <div class="rj-modal">
-          <div class="modal-header">
-          <h3>Confirm deletion</h3>
-            <label for="rj-modal">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="" onclick="closeDelMediaModal()">
-            </label>
-            </div>
-            <p>
-            Delete Media?<br>
-            `;
-
-
-    function deleteMediaModal(id, getParams) {
-        let media_id = id;
-        let link = `<a href="allmedia.php?delete=` + media_id + `&` + getParams + `" class="rj-modal-btn">Confirm</a><br><a href="allmedia.php" onClick="closeDelMediaModal()" class="rj-modal-btn">Cancel</a> </p></div>`
-        console.log(link);
-        delModal.innerHTML = delModalMediaContent + link;
-    }
-
-
-    function closeDelMediaModal() {
-        delModal.style.display = "none";
-
-    }
-</script>
-
+<script src="js/mediaCRUD.js"></script>
 <script src="js/pagination.js"></script>
+<script>
+        // select category
+        document.getElementById('selectCat').addEventListener('change', function() {
+      this.form.submit();
+  });
+
+</script>
 <?= template_admin_footer() ?>

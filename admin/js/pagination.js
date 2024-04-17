@@ -1,7 +1,3 @@
-    // select category
-    document.getElementById('selectCat').addEventListener('change', function() {
-      this.form.submit();
-  });
 
 
   // control pagination

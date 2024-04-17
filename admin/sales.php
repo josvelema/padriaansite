@@ -26,7 +26,7 @@ $order_by_list = array('id', 'title', 'year', 'fnr', 'description', 'art_price',
 // Order by which column if specified (default to id)
 $order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], $order_by_list) ? $_GET['order_by'] : 'id';
 // Sort by ascending or descending if specified (default to ASC)
-$order_sort = isset($_GET['order_sort']) && $_GET['order_sort'] == 'DESC' ? 'DESC' : 'ASC';
+$order_sort = isset($_GET['order_sort']) && $_GET['order_sort'] == 'ASC' ? 'ASC' : 'DESC';
 
 
 $params = [
@@ -64,7 +64,30 @@ if ($count > $show) {
 }
 // get current get parameters into string
 $get_params = $_GET;
-// http_build_query(array_merge($_GET, ['page' => null]));
+
+
+
+// Delete the selected media
+if (isset($_GET['delete'])) {
+  $stmt = $pdo->prepare('SELECT * FROM media WHERE id = ?');
+  $stmt->execute([$_GET['delete']]);
+  $media = $stmt->fetch(PDO::FETCH_ASSOC);
+  if ($media['thumbnail']) {
+    unlink('../' . $media['thumbnail']);
+  }
+  unlink('../' . $media['filepath']);
+  $stmt = $pdo->prepare('DELETE m, mc FROM media m LEFT JOIN media_categories mc ON mc.media_id = m.id WHERE m.id = ?');
+  $stmt->execute([$_GET['delete']]);
+  redirect('sales.php');
+}
+// Approve the selected media
+if (isset($_GET['approve'])) {
+  $stmt = $pdo->prepare('UPDATE media SET approved = 1 WHERE id = ?');
+  $stmt->execute([$_GET['approve']]);
+  redirect('sales.php');
+}
+
+
 template_admin_header('Sales Page', 'Sales Page')
 ?>
 <section>
@@ -236,33 +259,6 @@ template_admin_header('Sales Page', 'Sales Page')
 
 </section>
 
-<script>
-  // select category
-  // document.getElementById('selectCat').addEventListener('change', function() {
-  //   this.form.submit();
-  // });
-
-
-  // control pagination
-  const pageItemPrev = document.getElementById('page-item-prev');
-  const pageItemNext = document.getElementById('page-item-next');
-  const pageItems = document.querySelectorAll('.pagination .page-item');
-
-  pageItemPrev.addEventListener('click', function(e) {
-    e.preventDefault();
-    let prev = document.querySelector('.pagination .active').previousElementSibling;
-    if (prev) {
-      prev.querySelector('a').click();
-    }
-  });
-
-  pageItemNext.addEventListener('click', function(e) {
-    e.preventDefault();
-    let next = document.querySelector('.pagination .active').nextElementSibling;
-    if (next) {
-      next.querySelector('a').click();
-    }
-  });
-</script>
-
+<script src="js/mediaCRUD.js"></script>
+<script src="js/pagination.js"></script>
 <?= template_admin_footer() ?>
