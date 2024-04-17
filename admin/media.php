@@ -4,11 +4,10 @@ include 'main.php';
 include 'generate_thumbnail.php';
 
 // check for refresh get
-// $dt = time
-// $refresh = $_GET['refresh'] ??
-// Disable the default upload file size limits
-ini_set('post_max_size', '0');
-ini_set('upload_max_filesize', '0');
+$dt = time();
+$refresh = $_GET['refresh'] ?? $dt;
+
+
 // Default media values
 $media = [
     'title' => '',
@@ -64,7 +63,7 @@ function addCategories($pdo, $media_id)
 }
 
 
-$params_to_check = ['viewCat', 'term', 'show', 'from', 'order_by', 'order_sort'];
+$params_to_check = ['viewCat', 'term', 'show', 'from', 'order_by', 'order_sort', 'refresh'];
 
 // Initialize the redirect_params array
 $redirect_params = [];
@@ -100,31 +99,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $thumb = generateThumb('../' . $media_path);
             }
         }
+    } else {
+        // keep the old file path
+        $media_path = $media['filepath'];
+        // keep the old thumbnail path
+        $thumb = $media['thumbnail'];
     }
 
-
-    // if (isset($_FILES['thumbnail']) && !empty($_FILES['thumbnail']['tmp_name'])) {
-    //     // Handle thumbnail upload
-    //     $thumbnail_path = $media['thumbnail'];
-    //     if (isset($_FILES['thumbnail']) && !empty($_FILES['thumbnail']['tmp_name'])) {
-    //         $thumbnail_parts = explode('.', $_FILES['thumbnail']['name']);
-    //         $thumbnail_path = 'media/thumbnails/' . $media_id . '.' . end($thumbnail_parts);
-    //         move_uploaded_file($_FILES['thumbnail']['tmp_name'], '../' . $thumbnail_path);
-    //     }
-    // }
-
-
     if (isset($_GET['id'])) {
-
         // Update the media
-
         $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?,  approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ?, thumbnail = ? WHERE id = ?');
         $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $thumb, $_GET['id']]);
         addCategories($pdo, $_GET['id']);
-
         // close the loading screen indicator
         echo '<script>document.querySelector(".loading-indicator").style.display = "none";</script>';
-
         echo '
         <label for="rj-modal" class="rj-modal-background"></label>
         <div class="rj-modal">
@@ -146,26 +134,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         
         ';
-
-        // header('Location: allmedia.php');
-        // exit;
-
-        if (isset($_POST['delete'])) {
-            // Redirect and delete the media
-            header('Location: allmedia.php?delete=' . $_GET['id']);
-            exit;
-        }
     } else {
         // Create new media
         $page = 'Create';
-
         // add art_ fields 
         $stmt = $pdo->prepare('INSERT INTO media (title, description, year, fnr, filepath, type, approved, art_material, art_dimensions, art_type, art_status, art_price,thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
         // inspectAndDie($stmt);
         $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $thumb]);
         $media_id = $pdo->lastInsertId();
         addCategories($pdo, $media_id);
-
         echo '
         <label for="rj-modal" class="rj-modal-background"></label>
         <div class="rj-modal">
@@ -187,10 +164,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         
         ';
-
-        // header('Location: allmedia.php');
-        // exit;
-
     }
 }
 ?>
@@ -206,7 +179,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <form action="" method="post" class="form responsive-width-100" enctype="multipart/form-data" data-page="<?= $page ?>">
-
         <label for="title">Title</label>
         <input id="title" type="text" name="title" placeholder="Title" value="<?= htmlspecialchars($media['title'], ENT_QUOTES) ?>" required>
 
@@ -258,11 +230,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group-item">
                 <label for="art_status">Status</label>
-                <select id="art_status" name="art_status" required>
+                <select id="art_status" name="art_status">
                     <option value="available" <?= $media['art_status'] == 'available' ? ' selected' : '' ?>>Available for sale</option>
                     <option value="reserved" <?= $media['art_status'] == 'reserved' ? ' selected' : '' ?>>Reserved</option>
                     <option value="sold" <?= $media['art_status'] == 'sold' ? ' selected' : '' ?>>Sold</option>
-                    <option value="not for sale" <?= $media['art_status'] == 'not for sale' ? ' selected' : '' ?>>Not for sale</option>
+                    <option value="not for sale" <?= $media['art_status']  == 'not for sale' || $media['art_status'] == NULL ? ' selected' : '' ?>>Not for sale</option>
                 </select>
             </div>
             <div class="form-group-item">

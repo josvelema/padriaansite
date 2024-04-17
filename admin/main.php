@@ -9,6 +9,13 @@ if (!isset($_SESSION['admin_loggedin'])) {
     header('Location: login.php');
     exit;
 }
+function redirect(string $url)
+{
+    header("Cache-Control: no-cache, must-revalidate");
+    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+    header('Location: ' . $url);
+    exit;
+}
 
 
 $pdo = pdo_connect_mysql();
@@ -58,14 +65,14 @@ function template_admin_header($title, $selected = 'dashboard')
         </span>
         <span class="aside-span">Media</span>
         </a>
-        <a href="sales.php"' . ($selected == 'Sales' ? ' class="selected"' : 'title="Sales"') . '>
+        <a href="sales.php?refresh=' . $refresh . '"' . ($selected == 'Sales' ? ' class="selected"' : 'title="Sales"') . '>
         <span class="rj-icon rj-icon-nav">
         <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-currency-euro"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17.2 7a6 7 0 1 0 0 10" /><path d="M13 10h-8m0 4h8" /></svg>
         </span>
         <span class="aside-span">Sales</span>
         </a>
         
-        <a href="multimedia.php"' . ($selected == 'multimedia' ? ' class="selected"' : 'title="MultiMedia"') . '>
+        <a href="multimedia.php?refresh=' . $refresh . '"' . ($selected == 'multimedia' ? ' class="selected"' : 'title="MultiMedia"') . '>
         <span class="rj-icon rj-icon-nav">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo-video" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
