@@ -192,9 +192,10 @@ template_admin_header('MultiMedia', 'multimedia') ?>
             <td>
               <?php if ($m['factsheet_url']) : ?>
                 <a href="../<?= $m['factsheet_url'] ?>" target="_blank" class="rj-table-link">View Factsheet</a>
-              <?php else : ?>
-                <button onclick="generateFactSheetAndSave(<?= $m['id'] ?>)" class="rj-table-btn">Make Factsheet</button>
+
               <?php endif; ?>
+
+              <button onclick="generateFactSheetAndSave(<?= $m['id'] ?>)" class="rj-table-btn">Make Factsheet</button>
             </td>
 
             <td>
@@ -350,7 +351,6 @@ template_admin_header('MultiMedia', 'multimedia') ?>
     </div>
   </div>
 </div>
-
 
 <script src="js/generateBusinessCard.js"></script>
 <script src="js/generateFactsheet.js"></script>
