@@ -2,6 +2,9 @@ config.php
 smol.html
 media/images
 media/thumbnails
+media/factsheets
+media/qrcodes
+media/qrcards
 functions.php
 cleanup
 # /vendor/
