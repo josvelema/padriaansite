@@ -1,7 +1,6 @@
 const FACT_CANVAS_WIDTH = 595;
 const FACT_CANVAS_HEIGHT = 842;
 
-
 const imageWidth = 400;
 const imageHeight = 300;
 
@@ -71,24 +70,26 @@ function createFactSheet(sheetData) {
     // draw main image
     const mainImg = new Image();
     mainImg.src = "../" + sheetData.imagePath;
-    mainImg.onload = () => {
-      const aspectRatio = mainImg.width / mainImg.height;
-      let imageWidth, imageHeight;
+    const mainImgPromise = new Promise((resolve) => {
+      mainImg.onload = () => {
+        const aspectRatio = mainImg.width / mainImg.height;
+        let imageWidth, imageHeight;
 
-      if (mainImg.height > mainImg.width) {
-        // If the image is portrait-oriented
-        imageHeight = Math.min(300, FACT_CANVAS_HEIGHT - 150); // Set max height
-        imageWidth = imageHeight * aspectRatio;
-      } else {
-        // If the image is landscape-oriented
-        imageWidth = Math.min(400, FACT_CANVAS_WIDTH - 40); // Set max width
-        imageHeight = imageWidth / aspectRatio;
-      }
+        if (mainImg.height > mainImg.width) {
+          // If the image is portrait-oriented
+          imageHeight = Math.min(300, FACT_CANVAS_HEIGHT - 150); // Set max height
+          imageWidth = imageHeight * aspectRatio;
+        } else {
+          // If the image is landscape-oriented
+          imageWidth = Math.min(400, FACT_CANVAS_WIDTH - 40); // Set max width
+          imageHeight = imageWidth / aspectRatio;
+        }
 
-      const centerImageX = (FACT_CANVAS_WIDTH - imageWidth) / 2;
-      ctx.drawImage(mainImg, centerImageX, 90, imageWidth, imageHeight);
-      resolve(canvas.toDataURL("image/png"));
-    };
+        const centerImageX = (FACT_CANVAS_WIDTH - imageWidth) / 2;
+        ctx.drawImage(mainImg, centerImageX, 90, imageWidth, imageHeight);
+        resolve(canvas.toDataURL("image/png"));
+      };
+    });
 
     // draw border around image
     // ctx.strokeStyle = "#2a2a2a";
@@ -137,16 +138,18 @@ function createFactSheet(sheetData) {
 
     // add qr code
     const qrImg = new Image();
-    // check if qr code exists
-    if (sheetData.qr_card_url == null) {
-      return;
-    } else {
-      qrImg.src = "../" + sheetData.qr_card_url;
 
+    qrImg.src = "../" + sheetData.qr_card_url;
+    const qrImgPromise = new Promise((resolve) => {
       qrImg.onload = () => {
         ctx.drawImage(qrImg, 30, 670, 210, 140);
+        resolve(canvas.toDataURL("image/png"));
       };
-    }
+      qrImg.onerror = (error) => {
+        console.error("Error loading QR Card image:", error);
+        PromiseRejectionEvent(error);
+      };
+    });
 
     // contact details
 
@@ -171,21 +174,19 @@ function createFactSheet(sheetData) {
     ctx.textAlign = "center";
     fact_text_wrap(ctx, contact, x + 23, 690, 160, 16);
 
-    // logo kaasfabriek 
+    // logo kaasfabriek
     const logoImg = new Image();
-    logoImg.src = '../assets/img/kaasfabriekSmall.png';
-    logoImg.onload = () => {
-      ctx.drawImage(logoImg, x + 105 , 670, 165, 129);
-    };
+    logoImg.src = "../assets/img/kaasfabriekSmall.png";
+    const logoImgPromise = new Promise((resolve) => {
+      logoImg.onload = () => {
+        ctx.drawImage(logoImg, x + 105, 670, 165, 129);
+        resolve(canvas.toDataURL("image/png"));
+      };
+    });
 
-    // add horizontal ruler
-
-    // ctx.beginPath();
-    // ctx.moveTo(20, 580);
-    // ctx.lineTo(575, 580);
-    // ctx.lineWidth = 1;
-    // ctx.strokeStyle = "#777";
-    // ctx.stroke();
+    Promise.all([mainImgPromise, qrImgPromise, logoImgPromise]).then(() => {
+      resolve(canvas.toDataURL("image/png"));
+    });
   });
 }
 
@@ -201,6 +202,10 @@ async function saveFactsheetOnServer(imageDataUrl, mediaId) {
 }
 
 async function generateFactSheetAndSave(mediaId) {
+  progressModal.style.display = "block";
+  progressTitle.textContent = "Factsheet Generation";
+  progressMessage.textContent = "Generating factsheet, please wait...";
+
   const mediaData = await fetchMediaData(mediaId);
 
   const cardData = {
@@ -219,5 +224,10 @@ async function generateFactSheetAndSave(mediaId) {
 
   const imageDataUrl = await createFactSheet(cardData);
   await saveFactsheetOnServer(imageDataUrl, mediaId);
-  updateMediaData(mediaId);
+  // updateMediaData(mediaId);
+  console.log("Fact sheet generated and saved successfully");
+  // Show the success message and hide the modal after a short delay
+  progressMessage.textContent = "Factsheet generated successfully!";
+  progressModal.style.display = "none";
+  location.reload();
 }

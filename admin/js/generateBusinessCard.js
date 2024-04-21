@@ -92,6 +92,10 @@ async function saveImageOnServer(imageDataUrl, mediaId) {
 }
 
 async function generateQrCardAndSave(mediaId, qrCodeUrl) {
+
+  progressModal.style.display = 'block';
+  progressTitle.textContent = 'QR info Card Generation';
+  progressMessage.textContent = 'Generating Card with QR code, please wait...';
   const mediaData = await fetchMediaData(mediaId);
 
   const cardData = {
@@ -105,5 +109,11 @@ async function generateQrCardAndSave(mediaId, qrCodeUrl) {
   // Generate business card and save it
   const imageDataUrl = await createBusinessCard(cardData);
   await saveImageOnServer(imageDataUrl, mediaId);
-  updateMediaData(mediaId);
+  progressMessage.textContent = 'QR info Card generated successfully!';
+  setTimeout(() => {
+    progressModal.style.display = 'none';
+     // refresh the page
+    location.reload();
+  }, 2000);
+  
 }

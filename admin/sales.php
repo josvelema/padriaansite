@@ -178,7 +178,9 @@ template_admin_header('Sales Page', 'Sales Page')
               </p>
             </a>
           </th>
+          <th>Factsheet</th>
           <th>Actions</th>
+          <th>tempcheck</th>
         </tr>
       </thead>
       <tbody>
@@ -239,6 +241,33 @@ template_admin_header('Sales Page', 'Sales Page')
                   <div class="td-item"><?= number_format($m['art_price'], 2) ?></div>
                 </div>
               </td>
+              <td>
+                <?php if (empty($m['qr_url'])) : ?>
+                  <button class="btn btn--qr" onclick="generateQRCode(<?= $m['id'] ?>)" class="rj-table-btn">Make QR</button>
+
+                <?php elseif (empty($m['qr_card_url']) && !empty($m['qr_url'])) : ?>
+                  <button class="btn btn--qrcard" onclick="generateQrCardAndSave(<?= $m['id'] ?>, '<?= '../' . $m['qr_url'] ?>')">Make QR Card</button>
+                <?php else : ?>
+                  <button class="btn btn--fact" onclick="generateFactSheetAndSave(<?= $m['id'] ?>)">Make Factsheet</button>
+                <?php endif; ?>
+              </td>
+              <td>
+                <?php if (empty($m['qr_url'])) : ?>
+                  <span class="btn--square btn--qr">QR-code N/A</span>
+                <?php else : ?>
+                  <a href="../<?= $m['qr_url'] ?>" target="_blank" class="btn btn--qr"><i class="fa-solid fa-eye"></i> QR</a>
+                <?php endif; ?>
+                <?php if (empty($m['qr_card_url'])) : ?>
+                  <span class="btn--square btn--qrcard">QR Card N/A</span>
+                <?php else : ?>
+                  <a href="../<?= $m['qr_card_url'] ?>" target="_blank" class="btn btn--qrcard"><i class="fa-solid fa-eye"></i> QR Card</a>
+                <?php endif; ?>
+                <?php if (empty($m['factsheet_url'])) : ?>
+                  <span class="btn--square btn--fact">Factsheet N/A</span>
+                <?php else : ?>
+                  <a href="../<?= $m['factsheet_url'] ?>" target="_blank" class="btn btn--fact"><i class="fa-solid fa-eye"></i> Factsheet</a>
+                <?php endif; ?>
+              </td>
               <td class="rj-action-td">
                 <a href="media.php?id=<?= $m['id'] ?>&<?= http_build_query($get_params) ?>&salesPage=true" class="btn btn--edit">Edit</a>
                 <a href="#" class="btn btn--del" onclick="deleteMediaModal(<?= $m['id'] ?>)">Delete</a>
@@ -256,8 +285,17 @@ template_admin_header('Sales Page', 'Sales Page')
 
 <div class="delMediaModalWrap"></div>
 <div class="editModalWrap"></div>
+<div id="qr-progress-modal" class="modal">
+  <div class="modal-content">
+    <h4 id="qr-progress-title">QR Code Generation</h4>
+    <p id="qr-progress-message"></p>
+  </div>
+</div>
 
 </section>
+<script src="js/generateBusinessCard.js"></script>
+<script src="js/generateFactsheet.js"></script>
+<script src="js/multimedia.js"></script>
 
 <script src="js/mediaCRUD.js"></script>
 <script src="js/pagination.js"></script>

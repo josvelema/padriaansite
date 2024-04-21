@@ -1,10 +1,12 @@
+const progressModal = document.getElementById('qr-progress-modal');
+const progressMessage = document.getElementById('qr-progress-message');
+const progressTitle = document.getElementById('qr-progress-title');
+
 function generateQRCode(media_id) {
   let xhr = new XMLHttpRequest();
 
-  // Show the progress modal with a message
-  const progressModal = document.getElementById('qr-progress-modal');
-  const progressMessage = document.getElementById('qr-progress-message');
   progressModal.style.display = 'block';
+  progressTitle.textContent = 'QR Code Generation';
   progressMessage.textContent = 'Generating QR code, please wait...';
 
   xhr.onreadystatechange = function() {
@@ -15,10 +17,11 @@ function generateQRCode(media_id) {
       progressMessage.textContent = 'QR code generated successfully!';
       setTimeout(() => {
         progressModal.style.display = 'none';
+        location.reload();
       }, 2000);
 
       // Update media data on the page
-      updateMediaData(media_id);
+      // updateMediaData(media_id);
     }
   };
   xhr.open("GET", "qrcode.php?media_id=" + media_id, true);
