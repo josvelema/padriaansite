@@ -72,22 +72,31 @@ function createFactSheet(sheetData) {
     mainImg.src = "../" + sheetData.imagePath;
     const mainImgPromise = new Promise((resolve) => {
       mainImg.onload = () => {
+        let centerImageX;
+
         const aspectRatio = mainImg.width / mainImg.height;
-        let imageWidth, imageHeight;
-
-        if (mainImg.height > mainImg.width) {
-          // If the image is portrait-oriented
-          imageHeight = Math.min(300, FACT_CANVAS_HEIGHT - 150); // Set max height
-          imageWidth = imageHeight * aspectRatio;
+        if (aspectRatio < 1.1 && aspectRatio > 0.9) {
+          // If the image is square prevent max width and height
+          centerImageX = (FACT_CANVAS_WIDTH - 300) / 2;
+          ctx.drawImage(mainImg, centerImageX, 90, 300, 300);
+          resolve(canvas.toDataURL("image/png"));
         } else {
-          // If the image is landscape-oriented
-          imageWidth = Math.min(400, FACT_CANVAS_WIDTH - 40); // Set max width
-          imageHeight = imageWidth / aspectRatio;
-        }
+          console.log("aspect ratio", aspectRatio);
+          let imageWidth, imageHeight;
 
-        const centerImageX = (FACT_CANVAS_WIDTH - imageWidth) / 2;
-        ctx.drawImage(mainImg, centerImageX, 90, imageWidth, imageHeight);
-        resolve(canvas.toDataURL("image/png"));
+          if (mainImg.height > mainImg.width) {
+            // If the image is portrait-oriented
+            imageHeight = Math.min(300, 320); // Set max height
+            imageWidth = imageHeight * aspectRatio;
+          } else {
+            // If the image is landscape-oriented
+            imageWidth = Math.min(400, 420); // Set max width
+            imageHeight = imageWidth / aspectRatio;
+          }
+          centerImageX = (FACT_CANVAS_WIDTH - imageWidth) / 2;
+          ctx.drawImage(mainImg, centerImageX, 90, imageWidth, imageHeight);
+          resolve(canvas.toDataURL("image/png"));
+        }
       };
     });
 
@@ -229,5 +238,5 @@ async function generateFactSheetAndSave(mediaId) {
   // Show the success message and hide the modal after a short delay
   progressMessage.textContent = "Factsheet generated successfully!";
   progressModal.style.display = "none";
-  location.reload();
+  //location.reload();
 }

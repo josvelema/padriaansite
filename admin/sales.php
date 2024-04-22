@@ -178,9 +178,9 @@ template_admin_header('Sales Page', 'Sales Page')
               </p>
             </a>
           </th>
-          <th>Factsheet</th>
+          <th>Make <br>QR/Factsheet</th>
+          <th>View <br>QR/Factsheet</th>
           <th>Actions</th>
-          <th>tempcheck</th>
         </tr>
       </thead>
       <tbody>
@@ -253,17 +253,17 @@ template_admin_header('Sales Page', 'Sales Page')
               </td>
               <td>
                 <?php if (empty($m['qr_url'])) : ?>
-                  <span class="btn--square btn--qr">QR-code N/A</span>
+                  <span class="btn--square btn--qr"><i class="fa-solid fa-ban"></i> QR-code </span>
                 <?php else : ?>
                   <a href="../<?= $m['qr_url'] ?>" target="_blank" class="btn btn--qr"><i class="fa-solid fa-eye"></i> QR</a>
                 <?php endif; ?>
                 <?php if (empty($m['qr_card_url'])) : ?>
-                  <span class="btn--square btn--qrcard">QR Card N/A</span>
+                  <span class="btn--square btn--qrcard"><i class="fa-solid fa-ban"></i> QR Card </span>
                 <?php else : ?>
                   <a href="../<?= $m['qr_card_url'] ?>" target="_blank" class="btn btn--qrcard"><i class="fa-solid fa-eye"></i> QR Card</a>
                 <?php endif; ?>
                 <?php if (empty($m['factsheet_url'])) : ?>
-                  <span class="btn--square btn--fact">Factsheet N/A</span>
+                  <span class="btn--square btn--fact"><i class="fa-solid fa-ban"></i> Factsheet </span>
                 <?php else : ?>
                   <a href="../<?= $m['factsheet_url'] ?>" target="_blank" class="btn btn--fact"><i class="fa-solid fa-eye"></i> Factsheet</a>
                 <?php endif; ?>
@@ -278,6 +278,7 @@ template_admin_header('Sales Page', 'Sales Page')
             </tr>
           <?php endforeach; ?>
         <?php endif; ?>
+
       </tbody>
     </table>
   </div>

@@ -23,6 +23,8 @@ $media = [
     'art_type' => '',
     'art_status' => '',
     'art_price' => 0,
+    'art_has_frame' => 0,
+    'art_frame_price' => 0,
     'categories' => []
 ];
 
@@ -107,9 +109,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_GET['id'])) {
+        // check if the art_has_frame is set to 0 and if so set the frame price to 0
+        if ($_POST['art_has_frame'] == 0) {
+            $_POST['art_frame_price'] = 0;
+        }
+
         // Update the media
-        $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?,  approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ?, thumbnail = ? WHERE id = ?');
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $thumb, $_GET['id']]);
+        $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?,  approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ?,art_has_frame = ?, art_frame_price = ?, thumbnail = ? WHERE id = ?');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $_POST['art_has_frame'], $_POST['art_frame_price'], $thumb, $_GET['id']]);
         addCategories($pdo, $_GET['id']);
         // close the loading screen indicator
         echo '<script>document.querySelector(".loading-indicator").style.display = "none";</script>';
@@ -137,10 +144,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Create new media
         $page = 'Create';
+
+        if ($_POST['art_has_frame'] == 0) {
+            $_POST['art_frame_price'] = 0;
+        }
         // add art_ fields 
-        $stmt = $pdo->prepare('INSERT INTO media (title, description, year, fnr, filepath, type, approved, art_material, art_dimensions, art_type, art_status, art_price,thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
+        $stmt = $pdo->prepare('INSERT INTO media (title, description, year, fnr, filepath, type, approved, art_material, art_dimensions, art_type, art_status, art_price, art_has_frame, art_frame_price, thumbnail) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
         // inspectAndDie($stmt);
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $thumb]);
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $_POST['art_has_frame'], $_POST['art_frame_price'], $thumb]);
         $media_id = $pdo->lastInsertId();
         addCategories($pdo, $media_id);
         echo '
@@ -182,7 +193,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="title">Title</label>
         <input id="title" type="text" name="title" placeholder="Title" value="<?= htmlspecialchars($media['title'], ENT_QUOTES) ?>" required>
 
-        <label for="description">Description</label>
+        <label for="description">Description | Total characters: <span id="charCount"></span></label>
         <textarea id="description" name="description" placeholder="Description ..."><?= htmlspecialchars($media['description'], ENT_QUOTES) ?></textarea>
 
         <!-- <label for="uploaded_date">Uploaded Date</label>
@@ -228,6 +239,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="art_type">Type</label>
                 <input id="art_type" type="text" name="art_type" value="<?= htmlspecialchars($media['art_type'], ENT_QUOTES) ?>" placeholder="Painting, Drawing, etc">
             </div>
+        </div>
+        <div class="form-group">
             <div class="form-group-item">
                 <label for="art_status">Status</label>
                 <select id="art_status" name="art_status">
@@ -240,6 +253,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group-item">
                 <label for="art_price">Price</label>
                 <input id="art_price" type="number" name="art_price" value="<?= $media['art_price'] ?>" min=0>
+            </div>
+            <div class="form-group-item">
+                <label for="art_has_frame">Has frame</label>
+                <select id="art_has_frame" name="art_has_frame">
+                    <option value="0" <?= $media['art_has_frame'] == 0 ? ' selected' : '' ?>>No</option>
+                    <option value="1" <?= $media['art_has_frame'] == 1 ? ' selected' : '' ?>>Yes</option>
+                </select>
+            </div>
+            <div class="form-group-item">
+                <?php if ($media['art_has_frame'] == 1) : ?>
+                    <label for="art_frame_price" id="frame_price_label">Price for frame </label>
+                    <input id="art_frame_price" type="number" name="art_frame_price" value="<?= $media['art_frame_price'] ?>" min=0>
+                <?php else : ?>
+                    <label for="art_frame_price" id="frame_price_label">No frame </label>
+                    <input id="art_frame_price" type="number" name="art_frame_price" value="<?= $media['art_frame_price'] ?>" min=0 style="display:none;">
+
+                <?php endif; ?>
+
             </div>
         </div>
 
@@ -298,6 +329,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </div>
 <script>
+    // character count
+    let description = document.querySelector("#description");
+    let charCount = document.querySelector("#charCount");
+    let factsheetMax = 420;
+
+    // set the initial character count
+    if (description.value.length > factsheetMax) {
+        charCount.style.color = "orangered";
+        charCount.textContent = description.value.length + " (max " + factsheetMax + " characters for factsheet)";
+    } else {
+        charCount.style.color = "initial";
+        charCount.textContent = description.value.length;
+    }
+
+    description.addEventListener("input", function() {
+        if (description.value.length > factsheetMax) {
+            charCount.style.color = "orangered";
+            charCount.textContent = description.value.length + " (max " + factsheetMax + " characters for factsheet)";
+        } else {
+            charCount.style.color = "initial";
+            charCount.textContent = description.value.length;
+        }
+    });
+
+
+
+    // frame price label
+    let frame_price_label = document.querySelector("#frame_price_label");
+
+    // check if there is a frame and if so show the frame price
+    document.querySelector("select[name='art_has_frame']").onchange = function() {
+        let framePrice = document.querySelector("input[name='art_frame_price']");
+        if (this.value == 1) {
+            framePrice.style.display = "block";
+            frame_price_label.textContent = "Price for frame";
+        } else {
+            framePrice.style.display = "none";
+            frame_price_label.textContent = "No frame";
+        }
+    };
+
+
     // Add an event listener to the form submission
     document.querySelector('form').addEventListener('submit', function() {
         // Show the loading indicator when the form is submitted
