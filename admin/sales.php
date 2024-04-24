@@ -262,11 +262,7 @@ template_admin_header('Sales Page', 'Sales Page')
                 <?php else : ?>
                   <a href="../<?= $m['qr_card_url'] ?>" target="_blank" class="btn btn--qrcard"><i class="fa-solid fa-eye"></i> QR Card</a>
                 <?php endif; ?>
-                <?php if (empty($m['factsheet_url'])) : ?>
-                  <span class="btn--square btn--fact"><i class="fa-solid fa-ban"></i> Factsheet </span>
-                <?php else : ?>
-                  <a href="../<?= $m['factsheet_url'] ?>" target="_blank" class="btn btn--fact"><i class="fa-solid fa-eye"></i> Factsheet</a>
-                <?php endif; ?>
+
               </td>
               <td class="rj-action-td">
                 <a href="media.php?id=<?= $m['id'] ?>&<?= http_build_query($get_params) ?>&salesPage=true" class="btn btn--edit">Edit</a>

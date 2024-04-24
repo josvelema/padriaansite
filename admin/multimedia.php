@@ -148,11 +148,15 @@ template_admin_header('MultiMedia', 'multimedia') ?>
       <tr>
         <th>ID & view</th>
         <th>Title</th>
-        <th>Year</th>
-        <th>FNR</th>
-        <th>QRcode</th>
-        <th>QRcard</th>
-        <th>Factsheet</th>
+        <th>
+          <p>Year</p>
+          <p>FNR</p>
+          <p>date</p>
+        </th>
+        <th>sale status</th>
+
+        <th>Make <br>QR(card)</th>
+        <th>View <br>QR(card)</th>
         <th>Audio</th>
         <th>Video</th>
       </tr>
@@ -166,38 +170,50 @@ template_admin_header('MultiMedia', 'multimedia') ?>
         <?php foreach ($media as $m) : ?>
           <tr data-media-id="<?= $m['id'] ?>">
             <td>
-
-              <a href="../view.php?id=<?= $m['id'] ?>" target="_blank" class="rj-table-link"><i class="fa-solid fa-eye"></i>
-                <?= $m['id'] ?></a>
+              <?php if ($m['type'] == 'image') : ?>
+                <a href="../view.php?id=<?= $m['id'] ?>" target="_blank" class="copy-link" id="copyLink<?= $key ?>">
+                  <img src="../<?= $m['thumbnail'] ?>" alt="<?= $m['title'] ?>" loading="lazy">
+                </a>
+                <span class="rj-tooltip" id="rj-tooltip<?= $key ?>">Copied!</span>
+              <?php endif; ?>
+            </td>
             </td>
             <td><?= htmlspecialchars($m['title'], ENT_QUOTES) ?></td>
-            <td><?= $m['year'] ?></td>
-            <td><?= $m['fnr'] ?></td>
             <td>
-              <?php if ($m['qr_url']) : ?>
-                <a href="../<?= $m['qr_url'] ?>" target="_blank" class="rj-table-link">View QR</a>
+              <div class="td-items">
+                <div class="td-item"><?= $m['year'] ?></div>
+                <div class="td-item"><?= $m['fnr'] ?></div>
+                <div class="td-item"><small><?= date('d/m/y', strtotime($m['uploaded_date'])) ?></small></div>
+              </div>
+            </td>
+            <td>
+              <div class="td-items">
+                <div class="td-item"><?= $m['art_status']  ?></div>
+              </div>
+            <td>
+              <?php if (empty($m['qr_url'])) : ?>
+                <button class="btn btn--qr" onclick="generateQRCode(<?= $m['id'] ?>)" class="rj-table-btn">Make QR</button>
               <?php else : ?>
-                <button onclick="generateQRCode(<?= $m['id'] ?>)" class="rj-table-btn">Make QR</button>
+                <button class="btn btn--qrcard" onclick="generateQrCardAndSave(<?= $m['id'] ?>, '<?= '../' . $m['qr_url'] ?>')">Make QR Card</button>
               <?php endif; ?>
             </td>
             <td>
-              <?php if ($m['qr_card_url']) : ?>
-                <a href="../<?= $m['qr_card_url'] ?>" target="_blank" class="rj-table-link">View QR Card</a>
-              <?php elseif ($m['qr_url']) : ?>
-                <button onclick="generateQrCardAndSave(<?= $m['id'] ?>, '<?= '../' . $m['qr_url'] ?>')" class="rj-table-btn">Make QR Card</button>
+              <?php if (empty($m['qr_url'])) : ?>
+                <span class="btn--square btn--qr"><i class="fa-solid fa-ban"></i> QR-code </span>
               <?php else : ?>
-                <span>n/a</span>
+                <a href="../<?= $m['qr_url'] ?>" target="_blank" class="btn btn--qr"><i class="fa-solid fa-eye"></i> QR</a>
+              <?php endif; ?>
+              <?php if (empty($m['qr_card_url'])) : ?>
+                <span class="btn--square btn--qrcard"><i class="fa-solid fa-ban"></i> QR Card </span>
+              <?php else : ?>
+                <a href="../<?= $m['qr_card_url'] ?>" target="_blank" class="btn btn--qrcard"><i class="fa-solid fa-eye"></i> QR Card</a>
+              <?php endif; ?>
+              <?php if (empty($m['factsheet_url'])) : ?>
+                <span class="btn--square btn--fact"><i class="fa-solid fa-ban"></i> Factsheet </span>
+              <?php else : ?>
+                <a href="../<?= $m['factsheet_url'] ?>" target="_blank" class="btn btn--fact"><i class="fa-solid fa-eye"></i> Factsheet</a>
               <?php endif; ?>
             </td>
-            <td>
-              <?php if ($m['factsheet_url']) : ?>
-                <a href="../<?= $m['factsheet_url'] ?>" target="_blank" class="rj-table-link">View Factsheet</a>
-
-              <?php endif; ?>
-
-              <button onclick="generateFactSheetAndSave(<?= $m['id'] ?>)" class="rj-table-btn">Make Factsheet</button>
-            </td>
-
             <td>
               <?php if ($m['audio_url']) : ?>
                 <a href="../<?= $m['audio_url'] ?>" target="_blank" class="rj-table-link">View audio</a>
@@ -307,7 +323,7 @@ template_admin_header('MultiMedia', 'multimedia') ?>
 <div class="delMediaModalWrap"></div>
 <div id="qr-progress-modal" class="modal">
   <div class="modal-content">
-    <h4>QR Code Generation</h4>
+    <h4 id="qr-progress-title">QR Code Generation</h4>
     <p id="qr-progress-message"></p>
   </div>
 </div>
@@ -336,6 +352,10 @@ template_admin_header('MultiMedia', 'multimedia') ?>
 <script src="js/generateFactsheet.js"></script>
 <script src="js/multimedia.js"></script>
 <script src="js/pagination.js"></script>
-
+<script>
+  document.getElementById('selectCat').addEventListener('change', function() {
+    this.form.submit();
+  });
+</script>
 
 <?= template_admin_footer() ?>
