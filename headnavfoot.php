@@ -120,31 +120,14 @@ function template_nav()
                 <span class="rj-nav-menu-span">Menu</span>
                 </label>
                 <div class="rj-nav-wrap">
-                <a href="index.php" id="home"><img src="assets/svg/navHome.svg" class="rj-nav-svg"></a>
-                <a href="about.php" id="home"><img src="assets/svg/navAbout.svg" class="rj-nav-svg"></a>
-                <a class="rj-dropdown-art" onclick="toggleArtNav()"><img src="assets/svg/navArt.svg" class="rj-nav-svg"></a>
-                <div class="rj-dropdown-nav">
-                <ul class="rj-dropdown-nav-ul">
-                <li><a href="gallery.php">Virtual Museum</a></li>
-                <li><a href="painting.php">Painting</a></li>
-                <li><a href="music.php">Music</a></li>
-                
-
-                </ul>
-                </div>
-
-                <a href="science.php" id="science"><img src="assets/svg/navScience.svg" class="rj-nav-svg"></a>
-
-                <a id="blog" class="rj-dropdown-biz" onclick="toggleBizNav()"><img src="assets/svg/navBusiness.svg" class="rj-nav-svg"></a>
-                <div class="rj-nav-biz">
-                <ul class="rj-dropdown-nav-ul">
-                <li><a href="manezinho.php">Grand cafe Manezinho</a></li>
-                <li><a href="kaasfabriek.php">Atelier de Kaasfabriek</a></li>
-                </ul>
-                </div>
-
-                <a href="blog.php" id="blog"><img src="assets/svg/navBlog.svg" class="rj-nav-svg"></a>
-                <a href="contact.php" id="contact"><img src="assets/svg/navContact.svg" class="rj-nav-svg"></a>
+                <a href="index.php" id="home">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none" style="margin: 0.5rem" stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>Home</a>
+                <a href="gallery.php">Gallery</a>
+                <a href="painting.php">On Painting</a>
+                <a href="music.php">Music</a>
+                <a href="science.php" id="science">Science</a>
+                <a href="blog.php" id="blog">Blog</a>
+                <a href="contact.php" id="contact"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg></a>
                 </div>
                 </nav>
             EOT;

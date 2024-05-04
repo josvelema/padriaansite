@@ -501,15 +501,40 @@ x .rj-form-header {
   align-items: center;
   color: #fafafa;
   padding-block: 2em;
+  width: min(100%, 1200px);
+  margin-inline: auto;
 
 }
 
 .rj-about-article {
-  width: 66vw;
-  padding: 0.25em 0.5em 4em 0.5em;
-  background: transparent;
-  display: grid;
-  place-items: center;
+  position: relative;
+  
+  padding: 1rem;
+  background: rgba(34, 34, 34, 0.8);
+  border: 1px solid rgba(240, 240, 250,0.6);
+display: flex;
+gap: 1rem;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.rj-about-article::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  z-index: -1;
+}
+
+.rj-about-article .rj-home-pieter-letters {
+  width: min(100% - 2em, 80ch);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(9px 11px 7px rgba(12 12 12 / 0.6) );
+  position: absolute;
+  top: -3rem;
 }
 
 .rj-about-article a {
@@ -527,13 +552,17 @@ x .rj-form-header {
   color: rgb(222, 222, 211);
 }
 
+
+.rj-about-text {
+  width: min(100% , 68ch);
+}
 .rj-about-article p {
-  max-width: 80ch;
+  /* width: clamp(30ch,7vmax + 55ch,68ch); */
 }
 
 
-.rj-about-article img:not(img[src="assets/svg/manezinhologo.svg"]) {
-  width: 100%;
+.rj-about-article img {
+  width: min(100%,36rem);
   max-height: 400px;
   object-fit: contain;
 }
@@ -741,9 +770,7 @@ blockquote.rj-about-quote {
   .rj-comment-form-wrapper {
     width: 100%;
   }
-  .rj-about-article {
-    width: 90vw;
-  }
+
 }
 
 @media screen and (max-width: 767px) {

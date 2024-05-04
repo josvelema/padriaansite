@@ -9,6 +9,11 @@
    */
 }
 
+:root {
+    --nav-color: hsl(216, 21%, 28%);
+    
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -31,6 +36,10 @@ html {
 body {
     overflow-x: hidden;
     scroll-behavior: smooth;
+}
+
+main {
+    padding-block: 3.4rem;
 }
 
 label {
@@ -73,8 +82,8 @@ label {
 }
 
 .navtop {
-    position: relative;
-    color: hsl(216, 21%, 28%);
+    position: fixed;
+    color: var(--nav-color);
     height: 3.2rem;
     width: 100%;
     border: 0;
@@ -82,12 +91,11 @@ label {
     z-index: 999;
     margin: 0;
     letter-spacing: 2px;
-    background: #ece9e6;
-    background: -webkit-linear-gradient(to left, #ffffff, #ece9e6);
-    background: linear-gradient(to left, hsl(200, 22%, 94%), hsl(30, 14%, 78%));
-    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: inset 0 -2em 0.5em rgb(221 222 222 / 58%),
-        0 0 0 3px rgb(162 167 172), 0px 3px 5px 5px rgb(141 170 148 / 52%);
+    background-color: #ece9e6;
+    background-image: linear-gradient(to left, hsl(200, 22%, 94%), hsl(30, 14%, 78%));
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 -2em 3px rgb(221 222 222 / 58%),
+        0 0 0 3px rgb(162 167 172), 0px 2px 3px 3px rgb(141 170 148 / 52%), 0 5px 0 0px hsla(216, 21%, 28%, 0.85);
 }
 .navtop::after {
     background: linear-gradient(180deg, transparent, #000);
@@ -95,9 +103,10 @@ label {
 .navtop .rj-nav-wrap {
     display: flex;
     margin: 0 auto;
-    padding: 0.25em;
+    /* padding: 0.25em; */
     width: 100%;
     height: 100%;
+    /* gap: 1rem; */
 }
 
 .navtop .rj-nav-ul {
@@ -117,7 +126,7 @@ label {
     flex: 1;
     padding: 0.5em;
     margin-left: 1rem;
-    color: hsl(216, 21%, 28%);
+    color: var(--nav-color);
     font-size: 2rem;
 }
 
@@ -128,23 +137,46 @@ label {
     /* text-shadow: -1px 1px 1px #fafafa, -2px 0px 4px #0005; */
 }
 
+.rj-nav-wrap .rj-nav-svg-icon {
+    color: var(--nav-color);
+
+    
+}
+
 .navtop .rj-nav-wrap a {
-    padding: 0 8px;
+    /* padding: 0 8px; */
     text-decoration: none;
-    color: hsl(216, 21%, 28%);
-    font-weight: bold;
-    margin-right: 0.8rem;
+    color: var(--nav-color);
+    font-weight: 600;
+    padding-inline: 1rem;
+    border-right: 1px solid hsla(216, 21%, 28%, 0.45);
+    font-size: 1.1rem;
+    padding-inline: 1rem;
+    text-shadow: -1px 1px 1px #fafafa, -1px 0px 1px #0005;
+}
+
+.navtop .rj-nav-wrap a:hover,
+.navtop .rj-nav-wrap a:focus,
+.navtop .rj-nav-wrap a:focus-visible{
+    color: hsl(229, 54%, 45%);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 0.33em;
+    text-decoration-thickness: 1px;
+    text-decoration-color: hsl(229, 74%, 35%);
+}
+
+
+.navtop .rj-nav-wrap a:last-child {
+    border-right: none;
+    margin: 0 1rem 0 auto;
 }
 
 .navtop .rj-nav-wrap a i {
     padding: 2px 8px 0 0;
 }
 
-.navtop .rj-nav-wrap a:hover {
-    /* color: #ebecee; */
-    /* color: hsl(216, 21%, 48%); */
-    color: hsl(229, 74%, 55%);
-}
+
 
 a.rj-nav-home {
     display: none;
@@ -406,7 +438,7 @@ letter-spacing: 2px;
     position: relative;
     flex-flow: column;
     background-color: hsl(0, 0%, 88%);
-    color: hsl(216, 21%, 28%);
+    color: var(--nav-color);
 
     border-radius: 10px;
     transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -834,7 +866,7 @@ letter-spacing: 2px;
 }
 
 /* Responsive design code below */
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 850px) {
     .dropdown {
         display: flex;
         justify-content: space-between;
@@ -852,7 +884,7 @@ letter-spacing: 2px;
         display: block;
         width: 22px;
         height: 2px;
-        background-color: hsl(184, 36%, 16%);
+        background-color: var(--nav-color);
         margin: 4px;
         transition: all 0.3s cubic-bezier(0.07, 0.99, 0.94, 0.28);
     }
@@ -889,10 +921,10 @@ letter-spacing: 2px;
         display: block;
         text-align: center;
         width: 40px;
-        border-left: 1px solid #2b3543;
-        padding: 15px 25px 15px 25px;
-        opacity: 0.8;
-        color: blue;
+        /* border-left: 1px solid #2b3543; */
+        padding: 1.1rem;
+        /* opacity: 0.8; */
+        /* color: blue; */
     }
     .navtop input:checked ~ div {
         position: static;
@@ -903,11 +935,11 @@ letter-spacing: 2px;
         flex-wrap: nowrap;
         width: 100%;
         height: auto;
-        /* overflow-y: scroll;
-        overflow-x: hidden; */
-        backdrop-filter: blur(9px) saturate(167%);
-        -webkit-backdrop-filter: blur(9px) saturate(167%);
-        background-color: rgba(17, 25, 40, 0.66);
+        background-color: #ece9e6;
+        background-image: linear-gradient(to left, hsl(200, 22%, 94%), hsl(30, 14%, 78%));
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: inset 0 -2em 0.5em rgb(221 222 222 / 58%),
+            0 0 0 3px rgb(162 167 172), 0px 3px 5px 5px rgb(141 170 148 / 52%);
         border: 1px solid hsl(229, 40%, 68%);
         padding: 0 0.25em 0.3 0;
     }
@@ -916,18 +948,13 @@ letter-spacing: 2px;
     .navtop input:checked ~ div a.rj-nav-home {
         position: static;
         display: inline-flex;
-        color: #fafafa;
         padding: 0.5em;
         margin: 0.5em;
         width: 100%;
         top: 0;
         left: 0;
     }
-    .navtop input:checked ~ div a:hover,
-    .navtop input:checked ~ div a.rj-nav-home:hover {
-        /* color: hsl(230, 22%, 67%); */
-        color: hsl(229, 40%, 68%);
-    }
+   
 
     .rj-nav-svg {
         filter: invert(90%) drop-shadow(1px 2px 1px rgb(33, 88, 100, 0.5));
@@ -1268,7 +1295,7 @@ letter-spacing: 2px;
 
 .rj-current-nav {
     text-decoration: underline;
-    border: 1px solid hsl(216, 21%, 28%);
+    border: 1px solid var(--nav-color););
     border-radius: 4px;
 }
 

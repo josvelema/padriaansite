@@ -22,54 +22,94 @@ ul {
 .rj-home {
     min-height: 100vh;
     /* margin-top: -2rem; */
-    padding: 1.3em;
+    /* padding: 1.3em; */
     width: minmax(85vw, 95vw);
    
     
 }
 
-.rj-home-header h1 {
-    font-family: "IBM Plex Sans", sans-serif;
-    font-weight: 300;
+.hero-title {
+    display: flex;
+    /* gap: 1rem; */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: rgba(34, 34, 34, 0.9);
     letter-spacing: 2px;
-    background-color: #0009;
-    padding: 0.3em 0.15em;
+    padding: 0.5rem 1rem;
     color: #fafafa;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 8px;
+    border: 1px solid rgba(240, 240, 250,0.6);
+
     text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.5),
         1px 1px 1px rgba(12, 34, 66, 0.5);
+    width: min(90%,80ch);
+    position: absolute;
+    bottom: -5rem;
 }
 .rj-home-header {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    background-color: rgba(99 99 99 / 0.65);
-    margin-block: 2em;
+    justify-content: flex-end;
+    padding: 1rem;
+    /* background: rgba(34, 34, 34, 0.6); */
+    background-image: url(../img/2022-40-Sunrise-at-Manadas.jpg);
+    background-size: cover;
+    background-position: 29% 44%;
+    background-repeat: no-repeat;
+    color: #fafafa;
+    padding-block: 2em;
+    width: min(100%, 1200px);
     margin-inline: auto;
-    max-width: 1240px;
-    height: auto;
-    border: 1px solid rgb(0 0 0 / 0.5);
-    box-shadow: 1px 2px 3px rgb(0 0 0 / 55%);
-    border-radius: 4px;
-    position: relative;
-}
-.rj-home-header img {
-    width: min(100% - 2em, 80ch);
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(9px 11px 7px rgba(12 12 12 / 0.6) );
-    position: absolute;
-    top: -3rem;
+    margin-block: 0 5.5rem;
+    height: min(450px,90vh);
 }
 
-.rj-home-header-img {
-    width: 95%;
-    /* height: auto; */
+.rj-home-header h1 {
+    font-weight: 300;
+    line-height: 1.2;
     margin: 0;
-    padding: 0;
+
+}
+
+.rj-home-header h2 {
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin: 0.33rem 0;
+}
+
+.rj-home-header p {
+    width: min(100% - 1rem, 1000px);
+    /* font-size: 1rem; */
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
+    font-weight: 200;
+    margin: 0.5em 0;
+
+}
+
+.last-image {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 1em 0;
+}
+
+.last-image-container {
+    flex: 1;
+    width: 100%;
+    min-height: 600px;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+
+
+
+.last-image img {
+    max-height: 600px;
+
+    object-fit: contain;
 }
 
 
@@ -102,17 +142,13 @@ ul {
 }
 .rj-social-list {
     position: relative;
-    top: -1rem;
     display: flex;
-    flex-direction: row;
-    margin-top: 1.5em;
-    padding: 0.15em;
-    list-style: none;
-    align-items: center;
-    justify-content: space-evenly;
+    flex-direction: column;
+     list-style: none;
+    gap: 0.5rem;
+    justify-content: flex-end;
     font-family: "IBM Plex Sans", sans-serif;
 }
-
 .rj-social-item {
     margin: 0 0.35em 0 0.35em;
     padding: 0.25em 0.4em;
@@ -400,26 +436,27 @@ border-radius: 3px;
 
 .rj-about-logo-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* flex-direction: column; */
-    margin: 0.5em;
+    gap: 1rem;
+    padding: 1rem;
 }
 
-.rj-kaas-logo ,
-.rj-mz {
-    width: 250px;
+.rj-about-logo-container .rj-kaas-logo ,
+.rj-about-logo-container .rj-mz {
     height: 210px;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
-    margin: 0.5em;
+    padding: 1rem;
     border-radius: 10px;
 
+    border: 1px solid rgb(200 200 200 / 0.75);
 }
 
 
 
 .rj-mz {
-border: 1px solid rgb(200 200 200 / 0.75);
 }
 
 
@@ -463,15 +500,7 @@ blockquote::after {
 
 
 @media screen and (max-width: 1000px) {
-    .rj-social-list {
-        flex-direction: column;
-        top: 0;
-    }
-    .rj-social-item {
-        margin: 0 0.35em 0.6em 0.35em;
-        padding: 0.25em 0.4em;
-        font-size: 0.6rem;
-    }
+
     .rj-news-card {
         width: 100%;
     }
