@@ -46,7 +46,7 @@ label {
     display: block;
 }
 .rj-background {
-    background-image: url(assets/img/backgroundimage.jpg);
+    background-image: url(../img/backgroundimage.jpg);
     /* background-color: rgb(0,0,0,0.45); */
     backdrop-filter: invert(83%);
     background-blend-mode: multiply;
@@ -72,7 +72,7 @@ label {
     left: 0px;
     bottom: 0px;
     right: 0px;
-    background-image: url(assets/svg/pieterBg.svg);
+    background-image: url(../svg/pieterBg.svg);
     backdrop-filter: invert(83%);
     -webkit-backdrop-filter: invert(83%);
     background-blend-mode: multiply;
