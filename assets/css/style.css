@@ -157,7 +157,8 @@ label {
 
 .navtop .rj-nav-wrap a:hover,
 .navtop .rj-nav-wrap a:focus,
-.navtop .rj-nav-wrap a:focus-visible{
+.navtop .rj-nav-wrap a:focus-visible,
+.navtop .rj-nav-wrap a.active  {
     color: hsl(229, 54%, 45%);
     text-decoration: underline;
     text-decoration-style: dotted;

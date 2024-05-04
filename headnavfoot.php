@@ -101,37 +101,41 @@ function template_header_other()
 EOT;
 }
 
-link:
-function template_nav()
+function template_nav($page = 'home')
 {
-    echo <<<EOT
-                </head>
-                <body>
-                <div class="rj-foreground">
-        
-                <nav class="navtop">
-                <input type="checkbox" id="dropdown" style="display:none">
-                <label for="dropdown" class="dropdown">
-                <span class="hamburger">
-                <span class="icon-bar top-bar"></span>
-                <span class="icon-bar middle-bar"></span>
-                <span class="icon-bar bottom-bar"></span>
-                </span>
-                <span class="rj-nav-menu-span">Menu</span>
-                </label>
-                <div class="rj-nav-wrap">
-                <a href="index.php" id="home">
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none" style="margin: 0.5rem" stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>Home</a>
-                <a href="gallery.php">Gallery</a>
-                <a href="painting.php">On Painting</a>
-                <a href="music.php">Music</a>
-                <a href="science.php" id="science">Science</a>
-                <a href="blog.php" id="blog">Blog</a>
-                <a href="contact.php" id="contact"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg></a>
-                </div>
-                </nav>
-            EOT;
+    echo  '
+        </head>
+        <body>
+        <div class="rj-foreground">
+    
+        <nav class="navtop">
+        <input type="checkbox" id="dropdown" style="display:none">
+        <label for="dropdown" class="dropdown">
+        <span class="hamburger">
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+        </span>
+        <span class="rj-nav-menu-span">Menu</span>
+        </label>
+        <div class="rj-nav-wrap">
+        <a href="index.php" class="' .  (($page === 'home') ? 'active' : '') . '" id="home">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none" style="margin: 0.5rem" stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>Home
+        </a>
+        <a href="gallery.php" class="' . (($page === 'gallery') ? 'active' : '') . '">Gallery</a>
+        <a href="painting.php" class="' . (($page === 'painting') ? 'active' : '') . '">On Painting</a>
+        <a href="music.php" class="' . (($page === 'music') ? 'active' : '') . '">Music</a>
+        <a href="science.php" class="' .  (($page === 'science') ? 'active' : '') . '">Science</a>
+        <a href="blog.php" class="' .  (($page === 'blog') ? 'active' : '') . '">Blog</a>
+        <a href="contact.php" class="' .  (($page === 'contact') ? 'active' : '') . '">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
+        </a>
+        </div>
+        </nav>
+    ';
+
 }
+
 // <a href="music.php" id="music"><i class="fa-solid fa-music"></i>Music</a>
 // <a href="gallery.php" id="gallery"><i class="fas fa-photo-video"></i>Gallery</a>
 

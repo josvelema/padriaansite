@@ -3,7 +3,7 @@ include 'functions.php';
 ?>
 <?= template_header('Music') ?>
 <?= template_header_other() ?>
-<?= template_nav() ?>
+<?= template_nav('music') ?>
 
 <main class="rj-black-bg-main">
   <header class="rj-music">

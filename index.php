@@ -14,7 +14,7 @@ $mediaLast = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 <?= template_header('Home') ?>
-<?= template_nav() ?>
+<?= template_nav('home') ?>
 
 
 <main class="rj-home">

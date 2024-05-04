@@ -139,7 +139,7 @@ if ($count > $show) {
 <?= template_header_other() ?>
 <link rel="stylesheet" href="assets/css/gallery.css?v=55">
 
-<?= template_nav() ?>
+<?= template_nav('gallery') ?>
 
 <main class="rj-black-bg-main">
 	<div class="content home">

@@ -3,7 +3,7 @@ include 'functions.php';
 ?>
 <?= template_header('Science') ?>
 <?= template_header_other() ?>
-<?= template_nav() ?>
+<?= template_nav('science') ?>
 
 <main class="rj-black-bg-main">
   <header>

@@ -1,9 +1,9 @@
 <?php
 include 'functions.php';
 ?>
-<?= template_header('Painting') ?>
+<?= template_header('On Painting') ?>
 <?= template_header_other() ?>
-<?= template_nav() ?>
+<?= template_nav('painting') ?>
 
 <main class="rj-black-bg-main">
   <header class="rj-painting">

@@ -69,6 +69,7 @@ aspect-ratio: 4 / 3;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  align-items: end;
   padding: 0.25rem 0.5rem;
   margin: 0.2rem;
   border-radius: 100vw;
