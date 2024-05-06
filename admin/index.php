@@ -26,7 +26,7 @@ $media_awaiting_approval = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <h2>Dashboard</h2>
 
 <div class="dashboard">
-    <div class="content-block stat">
+    <div class="content-block stat">    
         <div>
             <h3>Today's Media</h3>
             <p><?=number_format(count($media))?></p>

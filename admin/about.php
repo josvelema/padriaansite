@@ -1,13 +1,13 @@
 <?php
 include 'main.php';
 ?>
-<?=template_admin_header('About', 'about')?>
+<?= template_admin_header('About', 'about') ?>
 
 <h2>About</h2>
 
 <div class="content-block">
 
-    <p>about something</p>
+    <p>For information contact Jos rjvelemail@gmail.com</p>
 </div>
 
-<?=template_admin_footer()?>
+<?= template_admin_footer() ?>

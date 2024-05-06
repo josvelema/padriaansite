@@ -178,6 +178,11 @@ template_admin_header('Sales Page', 'Sales Page')
               </p>
             </a>
           </th>
+          <th class="td-items">
+            <p>Frame</p>
+            <p>+price</p>
+
+          </th>
           <th>Make <br>QR/Factsheet</th>
           <th>View <br>QR/Factsheet</th>
           <th>Actions</th>
@@ -201,7 +206,7 @@ template_admin_header('Sales Page', 'Sales Page')
               <td>
                 <?php if ($m['type'] == 'image') : ?>
                   <a href="../view.php?id=<?= $m['id'] ?>" target="_blank" class="copy-link" id="copyLink<?= $key ?>">
-                    <img src="../<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" loading="lazy">
+                    <img src="../<?= $m['thumbnail'] ?>" alt="<?= $m['title'] ?>" loading="lazy">
                   </a>
                   <span class="rj-tooltip" id="rj-tooltip<?= $key ?>">Copied!</span>
                 <?php endif; ?>
@@ -242,6 +247,12 @@ template_admin_header('Sales Page', 'Sales Page')
                 </div>
               </td>
               <td>
+                <div class="td-items">
+                  <div class="td-item"><?= ($m['art_has_frame']) ? '+ Frame' : 'no Frame' ?></div>
+                  <div class="td-item"><?= number_format($m['art_frame_price']) ?></div>
+                </div>
+              </td>
+              <td>
                 <?php if (empty($m['qr_url'])) : ?>
                   <button class="btn btn--qr" onclick="generateQRCode(<?= $m['id'] ?>)" class="rj-table-btn">Make QR</button>
 
@@ -262,12 +273,19 @@ template_admin_header('Sales Page', 'Sales Page')
                 <?php else : ?>
                   <a href="../<?= $m['qr_card_url'] ?>" target="_blank" class="btn btn--qrcard"><i class="fa-solid fa-eye"></i> QR Card</a>
                 <?php endif; ?>
+                <?php if (empty($m['factsheet_url'])) : ?>
+                  <span class="btn--square btn--fact"><i class="fa-solid fa-ban"></i> Factsheet </span>
+                <?php else : ?>
+                  <a href="../<?= $m['factsheet_url'] ?>" target="_blank" class="btn btn--fact"><i class="fa-solid fa-eye"></i> Factsheet</a>
+                <?php endif; ?>
 
               </td>
               <td class="rj-action-td">
                 <a href="media.php?id=<?= $m['id'] ?>&<?= http_build_query($get_params) ?>&salesPage=true" class="btn btn--edit">Edit</a>
-                <a href="#" class="btn btn--del" onclick="deleteMediaModal(<?= $m['id'] ?>)">Delete</a>
-                <?php if (!$m['approved']) : ?>
+                <?php if ($_SESSION['role'] == 'admin') : ?>
+                  <a class="btn btn--del" onclick="deleteMediaModal(<?= $m['id'] ?>, '<?= http_build_query($get_params) ?>')">Delete</a>
+                <?php endif;
+                if (!$m['approved']) : ?>
                   <a href="sales.php?approve=<?= $m['id'] ?>" class="btn btn--edit">Approve</a>
                 <?php endif; ?>
               </td>

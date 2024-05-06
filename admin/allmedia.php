@@ -258,10 +258,13 @@ template_admin_header('Media Gallery\'s', 'MediaGallery')
                             </td>
                             <td class="rj-action-td">
                                 <a href="media.php?id=<?= $m['id'] ?>&<?= http_build_query($get_params) ?>" class="btn btn--edit">Edit</a>
+                                <?php if($_SESSION['role'] == 'admin') : ?>
                                 <a class="btn btn--del" onclick="deleteMediaModal(<?= $m['id'] ?>, '<?= http_build_query($get_params) ?>')">Delete</a>
+                                <?php endif; ?>
                                 <?php if (!$m['approved']) : ?>
                                     <a href="allmedia.php?approve=<?= $m['id'] ?>" class="btn btn--edit">Approve</a>
                                 <?php endif; ?>
+
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -5,10 +5,14 @@ session_start();
 include_once '../config.php';
 include_once '../functions.php';
 // Check if admin is logged in
+// inspectAndDie($_SESSION);
 if (!isset($_SESSION['admin_loggedin'])) {
     header('Location: login.php');
     exit;
 }
+
+// Get the user role and name
+
 function redirect(string $url)
 {
     header("Cache-Control: no-cache, must-revalidate");
@@ -22,6 +26,10 @@ $pdo = pdo_connect_mysql();
 // Template admin header
 function template_admin_header($title, $selected = 'dashboard')
 {
+    // Get the user role and name
+    $user_role = $_SESSION['role'];
+    $user_name = $_SESSION['name'];
+
     $dt = time();
     $refresh = substr($dt, -4, 4);
     $admin_links = '
@@ -141,6 +149,56 @@ function template_admin_header($title, $selected = 'dashboard')
         <span class="aside-span">Settings</span>
         </a>
     ';
+    $staff_links = '
+        <a href="index.php"' . ($selected == 'dashboard' ? ' class="selected"' : 'title="Dashboard"') . '>
+        <span class="rj-icon rj-icon-nav">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-histogram" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 3v18h18" />
+            <path d="M20 18v3" />
+            <path d="M16 16v5" />
+            <path d="M12 13v8" />
+            <path d="M8 16v5" />
+            <path d="M3 11c6 0 5 -5 9 -5s3 5 9 5" />
+            </svg>      
+        </span>
+        <span class="aside-span">Dashboard</span>
+        </a>
+
+        <a href="allmedia.php?refresh=' . $refresh . '"' . ($selected == 'MediaGallery' ? ' class="selected"' : 'title="MediaGallery"') . '>
+        <span class="rj-icon rj-icon-nav">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M15 8h.01" />
+            <path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z" />
+            <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" />
+            <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" />
+            </svg>
+        </span>
+        <span class="aside-span">Media</span>
+        </a>
+        <a href="sales.php?refresh=' . $refresh . '"' . ($selected == 'Sales' ? ' class="selected"' : 'title="Sales"') . '>
+        <span class="rj-icon rj-icon-nav">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-currency-euro"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17.2 7a6 7 0 1 0 0 10" /><path d="M13 10h-8m0 4h8" /></svg>
+        </span>
+        <span class="aside-span">Sales</span>
+        </a>
+        
+
+        
+        <a href="messages.php"' . ($selected == 'messages' ? ' class="selected"'  : 'title="Messages"') . '>
+        <span class="rj-icon rj-icon-nav">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+            <path d="M3 7l9 6l9 -6" />
+            </svg>
+        </span>
+        <span class="aside-span">Messages</span>
+        </a>
+
+
+    ';
     echo <<<EOT
 <!DOCTYPE html>
 <html>
@@ -158,7 +216,9 @@ function template_admin_header($title, $selected = 'dashboard')
 	<body class="admin">
         <aside class="responsive-width-100 responsive-hidden">
             
-            $admin_links
+EOT;
+    echo ($user_role == 'admin' ? $admin_links : $staff_links);
+    echo <<<EOT
         </aside>
         <main class="responsive-width-100 full" id="$selected">
             <header>
@@ -179,6 +239,7 @@ function template_admin_header($title, $selected = 'dashboard')
                 <p>$title</p>
                 </div>
                 <div class="header-links-r">
+                    <span class="current-user">$user_role / $user_name</span>
                     <a href="../index.php" class="rj-icon-link" title="Go to homepage">
                         <span class="rj-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
