@@ -1,6 +1,23 @@
-Redirect permanent "/science/" "/"
-Redirect permanent "/music" "/"
-Redirect permanent "/contact.html" "/"
-Redirect permanent "/on-painting" "/"
-Redirect permanent "/gallery" "/"
+Options -MultiViews
+RewriteEngine On
+RewriteBase /pieter
+
+
+Redirect permanent "/science/" "/science.php"
+Redirect permanent "/music" "/music.php"
+Redirect permanent "/contact.html" "/contact.php"
+Redirect permanent "/on-painting" "/painting.php"
+Redirect permanent "/gallery" "/gallery.php"
 Redirect permanent "/azorean-drawings.html" "/"
+
+# Exclude specific directories from rewriting
+RewriteCond %{REQUEST_URI} !^/assets/
+RewriteCond %{REQUEST_URI} !^/admin/
+RewriteCond %{REQUEST_URI} !^/vendor/
+RewriteCond %{REQUEST_URI} !^/public/
+
+# Rewrite other URLs to add .php extension if the file exists
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L]

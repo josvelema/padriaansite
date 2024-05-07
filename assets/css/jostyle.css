@@ -19,7 +19,6 @@ a {
   /* top: 4rem; */
   padding: 2rem;
   width: min(100%, 1280px);
-  margin: 3.5em auto;
 
   color: #fafafa;
 }
@@ -569,16 +568,14 @@ justify-content: center;
 
 blockquote.rj-about-quote {
   position: relative;
-  max-width: 80ch;
-  margin: 0 auto;
+  width: min(90% , 66ch);
   padding: 0.5em;
-  border-left: 0.5em solid #f0f0fa;
-  background: #f0f0fa;
+  border-left: 0.5em solid var(--nav-color);
+  background: rgba(240, 240, 250, 0.85);
   color: #000;
   font-size: 1.2rem;
   font-style: italic;
   text-align: center;
-
 }
 
 .rj-mz-logo {
