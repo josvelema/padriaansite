@@ -315,6 +315,7 @@ if ($count > $show) {
 						You can view the year <a href="gallery?year=<?= $_GET['year'] ?>"><?= $_GET['year'] ?> </a> or the category <a href="gallery?category=<?= $_GET['category'] ?>"><?= $categories[array_search($category, array_column($categories, 'id'))]['title'] ?></a> or <a href="gallery">all media</a>.
 					</p>
 				<?php endif; ?>
+			</div>
 				<?php if ($total_pages > 1) : ?>
 					<nav aria-label="Pagination">
 						<ul class="rj-pagination">
@@ -327,8 +328,8 @@ if ($count > $show) {
 							</li>
 
 							<?php
-							$start = max(1, $current_page - 7);
-							$end = min($total_pages, $current_page + 7);
+							$start = max(1, $current_page - 5);
+							$end = min($total_pages, $current_page + 5);
 							for ($i = $start; $i <= $end; $i++) : ?>
 								<li class="rj-page-item <?= $i == $current_page ? 'active' : '' ?>">
 									<a href="gallery?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($i - 1) * $show ?>" class="rj-page-link"><?= $i ?></a>

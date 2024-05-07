@@ -1,10 +1,11 @@
 .gallery-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 320px));
-  grid-gap: 0.5em;
+  grid-gap: 0.5rem;
   place-content: center;
   /* place-items: center; */
-  width: min(100%, 1280px);
+  width: min(98%, 1280px - 0.5rem );
+  margin-inline: auto;
 }
 .view-container {
   display: block;
