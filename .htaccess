@@ -7,7 +7,6 @@ Redirect permanent "/science/" "/science.php"
 Redirect permanent "/music" "/music.php"
 Redirect permanent "/contact.html" "/contact.php"
 Redirect permanent "/on-painting" "/painting.php"
-Redirect permanent "/gallery" "/gallery.php"
 Redirect permanent "/azorean-drawings.html" "/"
 
 # Exclude specific directories from rewriting

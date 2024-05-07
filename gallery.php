@@ -15,6 +15,8 @@ $years = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $year = filter_input(INPUT_GET, 'year', FILTER_VALIDATE_INT) ?? 0;
 $category = filter_input(INPUT_GET, 'category', FILTER_VALIDATE_INT) ?? 0;
+$term = filter_input(INPUT_GET, 'term') ?? '';
+
 $sort_by = filter_input(INPUT_GET, 'sort_by') ?? 'year9_0';
 $type = filter_input(INPUT_GET, 'type') ?? 'all';
 
@@ -60,15 +62,19 @@ switch ($sort_by) {
 
 
 if ($category > 0) {
-	$conditions = ' WHERE m.approved = 1';
+	$conditions = ' WHERE m.approved = 1 ';
 
-	$params['category'] = $category;
+	$params = [
+		'category' => $category,
+		'term1' => '%' . $term . '%',
+		'term2' => '%' . $term . '%'
+	];
 
 	if ($year > 0) {
 		$params['year'] = $year;
-		$conditions .= ' AND mc.category_id = :category AND m.year = :year';
+		$conditions .= ' AND mc.category_id = :category AND m.year = :year AND (m.title LIKE :term1 OR m.description LIKE :term2)';
 	} else {
-		$conditions .= ' AND mc.category_id = :category';
+		$conditions .= ' AND mc.category_id = :category AND (m.title LIKE :term1 OR m.description LIKE :term2)';
 	}
 	// count media id in catergories query for pagination
 	$stmt = $pdo->prepare("SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id" . $conditions);
@@ -94,8 +100,19 @@ if ($category > 0) {
 	$conditions = ' WHERE approved = 1';
 
 	if ($year > 0) {
-		$params['year'] = $year;
-		$conditions .= ' AND year = :year';
+		$params = [
+			'year' => $year,
+			'term1' => '%' . $term . '%',
+			'term2' => '%' . $term . '%'
+
+		];
+		$conditions .= ' AND year = :year AND (title LIKE :term1 OR description LIKE :term2)';
+	} else {
+		$params = [
+			'term1' => '%' . $term . '%',
+			'term2' => '%' . $term . '%'
+		];
+		$conditions .= ' AND (title LIKE :term1 OR description LIKE :term2)';
 	}
 	// count media id in catergories query for pagination
 	// $stmt = $pdo->prepare("SELECT COUNT(id) FROM media WHERE type='image' . $conditions ");
@@ -144,7 +161,7 @@ if ($count > $show) {
 <main class="rj-black-bg-main">
 	<div class="content home">
 		<header class="gallery-header">
-			<div>
+			<div style="width: 100%;">
 				<h1>Artworks Gallery</h1>
 				<p> Follow Pieter’s development as a visual artist over time and place.
 					You can view all the artworks in the gallery or filter them by year.
@@ -160,32 +177,39 @@ if ($count > $show) {
 						<?php endforeach; ?>
 					</select>
 				</label>
-				<label for="year">Year:
-					<select id="year" name="year" onchange="this.form.submit();">
-						<option value=0>All</option>
-						<?php foreach ($years as $yearSingle) : ?>
-							<option value="<?= $yearSingle['year'] ?>" <?= $year == $yearSingle['year'] ? ' selected' : '' ?>><?= $yearSingle['year'] ?></option>
-						<?php endforeach; ?>
-					</select>
-				</label>
-				<label for="sort_by">Sort By:
-					<select id="sort_by" name="sort_by" onchange="this.form.submit()">
-						<option value="year9_0" <?= $sort_by == 'year9_0' ? ' selected' : '' ?>>Year 10 > 1 </option>
-						<option value="year0_9" <?= $sort_by == 'year0_9' ? ' selected' : '' ?>>Year 1 > 10 </option>
-						<option value="newest" <?= $sort_by == 'newest' ? ' selected' : '' ?>>Newest</option>
-						<option value="oldest" <?= $sort_by == 'oldest' ? ' selected' : '' ?>>Oldest</option>
-						<option value="a_to_z" <?= $sort_by == 'a_to_z' ? ' selected' : '' ?>>A-Z</option>
-						<option value="z_to_a" <?= $sort_by == 'z_to_a' ? ' selected' : '' ?>>Z-A</option>
-					</select>
-				</label>
+				<div class="gallery-search">
+					<input type="text" name="term" id="search" value="<?= htmlspecialchars($term) ?>" placeholder="enter search term" class="form-control">
+					<!-- <input type="submit" value="" class="btn btn-primary"> -->
+					<button type="submit"><i class="fa-solid fa-search"></i></button>
 
-				<!-- <label for="type">Type:</label> -->
-				<select id="type" name="type" onchange="this.form.submit()" style="display: none;">
-					<option value="all" <?= $type == 'all' ? ' selected' : '' ?>>All</option>
-					<option value="audio" <?= $type == 'audio' ? ' selected' : '' ?>>Audio</option>
-					<option value="image" <?= $type == 'image' ? ' selected' : '' ?>>Image</option>
-					<option value="video" <?= $type == 'video' ? ' selected' : '' ?>>Video</option>
-				</select>
+				</div>
+				<div style="display: flex;gap: 1rem;">
+					<label for="year">Year:
+						<select id="year" name="year" onchange="this.form.submit();">
+							<option value=0>All</option>
+							<?php foreach ($years as $yearSingle) : ?>
+								<option value="<?= $yearSingle['year'] ?>" <?= $year == $yearSingle['year'] ? ' selected' : '' ?>><?= $yearSingle['year'] ?></option>
+							<?php endforeach; ?>
+						</select>
+					</label>
+					<label for="sort_by">Sort By:
+						<select id="sort_by" name="sort_by" onchange="this.form.submit()">
+							<option value="year9_0" <?= $sort_by == 'year9_0' ? ' selected' : '' ?>>Year 10 > 1 </option>
+							<option value="year0_9" <?= $sort_by == 'year0_9' ? ' selected' : '' ?>>Year 1 > 10 </option>
+							<option value="newest" <?= $sort_by == 'newest' ? ' selected' : '' ?>>Newest</option>
+							<option value="oldest" <?= $sort_by == 'oldest' ? ' selected' : '' ?>>Oldest</option>
+							<option value="a_to_z" <?= $sort_by == 'a_to_z' ? ' selected' : '' ?>>A-Z</option>
+							<option value="z_to_a" <?= $sort_by == 'z_to_a' ? ' selected' : '' ?>>Z-A</option>
+						</select>
+					</label>
+					<!-- <label for="type">Type:</label> -->
+					<select id="type" name="type" onchange="this.form.submit()" style="display: none;">
+						<option value="all" <?= $type == 'all' ? ' selected' : '' ?>>All</option>
+						<option value="audio" <?= $type == 'audio' ? ' selected' : '' ?>>Audio</option>
+						<option value="image" <?= $type == 'image' ? ' selected' : '' ?>>Image</option>
+						<option value="video" <?= $type == 'video' ? ' selected' : '' ?>>Video</option>
+					</select>
+				</div>
 
 			</form>
 			<div class="gallery-description">
@@ -199,41 +223,7 @@ if ($count > $show) {
 				<?php endif; ?>
 			</div>
 
-			<?php if ($total_pages > 1) : ?>
-				<nav aria-label="Pagination">
-					<ul class="rj-pagination">
-						<li>
-							<a class="rj-prev" href="#" id="rj-page-item-prev">
-								<svg height="16" width="16" viewBox="0 0 1024 1024" fill="currentColor">
-									<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z"></path>
-								</svg>
-							</a>
-						</li>
 
-						<?php
-						$start = max(1, $current_page - 7);
-						$end = min($total_pages, $current_page + 7);
-						for ($i = $start; $i <= $end; $i++) : ?>
-							<li class="rj-page-item <?= $i == $current_page ? 'active' : '' ?>">
-								<a href="gallery.php?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($i - 1) * $show ?>" class="rj-page-link"><?= $i ?></a>
-							</li>
-						<?php endfor; ?>
-						<?php if ($end < $total_pages) : ?>
-							<li class="rj-page-item">
-
-								<a class="rj-page-link" href="gallery.php?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($end) * $show ?>">...</a>
-							</li>
-						<?php endif; ?>
-						<li>
-							<a class="rj-next" href="#" id="rj-page-item-next">
-								<svg height="16" width="16" viewBox="0 0 1024 1024" fill="currentColor">
-									<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z" transform="matrix(-1, 0, 0, -1, 1054.269043, 991.052002)"></path>
-								</svg>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			<?php endif; ?>
 
 		</header>
 
@@ -322,8 +312,43 @@ if ($count > $show) {
 					<?php endforeach; ?>
 				<?php else : ?>
 					<p>No media found in that year and/or category.
-						You can view the year <a href="gallery.php?year=<?= $_GET['year'] ?>"><?= $_GET['year'] ?> </a> or the category <a href="gallery.php?category=<?= $_GET['category'] ?>"><?= $categories[array_search($category, array_column($categories, 'id'))]['title'] ?></a> or <a href="gallery.php">all media</a>.
+						You can view the year <a href="gallery?year=<?= $_GET['year'] ?>"><?= $_GET['year'] ?> </a> or the category <a href="gallery?category=<?= $_GET['category'] ?>"><?= $categories[array_search($category, array_column($categories, 'id'))]['title'] ?></a> or <a href="gallery">all media</a>.
 					</p>
+				<?php endif; ?>
+				<?php if ($total_pages > 1) : ?>
+					<nav aria-label="Pagination">
+						<ul class="rj-pagination">
+							<li>
+								<a class="rj-prev" href="#" id="rj-page-item-prev">
+									<svg height="16" width="16" viewBox="0 0 1024 1024" fill="currentColor">
+										<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z"></path>
+									</svg>
+								</a>
+							</li>
+
+							<?php
+							$start = max(1, $current_page - 7);
+							$end = min($total_pages, $current_page + 7);
+							for ($i = $start; $i <= $end; $i++) : ?>
+								<li class="rj-page-item <?= $i == $current_page ? 'active' : '' ?>">
+									<a href="gallery?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($i - 1) * $show ?>" class="rj-page-link"><?= $i ?></a>
+								</li>
+							<?php endfor; ?>
+							<?php if ($end < $total_pages) : ?>
+								<li class="rj-page-item">
+
+									<a class="rj-page-link" href="gallery?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($end) * $show ?>">...</a>
+								</li>
+							<?php endif; ?>
+							<li>
+								<a class="rj-next" href="#" id="rj-page-item-next">
+									<svg height="16" width="16" viewBox="0 0 1024 1024" fill="currentColor">
+										<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z" transform="matrix(-1, 0, 0, -1, 1054.269043, 991.052002)"></path>
+									</svg>
+								</a>
+							</li>
+						</ul>
+					</nav>
 				<?php endif; ?>
 		</section>
 
