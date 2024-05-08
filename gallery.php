@@ -15,7 +15,7 @@ $years = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $year = filter_input(INPUT_GET, 'year', FILTER_VALIDATE_INT) ?? 0;
 $category = filter_input(INPUT_GET, 'category', FILTER_VALIDATE_INT) ?? 0;
-$term = filter_input(INPUT_GET, 'term') ?? '';
+$term = trim(filter_input(INPUT_GET, 'term')) ?? '';
 
 $sort_by = filter_input(INPUT_GET, 'sort_by') ?? 'year9_0';
 $type = filter_input(INPUT_GET, 'type') ?? 'all';
@@ -316,41 +316,46 @@ if ($count > $show) {
 					</p>
 				<?php endif; ?>
 			</div>
-				<?php if ($total_pages > 1) : ?>
-					<nav aria-label="Pagination">
-						<ul class="rj-pagination">
-							<li>
-								<a class="rj-prev" href="#" id="rj-page-item-prev">
-									<svg height="16" width="16" viewBox="0 0 1024 1024" fill="currentColor">
-										<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z"></path>
-									</svg>
-								</a>
-							</li>
+			<?php if ($total_pages > 1) : ?>
+				<nav aria-label="Pagination">
+					<ul class="rj-pagination">
+						<li>
+							<a class="rj-prev" href="#" id="rj-page-item-prev">
+								<svg height="16" width="16" viewBox="0 0 1024 1024" fill="currentColor">
+									<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z"></path>
+								</svg>
+							</a>
+						</li>
 
-							<?php
-							$start = max(1, $current_page - 5);
-							$end = min($total_pages, $current_page + 5);
-							for ($i = $start; $i <= $end; $i++) : ?>
-								<li class="rj-page-item <?= $i == $current_page ? 'active' : '' ?>">
-									<a href="gallery?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($i - 1) * $show ?>" class="rj-page-link"><?= $i ?></a>
-								</li>
-							<?php endfor; ?>
-							<?php if ($end < $total_pages) : ?>
-								<li class="rj-page-item">
-
-									<a class="rj-page-link" href="gallery?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($end) * $show ?>">...</a>
-								</li>
-							<?php endif; ?>
-							<li>
-								<a class="rj-next" href="#" id="rj-page-item-next">
-									<svg height="16" width="16" viewBox="0 0 1024 1024" fill="currentColor">
-										<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z" transform="matrix(-1, 0, 0, -1, 1054.269043, 991.052002)"></path>
-									</svg>
-								</a>
+						<?php
+						// Calculate the start and end page numbers
+						$start = max(1, $current_page - 2);
+						$end = min($total_pages, $start + 5);
+						if ($total_pages > 6 && $current_page > 3) : ?>
+							<li class="rj-page-item">
+								<a class="rj-page-link" href="gallery?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($start - 2) * $show ?>&term=<?= $term ?>">...</a>
 							</li>
-						</ul>
-					</nav>
-				<?php endif; ?>
+						<?php endif;
+						for ($i = $start; $i <= $end; $i++) : ?>
+							<li class="rj-page-item <?= $i == $current_page ? 'active' : '' ?>">
+								<a href="gallery?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($i - 1) * $show ?>&term=<?= $term ?>" class="rj-page-link"><?= $i ?></a>
+							</li>
+						<?php endfor;
+						if ($total_pages > $current_page + 5) : ?>
+							<li class="rj-page-item">
+								<a class="rj-page-link" href="gallery?year=<?= $year ?>&category=<?= $category ?>&sort_by=<?= $sort_by ?>&type=<?= $type ?>&show=<?= $show ?>&from=<?= ($current_page + 3) * $show ?>&term=<?= $term ?>">...</a>
+							</li>
+						<?php endif; ?>
+						<li>
+							<a class="rj-next" href="#" id="rj-page-item-next">
+								<svg height="16" width="16" viewBox="0 0 1024 1024" fill="currentColor">
+									<path d="M 874.69 495.527 C 874.69 484.23 865.522 475.061 854.224 475.061 L 249.45 475.061 L 437.534 286.978 C 445.526 278.986 445.526 266.03 437.534 258.038 C 433.533 254.048 428.294 252.042 423.064 252.042 C 417.825 252.042 412.586 254.037 408.585 258.038 L 185.576 481.048 C 181.738 484.885 179.579 490.094 179.579 495.517 C 179.579 500.951 181.738 506.149 185.576 509.987 L 408.595 733.016 C 416.587 741.008 429.552 741.008 437.544 733.016 C 445.536 725.014 445.536 712.059 437.544 704.067 L 249.471 515.993 L 854.224 515.993 C 865.522 515.993 874.69 506.835 874.69 495.527 Z" transform="matrix(-1, 0, 0, -1, 1054.269043, 991.052002)"></path>
+								</svg>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			<?php endif; ?>
 		</section>
 
 

@@ -11,7 +11,7 @@ $pdo = pdo_connect_mysql();
 if (isset($_SERVER['HTTP_ORIGIN'])) {
   // You can decide whether to allow the 'origin' in the 'Access-Control-Allow-Origin' header
   // Replace '*' with the specific website you want to allow or keep it '*' to allow all websites
-  header("Access-Control-Allow-Origin: https://azart.codette.net/");
+  header("Access-Control-Allow-Origin: https://azart.codette.net");
   header('Access-Control-Allow-Credentials: true');
   header('Access-Control-Max-Age: 86400');    // cache for 1 day
 }
