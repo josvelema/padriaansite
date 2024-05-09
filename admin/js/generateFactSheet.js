@@ -131,6 +131,17 @@ function createFactSheet(sheetData) {
     const price = parseFloat(sheetData.art_price).toFixed(2);
     ctx.fillText(`Price: €${price}`, rightX, 540);
 
+    // check if the artwork has a frame and add the frame price if the price is not 0
+    if (sheetData.art_has_frame == 1 && sheetData.art_frame_price != 0) {
+      const framePrice = parseFloat(sheetData.art_frame_price).toFixed(2);
+      ctx.fillText(`Frame Price: €${framePrice}`, rightX, 570);
+    }
+    
+    // if it has frame and the price is 0 then display that the frame is included
+    if (sheetData.art_has_frame == 1 && sheetData.art_frame_price == 0) {
+      ctx.fillText(`Frame: Included`, rightX, 570);
+    }
+
     ctx.font = "12px Times New Roman";
     ctx.fillStyle = "#000000";
     ctx.textAlign = "left";
@@ -226,6 +237,8 @@ async function generateFactSheetAndSave(mediaId) {
     imagePath: mediaData.filepath,
     art_material: mediaData.art_material,
     art_dimensions: mediaData.art_dimensions,
+    art_has_frame: mediaData.art_has_frame,
+    art_frame_price : mediaData.art_frame_price,
     art_type: mediaData.art_type,
     art_price: mediaData.art_price,
     qr_card_url: mediaData.qr_card_url,
@@ -237,6 +250,9 @@ async function generateFactSheetAndSave(mediaId) {
   console.log("Fact sheet generated and saved successfully");
   // Show the success message and hide the modal after a short delay
   progressMessage.textContent = "Factsheet generated successfully!";
-  progressModal.style.display = "none";
-  //location.reload();
+  setTimeout(() => {
+    progressModal.style.display = 'none';
+     // refresh the page
+    location.reload();
+  }, 2000);
 }

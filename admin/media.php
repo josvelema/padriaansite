@@ -114,6 +114,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_POST['art_frame_price'] = 0;
         }
 
+        // check if the media has thumbnail and if not generate one unless a new file is uploaded
+        if (empty($thumb) && empty($_FILES['media']['tmp_name'])) {
+            $thumb = generateThumb('../' . $media_path);
+        }
+
         // Update the media
         $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?,  approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ?,art_has_frame = ?, art_frame_price = ?, thumbnail = ? WHERE id = ?');
         $stmt->execute([$_POST['title'], $_POST['description'], $_POST['year'], $_POST['fnr'], $media_path, $_POST['type'], $_POST['approved'], $_POST['art_material'], $_POST['art_dimensions'], $_POST['art_type'], $_POST['art_status'], $_POST['art_price'], $_POST['art_has_frame'], $_POST['art_frame_price'], $thumb, $_GET['id']]);
@@ -177,6 +182,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ';
     }
 }
+
+
+
 ?>
 <?= template_admin_header($page . ' Media', 'allmedia') ?>
 
@@ -278,8 +286,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="file" name="media" accept="audio/*,video/*,image/*">
         <div id="media-preview">
             <?php if ($page == "Edit") : ?>
-                <?php if ($media['type'] == 'image') : ?>
-                    <img src="../<?= $media['filepath'] ?>" alt="Media preview">
+                <?php if ($media['type'] == 'image') : 
+                    // get filesize
+                    $filesize = convert_filesize(filesize('../' . $media['filepath']));
+                    // dimensions 
+                    $dimensions = getimagesize('../' . $media['filepath']);
+                    // inspectAndDie($dimensions);
+                    ?>
+                    <div class="">
+                        <p>Current image (<?= $filesize ?>) 
+                        <br>
+                        <?= $dimensions[0] . ' x ' . $dimensions[1] ?>
+                    </p>
+                        <img src="../<?= $media['filepath'] ?>" alt="Media preview">
+                    </div>
                 <?php elseif ($media['type'] == 'audio') : ?>
                     <audio controls>
                         <source src="../<?= $media['filepath'] ?>" type="audio/ogg">
@@ -293,10 +313,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         Your browser does not support the video element.
                     </video>
                 <?php endif; ?>
+                <!-- check if there is a thumbnail and if so show it -->
+                <?php if (!empty($media['thumbnail'])) :
+                    // get filesize
+                    $filesize_thumb = convert_filesize(filesize('../' . $media['thumbnail']));
+                    ?>
+                    <div class="preview-thumb">
+                        <p>Current thumbnail (<?= $filesize_thumb ?>)</p>
+                        <img src="../<?= $media['thumbnail'] ?>" alt="Thumbnail" width="320" height="180">
+                    </div>
+                <?php endif; ?>
             <?php endif; ?>
-
         </div>
-
         <label for="add_categories">Categories</label>
         <div class="form-group">
             <div class="form-group-item">
@@ -317,14 +345,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <input type="hidden" name="categories_list" value="<?= implode(',', array_column($media['categories'], 'id')) ?>">
-
-        <br>
-
         <div class="submit-btns">
             <?= ($page == 'Edit') ? ' <input type="submit" name="submit" value="Submit changes"> '
                 : '  <input type="submit" name="submit" value="Create new media"> ' ?>
         </div>
-
     </form>
 
 </div>

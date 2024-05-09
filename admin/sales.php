@@ -309,7 +309,7 @@ template_admin_header('Sales Page', 'Sales Page')
 
 </section>
 <script src="js/generateBusinessCard.js"></script>
-<script src="js/generateFactsheet.js"></script>
+<script src="js/generateFactSheet.js"></script>
 <script src="js/multimedia.js"></script>
 
 <script src="js/mediaCRUD.js"></script>
