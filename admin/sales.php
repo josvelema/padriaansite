@@ -408,6 +408,7 @@ template_admin_header('Sales Page', 'Sales Page')
 
     let linkToResults = document.getElementById('linkToResults');
     let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.65"><title>Art for Sale</title><link rel="stylesheet" href="https://pieter-adriaans.com/assets/css/availableArtstyle.css"></head>';
+    // let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.65"><title>Art for Sale</title><link rel="stylesheet" href="http://localhost:5501/assets/css/availableArtstyle.css"></head>';
     let body = '';
     if (catTitle) {
       body += `<body><main><header><div><h1>${catTitle}</h1><h2>Available for sale</h2><p>${date}</p></div><div class="image-wrap"><img src="https://pieter-adriaans.com/assets/img/kaasfabriekSmall.png" alt="" srcset=""></div></header><div class="media-container">`;
@@ -462,11 +463,11 @@ template_admin_header('Sales Page', 'Sales Page')
       } else {
         framePrice = '';
       }
-      // let qr = `<a href="../${m.qr_url}" target="_blank" class="btn btn--qr"><i class="fa-solid fa-eye"></i> QR</a>`;
+      let qr = `<img src="http://pieter-adriaans.com/${m.qr_url}" alt="qr code for ${m.title}" loading="lazy">`;
       // let qrCard = `<a href="../${m.qr_card_url}" target="_blank" class="btn btn--qrcard"><i class="fa-solid fa-eye"></i> QR Card</a>`;
       // let fact = `<a href="../${m.factsheet_url}" target="_blank" class="btn btn--fact"><i class="fa-solid fa-eye"></i> Factsheet</a>`;
 
-      let mediaItem = `<div class="media-item"><div class="img-wrap">${img}</div><div class="media-info"><div class="info-header">${title}<ul>${type}${materials}${dimensions}${idYearFnr}</ul></div><div class="info-price"><ul>${price}${frame}${framePrice}</ul></div></div></div>`;
+      let mediaItem = `<div class="media-item"><div class="img-wrap">${img}</div><div class="media-info"><div class="info-header">${title}<ul>${type}${materials}${dimensions}${idYearFnr}</ul></div><div class="info-price"><ul>${price}${frame}${framePrice}</ul></div></div><div class="qr">${qr}</div></div>`;
 
       body += mediaItem;
     });
