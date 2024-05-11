@@ -6,7 +6,7 @@ $term = filter_input(INPUT_GET, 'term') ?? '';
 $show = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 25;
 $from = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0;
 $refresh = filter_input(INPUT_GET, 'refresh', FILTER_VALIDATE_INT) ?? 0;
-+$count = 0;
+$count = 0;
 $media = [];
 
 $stmt = $pdo->prepare('SELECT * FROM categories ORDER BY id DESC');
@@ -258,8 +258,8 @@ template_admin_header('Media Gallery\'s', 'MediaGallery')
                             </td>
                             <td class="rj-action-td">
                                 <a href="media.php?id=<?= $m['id'] ?>&<?= http_build_query($get_params) ?>" class="btn btn--edit">Edit</a>
-                                <?php if($_SESSION['role'] == 'admin') : ?>
-                                <a class="btn btn--del" onclick="deleteMediaModal(<?= $m['id'] ?>, '<?= http_build_query($get_params) ?>')">Delete</a>
+                                <?php if ($_SESSION['role'] == 'admin') : ?>
+                                    <a class="btn btn--del" onclick="deleteMediaModal(<?= $m['id'] ?>, '<?= http_build_query($get_params) ?>')">Delete</a>
                                 <?php endif; ?>
                                 <?php if (!$m['approved']) : ?>
                                     <a href="allmedia.php?approve=<?= $m['id'] ?>" class="btn btn--edit">Approve</a>
@@ -285,10 +285,9 @@ template_admin_header('Media Gallery\'s', 'MediaGallery')
 <script src="js/mediaCRUD.js"></script>
 <script src="js/pagination.js"></script>
 <script>
-        // select category
-        document.getElementById('selectCat').addEventListener('change', function() {
-      this.form.submit();
-  });
-
+    // select category
+    document.getElementById('selectCat').addEventListener('change', function() {
+        this.form.submit();
+    });
 </script>
 <?= template_admin_footer() ?>

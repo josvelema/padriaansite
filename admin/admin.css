@@ -163,7 +163,7 @@
     color: #fafafa;
     border-radius: 6px;
     border:1px solid #fafafa;
-    box-shadow: 0 0 4px -2px #fdfaf08;
+    box-shadow: 0 0 4px -2px #fdfaf0;
     padding: 0.5em;
     margin-inline: 0.2em;
   }
@@ -1074,6 +1074,11 @@
     gap: 0.66em;
     padding: 0.5em;
     width: 100%;
+  }
+
+  #linkToResults {
+    display: none;
+    gap: 1rem;
   }
   
   .bulkOptionContainer {
