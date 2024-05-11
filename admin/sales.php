@@ -407,12 +407,12 @@ template_admin_header('Sales Page', 'Sales Page')
     }).replace(/\//g, '');
 
     let linkToResults = document.getElementById('linkToResults');
-    let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Art for Sale</title><link rel="stylesheet" href="https://pieter-adriaans.com/assets/css/availableArtstyle.css"></head>';
+    let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.65"><title>Art for Sale</title><link rel="stylesheet" href="https://pieter-adriaans.com/assets/css/availableArtstyle.css"></head>';
     let body = '';
     if (catTitle) {
-      body += `<body><header><div><h1>${catTitle}</h1><h2>Available for sale</h2><p>${date}</p></div><div class="image-wrap"><img src="https://pieter-adriaans.com/assets/img/kaasfabriekSmall.png" alt="" srcset=""></div></header><main><div class="media-container">`;
+      body += `<body><main><header><div><h1>${catTitle}</h1><h2>Available for sale</h2><p>${date}</p></div><div class="image-wrap"><img src="https://pieter-adriaans.com/assets/img/kaasfabriekSmall.png" alt="" srcset=""></div></header><div class="media-container">`;
     } else {
-      body += `<body><header><div><h1>Available Art for Sale</h1></div><div class="image-wrap"><img src="https://pieter-adriaans.com/assets/img/kaasfabriekSmall.png" alt="" srcset=""></div></header><main><div class="media-container">`;
+      body += `<body><main><header><div><h1>Available Art for Sale</h1></div><div class="image-wrap"><img src="https://pieter-adriaans.com/assets/img/kaasfabriekSmall.png" alt="" srcset=""></div></header><div class="media-container">`;
     }
 
     let disclaimer = `</div></main>
@@ -455,7 +455,7 @@ template_admin_header('Sales Page', 'Sales Page')
         price = `<li>Price: &euro;${m.art_price.toLocaleString('en-US')}</li>`;
       }
 
-      let frame = `<li>Frame: ${m.art_has_frame ? 'yes' : 'no'}</li>`;
+      let frame = `<li>Frame: ${m.art_has_frame > 0 ? 'yes' : 'no'}</li>`;
       let framePrice;
       if (m.art_has_frame && m.art_frame_price > 0) {
         framePrice = `<li>Frame Price: &euro;${m.art_frame_price.toLocaleString('en-US')}</li>`;
