@@ -446,6 +446,7 @@ border-radius: 3px;
 .rj-about-logo-container .rj-kaas-logo ,
 .rj-about-logo-container .rj-mz {
     height: 210px;
+    width: auto;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     padding: 1rem;

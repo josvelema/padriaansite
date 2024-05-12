@@ -407,7 +407,7 @@ template_admin_header('Sales Page', 'Sales Page')
     }).replace(/\//g, '');
 
     let linkToResults = document.getElementById('linkToResults');
-    let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.65"><title>Art for Sale</title><link rel="stylesheet" href="https://pieter-adriaans.com/assets/css/availableArtstyle.css"></head>';
+    let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.5"><title>Art for Sale</title><link rel="stylesheet" href="https://pieter-adriaans.com/assets/css/availableArtstyle.css"></head>';
     // let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.65"><title>Art for Sale</title><link rel="stylesheet" href="http://localhost:5501/assets/css/availableArtstyle.css"></head>';
     let body = '';
     if (catTitle) {
