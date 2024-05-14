@@ -22,6 +22,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>Title</th>
                     <th>Description</th>
                     <th>Private</th>
+                    <th>Sale <br> category</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -37,6 +38,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?=$category['title']?></td>
                     <td><?=$category['description']?></td>
                     <td><?=$category['is_private']  ? 'Yes' : 'No'?></td>
+                    <td><?=$category['is_for_sale']  ? 'Yes' : 'No'?></td>
                     <td><a href="category.php?id=<?=$category['id']?>" class="rj-action-edit">Edit</a></td>
                 </tr>
                 <?php endforeach; ?>

@@ -1,5 +1,9 @@
 <?php
+header('Cache-Control: no-cache, must-revalidate');
+header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+header('Content-Type: text/html; charset=utf-8');
 include 'main.php';
+
 
 $dt = time();
 $viewCat = filter_input(INPUT_GET, 'viewCat', FILTER_VALIDATE_INT) ?? 0;
@@ -48,8 +52,7 @@ if ($viewCat > 0) {
   $stmt = $pdo->prepare('SELECT * FROM categories WHERE id = :category_id');
   $stmt->execute(['category_id' => $viewCat]);
   $category = $stmt->fetch(PDO::FETCH_ASSOC);
-  $catTitle = $category['title'];
-  $catDesc = $category['description'];
+
   $catPrivate = $category['is_private'];
   // count query
   $stmt = $pdo->prepare('SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2) AND art_status IS NOT NULL AND art_status <> "not for sale"');
@@ -96,6 +99,9 @@ if ($viewCat > 0) {
   }
 }
 
+$catTitle = $category['title'] ?? '';
+$catDesc = $category['description'] ?? '';
+
 
 
 if ($count > $show) {
@@ -140,9 +146,13 @@ template_admin_header('Sales Page', 'Sales Page')
     </h2>
     <p><?= $count ?> media files found. </p>
     <p>viewing page <?= $current_page ?> of <?= $total_pages ?>.</p>
+    <?php if ($count > 0) : ?>
+      <div class="rj-action-td">
+        <button class="btn btn-primary" id="generateHTML">generate Page</button>
+        <span id="linkToResults"></span>
+      </div>
+    <?php endif; ?>
   </div>
-
-
   <div class="rj-table-ctrl">
     <form action="sales.php" method='GET' class="bulkOptionContainer">
       <label for="selectCat">Select category to view</label>
@@ -155,14 +165,9 @@ template_admin_header('Sales Page', 'Sales Page')
       <input type="text" name="term" id="search" value="<?= htmlspecialchars($term) ?>" placeholder="enter search term" class="form-control">
       <input type="submit" value="Search" class="btn btn-primary">
     </form>
-    <!-- button for generating a html page with the results   -->
-    <?php if ($count > 0) : ?>
-      <div class="rj-action-td">
-        <button class="btn btn-primary" id="generateHTML">generate Page</button>
-        <span id="linkToResults"></span>
-      </div>
-    <?php endif; ?>
   </div>
+
+
 
   <nav aria-label="Page navigation">
 
@@ -419,12 +424,12 @@ template_admin_header('Sales Page', 'Sales Page')
     let disclaimer = `</div></main>
     <footer>
     <p>We ship all over the world. Various methods of payment are available.
-      The price of the work in this factsheet is valid on the date of issue, but can changed without notice.
+      The price of the work in this factsheet is valid on the date of issue, but can be changed without notice.
       lf you are interested please contact us.</p>
     <div class="contact-info">
       <p>Date: ${date}
         <br> Tel: +31 654 234 459
-        <br> Tel: +351 964 643 61
+        <br> Tel: +351 964 643 610
       </p>
       <p>
         pieter-adriaans.com<br>
@@ -463,7 +468,7 @@ template_admin_header('Sales Page', 'Sales Page')
       } else {
         framePrice = '';
       }
-      let qr = `<img src="http://pieter-adriaans.com/${m.qr_url}" alt="qr code for ${m.title}" loading="lazy">`;
+      let qr = `<img src="https://pieter-adriaans.com/${m.qr_url}" alt="qr code for ${m.title}" loading="lazy">`;
       // let qrCard = `<a href="../${m.qr_card_url}" target="_blank" class="btn btn--qrcard"><i class="fa-solid fa-eye"></i> QR Card</a>`;
       // let fact = `<a href="../${m.factsheet_url}" target="_blank" class="btn btn--fact"><i class="fa-solid fa-eye"></i> Factsheet</a>`;
 
@@ -481,6 +486,9 @@ template_admin_header('Sales Page', 'Sales Page')
     let downloadA = document.createElement('a');
     a.href = url;
     downloadA.href = url;
+    // add class
+    a.classList.add('btn');
+    downloadA.classList.add('btn');
     a.target = '_blank';
     a.textContent = 'view page';
     downloadA.textContent = 'download page';

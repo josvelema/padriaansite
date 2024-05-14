@@ -4,7 +4,8 @@ include 'main.php';
 $category = [
     'title' => '',
     'description' => '',
-    'is_private' => 0
+    'is_private' => 0,
+    'is_for_sale' => 0
 ];
 if (isset($_GET['id'])) {
     // Retrieve the category from the database
@@ -15,8 +16,8 @@ if (isset($_GET['id'])) {
     $page = 'Edit';
     if (isset($_POST['submit'])) {
         // Update the category
-        $stmt = $pdo->prepare('UPDATE categories SET title = ?, description = ?, is_private = ? WHERE id = ?');
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['is_private'], $_GET['id']]);
+        $stmt = $pdo->prepare('UPDATE categories SET title = ?, description = ?, is_private = ?, is_for_Sale = ? WHERE id = ?');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['is_private'], $_POST['is_for_sale'], $_GET['id']]);
         header('Location: categories.php');
         exit;
     }
@@ -31,8 +32,8 @@ if (isset($_GET['id'])) {
     // Create a new category
     $page = 'Create';
     if (isset($_POST['submit'])) {
-        $stmt = $pdo->prepare('INSERT INTO categories (title,description,is_private) VALUES (?,?,?)');
-        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['is_private']]);
+        $stmt = $pdo->prepare('INSERT INTO categories (title,description,is_private,is_for_sale) VALUES (?,?,?,?)');
+        $stmt->execute([$_POST['title'], $_POST['description'], $_POST['is_private'], $_POST['is_for_sale']]);
         header('Location: categories.php');
         exit;
     }
@@ -47,6 +48,7 @@ if (isset($_GET['id'])) {
     <form action="" method="post" class="form responsive-width-100">
 
         <label for="title">Title</label>
+        
         <input id="title" type="text" name="title" placeholder="Title" value="<?= $category['title'] ?>" required>
 
         <label for="description">Description</label>
@@ -56,6 +58,11 @@ if (isset($_GET['id'])) {
         <select name="is_private" id="is_private">
             <option value="0" <?= $category['is_private'] == 0 ? ' selected' : '' ?>>No</option>
             <option value="1" <?= $category['is_private'] == 1 ? ' selected' : '' ?>>Yes</option>
+        </select>
+        <label for="is_private">Azorean Art sale category?</label>
+        <select name="is_for_sale" id="is_private">
+            <option value="0" <?= $category['is_for_sale'] == 0 ? ' selected' : '' ?>>No</option>
+            <option value="1" <?= $category['is_for_sale'] == 1 ? ' selected' : '' ?>>Yes</option>
         </select>
 
         <div class="submit-btns">

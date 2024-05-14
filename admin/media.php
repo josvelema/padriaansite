@@ -88,14 +88,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle file uploads
     if (isset($_FILES['media']) && !empty($_FILES['media']['tmp_name'])) {
         //! Handle media upload
-        $media_id = md5(uniqid());
+        $media_file_id = md5(uniqid());
         if (isset($_FILES['media']) && !empty($_FILES['media']['tmp_name'])) {
             $media_type = '';
             $media_type = preg_match('/image\/*/', $_FILES['media']['type']) ? 'image' : $media_type;
             $media_type = preg_match('/audio\/*/', $_FILES['media']['type']) ? 'audio' : $media_type;
             $media_type = preg_match('/video\/*/', $_FILES['media']['type']) ? 'video' : $media_type;
             $media_parts = explode('.', $_FILES['media']['name']);
-            $media_path = 'media/' . $media_type . 's/' . $media_id . '.' . end($media_parts);
+            $media_path = 'media/' . $media_type . 's/' . $media_file_id . '.' . end($media_parts);
             move_uploaded_file($_FILES['media']['tmp_name'], '../' . $media_path);
             if ($media_type == 'image') {
                 $thumb = generateThumb('../' . $media_path);
@@ -109,6 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_GET['id'])) {
+
+        // set the media id
+        $media_id = $_GET['id'];
         // check if the art_has_frame is set to 0 and if so set the frame price to 0
         if ($_POST['art_has_frame'] == 0) {
             $_POST['art_frame_price'] = 0;
@@ -135,13 +138,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </label>
             </div>
             <p>
-            <a href="../' . $media_path . '" target="_blank" class="rj-modal-btn">Preview media</a>
+            <a href="../view.php?id=' . $media_id . '" target="_blank" class="rj-modal-btn">Preview media</a>
             </p>
             <p>
             <a href="' . $gotoPage . http_build_query($redirect_params) . '" class="rj-modal-btn">Go back to media page</a>
-            </p>
-            <p>
-            <a href="#" onclick="closeModal()" class="rj-modal-btn">Close and stay on this page</a>
             </p>
         </div>
         
@@ -169,13 +169,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </label>
             </div>
             <p>
-            <a href="../' . $media_path . '" target="_blank" class="rj-modal-btn">Preview media</a>
+            <a href="../view.php?id=' . $media_id . '" target="_blank" class="rj-modal-btn">Preview media</a>
             </p>
             <p>
             <a href="' . $gotoPage . http_build_query($redirect_params) . '" class="rj-modal-btn">Go back to media page</a>
-            </p>
-            <p>
-            <a href="#" onclick="closeModal()" class="rj-modal-btn">Add another Media file</a>
             </p>
         </div>
         

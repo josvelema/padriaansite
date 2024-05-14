@@ -448,6 +448,8 @@ border-radius: 3px;
     height: 210px;
     width: auto;
     aspect-ratio: 4 / 3;
+    /* support for safari */
+    
     object-fit: cover;
     padding: 1rem;
     border-radius: 10px;
