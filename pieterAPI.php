@@ -1,5 +1,4 @@
 <?php
-
 /**
  * API for the Pieter Adriaans website to connect to the database and send back JSON data
  * 
@@ -85,4 +84,8 @@ if ($method == 'GET') {
   echo json_encode($media);
 } else {
   echo json_encode(['message' => 'Invalid request method']);
+}
+
+// Close the connection
+$pdo = null;
 }
