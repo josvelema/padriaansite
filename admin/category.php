@@ -1,4 +1,7 @@
 <?php
+header('Cache-Control: no-cache, must-revalidate');
+header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+header('Content-Type: text/html; charset=utf-8');
 include 'main.php';
 // Default category values
 $category = [
@@ -48,7 +51,7 @@ if (isset($_GET['id'])) {
     <form action="" method="post" class="form responsive-width-100">
 
         <label for="title">Title</label>
-        
+
         <input id="title" type="text" name="title" placeholder="Title" value="<?= $category['title'] ?>" required>
 
         <label for="description">Description</label>

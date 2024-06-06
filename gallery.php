@@ -263,7 +263,7 @@ if ($count > $show) {
 									<?php if ($m['type'] == 'image') : ?>
 										<div class="image-container">
 											<div class="img-wrapper">
-												<img src="<?= $m['thumbnail'] ?>" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad placeholder">
+													
 											</div>
 										</div>
 										<div class="modal-container">
