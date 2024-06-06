@@ -41,13 +41,13 @@ $category = filter_input(INPUT_GET, 'category', FILTER_VALIDATE_INT) ?? null;
 
 if ($method == 'GET') {
   // get all for sale categories
-  if (isset($_GET['categories'])) {
-    $stmt = $pdo->prepare('SELECT * FROM categories WHERE for_sale = 1');
-    $stmt->execute();
-    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($categories);
-    exit();
-  }
+  // if (isset($_GET['categories'])) {
+  //   $stmt = $pdo->prepare('SELECT * FROM categories WHERE for_sale = 1');
+  //   $stmt->execute();
+  //   $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  //   echo json_encode($categories);
+  //   exit();
+  // }
 
 
   if (isset($id)) {
@@ -67,14 +67,19 @@ if ($method == 'GET') {
       $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } else {
       // Return the media with the provided category
-      $stmt = $pdo->prepare("SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id WHERE mc.category_id = :category  ORDER BY m.art_price DESC AND m.uploaded_date DESC ");
-      $stmt->execute(['category' => $_GET['category']]);
-
+      $stmt = $pdo->prepare("SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id WHERE mc.category_id = ? ORDER BY m.art_price DESC");
       $stmt->execute([$_GET['category']]);
+
       $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      echo json_encode($media);
-      exit();
-    }
+       if(!$media) {
+        echo json_encode(['message' => 'No media found']);
+        exit();
+       } else {
+        echo json_encode($media);
+        exit();
+       
+       }
+
   }
 
   echo json_encode($media);
