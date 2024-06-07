@@ -1,4 +1,5 @@
 <?php
+
 /**
  * API for the Pieter Adriaans website to connect to the database and send back JSON data
  * 
@@ -36,22 +37,23 @@ $method = $_SERVER['REQUEST_METHOD'];
 // sanitize the input for id (int) and category (int) (modern php) 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT) ?? null;
 $category = filter_input(INPUT_GET, 'category', FILTER_VALIDATE_INT) ?? null;
+$categories = filter_input(INPUT_GET, 'categories', FILTER_VALIDATE_INT) ?? null;
 
 
 if ($method == 'GET') {
   // get all for sale categories
-  // if (isset($_GET['categories'])) {
-  //   $stmt = $pdo->prepare('SELECT * FROM categories WHERE for_sale = 1');
-  //   $stmt->execute();
-  //   $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  //   echo json_encode($categories);
-  //   exit();
-  // }
+  if (isset($categories)) {
+    $stmt = $pdo->prepare('SELECT * FROM categories WHERE is_for_sale = 1');
+    $stmt->execute();
+    $categoriesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($categoriesData);
+    exit();
+  }
 
 
   if (isset($id)) {
     // Return the media with the provided id
-    $stmt = $pdo->prepare('SELECT * FROM media WHERE id = ?');
+    $stmt = $pdo->prepare('SELECT * FROM media WHERE id = ? AND art_status = "for sale"');
     $stmt->execute([$_GET['id']]);
     $media = $stmt->fetch(PDO::FETCH_ASSOC);
     echo json_encode($media);
@@ -70,22 +72,20 @@ if ($method == 'GET') {
       $stmt->execute([$_GET['category']]);
 
       $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
-       if(!$media) {
+      if (!$media) {
         echo json_encode(['message' => 'No media found']);
         exit();
-       } else {
+      } else {
         echo json_encode($media);
         exit();
-       
-       }
+      }
+    }
 
+    echo json_encode($media);
+  } else {
+    echo json_encode(['message' => 'Invalid request method']);
   }
 
-  echo json_encode($media);
-} else {
-  echo json_encode(['message' => 'Invalid request method']);
-}
-
-// Close the connection
-$pdo = null;
+  // Close the connection
+  $pdo = null;
 }
