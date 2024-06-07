@@ -64,7 +64,7 @@ if ($method == 'GET') {
     if ($category == 0) {
       // Retrieve the media
       // Return the media with the provided category
-      $stmt = $pdo->prepare("SELECT m.* FROM media m WHERE m.art_status = 'for sale' JOIN media_categories mc ON mc.media_id = m.id WHERE mc.category_id = ? ORDER BY m.art_price DESC LIMIT 5");
+      $stmt = $pdo->prepare("SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id WHERE mc.category_id = ? AND m.art_status = 'for sale' ORDER BY m.art_price DESC LIMIT 5");
       $stmt->execute([$_GET['category']]);
       $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } else {
