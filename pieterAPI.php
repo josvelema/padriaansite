@@ -53,7 +53,7 @@ if ($method == 'GET') {
 
   if (isset($id)) {
     // Return the media with the provided id
-    $stmt = $pdo->prepare('SELECT * FROM media WHERE id = ? AND art_status = "for sale"');
+    $stmt = $pdo->prepare('SELECT * FROM media WHERE id = ?');
     $stmt->execute([$_GET['id']]);
     $media = $stmt->fetch(PDO::FETCH_ASSOC);
     echo json_encode($media);
@@ -63,8 +63,9 @@ if ($method == 'GET') {
   if (isset($category)) {
     if ($category == 0) {
       // Retrieve the media
-      $stmt = $pdo->prepare('SELECT * FROM media ORDER BY id DESC');
-      $stmt->execute();
+      // Return the media with the provided category
+      $stmt = $pdo->prepare("SELECT m.* FROM media m WHERE m.art_status = 'for sale' JOIN media_categories mc ON mc.media_id = m.id WHERE mc.category_id = ? ORDER BY m.art_price DESC LIMIT 5");
+      $stmt->execute([$_GET['category']]);
       $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } else {
       // Return the media with the provided category
