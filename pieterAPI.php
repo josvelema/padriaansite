@@ -65,6 +65,7 @@ if ($method == 'GET') {
       // Retrieve the media
       // Return the media with the provided category
       $stmt = $pdo->prepare("SELECT * FROM media WHERE art_status = 'available' ORDER BY art_price DESC,uploaded_date ASC LIMIT 5");
+      $stmt->execute();
       $media = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } else {
       // Return the media with the provided category
