@@ -263,7 +263,8 @@ if ($count > $show) {
 									<?php if ($m['type'] == 'image') : ?>
 										<div class="image-container">
 											<div class="img-wrapper">
-													
+												<img src="<?= $m['thumbnail'] ?>" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad placeholder">
+
 											</div>
 										</div>
 										<div class="modal-container">
@@ -414,11 +415,12 @@ if ($count > $show) {
 		});
 	}
 	document.addEventListener('DOMContentLoaded', () => {
+		console.log('loaded');
 
 		const observer = lozad(".lozad", {
 			loaded: function(el) {
 				el.classList.add("fade");
-				// console.log("loadewe");
+				console.log("loadewe");
 			}
 		});
 		observer.observe();
