@@ -412,8 +412,8 @@ template_admin_header('Sales Page', 'Sales Page')
     }).replace(/\//g, '');
 
     let linkToResults = document.getElementById('linkToResults');
-    // let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.5"><title>Art for Sale</title><link rel="stylesheet" href="https://pieter-adriaans.com/assets/css/availableArtstyle.css"></head>';
-    let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.65"><title>Art for Sale</title><link rel="stylesheet" href="http://localhost/pieter/assets/css/availableArtstyle.css"></head>';
+    let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.5"><title>Art for Sale</title><link rel="stylesheet" href="https://pieter-adriaans.com/assets/css/availableArtstyle.css"></head>';
+    // let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.65"><title>Art for Sale</title><link rel="stylesheet" href="http://localhost/pieter/assets/css/availableArtstyle.css"></head>';
     let body = '';
     if (catTitle) {
       body += `<body><main><header><div><h1>${catTitle}</h1><h2>Available for sale</h2><p>${date}</p></div><div class="image-wrap"><img src="https://pieter-adriaans.com/assets/img/kaasfabriekSmall.png" alt="" srcset=""></div></header><div class="media-container">`;
@@ -468,7 +468,7 @@ template_admin_header('Sales Page', 'Sales Page')
       } else {
         framePrice = '';
       }
-      let qr = `<img src="http://localhost/pieter${m.qr_url}" alt="qr code for ${m.title}" loading="lazy">`;
+      let qr = `<img src="https://pieter-adriaans.com${m.qr_url}" alt="qr code for ${m.title}" loading="lazy">`;
       // let qrCard = `<a href="../${m.qr_card_url}" target="_blank" class="btn btn--qrcard"><i class="fa-solid fa-eye"></i> QR Card</a>`;
       // let fact = `<a href="../${m.factsheet_url}" target="_blank" class="btn btn--fact"><i class="fa-solid fa-eye"></i> Factsheet</a>`;
 
