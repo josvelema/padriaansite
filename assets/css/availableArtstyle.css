@@ -20,8 +20,8 @@ ul {
 
 main {
   margin: 0 auto 1rem;
-  padding: 1rem 2rem;
-  width: min(90%, 1000px);
+  padding: 1rem;
+  width: min(90%, 1200px);
 }
 header {
   padding: 1rem 0;
@@ -47,21 +47,22 @@ h1 {
 .media-container {
 display: grid;
 grid-template-columns: 1fr;
-gap: 1rem;
+gap: 1.5rem;
 }
 
 .media-item {
   display: grid;
-  grid-template-columns: 250px 1fr 150px;
-  gap: 1rem;
+  grid-template-columns: 200px auto 100px;
+  gap: 6px;
   page-break-inside: avoid;
-  
 }
 
 .img-wrap {
   position: relative;
-  width: 100%;
+  width: 95%;
   height: 100%;
+  max-width: 210px;
+  max-height: 180px;
   /* overflow: hidden; */
   display: flex;
   
@@ -71,7 +72,6 @@ gap: 1rem;
   margin: 0 auto;
   object-fit: contain;
   width: 100%;
-  max-height: 190px;
 
   border: 1px solid #eee;
 }
@@ -79,17 +79,42 @@ gap: 1rem;
 .media-info {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
   border-bottom: 1px solid #7774;
+  padding: 6px;
+}
+.info-price,.info-header {
+  flex: 1 1 auto;
+
+}
+.info-header {
+  align-self: flex-start;
+  max-width: 800px;
+}
+
+.info-header li {
+  display: flex;
+  gap: 12px;
+}
+
+.info-header small {
+  min-width: 8ch;
+  font-weight: 600;
+}
+
+.info-price {
+  text-align: right;
+  max-width: 39ch;
+  min-width: 10ch;
 }
 
 .qr {
 
-  place-self: center;
+  place-self: end;
 }
 
 .qr img {
-  width: 150px;
+  width: 100px;
   object-fit: contain;
   height: auto;
 }

@@ -412,8 +412,8 @@ template_admin_header('Sales Page', 'Sales Page')
     }).replace(/\//g, '');
 
     let linkToResults = document.getElementById('linkToResults');
-    let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.5"><title>Art for Sale</title><link rel="stylesheet" href="https://pieter-adriaans.com/assets/css/availableArtstyle.css"></head>';
-    // let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.65"><title>Art for Sale</title><link rel="stylesheet" href="http://localhost:5501/assets/css/availableArtstyle.css"></head>';
+    // let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.5"><title>Art for Sale</title><link rel="stylesheet" href="https://pieter-adriaans.com/assets/css/availableArtstyle.css"></head>';
+    let header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=0.65"><title>Art for Sale</title><link rel="stylesheet" href="http://localhost/pieter/assets/css/availableArtstyle.css"></head>';
     let body = '';
     if (catTitle) {
       body += `<body><main><header><div><h1>${catTitle}</h1><h2>Available for sale</h2><p>${date}</p></div><div class="image-wrap"><img src="https://pieter-adriaans.com/assets/img/kaasfabriekSmall.png" alt="" srcset=""></div></header><div class="media-container">`;
@@ -449,11 +449,11 @@ template_admin_header('Sales Page', 'Sales Page')
 
       let img = `<img src="http://pieter-adriaans.com/${m.thumbnail}" alt="${m.title}" loading="lazy">`;
       let title = `<h2>${m.title}</h2>`;
-      let idYearFnr = `<li>Cat # : ${m.id}-${m.year}-${m.fnr}</li>`;
+      let idYearFnr = `<li><small>Cat.ID: </small> ${m.id}-${m.year}-${m.fnr}</li>`;
 
-      let type = `<p>Type: ${m.art_type}</p>`;
-      let materials = `<li>Materials: ${m.art_material}</li>`;
-      let dimensions = `<li>Dimensions: ${m.art_dimensions}</li>`;
+      let type = `<li><small>Type: </small>${m.art_type}</li>`;
+      let materials = `<li><small>Materials: </small>${m.art_material}</li>`;
+      let dimensions = `<li><small>W * H: </small>${m.art_dimensions}</li>`;
       // let price = `<p>Price: ${m.art_price}</p>`;
       // format price in euros
       let price = '';
@@ -461,14 +461,14 @@ template_admin_header('Sales Page', 'Sales Page')
         price = `<li>Price: &euro;${m.art_price.toLocaleString('en-US')}</li>`;
       }
 
-      let frame = `<li>Frame: ${m.art_has_frame > 0 ? 'yes' : 'no'}</li>`;
+      let frame = `<li>${m.art_has_frame > 0 ? 'with frame' : 'no frame'}</li>`;
       let framePrice;
       if (m.art_has_frame && m.art_frame_price > 0) {
-        framePrice = `<li>Frame Price: &euro;${m.art_frame_price.toLocaleString('en-US')}</li>`;
+        framePrice = `<li>+ &euro;${m.art_frame_price.toLocaleString('en-US')}</li>`;
       } else {
         framePrice = '';
       }
-      let qr = `<img src="https://pieter-adriaans.com/${m.qr_url}" alt="qr code for ${m.title}" loading="lazy">`;
+      let qr = `<img src="http://localhost/pieter${m.qr_url}" alt="qr code for ${m.title}" loading="lazy">`;
       // let qrCard = `<a href="../${m.qr_card_url}" target="_blank" class="btn btn--qrcard"><i class="fa-solid fa-eye"></i> QR Card</a>`;
       // let fact = `<a href="../${m.factsheet_url}" target="_blank" class="btn btn--fact"><i class="fa-solid fa-eye"></i> Factsheet</a>`;
 
