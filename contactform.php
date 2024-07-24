@@ -12,6 +12,7 @@ file_put_contents('debug.log', 'Script started' . PHP_EOL, FILE_APPEND);
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 require 'vendor/phpmailer/phpmailer/src/Exception.php';
 require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require 'vendor/phpmailer/phpmailer/src/SMTP.php';
@@ -58,8 +59,8 @@ if (isset($_POST['name'], $_POST['email'], $_POST['msg'], $_POST['subject'], $_P
     }
 
     if (!$errors) {
-        $stmt = $pdo->prepare('INSERT INTO messages (email, subject, msg, extra) VALUES (?,?,?,?)');
-        $stmt->execute([$_POST['email'], $_POST['subject'], $_POST['msg'], json_encode($extra)]);
+        $stmt = $pdo->prepare('INSERT INTO messages (email, subject, msg) VALUES (?,?,?)');
+        $stmt->execute([$_POST['email'], $_POST['subject'], $_POST['msg']]);
 
         try {
             if (SMTP) {
@@ -77,27 +78,26 @@ if (isset($_POST['name'], $_POST['email'], $_POST['msg'], $_POST['subject'], $_P
             $mail->addReplyTo($_POST['email'], $_POST['name']);
 
             $mail->isHTML(true);
-            $mail->Subject = $_POST['subject'] . ' : ' . $_POST['name'] ;
+            $mail->Subject = $_POST['subject'] . ' : ' . $_POST['name'];
             $mail->Body = $_POST['msg'];
             $mail->AltBody = strip_tags($_POST['msg']);
 
             $mail->send();
             $response = [
-              'success' => 'Message sent successfully.'
+                'success' => 'Message sent successfully.'
             ];
             echo json_encode($response);
         } catch (Exception $e) {
             $errors[] = 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo;
             $response = [
-              'errors' => array_values($errors)
-          ];
-          echo json_encode($response);
+                'errors' => array_values($errors)
+            ];
+            echo json_encode($response);
         }
     } else {
         $response = [
-    'errors' => $errors
-];
-echo json_encode($response);
+            'errors' => $errors
+        ];
+        echo json_encode($response);
     }
 }
-?>
