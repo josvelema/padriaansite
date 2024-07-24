@@ -1,7 +1,7 @@
 <?php
 include 'functions.php';
 ?>
-<?= template_header('Science') ?>
+<?= template_header('Contact') ?>
 
 <link rel="stylesheet" href="assets/css/contact.css">
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>

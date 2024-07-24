@@ -32,7 +32,7 @@ if (isset($_GET['delete'])) {
 
 <h2>Comments</h2>
 
-<table class="table table-bordered">
+<table class="jostable">
   <thead>
     <tr>
       <th>id</th>
@@ -79,7 +79,7 @@ if (isset($_GET['delete'])) {
         // while ($row = mysqli_fetch_assoc($select_post_id_query)) 
         // {
         $post_id = $row['post_id'];
-        $post_title = $row['post_title'];
+        $post_title = substr($row['post_title'],0,30) . "...";
 
         echo "<td><a href='../post.php?p_id=$post_id'>$post_title</a> <br>Post ID: " . $comment_post_id ." </td>";
       }

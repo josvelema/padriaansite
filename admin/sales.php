@@ -458,13 +458,13 @@ template_admin_header('Sales Page', 'Sales Page')
       // format price in euros
       let price = '';
       if (m.art_price > 0) {
-        price = `<li>Price: &euro;${m.art_price.toLocaleString('en-US')}</li>`;
+        price = `<li>Price: &euro;&nbsp;${m.art_price.toLocaleString('en-US')}</li>`;
       }
 
       let frame = `<li>${m.art_has_frame > 0 ? 'with frame' : 'no frame'}</li>`;
       let framePrice;
       if (m.art_has_frame && m.art_frame_price > 0) {
-        framePrice = `<li>+ &euro;${m.art_frame_price.toLocaleString('en-US')}</li>`;
+        framePrice = `<li>+ &euro;&nbsp;${m.art_frame_price.toLocaleString('en-US')}</li>`;
       } else {
         framePrice = '';
       }

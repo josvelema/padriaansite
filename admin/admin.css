@@ -212,7 +212,7 @@
     margin: 0 0 0px auto;
     padding-block: calc(var(--header-height) + 0.5em);
     width: min(100% - var(--aside-width), 1280px);
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     transition: all 250ms ease-in-out;
   }
   main.full {
@@ -703,7 +703,9 @@
   tr:last-child {
     border-bottom:none;
   }
-   
+   .rj-td-wrap {
+    max-width: 30ch;
+   }
   
   .jostable td {
     display: table-cell;
