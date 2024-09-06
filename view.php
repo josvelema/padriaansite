@@ -2,7 +2,7 @@
 include 'functions.php';
 // Connect to MySQL
 $pdo = pdo_connect_mysql();
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
   // Retrieve the media from the media table using the GET request ID (URL param)
   $stmt = $pdo->prepare('SELECT * FROM media WHERE id = ?');
   $stmt->execute([$_GET['id']]);
@@ -13,6 +13,15 @@ if (isset($_GET['id'])) {
 } else {
   exit('No ID specified!');
 }
+
+$given_id = is_numeric($_GET['id']) ? $_GET['id'] : exit('No ID specified!');
+
+// check if media is available for sale and if so redirect to https://azorean-art.com/artwork.html?id=1
+if ($media['art_status'] == 'available' || $media['art_status'] == 'for sale') {
+  header('Location: https://azorean-art.com/artwork.html?id=' . $given_id);
+  exit;
+}
+
 ?>
 
 <?= template_header($media['title']) ?>
