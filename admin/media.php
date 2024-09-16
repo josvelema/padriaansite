@@ -211,7 +211,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group-item">
                 <label for="fnr">Follow-up number (if none default is 0)</label>
-                <input id="fnr" type="number" name="fnr" value="<?= $media['fnr'] ?>" min=0 max=99>
+                <input id="fnr" type="number" name="fnr" value="<?= $media['fnr'] ?>" min=0 max=9999>
             </div>
 
             <div class="form-group-item">
