@@ -45,7 +45,8 @@ if ($viewCat > 0) {
   $params = [
     'category_id' => $viewCat,
     'term1' => '%' . $term . '%',
-    'term2' => '%' . $term . '%'
+    'term2' => '%' . $term . '%',
+    'term3' => '%' . $term . '%'
   ];
 
   // get category title and is_private
@@ -55,13 +56,13 @@ if ($viewCat > 0) {
 
   $catPrivate = $category['is_private'];
   // count query
-  $stmt = $pdo->prepare('SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2) AND art_status IS NOT NULL AND art_status <> "not for sale"');
+  $stmt = $pdo->prepare('SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2 OR m.year LIKE :term3) AND art_status IS NOT NULL AND art_status <> "not for sale"');
   $stmt->execute($params);
   $count = $stmt->fetchColumn();
   if ($count > 0) {
     $params['show'] = (int)$show;
     $params['from'] = (int)$from;
-    $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2) AND art_status IS NOT NULL AND art_status <> "not for sale" ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
+    $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2 OR m.year LIKE :term3) AND art_status IS NOT NULL AND art_status <> "not for sale" ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
 
     foreach ($params as $key => &$value) {
       if ($key == 'show' || $key == 'from') {
@@ -76,17 +77,18 @@ if ($viewCat > 0) {
 } else {
   $params = [
     'term1' => '%' . $term . '%',
-    'term2' => '%' . $term . '%'
+    'term2' => '%' . $term . '%',
+    'term3' => '%' . $term . '%'
   ];
   // count query 
-  $stmt = $pdo->prepare('SELECT COUNT(id) FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2) AND art_status IS NOT NULL AND art_status <> "not for sale"');
+  $stmt = $pdo->prepare('SELECT COUNT(id) FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2 OR year LIKE :term3) AND art_status IS NOT NULL AND art_status <> "not for sale"');
   $stmt->execute($params);
   $count = $stmt->fetchColumn();
   if ($count > 0) {
     $params['show'] = (int)$show;
     $params['from'] = (int)$from;
 
-    $stmt = $pdo->prepare('SELECT * FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2) AND art_status IS NOT NULL AND art_status <> "not for sale" ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
+    $stmt = $pdo->prepare('SELECT * FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2 OR year LIKE :term3) AND art_status IS NOT NULL AND art_status <> "not for sale" ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
     foreach ($params as $key => &$value) {
       if ($key == 'show' || $key == 'from') {
         $stmt->bindParam($key, $value, PDO::PARAM_INT);

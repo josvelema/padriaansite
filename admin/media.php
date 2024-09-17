@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
     $stmt->execute([$_GET['id']]);
     $media = $stmt->fetch(PDO::FETCH_ASSOC);
     // Retrieve the categories
-    $stmt = $pdo->prepare('SELECT c.title, c.id FROM media_categories mc JOIN categories c ON c.id = mc.category_id WHERE mc.media_id = ?');
+    $stmt = $pdo->prepare('SELECT c.title, c.id FROM media_categories mc gityJOIN categories c ON c.id = mc.category_id WHERE mc.media_id = ?');
     $stmt->execute([$_GET['id']]);
     $media['categories'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {

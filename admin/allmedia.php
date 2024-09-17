@@ -27,7 +27,9 @@ if ($viewCat > 0) {
     $params = [
         'category_id' => $viewCat,
         'term1' => '%' . $term . '%',
-        'term2' => '%' . $term . '%'
+        'term2' => '%' . $term . '%',
+        'term3' => '%' . $term . '%'
+
     ];
     // get category title and is_private
     $stmt = $pdo->prepare('SELECT * FROM categories WHERE id = :category_id');
@@ -37,13 +39,13 @@ if ($viewCat > 0) {
     $catDesc = $category['description'];
     $catPrivate = $category['is_private'];
     // count query
-    $stmt = $pdo->prepare('SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2)');
+    $stmt = $pdo->prepare('SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2 OR m.year LIKE :term3)');
     $stmt->execute($params);
     $count = $stmt->fetchColumn();
     if ($count > 0) {
         $params['show'] = (int)$show;
         $params['from'] = (int)$from;
-        $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2) ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
+        $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2 OR m.year LIKE :term3) ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
 
         foreach ($params as $key => &$value) {
             if ($key == 'show' || $key == 'from') {
@@ -58,18 +60,19 @@ if ($viewCat > 0) {
 } else {
     $params = [
         'term1' => '%' . $term . '%',
-        'term2' => '%' . $term . '%'
+        'term2' => '%' . $term . '%',
+        'term3' => '%' . $term . '%'
     ];
 
     // count query 
-    $stmt = $pdo->prepare('SELECT COUNT(id) FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2)');
+    $stmt = $pdo->prepare('SELECT COUNT(id) FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2 OR year LIKE :term3)');
     $stmt->execute($params);
     $count = $stmt->fetchColumn();
     if ($count > 0) {
         $params['show'] = (int)$show;
         $params['from'] = (int)$from;
 
-        $stmt = $pdo->prepare('SELECT * FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2) ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
+        $stmt = $pdo->prepare('SELECT * FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2 OR year LIKE :term3) ORDER BY ' . $order_by . ' ' . $order_sort . ' LIMIT :show OFFSET :from');
         foreach ($params as $key => &$value) {
             if ($key == 'show' || $key == 'from') {
                 $stmt->bindParam($key, $value, PDO::PARAM_INT);
@@ -140,7 +143,7 @@ template_admin_header('Media Gallery\'s', 'MediaGallery')
                     <option value=<?= $category['id'] ?> <?= $category['id'] == $viewCat ? 'selected' : '' ?>><?= $category['title'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <input type="text" name="term" id="search" value="<?= htmlspecialchars($term) ?>" placeholder="enter search term" class="form-control">
+            <input type="text" name="term" id="search" value="<?= htmlspecialchars($term) ?>" placeholder="Search in title,description or year" class="form-control">
             <input type="submit" value="Search" class="btn btn-primary">
         </form>
 
