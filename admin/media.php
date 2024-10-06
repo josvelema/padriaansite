@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
     $stmt->execute([$_GET['id']]);
     $media = $stmt->fetch(PDO::FETCH_ASSOC);
     // Retrieve the categories
-    $stmt = $pdo->prepare('SELECT c.title, c.id FROM media_categories mc gityJOIN categories c ON c.id = mc.category_id WHERE mc.media_id = ?');
+    $stmt = $pdo->prepare('SELECT c.title, c.id FROM media_categories mc JOIN categories c ON c.id = mc.category_id WHERE mc.media_id = ?');
     $stmt->execute([$_GET['id']]);
     $media['categories'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
@@ -283,18 +283,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="file" name="media" accept="audio/*,video/*,image/*">
         <div id="media-preview">
             <?php if ($page == "Edit") : ?>
-                <?php if ($media['type'] == 'image') : 
+                <?php if ($media['type'] == 'image') :
                     // get filesize
                     $filesize = convert_filesize(filesize('../' . $media['filepath']));
                     // dimensions 
                     $dimensions = getimagesize('../' . $media['filepath']);
                     // inspectAndDie($dimensions);
-                    ?>
+                ?>
                     <div class="">
-                        <p>Current image (<?= $filesize ?>) 
-                        <br>
-                        <?= $dimensions[0] . ' x ' . $dimensions[1] ?>
-                    </p>
+                        <p>Current image (<?= $filesize ?>)
+                            <br>
+                            <?= $dimensions[0] . ' x ' . $dimensions[1] ?>
+                        </p>
                         <img src="../<?= $media['filepath'] ?>" alt="Media preview">
                     </div>
                 <?php elseif ($media['type'] == 'audio') : ?>
@@ -314,7 +314,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if (!empty($media['thumbnail'])) :
                     // get filesize
                     $filesize_thumb = convert_filesize(filesize('../' . $media['thumbnail']));
-                    ?>
+                ?>
                     <div class="preview-thumb">
                         <p>Current thumbnail (<?= $filesize_thumb ?>)</p>
                         <img src="../<?= $media['thumbnail'] ?>" alt="Thumbnail" width="320" height="180">
