@@ -265,8 +265,8 @@ template_admin_header('Sales Page', 'Sales Page')
             let media = <?= json_encode($media) ?>;
             let cat = <?= $viewCat ?>;
             if (cat > 0) {
-              catTitle = '<?= $catTitle ?>';
-              catDesc = '<?= $catDesc ?>';
+              catTitle = `<?= $catTitle ?>`;
+              catDesc = `<?= $catDesc ?>`;
             }
             console.log(media);
           </script>
