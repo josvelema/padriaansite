@@ -210,8 +210,8 @@ function template_admin_header($title, $selected = 'dashboard')
         
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-		<link href="admin.css?v=5" rel="stylesheet" type="text/css">
-		<link href="adminjostyle.css?v=5" rel="stylesheet" type="text/css">
+		<link href="admin.css?v=6" rel="stylesheet" type="text/css">
+		<link href="adminjostyle.css?v=6" rel="stylesheet" type="text/css">
 	</head>
 	<body class="admin">
         <aside class="responsive-width-100 responsive-hidden">
@@ -283,7 +283,7 @@ function template_admin_footer()
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="./CMScripts.js"></script>
+        <script src="./CMScripts.js?v=6"></script>
     </body> 
 </html>
 EOT;
