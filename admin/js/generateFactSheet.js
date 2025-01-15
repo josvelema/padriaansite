@@ -25,12 +25,15 @@ function fact_text_wrap(ctx, text, x, y, maxWidth, lineHeight) {
 
 async function fetchMediaData(mediaId) {
   const response = await fetch(`fetch_media_data.php?mediaId=${mediaId}`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch media data: ${response.statusText}`);
+  }
   const mediaData = await response.json();
   return mediaData;
 }
 
 function createFactSheet(sheetData) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const canvas = document.createElement("canvas");
     canvas.width = FACT_CANVAS_WIDTH;
     canvas.height = FACT_CANVAS_HEIGHT;
@@ -97,6 +100,9 @@ function createFactSheet(sheetData) {
           ctx.drawImage(mainImg, centerImageX, 90, imageWidth, imageHeight);
           resolve(canvas.toDataURL("image/png"));
         }
+        mainImg.onerror = (error) => {
+          reject(new Error("failed to load main image .."))
+        }
       };
     });
 
@@ -113,7 +119,7 @@ function createFactSheet(sheetData) {
     ctx.fillStyle = "#000000";
     ctx.textAlign = "left";
 
-    let lorem = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim minima explicabo velit aliquam, magni veniam ea cupiditate minus sequi laudantium repellendus harum nesciunt reprehenderit id quos quasi possimus optio dolorum? Doloribus aspernatur enim omnis dolore libero. In, veniam veritatis? Laudantium, id soluta minima quod doloribus animi nihil! Harum, rerum dolorem ipsam culpa necessitatibus quibusdam deleniti dolorum, quaerat quas iure tenetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, dolor provident enim nemo veritatis possimus sunt quasi. Vitae omnis provident quas, exercitationem dicta voluptatum aliquid in? Tempora repellat iure molestias?`;
+    // let lorem = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim minima explicabo velit aliquam, magni veniam ea cupiditate minus sequi laudantium repellendus harum nesciunt reprehenderit id quos quasi possimus optio dolorum? Doloribus aspernatur enim omnis dolore libero. In, veniam veritatis? Laudantium, id soluta minima quod doloribus animi nihil! Harum, rerum dolorem ipsam culpa necessitatibus quibusdam deleniti dolorum, quaerat quas iure tenetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, dolor provident enim nemo veritatis possimus sunt quasi. Vitae omnis provident quas, exercitationem dicta voluptatum aliquid in? Tempora repellat iure molestias?`;
     if (sheetData.description.length > 430) {
       sheetData.description = sheetData.description.substring(0, 430) + "...";
     }
@@ -215,19 +221,23 @@ async function saveFactsheetOnServer(imageDataUrl, mediaId) {
   formData.append("imageDataUrl", imageDataUrl);
   formData.append("mediaId", mediaId);
 
-  await fetch("save_factsheet.php", {
+  const response = await fetch("save_factsheet.php", {
     method: "POST",
     body: formData,
   });
+  if (!response.ok) {
+    throw new Error(`Failed to save factsheet: ${response.statusText}`);
+  }
 }
 
 async function generateFactSheetAndSave(mediaId) {
+  console.log("Starting generateFactSheetAndSave");
   progressModal.style.display = "block";
   progressTitle.textContent = "Factsheet Generation";
   progressMessage.textContent = "Generating factsheet, please wait...";
-
+  console.log("Fetching media data for mediaId:", mediaId);
   const mediaData = await fetchMediaData(mediaId);
-
+  console.log("Fetched media data:", mediaData);
   const cardData = {
     mediaId: mediaData.id,
     title: mediaData.title,
@@ -244,15 +254,19 @@ async function generateFactSheetAndSave(mediaId) {
     qr_card_url: mediaData.qr_card_url,
   };
 
+  console.log("Creating fact sheet with cardData:", cardData);
   const imageDataUrl = await createFactSheet(cardData);
+  console.log("Created fact sheet, imageDataUrl:", imageDataUrl);
+
+  console.log("Saving fact sheet on server");
   await saveFactsheetOnServer(imageDataUrl, mediaId);
-  // updateMediaData(mediaId);
-  console.log("Fact sheet generated and saved successfully");
+  console.log("Fact sheet saved on server");
+
   // Show the success message and hide the modal after a short delay
   progressMessage.textContent = "Factsheet generated successfully!";
   setTimeout(() => {
     progressModal.style.display = 'none';
-     // refresh the page
+    // refresh the page
     location.reload();
   }, 2000);
 }
