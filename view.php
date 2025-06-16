@@ -22,6 +22,11 @@ if ($media['art_status'] == 'available' || $media['art_status'] == 'for sale') {
   exit;
 }
 
+// check if fromAlbum is set in the URL, if so redirect to the album page
+if (isset($_GET['fromAlbum']) && is_numeric($_GET['fromAlbum'])) {
+  $toAlbum = $_GET['fromAlbum'];
+}
+
 ?>
 
 <?= template_header($media['title']) ?>
@@ -45,7 +50,7 @@ if ($media['art_status'] == 'available' || $media['art_status'] == 'for sale') {
                 <p>Catalogue nr : <?= $media['year'] ?> - <?= $media['fnr'] ?></p>
               </div>
               <div class="media-selection-container">
-                <button class="img-btn" data-src="<?= $media['filepath'] ?>"><i class="fa-solid fa-expand"></i></button>
+                <button class="img-btn" data-src="<?= ($media['type'] == 'image') ? $media['filepath'] : $media['thumbnail'] ?>"><i class="fa-solid fa-expand"></i></button>
                 <!-- chek if description is not equal to '...' -->
                 <?php if (!empty($media['description']) && trim($media['description']) != '...') : ?>
                   <button class="info-btn" data-info="<?= trim($media['description']) ?>" data-title="<?= $media['title'] ?>"><i class="fa-solid fa-circle-info"></i></i></button>
@@ -67,6 +72,30 @@ if ($media['art_status'] == 'available' || $media['art_status'] == 'for sale') {
                     <img src="<?= $media['thumbnail'] ?>" data-src="<?= $media['filepath'] ?>" alt="<?= $media['title'] ?>" class="lozad placeholder">
                   </div>
                 </div>
+
+
+              <?php elseif ($media['type'] == 'video') : ?>
+                <div class="image-container">
+                  <div class="img-wrapper">
+                    <img src="<?= $media['thumbnail'] ?>" data-src="<?= $media['filepath'] ?>" alt="<?= $media['title'] ?>" class="lozad placeholder">
+                    <div class="video-overlay">
+                      <button class="video-btn" data-src="<?= $media['video_url'] ?>"><i class="fa-solid fa-play"></i></button>
+                      <video src="<?= $media['filepath'] ?>" width="852" height="480" controls autoplay></video>
+
+                    </div>
+                  </div>
+                <?php elseif ($media['type'] == 'audio') : ?>
+                  <div class="image-container">
+                    <div class="img-wrapper">
+                      <img src="<?= $media['thumbnail'] ?>" data-src="<?= $media['thumbnail'] ?>" alt="<?= $media['title'] ?>" class="lozad placeholder">
+                      <audio controls>
+                        <source src="<?= $media['filepath'] ?>" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                      </audio>
+                    </div>
+                  </div>
+
+                <?php endif; ?>
                 <div class="modal-container">
                   <div class="audio-modal-container">
                     <div class="audio-modal-content">
@@ -99,16 +128,19 @@ if ($media['art_status'] == 'available' || $media['art_status'] == 'for sale') {
                   </div>
                 </div>
 
-              <?php elseif ($media['type'] == 'video') : ?>
-                <video src="<?= $media['filepath'] ?>" width="852" height="480" controls autoplay></video>
-              <?php elseif ($media['type'] == 'audio') : ?>
-                <audio src="<?= $media['filepath'] ?>" controls autoplay></audio>
-              <?php endif; ?>
-
-
+                </div>
             </div>
-          </div>
         </article>
+        <p>
+          <?php if ($media['type'] == 'image') : ?>
+            <a href="gallery" class="rj-button">← Back to image gallery</a>
+          <?php elseif ($media['type'] == 'audio') : ?>
+            <a href="music<?= (isset($toAlbum)) ? '?album=' . $toAlbum : '' ?>" class="rj-button">← Back to music page</a>
+          <?php else : ?>
+            <a href="/" class="rj-button">← Back to home</a>
+          <?php endif; ?>
+
+        </p>
       </div>
     </section>
 

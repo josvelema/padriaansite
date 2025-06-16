@@ -29,13 +29,13 @@ if ($viewCat > 0) {
   $catDesc = $category['description'];
   $catPrivate = $category['is_private'];
   // count query
-  $stmt = $pdo->prepare('SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2)');
+  $stmt = $pdo->prepare('SELECT COUNT(m.id) FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.title LIKE :term1 OR m.description LIKE :term2');
   $stmt->execute($params);
   $count = $stmt->fetchColumn();
   if ($count > 0) {
     $params['show'] = (int)$show;
     $params['from'] = (int)$from;
-    $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.type = "image" AND (m.title LIKE :term1 OR m.description LIKE :term2) ORDER BY m.id DESC LIMIT :show OFFSET :from');
+    $stmt = $pdo->prepare('SELECT m.* FROM media m JOIN media_categories mc ON mc.media_id = m.id AND mc.category_id = :category_id WHERE m.title LIKE :term1 OR m.description LIKE :term2 ORDER BY m.id DESC LIMIT :show OFFSET :from');
 
     foreach ($params as $key => &$value) {
       if ($key == 'show' || $key == 'from') {
@@ -54,14 +54,14 @@ if ($viewCat > 0) {
   ];
 
   // count query 
-  $stmt = $pdo->prepare('SELECT COUNT(id) FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2)');
+  $stmt = $pdo->prepare('SELECT COUNT(id) FROM media WHERE title LIKE :term1 OR description LIKE :term2');
   $stmt->execute($params);
   $count = $stmt->fetchColumn();
   if ($count > 0) {
     $params['show'] = (int)$show;
     $params['from'] = (int)$from;
 
-    $stmt = $pdo->prepare('SELECT * FROM media WHERE type = "image" AND (title LIKE :term1 OR description LIKE :term2) ORDER BY id DESC LIMIT :show OFFSET :from');
+    $stmt = $pdo->prepare('SELECT * FROM media WHERE title LIKE :term1 OR description LIKE :term2 ORDER BY id DESC LIMIT :show OFFSET :from');
     foreach ($params as $key => &$value) {
       if ($key == 'show' || $key == 'from') {
         $stmt->bindParam($key, $value, PDO::PARAM_INT);

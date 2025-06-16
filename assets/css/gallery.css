@@ -185,7 +185,12 @@ aspect-ratio: 4 / 3;
   box-shadow: 0 0px 6px 1px #aaa8;
   border-radius: 8px;
 }
-/* .rj-gallery-card  audio, .rj-gallery-card  video { */
+
+.rj-gallery-card audio {
+    position: absolute;
+    bottom: 0;
+    margin: 0.5rem;
+}
 
 .rj-gallery-card .image-container img {
   position: absolute;

@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include 'main.php';
 
 include 'generate_thumbnail.php';
@@ -87,18 +91,42 @@ $gotoPage = (isset($_GET['salesPage']) ? 'sales.php?' : 'allmedia.php?');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle file uploads
     if (isset($_FILES['media']) && !empty($_FILES['media']['tmp_name'])) {
-        //! Handle media upload
         $media_file_id = md5(uniqid());
-        if (isset($_FILES['media']) && !empty($_FILES['media']['tmp_name'])) {
-            $media_type = '';
-            $media_type = preg_match('/image\/*/', $_FILES['media']['type']) ? 'image' : $media_type;
-            $media_type = preg_match('/audio\/*/', $_FILES['media']['type']) ? 'audio' : $media_type;
-            $media_type = preg_match('/video\/*/', $_FILES['media']['type']) ? 'video' : $media_type;
-            $media_parts = explode('.', $_FILES['media']['name']);
-            $media_path = 'media/' . $media_type . 's/' . $media_file_id . '.' . end($media_parts);
-            move_uploaded_file($_FILES['media']['tmp_name'], '../' . $media_path);
-            if ($media_type == 'image') {
-                $thumb = generateThumb('../' . $media_path);
+        $media_type = '';
+
+        $media_type = preg_match('/image\/*/', $_FILES['media']['type']) ? 'image' : $media_type;
+        $media_type = preg_match('/audio\/*/', $_FILES['media']['type']) ? 'audio' : $media_type;
+        $media_type = preg_match('/video\/*/', $_FILES['media']['type']) ? 'video' : $media_type;
+
+        $media_parts = explode('.', $_FILES['media']['name']);
+        $media_path = 'media/' . $media_type . 's/' . $media_file_id . '.' . end($media_parts);
+
+        move_uploaded_file($_FILES['media']['tmp_name'], '../' . $media_path);
+
+        if ($media_type === 'image') {
+            $thumb = generateThumb('../' . $media_path);
+        } else {
+            // If it's audio or video, check if a custom thumbnail was uploaded
+            if (isset($_FILES['custom_thumbnail']) && $_FILES['custom_thumbnail']['error'] === UPLOAD_ERR_OK) {
+                $tmpThumb = $_FILES['custom_thumbnail']['tmp_name'];
+
+                if (file_exists($tmpThumb) && exif_imagetype($tmpThumb) !== false) {
+                    $thumb_ext = pathinfo($_FILES['custom_thumbnail']['name'], PATHINFO_EXTENSION);
+                    $thumb_filename = 'thumb_' . $media_file_id . '.' . $thumb_ext;
+                    $thumb_path = 'media/thumbs/' . $thumb_filename;
+
+                    if (!is_dir('../media/thumbs')) {
+                        mkdir('../media/thumbs', 0755, true);
+                    }
+
+                    if (move_uploaded_file($tmpThumb, '../' . $thumb_path)) {
+                        $thumb = $thumb_path;
+                    } else {
+                        die("Fout bij verplaatsen van thumbnail bestand.");
+                    }
+                } else {
+                    die("Geüpload bestand is geen geldige afbeelding.");
+                }
             }
         }
     } else {
@@ -117,10 +145,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_POST['art_frame_price'] = 0;
         }
 
-        // check if the media has thumbnail and if not generate one unless a new file is uploaded
-        if (empty($thumb) && empty($_FILES['media']['tmp_name'])) {
+        if ($_POST['type'] !== 'image' && isset($_FILES['custom_thumbnail']) && $_FILES['custom_thumbnail']['error'] === UPLOAD_ERR_OK) {
+            $tmpThumb = $_FILES['custom_thumbnail']['tmp_name'];
+            if (file_exists($tmpThumb) && exif_imagetype($tmpThumb) !== false) {
+                $thumb_ext = pathinfo($_FILES['custom_thumbnail']['name'], PATHINFO_EXTENSION);
+                $thumb_filename = 'thumb_' . md5(uniqid()) . '.' . $thumb_ext;
+                $thumb_path = 'media/thumbs/' . $thumb_filename;
+
+                if (!is_dir('../media/thumbs')) {
+                    mkdir('../media/thumbs', 0755, true);
+                }
+
+                if (move_uploaded_file($tmpThumb, '../' . $thumb_path)) {
+                    $thumb = $thumb_path;
+                } else {
+                    die("Fout bij het verplaatsen van de nieuwe thumbnail.");
+                }
+            }
+        } elseif (empty($thumb) && empty($_FILES['media']['tmp_name']) && $_POST['type'] === 'image') {
             $thumb = generateThumb('../' . $media_path);
         }
+
 
         // Update the media
         $stmt = $pdo->prepare('UPDATE media SET title = ?, description = ?, year = ? , fnr = ? , filepath = ?, type = ?,  approved = ?, art_material = ?, art_dimensions = ?, art_type = ?, art_status = ?, art_price = ?,art_has_frame = ?, art_frame_price = ?, thumbnail = ? WHERE id = ?');
@@ -231,7 +276,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="art_fields">
             <div class="form-group-item">
                 <label for="art_material">Material</label>
                 <input id="art_material" type="text" name="art_material" value="<?= htmlspecialchars($media['art_material'], ENT_QUOTES) ?>" placeholder="Oil on canvas">
@@ -245,7 +290,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input id="art_type" type="text" name="art_type" value="<?= htmlspecialchars($media['art_type'], ENT_QUOTES) ?>" placeholder="Painting, Drawing, etc">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="art_sale_fields">
             <div class="form-group-item">
                 <label for="art_status">Status</label>
                 <select id="art_status" name="art_status">
@@ -281,6 +326,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="media">Media</label>
         <input type="file" name="media" accept="audio/*,video/*,image/*">
+        <div id="custom-thumbnail-wrapper" style="display: none;">
+            <label for="custom_thumbnail">Thumbnail voor audio/video</label>
+            <input type="file" name="custom_thumbnail" id="custom_thumbnail" accept="image/*">
+        </div>
+
+
         <div id="media-preview">
             <?php if ($page == "Edit") : ?>
                 <?php if ($media['type'] == 'image') :
@@ -453,6 +504,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         reader.readAsDataURL(file);
 
     };
+
+    function toggleCustomThumbnail() {
+        const typeSelect = document.getElementById('type');
+        const wrapper = document.getElementById('custom-thumbnail-wrapper');
+        const artFields = document.getElementById('art_fields');
+        const artSaleFields = document.getElementById('art_sale_fields');
+        const selectedType = typeSelect.value;
+
+        if (selectedType === 'audio' || selectedType === 'video') {
+            wrapper.style.display = 'block';
+            artFields.style.display = 'none';
+            artSaleFields.style.display = 'none';
+
+        } else {
+            wrapper.style.display = 'none';
+            artFields.style.display = 'flex';
+            artSaleFields.style.display = 'flex';
+        }
+    }
+
+    // Bij laden van de pagina
+    document.addEventListener('DOMContentLoaded', toggleCustomThumbnail);
+
+    // Bij wijziging van het type
+    document.getElementById('type').addEventListener('change', toggleCustomThumbnail);
 </script>
 
 <?= template_admin_footer() ?>

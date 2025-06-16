@@ -5,7 +5,7 @@ $stmt = $pdo->prepare('SELECT * FROM categories ORDER BY id DESC');
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<?=template_admin_header('Categories', 'categories')?>
+<?= template_admin_header('Categories', 'categories') ?>
 
 <h2>Categories</h2>
 
@@ -21,6 +21,8 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>#</th>
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Media type</th>
+                    <th>Cover image</th>
                     <th>Private</th>
                     <th>Sale <br> category</th>
                     <th>Actions</th>
@@ -28,24 +30,42 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </thead>
             <tbody>
                 <?php if (empty($categories)): ?>
-                <tr>
-                    <td colspan="4" style="text-align:center;">There are no categories</td>
-                </tr>
+                    <tr>
+                        <td colspan="4" style="text-align:center;">There are no categories</td>
+                    </tr>
                 <?php else: ?>
-                <?php foreach ($categories as $category): ?>
-                <tr>
-                    <td><?=$category['id']?></td>
-                    <td><?=$category['title']?></td>
-                    <td><?=$category['description']?></td>
-                    <td><?=$category['is_private']  ? 'Yes' : 'No'?></td>
-                    <td><?=$category['is_for_sale']  ? 'Yes' : 'No'?></td>
-                    <td><a href="category.php?id=<?=$category['id']?>" class="rj-action-edit">Edit</a></td>
-                </tr>
-                <?php endforeach; ?>
+                    <?php foreach ($categories as $category): ?>
+                        <tr>
+                            <td><?= $category['id'] ?></td>
+                            <td><?= $category['title'] ?></td>
+                            <td><?= $category['description'] ?></td>
+                            <td>
+                                <?php if ($category['media_type'] == 0): ?>
+                                    Image
+                                <?php elseif ($category['media_type'] == 1): ?>
+                                    Audio
+                                <?php elseif ($category['media_type'] == 2): ?>
+                                    Video
+                                <?php else: ?>
+                                    Other
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if (!empty($category['cat_image'])): ?>
+                                    <img src="../<?= $category['cat_image'] ?>" alt="Category Image" style="max-width: 100px; max-height: 100px;">
+                                <?php else: ?>
+                                    No image
+                                <?php endif; ?>
+                            </td>
+                            <td><?= $category['is_private']  ? 'Yes' : 'No' ?></td>
+                            <td><?= $category['is_for_sale']  ? 'Yes' : 'No' ?></td>
+                            <td><a href="category.php?id=<?= $category['id'] ?>" class="rj-action-edit">Edit</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endif; ?>
             </tbody>
         </table>
     </div>
 </div>
 
-<?=template_admin_footer()?>
+<?= template_admin_footer() ?>

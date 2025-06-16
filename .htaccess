@@ -1,7 +1,7 @@
 Options -MultiViews
 RewriteEngine On
-RewriteBase /
-#RewriteBase /pieter
+#RewriteBase /
+RewriteBase /pieter
 
 Redirect permanent "/science/" "/science.php"
 Redirect permanent "/music" "/music.php"
