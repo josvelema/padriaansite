@@ -40,8 +40,13 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?= $category['id'] ?></td>
                             <td><?= $category['title'] ?></td>
                             <td>
-                                <!-- check if length is > 200 and crop if so  -->
-                                <?= strlen($category['description']) > 200 ? substr($category['description'], 0, 200) . '...' : $category['description'] ?>
+                                <!-- if Description has more than 200 crop  -->
+                                <!-- if Description has more than 200 crop -->
+                                <?php
+                                $desc = htmlspecialchars($category['description'], ENT_QUOTES, 'UTF-8');
+                                echo strlen($desc) > 200 ? substr($desc, 0, 200) . '...' : $desc;
+                                ?>
+
                             </td>
                             <td>
                                 <?php if ($category['media_type'] == 0): ?>
@@ -63,7 +68,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </td>
                             <td>
                                 <?php if (!empty($category['qr_url'])): ?>
-                                    <a href="..<?= $category['qr_url'] ?>" download>View QR</a>
+                                    <a href="<?= $category['qr_url'] ?>" download>View QR</a>
                                 <?php else: ?>
                                     <button onclick="generateCategoryQR(<?= $category['id'] ?>)">Generate QR</button>
 

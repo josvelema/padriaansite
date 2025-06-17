@@ -360,7 +360,7 @@ template_admin_header('Music Gallery\'s', 'MusicGallery')
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=0.6">
   <title>Album Overview</title>
-  <link rel="stylesheet" href="https://www.pieter-adriaans.com/assets/css/availableArtstyle.css">
+  <link rel="stylesheet" href="http://localhost/pieter/assets/css/availableArtstyle.css">
 </head>`;
 
     let body = `<body><main><header><div><h1>${catTitle}</h1>${catDescription}<h2>Track Overview</h2><p>${date}</p></div><div class="image-wrap"><img src="https://pieter-adriaans.com/assets/img/kaasfabriekSmall.png" alt=""></div></header><div class="media-container">`;

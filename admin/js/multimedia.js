@@ -1,7 +1,7 @@
 const progressModal = document.getElementById('qr-progress-modal');
 const progressMessage = document.getElementById('qr-progress-message');
 const progressTitle = document.getElementById('qr-progress-title');
-
+console.log('mm loda')
 // function generateQRCode(media_id) {
 //   let xhr = new XMLHttpRequest();
 
@@ -27,6 +27,23 @@ const progressTitle = document.getElementById('qr-progress-title');
 //   xhr.open("GET", "qrcode.php?media_id=" + media_id, true);
 //   xhr.send();
 // }
+
+async function generateCategoryQR(category_id) {
+  progressModal.style.display = 'block';
+  progressTitle.textContent = 'QR Code Generation';
+  progressMessage.textContent = 'Generating QR code, please wait...';
+
+  const response = await fetch('qrcode_category.php?category_id=' + category_id);
+  const message = await response.text();
+  console.log('response', message);
+
+  progressMessage.textContent = 'QR code generated successfully!';
+  setTimeout(() => {
+    progressModal.style.display = 'none';
+    location.reload();
+  }, 2000);
+}
+
 
 async function generateQRCode(media_id) {
   progressModal.style.display = 'block';
@@ -222,18 +239,3 @@ function resetUploadModal() {
   uploadProgress.value = 0;
 }
 
-async function generateCategoryQR(category_id) {
-  progressModal.style.display = 'block';
-  progressTitle.textContent = 'QR Code Generation';
-  progressMessage.textContent = 'Generating QR code, please wait...';
-
-  const response = await fetch('qrcode_category.php?category_id=' + category_id);
-  const message = await response.text();
-  console.log('response', message);
-
-  progressMessage.textContent = 'QR code generated successfully!';
-  setTimeout(() => {
-    progressModal.style.display = 'none';
-    location.reload();
-  }, 2000);
-}
