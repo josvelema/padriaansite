@@ -337,7 +337,7 @@ template_admin_header('Music Gallery\'s', 'MusicGallery')
   }
   let generateHTMLPage = (media) => {
 
-    let catDescription = catDesc ? `<p>${catDesc}</p>` : '';
+    let catDescription = catDesc ? `<pre>${catDesc}</pre>` : '';
 
     let date = new Date().toLocaleDateString('en-US', {
       year: 'numeric',

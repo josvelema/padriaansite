@@ -39,7 +39,10 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <td><?= $category['id'] ?></td>
                             <td><?= $category['title'] ?></td>
-                            <td><?= $category['description'] ?></td>
+                            <td>
+                                <!-- check if length is > 200 and crop if so  -->
+                                <?= strlen($category['description']) > 200 ? substr($category['description'], 0, 200) . '...' : $category['description'] ?>
+                            </td>
                             <td>
                                 <?php if ($category['media_type'] == 0): ?>
                                     Image
