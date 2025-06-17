@@ -23,6 +23,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>Description</th>
                     <th>Media type</th>
                     <th>Cover image</th>
+                    <th>QR</th>
                     <th>Private</th>
                     <th>Sale <br> category</th>
                     <th>Actions</th>
@@ -57,6 +58,14 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     No image
                                 <?php endif; ?>
                             </td>
+                            <td>
+                                <?php if (!empty($category['qr_url'])): ?>
+                                    <a href="..<?= $category['qr_url'] ?>" download>View QR</a>
+                                <?php else: ?>
+                                    <button onclick="generateCategoryQR(<?= $category['id'] ?>)">Generate QR</button>
+
+                                <?php endif; ?>
+                            </td>
                             <td><?= $category['is_private']  ? 'Yes' : 'No' ?></td>
                             <td><?= $category['is_for_sale']  ? 'Yes' : 'No' ?></td>
                             <td><a href="category.php?id=<?= $category['id'] ?>" class="rj-action-edit">Edit</a></td>
@@ -68,4 +77,13 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 
+<div id="qr-progress-modal" class="modal">
+    <div class="modal-content">
+        <h4 id="qr-progress-title">QR Code Generation</h4>
+        <p id="qr-progress-message"></p>
+    </div>
+</div>
+
+
+<script src="js/multimedia.js"></script>
 <?= template_admin_footer() ?>

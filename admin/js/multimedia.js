@@ -221,3 +221,19 @@ function resetUploadModal() {
   fileInput.value = '';
   uploadProgress.value = 0;
 }
+
+async function generateCategoryQR(category_id) {
+  progressModal.style.display = 'block';
+  progressTitle.textContent = 'QR Code Generation';
+  progressMessage.textContent = 'Generating QR code, please wait...';
+
+  const response = await fetch('qrcode_category.php?category_id=' + category_id);
+  const message = await response.text();
+  console.log('response', message);
+
+  progressMessage.textContent = 'QR code generated successfully!';
+  setTimeout(() => {
+    progressModal.style.display = 'none';
+    location.reload();
+  }, 2000);
+}
