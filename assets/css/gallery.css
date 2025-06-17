@@ -1,11 +1,11 @@
 .gallery-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 320px));
-  grid-gap: 0.5rem;
-  place-content: center;
-  /* place-items: center; */
-  width: min(98%, 1280px - 0.5rem );
-  margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 310px));
+    grid-gap: 0.5rem;
+    place-content: center;
+    /* place-items: center; */
+    width: min(98%, 1280px - 0.5rem );
+    margin-inline: auto;
 }
 .view-container {
   display: block;
@@ -38,7 +38,7 @@ aspect-ratio: 4 / 3;
   overflow: hidden;
   box-shadow: inset 0px 0px 1px 1px #fff9;
 }
-@media (min-width: 1023px) {
+@media (min-width: 974px) {
   .rj-gallery-card:nth-child(1) {
     grid-column: span 2;
     grid-row: span 2;

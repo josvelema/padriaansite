@@ -25,7 +25,7 @@ $from = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0;
 
 
 // Retrieve the categories
-$stmt = $pdo->prepare('SELECT * FROM categories WHERE is_private = 0 ORDER BY title');
+$stmt = $pdo->prepare('SELECT * FROM categories WHERE is_private = 0 AND media_type = 0 ORDER BY title');
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -232,96 +232,98 @@ if ($count > $show) {
 				<?php if ($count > 0) : ?>
 					<?php foreach ($media as $m) : ?>
 						<!-- check if there is content in art_type , art_material and art_ dimensions and if so put in front of description -->
-						<?php if (!empty($m['art_type']) || !empty($m['art_material']) || !empty($m['art_dimensions'])) : ?>
-							<?php $m['description'] = (!empty($m['art_type']) ? $m['art_type'] . ', ' : '') . (!empty($m['art_material']) ? $m['art_material'] . ', ' : '') . (!empty($m['art_dimensions']) ? $m['art_dimensions'] . ', ' : '') . $m['description']; ?>
-						<?php endif; ?>
-						<article class="rj-gallery-card">
-							<div class="card">
-								<?php
-								$is_for_sale = false;
-								if ($m['art_status'] == 'available' || $m['art_status'] == 'for sale') :
-									$is_for_sale = true;
-								?>
-									<div class="card-for-sale" data-media-id=<?= $m['id'] ?>>For sale</div>
-								<?php endif; ?>
-								<button class="card-overlay-content-button" title="More information">+</button>
-								<div class="card-overlay-content">
-									<div class="card-header">
-										<h3><?= $m['title'] ?></h3>
-										<p>Catalogue nr : <?= $m['year'] ?> - <?= $m['fnr'] ?></p>
-									</div>
-									<div class="media-selection-container">
-										<button class="img-btn" data-src="<?= $m['filepath'] ?>" title="expand view"><i class="fa-solid fa-expand"></i></button>
-										<!-- chek if description is not equal to '...' -->
-										<?php if (!empty($m['description']) && trim($m['description']) != '...') : ?>
-											<button class="info-btn" data-info="<?= trim($m['description']) ?>" data-title="<?= $m['title'] ?>" title="information"><i class="fa-solid fa-circle-info"></i></i></button>
-										<?php endif; ?>
-										<!-- check if audio url is not empty -->
-										<?php if (!empty($m['audio_url'])) : ?>
-											<button class="audio-btn" data-src="<?= urldecode($m['audio_url']) ?>" title="audio commentary"><i class="fa-solid fa-headphones"></i></button>
-										<?php endif; ?>
-										<!-- check if video url is not empty -->
-										<?php if (!empty($m['video_url'])) : ?>
-											<button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>" title="video commentary"><i class="fa-solid fa-video"></i></button>
-										<?php endif; ?>
-										<?php if ($is_for_sale) : ?>
-											<button class="for-sale-btn" data-media-id="<?= $m['id'] ?>" title="buy this artwork"><i class="fa-solid fa-euro"></i></button>
-										<?php endif; ?>
-									</div>
-								</div>
-								<div class="card-body">
-									<?php if ($m['type'] == 'image') : ?>
-										<div class="image-container">
-											<div class="img-wrapper">
-												<img src="<?= $m['thumbnail'] ?>" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad placeholder">
-
-											</div>
-										</div>
-										<div class="modal-container">
-											<div class="audio-modal-container">
-												<div class="audio-modal-content">
-													<audio class="audio-modal-audio" controls poster="assets\img\bginverted.jpg">
-														Your browser does not support the audio tag.
-													</audio>
-													<button class="audio-modal-close">Close</button>
-												</div>
-											</div>
-											<div class="video-modal-container">
-												<div class="video-modal-content">
-													<video class="video-modal-video" controls>
-														Your browser does not support the video tag.
-													</video>
-													<button class="video-modal-close">Close</button>
-												</div>
-											</div>
-											<div class="image-modal-container">
-												<div class="image-modal-content">
-													<img class="image-modal-image" src="" alt="">
-													<button class="image-modal-close">Close</button>
-												</div>
-											</div>
-											<div class="info-modal-container">
-												<div class="info-modal-content">
-													<h3 class="info-modal-title"></h3>
-													<pre class="info-modal-pre"></pre>
-													<?php if ($is_for_sale) : ?>
-														<button class="for-sale-btn" data-media-id="<?= $m['id'] ?>" title="buy this artwork"><i class="fa-solid fa-euro"></i> for sale</button>
-													<?php endif; ?>
-													<button class="info-modal-close">Close</button>
-												</div>
-											</div>
-										</div>
-
-									<?php elseif ($m['type'] == 'video') : ?>
-										<video src="<?= $m['filepath'] ?>" width="852" height="480" controls autoplay></video>
-									<?php elseif ($m['type'] == 'audio') : ?>
-										<audio src="<?= $m['filepath'] ?>" controls autoplay></audio>
+						<?php if ($m['type'] == 'image') : ?>
+							<?php if (!empty($m['art_type']) || !empty($m['art_material']) || !empty($m['art_dimensions'])) : ?>
+								<?php $m['description'] = (!empty($m['art_type']) ? $m['art_type'] . ', ' : '') . (!empty($m['art_material']) ? $m['art_material'] . ', ' : '') . (!empty($m['art_dimensions']) ? $m['art_dimensions'] . ', ' : '') . $m['description']; ?>
+							<?php endif; ?>
+							<article class="rj-gallery-card">
+								<div class="card">
+									<?php
+									$is_for_sale = false;
+									if ($m['art_status'] == 'available' || $m['art_status'] == 'for sale') :
+										$is_for_sale = true;
+									?>
+										<div class="card-for-sale" data-media-id=<?= $m['id'] ?>>For sale</div>
 									<?php endif; ?>
+									<button class="card-overlay-content-button" title="More information">+</button>
+									<div class="card-overlay-content">
+										<div class="card-header">
+											<h3><?= $m['title'] ?></h3>
+											<p>Catalogue nr : <?= $m['year'] ?> - <?= $m['fnr'] ?></p>
+										</div>
+										<div class="media-selection-container">
+											<button class="img-btn" data-src="<?= $m['filepath'] ?>" title="expand view"><i class="fa-solid fa-expand"></i></button>
+											<!-- chek if description is not equal to '...' -->
+											<?php if (!empty($m['description']) && trim($m['description']) != '...') : ?>
+												<button class="info-btn" data-info="<?= trim($m['description']) ?>" data-title="<?= $m['title'] ?>" title="information"><i class="fa-solid fa-circle-info"></i></i></button>
+											<?php endif; ?>
+											<!-- check if audio url is not empty -->
+											<?php if (!empty($m['audio_url'])) : ?>
+												<button class="audio-btn" data-src="<?= urldecode($m['audio_url']) ?>" title="audio commentary"><i class="fa-solid fa-headphones"></i></button>
+											<?php endif; ?>
+											<!-- check if video url is not empty -->
+											<?php if (!empty($m['video_url'])) : ?>
+												<button class="video-btn" data-src="<?= urldecode($m['video_url']) ?>" title="video commentary"><i class="fa-solid fa-video"></i></button>
+											<?php endif; ?>
+											<?php if ($is_for_sale) : ?>
+												<button class="for-sale-btn" data-media-id="<?= $m['id'] ?>" title="buy this artwork"><i class="fa-solid fa-euro"></i></button>
+											<?php endif; ?>
+										</div>
+									</div>
+									<div class="card-body">
+										<?php if ($m['type'] == 'image') : ?>
+											<div class="image-container">
+												<div class="img-wrapper">
+													<img src="<?= $m['thumbnail'] ?>" data-src="<?= $m['filepath'] ?>" alt="<?= $m['title'] ?>" class="lozad placeholder">
+
+												</div>
+											</div>
+											<div class="modal-container">
+												<div class="audio-modal-container">
+													<div class="audio-modal-content">
+														<audio class="audio-modal-audio" controls poster="assets\img\bginverted.jpg">
+															Your browser does not support the audio tag.
+														</audio>
+														<button class="audio-modal-close">Close</button>
+													</div>
+												</div>
+												<div class="video-modal-container">
+													<div class="video-modal-content">
+														<video class="video-modal-video" controls>
+															Your browser does not support the video tag.
+														</video>
+														<button class="video-modal-close">Close</button>
+													</div>
+												</div>
+												<div class="image-modal-container">
+													<div class="image-modal-content">
+														<img class="image-modal-image" src="" alt="">
+														<button class="image-modal-close">Close</button>
+													</div>
+												</div>
+												<div class="info-modal-container">
+													<div class="info-modal-content">
+														<h3 class="info-modal-title"></h3>
+														<pre class="info-modal-pre"></pre>
+														<?php if ($is_for_sale) : ?>
+															<button class="for-sale-btn" data-media-id="<?= $m['id'] ?>" title="buy this artwork"><i class="fa-solid fa-euro"></i> for sale</button>
+														<?php endif; ?>
+														<button class="info-modal-close">Close</button>
+													</div>
+												</div>
+											</div>
+
+										<?php elseif ($m['type'] == 'video') : ?>
+											<video src="<?= $m['filepath'] ?>" width="852" height="480" controls autoplay></video>
+										<?php elseif ($m['type'] == 'audio') : ?>
+											<audio src="<?= $m['filepath'] ?>" controls autoplay></audio>
+										<?php endif; ?>
 
 
+									</div>
 								</div>
-							</div>
-						</article>
+							</article>
+						<?php endif; ?>
 
 					<?php endforeach; ?>
 				<?php else : ?>

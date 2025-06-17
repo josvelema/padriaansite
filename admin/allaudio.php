@@ -140,7 +140,7 @@ template_admin_header('Music Gallery\'s', 'MusicGallery')
       <select class="form-control" name="viewCat" id="selectCat">
         <option value="0">All Audio</option>
         <?php foreach ($categories as $category) : ?>
-          <option value=<?= $category['id'] ?> <?= $category['id'] == $viewCat ? 'selected' : '' ?>><?= $category['title'] ?></option>
+          <option value=<?= $category['id'] ?> <?= $category['id'] == $viewCat ? 'selected' : '' ?> data-current-cat="<?= $category['title'] ?>"><?= $category['title'] ?></option>
         <?php endforeach; ?>
       </select>
       <input type="text" name="term" id="search" value="<?= htmlspecialchars($term) ?>" placeholder="Search in title,description or year" class="form-control">
@@ -150,6 +150,13 @@ template_admin_header('Music Gallery\'s', 'MusicGallery')
     <div class="rj-btn-grid">
       <a href="allaudio.php" class="btn btn-primary">View All audio</a>
       <a href="media.php" class="btn">Create Media</a>
+      <?php if ($count > 0) : ?>
+        <div class="rj-action-td">
+          <button class="btn btn-primary" id="generateHTML">generate Page</button>
+          <span id="linkToResults"></span>
+        </div>
+      <?php endif; ?>
+
     </div>
   </div>
   <nav aria-label="Page navigation">
@@ -219,7 +226,20 @@ template_admin_header('Music Gallery\'s', 'MusicGallery')
           <tr>
             <td colspan="8" style="text-align:center;">There are no recent media files</td>
           </tr>
+
+
         <?php else : ?>
+          <script>
+            console.log('media loaded');
+            let catTitle, catDesc;
+            let media = <?= json_encode($media) ?>;
+            let cat = <?= $viewCat ?>;
+            if (cat > 0) {
+              catTitle = `<?= $catTitle ?>`;
+              catDesc = `<?= $catDesc ?>`;
+            }
+            console.log(media);
+          </script>
           <?php foreach ($media as $key => $m) :
             $short_title = (strlen($m['title']) >= 44) ?
               "<span data-short-title=1>" . substr(htmlspecialchars($m['title'], ENT_QUOTES), 0, 44) . "<span class='rj-elips'>...</span>" . "</span>"
@@ -308,5 +328,104 @@ template_admin_header('Music Gallery\'s', 'MusicGallery')
   document.getElementById('selectCat').addEventListener('change', function() {
     this.form.submit();
   });
+
+  if (document.getElementById('generateHTML')) {
+    document.getElementById('generateHTML').addEventListener('click', function() {
+      generateHTMLPage(media);
+      console.log('generate audio page');
+    });
+  }
+  let generateHTMLPage = (media) => {
+
+    let catDescription = catDesc ? `<p>${catDesc}</p>` : '';
+
+    let date = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+
+    let dateForFile = new Date().toLocaleDateString('en-US', {
+      year: '2-digit',
+      month: '2-digit',
+      day: '2-digit'
+    }).replace(/\//g, '');
+
+    let linkToResults = document.getElementById('linkToResults');
+    let header = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=0.6">
+  <title>Album Overview</title>
+  <link rel="stylesheet" href="https://www.pieter-adriaans.com/assets/css/availableArtstyle.css">
+</head>`;
+
+    let body = `<body><main><header><div><h1>${catTitle}</h1>${catDescription}<h2>Track Overview</h2><p>${date}</p></div><div class="image-wrap"><img src="https://pieter-adriaans.com/assets/img/kaasfabriekSmall.png" alt=""></div></header><div class="media-container">`;
+
+    media.forEach((m) => {
+      let img = m.thumbnail ? `<img src="https://www.pieter-adriaans.com/${m.thumbnail}" alt="${m.title}" loading="lazy">` : '';
+      let title = `<h2>${m.title}</h2>`;
+
+      // Beschrijving afkappen tot max 400 tekens
+      let desc = m.description ?? '';
+      if (desc.length > 400) {
+        desc = desc.substring(0, 400).trim() + '...';
+      }
+      let description = `<p class="track-description">${desc.replace(/\n/g, '<br>')}</p>`;
+
+      let qr = m.qr_url ? `<img src="https://www.pieter-adriaans.com/${m.qr_url}" alt="QR for ${m.title}" loading="lazy">` : '';
+
+      let mediaItem = `
+    <div class="media-item">
+      <div class="img-wrap">${img}</div>
+      <div class="media-info media-info-music">
+        ${title}
+        ${description}
+      </div>
+      <div class="qr">${qr}</div>
+    </div>`;
+
+      body += mediaItem;
+    });
+
+    body += `</div></main><footer>
+    <p>This overview was generated on ${date}.<br>
+    Visit <a href="https://pieter-adriaans.com" target="_blank">pieter-adriaans.com</a> for more music and art.</p>
+    <div class="contact-info">
+      <p>
+        Tel: +31 654 234 459<br>
+        Tel: +351 964 643 610
+      </p>
+      <p>
+        Email: pieter@pieter-adriaans.com<br>
+        Facebook: facebook.com/pieter.adriaans
+      </p>
+    </div>
+  </footer></body></html>`;
+
+    let html = header + body;
+    let blob = new Blob([html], {
+      type: 'text/html'
+    });
+    let url = URL.createObjectURL(blob);
+    let a = document.createElement('a');
+    let downloadA = document.createElement('a');
+
+    a.href = url;
+    downloadA.href = url;
+    a.classList.add('btn');
+    downloadA.classList.add('btn');
+    a.target = '_blank';
+    a.textContent = 'View Page';
+    downloadA.textContent = 'Download Page';
+    downloadA.download = `album-overview-${catTitle}-${dateForFile}.html`;
+
+    linkToResults.appendChild(a);
+    linkToResults.appendChild(downloadA);
+    linkToResults.style.display = 'flex';
+  };
 </script>
 <?= template_admin_footer() ?>
