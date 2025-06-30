@@ -825,6 +825,7 @@ blockquote.rj-about-quote {
   
   .card-body {
     padding: 8px;
+    /* pointer-events: none; */
   }
   
   .tab {

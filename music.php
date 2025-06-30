@@ -106,9 +106,21 @@ if ($album_id) {
                   </div>
                   <br>
                   <audio controls preload="none">
-                    <source src="<?= htmlspecialchars($track['filepath']) ?>" type="audio/mpeg">
+                    <?php
+                    $filepath = htmlspecialchars($track['filepath']);
+                    $ext = strtolower(pathinfo($filepath, PATHINFO_EXTENSION));
+
+                    // Choose correct MIME type
+                    $mime = 'audio/mpeg'; // default fallback
+                    if ($ext === 'm4a') $mime = 'audio/mp4';
+                    elseif ($ext === 'wav') $mime = 'audio/wav';
+                    elseif ($ext === 'ogg') $mime = 'audio/ogg';
+
+                    echo "<source src=\"$filepath\" type=\"$mime\">";
+                    ?>
                     Your browser does not support the audio element.
                   </audio>
+
                 </li>
               <?php endforeach; ?>
             </ul>
