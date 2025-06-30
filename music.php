@@ -105,7 +105,7 @@ if ($album_id) {
                     </div>
                   </div>
                   <br>
-                  <audio controls preload="none">
+                  <audio controls preload="metadata" class="rj-audio-player">
                     <?php
                     $filepath = htmlspecialchars($track['filepath']);
                     $ext = strtolower(pathinfo($filepath, PATHINFO_EXTENSION));
