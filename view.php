@@ -87,9 +87,20 @@ if (isset($_GET['fromAlbum']) && is_numeric($_GET['fromAlbum'])) {
                 <?php elseif ($media['type'] == 'audio') : ?>
                   <div class="image-container">
                     <div class="img-wrapper">
-                      <img src="<?= $media['thumbnail'] ?>" data-src="<?= $media['thumbnail'] ?>" alt="<?= $media['title'] ?>" class="lozad placeholder">
-                      <audio controls>
-                        <source src="<?= $media['filepath'] ?>" type="audio/mpeg">
+                      <img src="<?= $media['thumbnail'] ?>" data-src="<?= $media['thumbnail'] ?>" alt="<?= $media['title'] ?>" class="lozad placeholder" width="600">
+                      <audio controls preload="metadata" class="rj-audio-player">
+                        <?php
+                        $filepath = htmlspecialchars($media['filepath']);
+                        $ext = strtolower(pathinfo($filepath, PATHINFO_EXTENSION));
+
+                        // Choose correct MIME type
+                        $mime = 'audio/mpeg'; // default fallback
+                        if ($ext === 'm4a') $mime = 'audio/mp4';
+                        elseif ($ext === 'wav') $mime = 'audio/wav';
+                        elseif ($ext === 'ogg') $mime = 'audio/ogg';
+
+                        echo "<source src=\"$filepath\" type=\"$mime\">";
+                        ?>
                         Your browser does not support the audio element.
                       </audio>
                     </div>
