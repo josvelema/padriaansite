@@ -18,7 +18,7 @@ if ($album_id) {
     $stmt = $pdo->prepare('SELECT m.* FROM media m
             JOIN media_categories mc ON mc.media_id = m.id
             WHERE mc.category_id = ? AND m.type = "audio"
-            ORDER BY m.id ASC');
+            ORDER BY m.fnr ASC');
     $stmt->execute([$album_id]);
     $tracks = $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
