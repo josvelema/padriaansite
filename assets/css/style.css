@@ -4,9 +4,7 @@
         ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial,
         sans-serif;
     font-size: 16px;
-    /* border: 1px solid red;
-    outline: 1px solid green;
-   */
+    /
 }
 
 :root {
@@ -1135,7 +1133,7 @@ letter-spacing: 2px;
 
 .rj-current-nav {
     text-decoration: underline;
-    border: 1px solid var(--nav-color););
+    border: 1px solid var(--nav-color);
     border-radius: 4px;
 }
 
@@ -1477,4 +1475,11 @@ a.rj-modal-btn {
     .prevnext-small-media {
         display: flex;
     }
+}
+
+/* bootstrap override  */
+
+.placeholder {
+    cursor: auto !important;
+
 }

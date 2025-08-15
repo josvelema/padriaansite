@@ -453,8 +453,7 @@ if ($count > $show) {
 		});
 	}
 	document.addEventListener('DOMContentLoaded', () => {
-		console.log('loaded');
-
+		
 		const observer = lozad(".lozad", {
 			loaded: function(el) {
 				el.classList.add("fade");
